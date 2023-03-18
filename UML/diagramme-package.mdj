@@ -358,7 +358,7 @@
 											"top": 326,
 											"width": 207,
 											"height": 13,
-											"text": "Gestion des ressources"
+											"text": "Resources management"
 										},
 										{
 											"_type": "LabelView",
@@ -465,7 +465,7 @@
 											"top": 389,
 											"width": 62.8544921875,
 											"height": 13,
-											"text": "Personnel"
+											"text": "Staff"
 										},
 										{
 											"_type": "LabelView",
@@ -645,7 +645,7 @@
 											"top": 933,
 											"width": 85.96630859375,
 											"height": 13,
-											"text": "Cuisinier"
+											"text": "Chef"
 										},
 										{
 											"_type": "LabelView",
@@ -825,7 +825,7 @@
 											"top": 957,
 											"width": 51.29541015625,
 											"height": 13,
-											"text": "Vendeur"
+											"text": "Seller"
 										},
 										{
 											"_type": "LabelView",
@@ -1004,7 +1004,7 @@
 											"top": 533,
 											"width": 79.46630859375,
 											"height": 13,
-											"text": "Gestionnaire"
+											"text": "Manager"
 										},
 										{
 											"_type": "LabelView",
@@ -1178,7 +1178,7 @@
 											"top": 478,
 											"width": 207,
 											"height": 13,
-											"text": "Gestion des événements"
+											"text": "Events management"
 										},
 										{
 											"_type": "LabelView",
@@ -1285,7 +1285,7 @@
 											"top": 622,
 											"width": 207,
 											"height": 13,
-											"text": "Gestion des clients"
+											"text": "Clients management"
 										},
 										{
 											"_type": "LabelView",
@@ -1391,7 +1391,7 @@
 											"top": 766,
 											"width": 207,
 											"height": 13,
-											"text": "Commande de nourriture"
+											"text": "Food delivery"
 										},
 										{
 											"_type": "LabelView",
@@ -1597,7 +1597,7 @@
 											"top": 910,
 											"width": 207,
 											"height": 13,
-											"text": "Messagerie"
+											"text": "Chat"
 										},
 										{
 											"_type": "LabelView",
@@ -1704,7 +1704,7 @@
 											"top": 1182,
 											"width": 236.97900390625,
 											"height": 13,
-											"text": "Récupération de données sur un plat"
+											"text": "Dish information gathering"
 										},
 										{
 											"_type": "LabelView",
@@ -1811,7 +1811,7 @@
 											"top": 1079,
 											"width": 109.10986328125,
 											"height": 13,
-											"text": "API Spoonacular"
+											"text": "Spoonacular API"
 										},
 										{
 											"_type": "LabelView",
@@ -1912,7 +1912,7 @@
 											"top": 1038,
 											"width": 215,
 											"height": 13,
-											"text": "Programme de fidélité"
+											"text": "Client fidelity program"
 										},
 										{
 											"_type": "LabelView",
@@ -8794,7 +8794,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Gestion des ressources"
+					"name": "Resources management"
 				},
 				{
 					"_type": "UMLActor",
@@ -8802,7 +8802,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Personnel",
+					"name": "Staff",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
@@ -8839,7 +8839,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Cuisinier",
+					"name": "Chef",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
@@ -8943,7 +8943,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Vendeur",
+					"name": "Seller",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
@@ -8993,7 +8993,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Gestionnaire",
+					"name": "Manager",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
@@ -9070,7 +9070,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Gestion des événements"
+					"name": "Events management"
 				},
 				{
 					"_type": "UMLPackage",
@@ -9078,7 +9078,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Gestion des clients"
+					"name": "Clients management"
 				},
 				{
 					"_type": "UMLPackage",
@@ -9086,7 +9086,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Commande de nourriture"
+					"name": "Food delivery"
 				},
 				{
 					"_type": "UMLActor",
@@ -9118,7 +9118,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Messagerie"
+					"name": "Chat"
 				},
 				{
 					"_type": "UMLPackage",
@@ -9134,7 +9134,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Récupération de données sur un plat"
+					"name": "Dish information gathering"
 				},
 				{
 					"_type": "UMLUseCaseSubject",
@@ -9142,7 +9142,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "API Spoonacular"
+					"name": "Spoonacular API"
 				},
 				{
 					"_type": "UMLPackage",
@@ -9150,7 +9150,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Programme de fidélité"
+					"name": "Client fidelity program"
 				},
 				{
 					"_type": "UMLPackage",
