@@ -1,0 +1,23 @@
+version: '3.9'
+
+services:
+  frontend:
+    build: ./frontend
+    image: test-frontend
+    container_name: test-frontend-container
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+
+  backend:
+    build: ./backend
+    image: test-backend
+    container_name: test-backend-container
+    ports:
+      - "8081:80"
+
+networks:
+  default:
+    external:
+      name: test-network
