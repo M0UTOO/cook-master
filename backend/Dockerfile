@@ -9,7 +9,10 @@ COPY custom.conf /etc/apache2/conf-available/
 
 # Enable the custom configuration and URL rewriting for Apache
 RUN a2enconf custom \
-    && a2enmod rewrite
+    && a2enmod rewrite \
+    && a2enmod headers
+
+EXPOSE 80
 
 # Set the working directory to the document root
 WORKDIR /var/www/html

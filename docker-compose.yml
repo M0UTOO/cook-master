@@ -3,21 +3,40 @@ version: '3.9'
 services:
   frontend:
     build: ./frontend
-    image: test-frontend
-    container_name: test-frontend-container
     ports:
       - "8080:80"
     depends_on:
       - backend
+    networks:
+      - network-cookmaster
 
   backend:
     build: ./backend
-    image: test-backend
-    container_name: test-backend-container
     ports:
       - "8081:80"
+    depends_on:
+      - mariadb
+    networks:
+      - network-cookmaster
+    
+  mariadb:
+    image: mariadb
+    restart: always
+    volumes:
+      - mariadb-data:/var/lib/mysql
+    environment: 
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: database_name
+      MYSQL_USER: username
+      MYSQL_PASSWORD: password
+    # uncomment following lines to access db locally
+    # ports:
+    #   - 3306:3306
+    networks:
+      - network-cookmaster
 
 networks:
-  default:
-    external:
-      name: test-network
+  network-cookmaster:
+
+volumes:
+  mariadb-data:
