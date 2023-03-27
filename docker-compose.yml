@@ -24,14 +24,15 @@ services:
     restart: always
     volumes:
       - mariadb-data:/var/lib/mysql
+      - ./database:/docker-entrypoint-initdb.d/
     environment: 
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: database_name
+      MYSQL_DATABASE: main_database
       MYSQL_USER: username
       MYSQL_PASSWORD: password
     # uncomment following lines to access db locally
-    # ports:
-    #   - 3306:3306
+    ports:
+      - 3306:3306
     networks:
       - network-cookmaster
 

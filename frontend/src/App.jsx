@@ -14,8 +14,6 @@ const App = () => {
       const response = await fetch("http://localhost:8081");
       const data = await response.json();
 
-      console.log(data)
-
       if (!response.ok) {
         throw new Error(`Error: ${data.message}`);
       }
@@ -38,7 +36,17 @@ const App = () => {
       <button onClick={fetchData}>Fetch Data</button>
       {loading && <div>Loading...</div>}
       {error && <div>Error: {error}</div>}
-      {data && data.message}
+      {data && (
+        <table>
+          {data.data.map((item) => (
+            <tr key={item.id}>
+              <td>{item.first_name}</td>
+              <td>{item.last_name}</td>
+              <td>{item.email}</td>
+            </tr>
+          ))}
+        </table>
+      )}
     </div>
   );
 };
