@@ -1,8 +1,8 @@
-import { useRoutes } from "react-router-dom";
+import { useRoutes } from 'react-router-dom'
 
-import { routes } from "@/router/routes";
+import { routes } from '@/router/routes'
 
-import styles from "./App.module.scss"
+import styles from './App.module.scss'
 
 export const App = () => {
   const routesElement = useRoutes(routes)
@@ -12,4 +12,4 @@ export const App = () => {
       {routesElement}
     </div>
   )
-};
+}
