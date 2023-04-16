@@ -2,7 +2,7 @@
 PURPOSE: TRYING OUT THE CURL FUNCTIONS FROM A C PROGRAM
 FROM THE NOUMOIN-SUN DEV TEAM
 
-TO COMPILE : gcc main.c -o main.exe -lcurl
+TO COMPILE : gcc *.c * /*c -o main.exe -lcurl
 
 STEPS:
 Récupérer les variables d’environnements:
@@ -23,6 +23,8 @@ Retourner le texte récupérer
 #include <stdlib.h>
 #include <curl/curl.h>
 #include "env/env.h"
+#include "sqlite3.h"
+#include "database/database.h"
 
 typedef struct Arguments Arguments;
 struct Arguments {
@@ -31,6 +33,7 @@ struct Arguments {
 };
 
 
+//Managing arguments : waiting for client answers.
 Arguments *getArguments(int arguments, char ** value){
     Arguments *parameters = NULL;
     if (arguments != 0){
@@ -51,6 +54,14 @@ int main(int argc, char ** argv){
     //Get the arguments
     Arguments *parameters = getArguments(argc, argv);
     Env *config = readFile("env/.env");
+
+    //DATABASE CALLS
+    sqlite3 *db;
+    char *zErrMsg = 0;
+    int rc;
+    char *sql;
+    createDatabase(db, sql, zErrMsg, rc);
+    createTableIngredients(db, sql, zErrMsg, rc);
 
     CURL *curl;
     CURLcode res;
