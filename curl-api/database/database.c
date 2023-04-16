@@ -31,6 +31,17 @@ void createDatabase(sqlite3 *db, char *sql, char *zErrMsg, int rc)
 
 void createTableIngredients(sqlite3 *db, char *sql, char *zErrMsg, int rc)
 {
+   rc = sqlite3_open("database/test.db", &db);
+
+   if( rc )
+   {
+      fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+      exit(0);
+   } else
+   {
+      printf("\n");
+   }
+
    sql = "CREATE TABLE IF NOT EXISTS INGREDIENTS("  \
             "ID                 INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," \
             "NAME               VARCHAR(30)    NOT NULL," \

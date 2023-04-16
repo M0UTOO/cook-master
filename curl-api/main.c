@@ -2,7 +2,7 @@
 PURPOSE: TRYING OUT THE CURL FUNCTIONS FROM A C PROGRAM
 FROM THE NOUMOIN-SUN DEV TEAM
 
-TO COMPILE : gcc *.c * /*c -o main.exe -lcurl
+TO COMPILE : gcc *.c * /*.c -o main.exe -lcurl
 
 STEPS:
 Récupérer les variables d’environnements:
@@ -60,7 +60,7 @@ int main(int argc, char ** argv){
     char *zErrMsg = 0;
     int rc;
     char *sql;
-    createDatabase(db, sql, zErrMsg, rc);
+    
     createTableIngredients(db, sql, zErrMsg, rc);
 
     CURL *curl;
