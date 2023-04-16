@@ -1,0 +1,14 @@
+# Executables
+*.exe
+*/*.exe
+*.out
+
+#LA BDD
+database/test.db
+
+#IDE FOLDERS
+.idea
+.vscode
+
+#ENV
+env/.env
