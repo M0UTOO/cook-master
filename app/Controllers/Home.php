@@ -19,10 +19,11 @@ class Home extends BaseController
             $response = $curl->get($get_endpoint, ['verify' => false]); //disable SSL: verify => false
     
             $data['foo'] = $response->getBody();
+
         } catch (GlobalException $e) {
             $data['error'] = $e->getMessage();
-        }   
-      
+        }
+        $data['title'] = "Super titre";
         return view('welcome_message', $data);
     }
 }

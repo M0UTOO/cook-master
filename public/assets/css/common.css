@@ -1,0 +1,6 @@
+@import "colors.css";
+
+.test {
+    background-color: var(--brand-primary-color);
+    color: var(--text-color);
+}
