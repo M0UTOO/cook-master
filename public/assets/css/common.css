@@ -1,6 +1,85 @@
 @import "colors.css";
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&display=swap');
 
-.test {
-    background-color: var(--brand-primary-color);
-    color: var(--text-color);
+*{
+    box-sizing: border-box;
 }
+
+body{
+    margin :0;
+    font-family: 'Heebo';
+}
+
+/*HEADER*/
+@media screen and (max-width: 2000px) {
+    .header {
+        background-color: var(--brand-primary-color);
+        color: var(--bg-color);
+        height: 80px;
+        padding: 0 32px;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #navbar {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #menu-icon{
+        height: auto;
+        width: 8%;
+    }
+
+    .navbar-brand{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .navbar-brand:first-child img {
+        border-radius: 4px;
+        padding: 4px;
+        background-color: #FDFDFD;
+    }
+
+    header div a:hover{
+        color: var(--brand-third-color);
+        text-decoration: underline;
+    }
+
+}
+@media screen and (min-width: 900px) {
+
+            /*Css to come*/
+}
+
+.main{
+    min-height: 400px;
+}
+
+/*FOOTER*/
+
+footer{
+    height: 250px;
+    width: 100%;
+    padding: 0;
+
+    color: var(--text-color);
+    font-size: 1rem;
+}
+#pre-footer{
+    background-color: var(--placeholder-color);
+}
+
+#bottom-footer{
+    background-color: var(--brand-primary-color);
+}
+/* desktop footer */
+@media screen and (min-width: 900px){
+
+}
+
+

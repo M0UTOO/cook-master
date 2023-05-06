@@ -1,17 +1,21 @@
 <?= $this->include('layouts/head') ?>
-<?= $this->include('layouts/header') ?>
 <body>
-    <?php
+    <?= $this->include('layouts/header') ?>
+    <main class="main">
 
-use function PHPUnit\Framework\isEmpty;
+        <?php
+
+        use function PHPUnit\Framework\isEmpty;
 
         if (isset($foo)) {
             echo $foo;
         } else {
             echo $error;
         }
-    ?>
+        ?>
+
+    </main>
+    <?= $this->include('layouts/footer') ?>
 </body>
-<?= $this->include('layouts/footer') ?>
 
 </html>
