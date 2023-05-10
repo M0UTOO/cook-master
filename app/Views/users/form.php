@@ -6,7 +6,7 @@ $email = "E-mail";
 
 helper('form');
 
-echo form_open("users/create", 'id="user-form" class="light-form"');
+echo form_open("", 'id="user-form" class="light-form" onsubmit="test()"');
     echo "<h2>".$signIn."</h2>";
     echo form_password("password","", 'placeholder=" ' . $password . '"');
     echo form_label("Votre mot de passe", "password");

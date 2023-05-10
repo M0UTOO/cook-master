@@ -9,7 +9,8 @@
         "ext-curl": "*",
         "blade-ui-kit/blade-icons": "^1.5",
         "codeat3/blade-grommet-icons": "^1.6",
-        "codeigniter4/framework": "^4.0"
+        "codeigniter4/framework": "^4.0",
+      "ext-json": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9",

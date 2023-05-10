@@ -9,21 +9,26 @@ class Home extends BaseController
 {
     public function index()
     {
-
-        try{
-            $rest_api_base_url = 'http://localhost:9000';
-            $get_endpoint = '/foo';
-            // Instance
-            $curl = \Config\Services::curlrequest(['baseURI' => $rest_api_base_url]);
-    
-            $response = $curl->get($get_endpoint, ['verify' => false]); //disable SSL: verify => false
-    
-            $data['foo'] = $response->getBody();
-
-        } catch (GlobalException $e) {
-            $data['error'] = $e->getMessage();
-        }
-        $data['title'] = "Super titre";
-        return view('welcome_message', $data);
+        $data['title'] = "Cookmaster - Home page";
+        $data['events'] =
+            [
+                [
+                    'id' => 1,
+                    'name' => 'Event 1',
+                    'date' => '2021-01-01',
+                    'location' => 'Paris',
+                    'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl vitae aliquam ultricies, nunc nisl ultricies nunc',
+                ],
+                [
+                    'id' => 2,
+                    'name' => 'Event 2',
+                    'date' => '2021-01-02',
+                    'location' => 'Paris',
+                    'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl vitae aliquam ultricies, nunc nisl ultricies nunc',
+                ]
+            ];
+        return view('home', $data);
     }
+
+
 }

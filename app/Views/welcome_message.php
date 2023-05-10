@@ -6,16 +6,17 @@
         <?php
 
         use function PHPUnit\Framework\isEmpty;
-
-        if (isset($foo)) {
-            echo $foo;
-        } else {
-            echo $error;
+        echo "<p id='api-message' class='.d-none'>";
+        if (isset($message)) {
+            echo $message;
         }
+        echo "</p>"
         ?>
 
     </main>
     <?= $this->include('layouts/footer') ?>
 </body>
+
+
 
 </html>
