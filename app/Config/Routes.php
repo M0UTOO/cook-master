@@ -32,6 +32,7 @@ $routes->set404Override();
 $routes->get('/', 'Home::index');
 $routes->get('users/create', 'Users::create');
 $routes->post('users/create', 'Users::create');
+$routes->get('users/profile', 'Users::profile');
 /*
  * --------------------------------------------------------------------
  * Additional Routing
