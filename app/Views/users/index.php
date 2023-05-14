@@ -10,8 +10,6 @@
             } catch (\Exception $e) {
                 echo "Something went wrong. Please try again later.";
             }
-
-
         }
         ?>
 

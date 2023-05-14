@@ -10,4 +10,12 @@
 </header>
 
 <main class="main d-flex flex-column align-items-center">
+    <?php
+    if ((session()->get('id')) !== null ){
+        echo "Logged In - ID: " . session()->get('id');
+        echo "<br>";
+    } else {
+        echo "You are not logged in";
+    }
+?>
 
