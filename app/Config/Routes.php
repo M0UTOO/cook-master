@@ -37,6 +37,8 @@ $routes->get('users/profile', 'Users::profile');
 $routes->get('users/signIn', 'Users::SignIn');
 $routes->post('users/signIn', 'Users::SignIn');
 
+$routes->get('users/signOut', 'Users::SignOut');
+
 $routes->get('users/signUp', 'Users::SignUp');
 $routes->post('users/signUp', 'Users::SignUp');
 

@@ -8,17 +8,14 @@ class Users extends BaseController
     {
     }
 
-    public function getRole(){
-        //TODO: CALL API
-    }
     public function isManager(): bool{
-        return true;
+        return (session()->get('role') == 'manager');
     }
     public function isContractor(): bool{
-        return true;
+        return (session()->get('role') == 'contractor');
     }
     public function isClient(): bool{
-        return true;
+        return (session()->get('role') == 'client');
     }
 
     public function isSuperAdmin(): bool
@@ -32,6 +29,11 @@ class Users extends BaseController
         helper('session');
 
         $data['title'] = "Sign In";
+
+        if ((session()->get('id')) !== null ){
+            $data['message'] = "You are already logged in";
+            return view('users/index', $data);
+        }
 
         if (!$this->request->is('post')){
             return view('users/signIn', $data);
@@ -97,6 +99,17 @@ class Users extends BaseController
 
         return view('users/index', $data);
     }
+    public function signOut(){
+        helper('session');
+
+        $session = session();
+        $session->destroy();
+
+        $data['title'] = "Sign Out";
+        $data['message'] = "You are now logged out";
+
+        return view('users/index', $data);
+    }
 
     private function getError(array $data, string $redirectionUrl): string{
         if ($data['message']['error']){
@@ -110,15 +123,17 @@ class Users extends BaseController
 
         helper('curl_helper');
 
-        $data['user'] = callAPI('/user/1', 'get', []);
+        $userId = session()->get('id');
+        echo $userId;
+        //$data['user'] = callAPI('/user/'.$userId, 'get', []);
         //$data['events'] = getUsersEvents($data['user']['id']);
         $data['title'] = "My profile";
         //var_dump($data);
-        return view('users/profile', $data);
+        //return view('users/profile', $data);
     }
     public function create()
     {
-        $data['title'] = "Sign Up";
+        $data['title'] = "nbvc";
 //
 //        helper('form');
 //        //if form didn't get sent already, load form.
