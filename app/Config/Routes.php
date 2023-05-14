@@ -33,6 +33,16 @@ $routes->get('/', 'Home::index');
 $routes->get('users/create', 'Users::create');
 $routes->post('users/create', 'Users::create');
 $routes->get('users/profile', 'Users::profile');
+
+$routes->get('users/signIn', 'Users::SignIn');
+$routes->post('users/signIn', 'Users::SignIn');
+
+$routes->get('users/signUp', 'Users::SignUp');
+$routes->post('users/signUp', 'Users::SignUp');
+
+$routes->get('password/forgottenPassword', 'Password::forgottenPassword');
+$routes->get('password/resetPassword', 'Password::resetPassword');
+$routes->get('password/sendMailResetPassword', 'Password::sendMailResetPassword');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

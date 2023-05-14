@@ -7,13 +7,10 @@
     if (isset($message)) {
         echo $message;
     }
-    echo "<section id='signIn-section' class='w-100 column-list'>";
-    echo $this->include('users/signInForm.php');
-
-    echo "</section>";
-
-    echo '<section id="signUp-section" class="w-100 column-list">';
+    echo "<section id='signUp-section' class='w-100 column-list'>";
     echo $this->include('users/signUpForm.php');
+
+    echo '<a class="align-self-end" href='. base_url('users/signIn'). '>Already have an account ? Connect.</a>';
 
     echo "</section>";
     ?>

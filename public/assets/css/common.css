@@ -15,7 +15,7 @@ body{
     .header {
         background-color: var(--brand-primary-color);
         color: var(--bg-color);
-        height: 80px;
+        height: 10vh;
         padding: 0 32px;
 
         display: flex;
@@ -47,7 +47,7 @@ body{
 
     header div a:hover{
         color: var(--brand-third-color);
-        text-decoration: underline;
+        text-decoration: none;
     }
 
 }
@@ -57,8 +57,91 @@ body{
 }
 
 .main{
-    min-height: 400px;
+    min-height: 100vh;
 }
+
+label{
+    color: var(--brand-primary-color);
+    display: inline;
+}
+
+.icons{
+    max-width: 1rem;
+}
+
+.column-list{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+/*FORMS*/
+
+input {
+    border: 1px solid var(--brand-primary-color) !important;
+}
+
+section {
+    margin-top: 1em;
+}
+
+#signIn-section{
+    min-height: 45vh;
+}
+
+#signIn-form{
+    min-height: 35vh;
+}
+
+#signUp-section{
+    min-height: 15vh;
+}
+#signUp-section div {
+    background-color: var(--brand-second-color);
+}
+
+form a {
+    color: var(--brand-third-color);
+
+}
+#arrow-submit {
+    border: none !important;
+}
+
+#signIn-form .btn {
+    background-color: var(--brand-second-color);
+}
+#signUp-form .btn {
+    background-color: var(--bg-color);
+}
+
+h1{
+    color: var(--brand-primary-color);
+    font-size: 32px;
+}
+h2{
+    color: var(--text-color);
+    font-size: 24px;
+}
+
+p{
+    color: var(--text-color);
+    font-size: 16px;
+}
+
+.errors{
+    color: var(--brand-third-color);
+    font-size: 14px;
+}
+
+.successes{
+    color: var(--brand-sixth-color);
+    font-size: 14px;
+}
+
 
 /*FOOTER*/
 

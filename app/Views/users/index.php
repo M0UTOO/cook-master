@@ -2,14 +2,17 @@
 
 <body>
     <?= $this->include('layouts/header') ?>
-    <main class="main">
 
         <?php
-        if (isset($email)) {
-            echo "The form is working, you wrote : " . $email ;
-        }
+        if (isset($message)) {
+            try {
+                echo $message ;
+            } catch (\Exception $e) {
+                echo "Something went wrong. Please try again later.";
+            }
 
-        echo $this->include('users/form.php');
+
+        }
         ?>
 
     </main>

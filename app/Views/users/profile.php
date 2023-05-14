@@ -2,7 +2,6 @@
 
 <body>
     <?= $this->include('layouts/header') ?>
-    <main class="main">
 
 <!--TODO: ADD DASHBOARD NAV-->
         <section id="user-info">
@@ -15,6 +14,7 @@
             } else {
                 echo "Error charging user info.";
             }
+
 
         //echo $this->include('');
         ?>
