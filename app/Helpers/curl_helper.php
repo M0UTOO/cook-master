@@ -1,26 +1,35 @@
 <?php
-    function callAPI($endpoint, $method, $data)
+    function callAPI(string $endpoint, string $method, array $data)
     {
         $token = env('API_TOKEN');
         $baseUrl = 'http://localhost:9000';
         $url = $baseUrl . $endpoint;
-        $header = 'Token: ' . $token;
-
         $request = \Config\Services::curlrequest();
 
         $request->setHeader('Token', $token);
-        if ($data != ''){
+        if (!empty($data)){
+            $data = json_encode($data);
             $request->setBody($data);
         }
 
-        $response = $request->request($method, $url);
-        //echo $response->getBody();
-        $body = json_decode($response->getBody());
-        $data = [];
-        foreach ($body as $key => $value){
-            $data[$key] = $value;
+        $res = [];
+        try {
+            $response = $request->request($method, $url, ['http_errors' => false]); //Disabling native Behaviour to panik when getting http errors
+            $body = json_decode($response->getBody());
+
+            if ($response->getStatusCode() != 200){
+                $res['message'] = $body->message;
+                $res['error'] = $body->error;
+            } else {
+                foreach ($body as $key => $value){
+                    $res[$key] = $value;
+                }
+            }
+
+        } catch (\Exception $e) {
+            $res = "Something went wrong. Please try again later.";
         }
-        return $data;
+        return $res;
 
     }
 

@@ -8,3 +8,6 @@
         <a class="navbar-brand" id="menu-icon" href="#"><?= img(base_url("assets/images/svg/menu.svg")) ?></a>
     </div>
 </header>
+
+<main class="main d-flex flex-column align-items-center">
+
