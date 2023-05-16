@@ -29,33 +29,38 @@ class Users extends BaseController
         helper('session');
 
         $data['title'] = "Sign In";
+        $data['mini'] = true; //TO SHOW THE MINI SIGNUP FORM
 
         if ((session()->get('id')) !== null ){
             $data['message'] = "You are already logged in";
             return view('users/index', $data);
         }
-
-        if (!$this->request->is('post')){
+        elseif (!$this->request->is('post')){
             return view('users/signIn', $data);
         }
+        else {
 
-        $logins = $this->request->getPost(['email', 'password']);
+            $logins = $this->request->getPost(['email', 'password']);
+            $data['message'] = callAPI('/user/login', 'get', $logins);
 
-        $data['message'] = callAPI('/user/login','get', $logins );
+            if ($data['message']['error']){
+                    $data['message'] = $data['message']['message'];
+                    return view('users/signIn', $data);
+            }
 
-        $this->getError($data, 'users/signIn');
+            #SESSION#
+            if (isset($data['message']['id'])) {
+                $userInfo = [
+                    'id' => $data['message']['id'],
+                    'role' => $data['message']['role'],
+                ];
+                $session = session();
+                $session->set($userInfo);
 
-        #SESSION#
-        $userInfo = [
-            'id' => $data['message']['id'],
-            'role' => $data['message']['role'],
-        ];
-        $session = session();
-        $session->set($userInfo);
-
-        $data['message'] = "You are now logged in";
-
-        return view('users/index', $data);
+                $data['message'] = "You are now logged in";
+            }
+            return view('users/index', $data);
+        }
     }
     public function signUp(){
         helper('curl_helper');
@@ -66,9 +71,10 @@ class Users extends BaseController
             return view('users/signUp', $data);
         }
 
-        //IF USER WAS ON SMALL FORM AND NEEDS TO CREATE A FULL ACCOUNT
-        if ($this->request->getPost('mini') != 1){
-            $data['mini'] = 1;
+        //IF USER WAS ON SMALL FORM AND NEEDS TO CREATE A FULL ACCOUNT NOW
+        if ($this->request->getPost('mini')){
+            $data['mini'] = false; //TO SHOW THE FULL FORM AND NOT THE MINI ONE
+            $data['email'] = $this->request->getPost('email');
             //ADD THE EMAIL AUTOMATICALLY IN NEXT PAGE
             return view('users/signUp', $data);
         }
@@ -112,11 +118,14 @@ class Users extends BaseController
     }
 
     private function getError(array $data, string $redirectionUrl): string{
+
         if ($data['message']['error']){
             $data['message'] = $data['message']['message'];
+            //var_dump($data) ;
             return view($redirectionUrl, $data);
+        } else {
+            return "0";
         }
-        return "0";
     }
 
     public function profile(){
