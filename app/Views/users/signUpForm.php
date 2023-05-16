@@ -9,9 +9,15 @@ helper('form');
 helper('url')  ;
 
 $miniForm = (isset($mini) && $mini == true ) ? true : false;
-$email_value = (isset($email) && $miniForm) ? $email : "";
+$email_value = (isset($email)) ? $email : "";
+echo $email_value;
 $url = uri_string();
-$hidden_input = ($url == "users/signIn") ? ['mini' => true, 'Type' => 'client'] : [];
+$type= isset($userType) ? $userType : "Client";
+$hidden_input = ['Type' => $type];
+
+if ($url == "users/signIn") {
+    $hidden_input['mini'] = true;
+}
 
 echo "<div class='column-list rounded-top w-75'>";
 echo "<h2>" . $signUp . "<img alt='logo' src=" . base_url("assets/images/toque-logo-1-medium.svg") . " /></h2>";

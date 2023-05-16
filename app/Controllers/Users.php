@@ -24,6 +24,10 @@ class Users extends BaseController
         return true;
     }
 
+    protected function isLoggedIn(): bool{
+        return ((session()->get('id')) !== null);
+    }
+
     public function signIn(){
         helper('curl_helper');
         helper('session');
@@ -31,7 +35,7 @@ class Users extends BaseController
         $data['title'] = "Sign In";
         $data['mini'] = true; //TO SHOW THE MINI SIGNUP FORM
 
-        if ((session()->get('id')) !== null ){
+        if ($this->isLoggedIn()){
             $data['message'] = "You are already logged in";
             return view('users/index', $data);
         }
@@ -67,53 +71,60 @@ class Users extends BaseController
 
         $data['title'] = "Sign Up";
 
-        if (!$this->request->is('post')){
-            return view('users/signUp', $data);
+        if ($this->isLoggedIn()){
+            $data['message'] = "You are already logged in";
+            return view('users/index', $data);
         }
-
-        //IF USER WAS ON SMALL FORM AND NEEDS TO CREATE A FULL ACCOUNT NOW
-        if ($this->request->getPost('mini')){
+        else if ($this->request->getPost('mini')){
             $data['mini'] = false; //TO SHOW THE FULL FORM AND NOT THE MINI ONE
-            $data['email'] = $this->request->getPost('email');
-            //ADD THE EMAIL AUTOMATICALLY IN NEXT PAGE
+            $data['email'] = $this->request->getPost('email');//TO ADD THE EMAIL AUTOMATICALLY IN NEXT PAGE
             return view('users/signUp', $data);
         }
+        elseif (!$this->request->is('post')){
+            return view('users/signUp', $data);
+        } else{
+            $newUser= $this->request->getPost(['email', 'password', "and so on"]);
+            //	a user:
+            //        Email string `json:"email"`
+            //			Password string `json:"password"`
+            //			FirstName string `json:"firstname"`
+            //			LastName string `json:"lastname"`
+            //			FidelityPoints int `json:"fidelitypoints"`
+            //			StreetName string `json:"streetname"`
+            //			Country string `json:"country"`
+            //			City string `json:"city"`
+            //			SteetNumber int `json:"streetnumber"`
+            //			PhoneNumber string `json:"phonenumber"`
+            //			Subscription int `json:"subscription"`
+            //			Presentation string `json:"presentation"`
+            //			IsItemManager bool `json:"isitemmanager"`
+            //			IsClientManager bool `json:"isclientmanager"`
+            //			IsContractorManager bool `json:"iscontractormanager"`
+            //			IsSuperAdmin bool `json:"issuperadmin"`
 
-        $newUser= $this->request->getPost(['email', 'password', "and so on"]);
-        //	a user:
-        //        Email string `json:"email"`
-        //			Password string `json:"password"`
-        //			FirstName string `json:"firstname"`
-        //			LastName string `json:"lastname"`
-        //			FidelityPoints int `json:"fidelitypoints"`
-        //			StreetName string `json:"streetname"`
-        //			Country string `json:"country"`
-        //			City string `json:"city"`
-        //			SteetNumber int `json:"streetnumber"`
-        //			PhoneNumber string `json:"phonenumber"`
-        //			Subscription int `json:"subscription"`
-        //			Presentation string `json:"presentation"`
-        //			IsItemManager bool `json:"isitemmanager"`
-        //			IsClientManager bool `json:"isclientmanager"`
-        //			IsContractorManager bool `json:"iscontractormanager"`
-        //			IsSuperAdmin bool `json:"issuperadmin"`
+            //NEED TO TEST THIS :
+            //$data['message'] = callAPI("/users/","post", $newUser);
 
-        //NEED TO TEST THIS :
-        //$data['message'] = callAPI("/users/","post", $newUser);
+            //$this->getError($data, 'users/signUp');
 
-        //$this->getError($data, 'users/signUp');
+            return view('users/index', $data);
+        }
 
-        return view('users/index', $data);
     }
     public function signOut(){
         helper('session');
 
-        $session = session();
-        $session->destroy();
+        if (!$this->isLoggedIn()){
+            $data['message'] = "You are not logged in";
+        }
+        else
+        {
+            $session = session();
+            $session->destroy();
 
-        $data['title'] = "Sign Out";
-        $data['message'] = "You are now logged out";
-
+            $data['title'] = "Sign Out";
+            $data['message'] = "You are now logged out";
+        }
         return view('users/index', $data);
     }
 
