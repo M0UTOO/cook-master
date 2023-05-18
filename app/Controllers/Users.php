@@ -144,12 +144,12 @@ class Users extends BaseController
         helper('curl_helper');
 
         $userId = session()->get('id');
-        echo $userId;
-        //$data['user'] = callAPI('/user/'.$userId, 'get', []);
+
+        $data['user'] = callAPI('/user/'.$userId, 'get', []);
         //$data['events'] = getUsersEvents($data['user']['id']);
         $data['title'] = "My profile";
         //var_dump($data);
-        //return view('users/profile', $data);
+        return view('users/profile', $data);
     }
     public function create()
     {

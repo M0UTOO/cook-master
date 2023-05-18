@@ -10,7 +10,6 @@ helper('url')  ;
 
 $miniForm = (isset($mini) && $mini == true ) ? true : false;
 $email_value = (isset($email)) ? $email : "";
-echo $email_value;
 $url = uri_string();
 $type= isset($userType) ? $userType : "Client";
 $hidden_input = ['Type' => $type];
@@ -26,7 +25,7 @@ echo form_open("users/signUp", 'id="signUp-form" class="w-75 v-50 d-flex flex-co
 
 echo '<div class="form-group">';
 echo form_label('Your email <img src=' . base_url("assets/images/svg/menu.svg") . ' alt="email-icon" class="icons" />', "label-email");
-echo form_input("email", $email_value, 'class="form-control" placeholder="' . $email_placeholder . '"');
+echo form_input(['type'  => 'email', 'name'  => 'email', 'value' => $email_value,'class' => 'form-control', 'placeholder' => $email_placeholder, 'required' => 'required']);
 echo '</div>';
 
 
@@ -35,22 +34,22 @@ if ((isset($mini) && $mini == false) || !isset($mini)){
 
     echo '<div class="form-group">';
     echo form_label("Your password", "label-password");
-    echo form_password("password", "", 'class="form-control" placeholder="Password"');
+    echo form_password("password", "", 'class="form-control" required="required" placeholder="Password"');
     echo '</div>';
 
     echo '<div class="form-group">';
     echo form_label('Re-enter password <img src=' . base_url("assets/images/svg/menu.svg") . ' alt="email-icon" class="icons" />', "label-password-2");
-    echo form_input("password", "", 'class="form-control" placeholder="' . $password . '"');
+    echo form_password("password", "", 'class="form-control" required="required" placeholder="' . $password . '"');
     echo '</div>';
 
     echo '<div class="form-group">';
     echo form_label('Your first name  <img src=' . base_url("assets/images/svg/menu.svg") . ' alt="email-icon" class="icons" />', "label-email");
-    echo form_input("text", "", 'class="form-control" placeholder="' . $firstname . '"');
+    echo form_input(['type'  => 'text', 'name'  => 'firstname', 'class' => 'form-control', 'placeholder' => $firstname, 'required' => 'required']);
     echo '</div>';
 
     echo '<div class="form-group">';
     echo form_label('Your surname <img src=' . base_url("assets/images/svg/menu.svg") . ' alt="email-icon" class="icons" />', "label-email");
-    echo form_input("text", "", 'class="form-control" placeholder="' . $surname . '"');
+    echo form_input(['type'  => 'text', 'name'  => 'surname', 'class' => 'form-control', 'placeholder' => $surname, 'required' => 'required']);
     echo '</div>';
 
     // FOR NOW THIS IS THE CLIENT FORM
@@ -59,9 +58,12 @@ if ((isset($mini) && $mini == false) || !isset($mini)){
 
 
     echo form_submit('', $signUp, "class='btn mt-3'");
+    echo '<a class="align-self-end" href='. base_url('users/signIn'). '>Already have an account ? Connect.</a>';
+
 } else {
     echo form_input(['id' => 'arrow-submit', 'type' => 'image', 'src' => base_url("assets/images/svg/menu.svg"), 'name'=>'submit', 'alt' => 'arrow-icon', 'class' => 'icons p-1 m-2 align-self-end']);
 }
+
 echo form_close();
 
 

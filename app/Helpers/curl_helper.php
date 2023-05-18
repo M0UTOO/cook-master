@@ -1,6 +1,7 @@
 <?php
     function callAPI(string $endpoint, string $method, array $data)
     {
+        //TODO: add new argument to add headers
         $token = env('API_TOKEN');
         $baseUrl = 'http://localhost:9000';
         $url = $baseUrl . $endpoint;
