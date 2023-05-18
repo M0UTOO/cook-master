@@ -9,6 +9,7 @@ class Users extends BaseController
     }
 
     public function isManager(): bool{
+        helper('session');
         return (session()->get('role') == 'manager');
     }
     public function isContractor(): bool{
@@ -63,7 +64,7 @@ class Users extends BaseController
 
                 $data['message'] = "You are now logged in";
             }
-            return view('users/index', $data);
+            return redirect('users/index');
         }
     }
     public function signUp(){
@@ -125,7 +126,7 @@ class Users extends BaseController
             $data['title'] = "Sign Out";
             $data['message'] = "You are now logged out";
         }
-        return view('users/index', $data);
+        return redirect('users/index')->with('message', $data['message']); //doesn't display message ?
     }
 
     private function getError(array $data, string $redirectionUrl): string{
@@ -167,6 +168,13 @@ class Users extends BaseController
 //        $data['password'] = $post['password'];
 
         return view('users/index', $data);
+    }
+
+    public function edit(){
+
+    }
+    public function delete(){
+
     }
 
     protected function getUsersEvents($id){

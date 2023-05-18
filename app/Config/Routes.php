@@ -36,6 +36,7 @@ $routes->get('users/profile', 'Users::profile');
 
 $routes->get('users/signIn', 'Users::SignIn');
 $routes->post('users/signIn', 'Users::SignIn');
+$routes->get('users/index', 'Home::index');
 
 $routes->get('users/signOut', 'Users::SignOut');
 
@@ -45,6 +46,12 @@ $routes->post('users/signUp', 'Users::SignUp');
 $routes->get('password/forgottenPassword', 'Password::forgottenPassword');
 $routes->get('password/resetPassword', 'Password::resetPassword');
 $routes->get('password/sendMailResetPassword', 'Password::sendMailResetPassword');
+
+$routes->get('dashboard', 'Dashboard::index');
+$routes->get('dashboard/userManagement', 'Dashboard::userManagement');
+$routes->get('dashboard/eventManagement', 'Dashboard::eventManagement');
+
+$routes->get('unauthorized', 'Authorization::unauthorized');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

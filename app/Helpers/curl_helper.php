@@ -17,11 +17,11 @@
         try {
             $response = $request->request($method, $url, ['http_errors' => false]); //Disabling native Behaviour to panik when getting http errors
             $body = json_decode($response->getBody());
-
             if ($response->getStatusCode() != 200){
                 $res['message'] = $body->message;
                 $res['error'] = $body->error;
             } else {
+                var_dump($body);
                 foreach ($body as $key => $value){
                     $res[$key] = $value;
                 }
