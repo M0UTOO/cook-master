@@ -21,7 +21,6 @@
                 $res['message'] = $body->message;
                 $res['error'] = $body->error;
             } else {
-                var_dump($body);
                 foreach ($body as $key => $value){
                     $res[$key] = $value;
                 }

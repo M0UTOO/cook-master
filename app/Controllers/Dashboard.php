@@ -14,7 +14,7 @@ class Dashboard extends BaseController
         // Check if the user is a manager (check role in session data)
         if ($this->isManager() != 'manager') {
 
-            echo "ok2\n";
+            echo "Unauthorized\n";
             return redirect('unauthorized');
         } else{
             return "true";
@@ -24,6 +24,7 @@ class Dashboard extends BaseController
     public function index()
     {
         if ($this->checkAccess() == "true"){
+            $data['title'] = "Dashboard";
             return view('dashboard/index');
         }
     }
@@ -47,8 +48,17 @@ class Dashboard extends BaseController
     public function eventManagement()
     {
         if ($this->checkAccess() == "true"){
-            $data['title'] = "Events Management";
-            return view('dashboard/event_management', $data);
+            //This will be the same page that users and contractors will see when going on the events page
+            //BUT the manager can add , delete an event and mofify them too
+            $data['managerView'] = true; //check thru this or thru the session(role) might be better too
+            return view('events/index', $data);
         }
+    }
+
+    public function itemManagement(){
+
+    }
+    public function premisesManagement(){
+
     }
 }
