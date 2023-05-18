@@ -10,8 +10,6 @@
     echo "<section id='signUp-section' class='w-100 column-list'>";
     echo $this->include('users/signUpForm.php');
 
-    echo '<a class="align-self-end" href='. base_url('users/signIn'). '>Already have an account ? Connect.</a>';
-
     echo "</section>";
     ?>
 </main>

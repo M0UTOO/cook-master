@@ -24,7 +24,7 @@ class Password extends BaseController
 
     public function hashPassword($password){
         //TODO:HASH THE PASSWORD BEFORE SENDING IT TO THE API.
-        return password_hash($password, PASSWORD_DEFAULT);
+        return password_hash($password, PASSWORD_BCRYPT);
     }
 
     public function decodeHashPassword($password){
