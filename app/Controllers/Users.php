@@ -8,6 +8,7 @@ class Users extends BaseController
     {
     }
 
+    //TODO: PUT THOSE isFunctions in the user_helper file so it's accessible from everywhere
     public function isManager(): bool{
         helper('session');
         return (session()->get('role') == 'manager');
