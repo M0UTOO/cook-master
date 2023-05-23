@@ -33,6 +33,11 @@ body{
         width: 8%;
     }
 
+    #burger-menu{
+        background-color: var(--brand-primary-color);
+        color: var(--bg-color);
+        }
+
     .navbar-brand{
         display: flex;
         justify-content: space-between;
@@ -50,10 +55,19 @@ body{
         text-decoration: none;
     }
 
-}
-@media screen and (min-width: 900px) {
+    #burger-menu a {
+        min-width: 100%;
+        color: var(--bg-color);
+        text-decoration: none;
+    }
 
-            /*Css to come*/
+}
+@media screen and (min-width: 601px) {
+
+    #burger-menu {
+        width : 20vw;
+        position: absolute;
+    }
 }
 
 .main{
