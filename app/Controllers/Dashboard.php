@@ -15,7 +15,7 @@ class Dashboard extends BaseController
         if ($this->isManager() != 'manager') {
 
             echo "Unauthorized\n";
-            return redirect('unauthorized');
+            redirect('unauthorized');
         } else{
             return "true";
         }
@@ -35,10 +35,10 @@ class Dashboard extends BaseController
 
         if ($this->checkAccess() == "true"){
             $data['title'] = "Users Management";
-            $data['users'] = callAPI('/contractor/all', 'get', []);
-//            $data['managers'] = callAPI('/manager/all', 'get', []);
-//            $data['contractors'] = callAPI('/contractor/all', 'get', []);
-//            $data['clients'] = callAPI('/client/all', 'get', []);
+           // $data['users'] = callAPI('/manager/all', 'get', []);
+            $data['managers'] = callAPI('/manager/all', 'get', []);
+            $data['contractors'] = callAPI('/contractor/all', 'get', []);
+            $data['clients'] = callAPI('/client/all', 'get', []);
             //UNDER IS no cuz how do we keept track of the role of each
             // $data['users'] = array_merge($data['managers'], $data['contractors'], $data['clients']);
             return view('dashboard/user_management', $data);

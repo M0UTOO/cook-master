@@ -1,4 +1,5 @@
 /.idea/
 /writable/logs/
 /writable/debugbar/
+/writable/session/
 /builds

@@ -28,8 +28,7 @@ if (isset($message)) {
     $count = 0 ;
 
     if (isset($users)){
-        var_dump($users);
-    /*foreach ($users as $user){
+    foreach ($users as $user){
         $count +=1;
         echo "<tr>";
         echo "<th scope='row'>$count</th>";
@@ -42,7 +41,7 @@ if (isset($message)) {
         echo '<a href="#"><img src=' . base_url("assets/images/svg/menu.svg") . ' alt="delete-icon" class="icons" /></a>';
         echo '</td>';
         echo "</tr>";
-    }*/
+    }
     } else {
     echo "There are no users.";
     }
