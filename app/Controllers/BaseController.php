@@ -52,7 +52,9 @@ abstract class BaseController extends Controller
         parent::initController($request, $response, $logger);
 
         // Preload any models, libraries, etc, here.
-
+        helper('curl_helper');
+        helper('user_helper');
+        helper('session');
         // E.g.: $this->session = \Config\Services::session();
     }
 }

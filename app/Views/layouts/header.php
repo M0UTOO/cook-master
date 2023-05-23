@@ -12,13 +12,13 @@
 </header>
 
 <nav id="burger-menu" class="d-none vh-100 d-flex flex-column align-items-center mt-1">
+    <a class="m-2 p-3" href="#" class="nav-link">Next page</a>
     <?php
-        if (isset($isConnected)){
-            echo '<a class="m-2 p-3" href="'.base_url('users/signOut').'" class="nav-link">Sign Out</a>';
-            echo '<a class="m-2 p-3" href="'.base_url('dashboard').'" class="nav-link">Dashboard</a>';
-            if (isset($isAdmin) && $isAdmin){
-                echo '<a class="m-2 p-3" href="'.base_url('dashboard').'" class="nav-link">Dashboard (Admin)</a>';
+        if (isset($isLoggedIn) && $isLoggedIn){
+            if (isset($isManager) && $isManager){
+                echo '<a class="m-2 p-3" href="'.base_url('dashboard').'" class="nav-link">Dashboard (Manager)</a>';
             }
+            echo '<a class="m-2 p-3" href="'.base_url('users/signOut').'" class="nav-link">Sign Out</a>';
         }
         else
         {
@@ -26,7 +26,7 @@
             echo '<a class="m-2 p-3" href="'. base_url('users/signUp').'" class="nav-link">Sign Up</a>';
         }
     ?>
-    <a class="m-2 p-3" href="#" class="nav-link">Next page</a>
+
 </nav>
 
 <main class="main d-flex flex-column align-items-center">
