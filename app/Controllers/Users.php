@@ -7,37 +7,12 @@ class Users extends BaseController
     public function index()
     {
     }
-
-    //TODO: PUT THOSE isFunctions in the user_helper file so it's accessible from everywhere
-    public function isManager(): bool{
-        helper('session');
-        return (session()->get('role') == 'manager');
-    }
-    public function isContractor(): bool{
-        return (session()->get('role') == 'contractor');
-    }
-    public function isClient(): bool{
-        return (session()->get('role') == 'client');
-    }
-
-    public function isSuperAdmin(): bool
-    {
-        //GET IT FROM THE FIELD IS_SUPER_ADMIN FROM MANAGER
-        return true;
-    }
-
-    protected function isLoggedIn(): bool{
-        return ((session()->get('id')) !== null);
-    }
-
     public function signIn(){
-        helper('curl_helper');
-        helper('session');
 
         $data['title'] = "Sign In";
         $data['mini'] = true; //TO SHOW THE MINI SIGNUP FORM
 
-        if ($this->isLoggedIn()){
+        if (isLoggedIn()){
             $data['message'] = "You are already logged in";
             return view('users/index', $data);
         }
@@ -65,15 +40,16 @@ class Users extends BaseController
 
                 $data['message'] = "You are now logged in";
             }
-            return redirect('users/index');
+            return redirect('/');
         }
     }
     public function signUp(){
-        helper('curl_helper');
 
         $data['title'] = "Sign Up";
+        $data['isLoggedIn'] = isLoggedIn();
+        $data['isManager'] = isManager();
 
-        if ($this->isLoggedIn()){
+        if (isLoggedIn()){
             $data['message'] = "You are already logged in";
             return view('users/index', $data);
         }
@@ -114,9 +90,8 @@ class Users extends BaseController
 
     }
     public function signOut(){
-        helper('session');
 
-        if (!$this->isLoggedIn()){
+        if (!isLoggedIn()){
             $data['message'] = "You are not logged in";
         }
         else
@@ -143,19 +118,21 @@ class Users extends BaseController
 
     public function profile(){
 
-        helper('curl_helper');
-
         $userId = session()->get('id');
 
         $data['user'] = callAPI('/user/'.$userId, 'get', []);
         //$data['events'] = getUsersEvents($data['user']['id']);
         $data['title'] = "My profile";
+        $data['isLoggedIn'] = isLoggedIn();
+        $data['isManager'] = isManager();
         //var_dump($data);
         return view('users/profile', $data);
     }
     public function create()
     {
         $data['title'] = "nbvc";
+        $data['isLoggedIn'] = isLoggedIn();
+        $data['isManager'] = isManager();
 //
 //        helper('form');
 //        //if form didn't get sent already, load form.
