@@ -112,14 +112,16 @@ class Users extends BaseController
         $data['isManager'] = isManager();
         $data['mini'] = false; //TO SHOW THE FULL FORM AND NOT THE MINI ONE
 
+        var_dump($values);
         helper('form');
 
         if (!$this->request->is('post')){
             return view('users/signUp', $data);
         }
 
-        //TODO: CHECK THIS ! ROUTE NOT CREATE IN HERE.
-        $data['message'] = callAPI('/user/', 'post', $this->request->getPost(), ['Type' => $values['type']]);
+        $type = $values['Type'] ;
+        unset($values['Type']);
+        $data['message'] = callAPI('/user/', 'post', $this->request->getPost(), ['Type' => $type]);
 
         return view('users/index', $data);
     }

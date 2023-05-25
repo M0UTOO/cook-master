@@ -12,7 +12,7 @@ $miniForm = (isset($mini) && $mini == true ) ? true : false;
 $email_value = (isset($email)) ? $email : "";
 $url = uri_string();
 $type= isset($userType) ? $userType : "Client";
-$hidden_input = ['Type' => $type];
+$hidden_input = ["Type" => $type];
 
 if ($url == "users/signIn") {
     $hidden_input['mini'] = true;
@@ -52,6 +52,18 @@ if ((isset($mini) && $mini == false) || !isset($mini)){
     echo form_input(['type'  => 'text', 'name'  => 'surname', 'class' => 'form-control', 'placeholder' => $surname, 'required' => 'required']);
     echo '</div>';
 
+    echo '<div class="form-group">';
+    echo form_label('Your country' , "label-country");
+    echo form_input(['type'  => 'text', 'name'  => 'country', 'class' => 'form-control', 'placeholder' => "Your country", 'required' => 'required']);
+    echo '</div>';
+
+    //TODO: CHOOSE YOUR SUBSCRIPTION POPUP BTN
+    echo '<div>';
+    echo '<button type="button" class="btn mt-3" data-toggle="modal" data-target="#subscriptionsModal">Choose your subscription</button>';
+    echo '</div>';
+    include "subscriptionsModal.php";
+
+
     // FOR NOW THIS IS THE CLIENT FORM
     // NEED TO INCLUDE THE OTHER INFO ABOUT CONTRACTORS FOR WHEN MANAGER CREATE THE ACCOUNT CHECK IF IS MANAGER ?.
     // TODO: (random password generator and change password on first connection page)
@@ -65,5 +77,6 @@ if ((isset($mini) && $mini == false) || !isset($mini)){
 }
 
 echo form_close();
+
 
 
