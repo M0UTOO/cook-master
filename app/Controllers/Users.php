@@ -61,31 +61,7 @@ class Users extends BaseController
         elseif (!$this->request->is('post')){
             return view('users/signUp', $data);
         } else{
-            $newUser= $this->request->getPost(['email', 'password', "and so on"]);
-            //	a user:
-            //        Email string `json:"email"`
-            //			Password string `json:"password"`
-            //			FirstName string `json:"firstname"`
-            //			LastName string `json:"lastname"`
-            //			FidelityPoints int `json:"fidelitypoints"`
-            //			StreetName string `json:"streetname"`
-            //			Country string `json:"country"`
-            //			City string `json:"city"`
-            //			SteetNumber int `json:"streetnumber"`
-            //			PhoneNumber string `json:"phonenumber"`
-            //			Subscription int `json:"subscription"`
-            //			Presentation string `json:"presentation"`
-            //			IsItemManager bool `json:"isitemmanager"`
-            //			IsClientManager bool `json:"isclientmanager"`
-            //			IsContractorManager bool `json:"iscontractormanager"`
-            //			IsSuperAdmin bool `json:"issuperadmin"`
-
-            //NEED TO TEST THIS :
-            //$data['message'] = callAPI("/users/","post", $newUser);
-
-            //$this->getError($data, 'users/signUp');
-
-            return view('users/index', $data);
+            $this->create($this->request->getPost());
         }
 
     }
@@ -128,22 +104,22 @@ class Users extends BaseController
         //var_dump($data);
         return view('users/profile', $data);
     }
-    public function create()
+
+    public function create($values)
     {
-        $data['title'] = "nbvc";
+        $data['title'] = "Create an account";
         $data['isLoggedIn'] = isLoggedIn();
         $data['isManager'] = isManager();
-//
-//        helper('form');
-//        //if form didn't get sent already, load form.
-//        if (!$this->request->is('post')){
-//            return view('users/index', $data);
-//        }
-//
-//        $post = $this->request->getPost(['email', 'password']);
-//
-//        $data['email'] = $post['email'];
-//        $data['password'] = $post['password'];
+        $data['mini'] = false; //TO SHOW THE FULL FORM AND NOT THE MINI ONE
+
+        helper('form');
+
+        if (!$this->request->is('post')){
+            return view('users/signUp', $data);
+        }
+
+        //TODO: CHECK THIS ! ROUTE NOT CREATE IN HERE.
+        $data['message'] = callAPI('/user/', 'post', $this->request->getPost(), ['Type' => $values['type']]);
 
         return view('users/index', $data);
     }
