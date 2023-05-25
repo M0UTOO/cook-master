@@ -1,13 +1,19 @@
 <?php
-    function callAPI(string $endpoint, string $method, array $data)
+    function callAPI(string $endpoint, string $method, array $data, array $headers = [])
     {
-        //TODO: add new argument to add headers
         $token = env('API_TOKEN');
-        $baseUrl = 'http://localhost:9000';
+        $baseUrl = 'http://localhost:9000'; //TODO: change to env variable
         $url = $baseUrl . $endpoint;
         $request = \Config\Services::curlrequest();
 
-        $request->setHeader('Token', $token);
+        $request->setHeader('Token', $token); //ALWAYS NEEDED TO ACCESS API
+
+        if (!empty($headers)){
+            foreach ($headers as $key => $value){
+                $request->setHeader($key, $value);
+            }
+        }
+
         if (!empty($data)){
             $data = json_encode($data);
             $request->setBody($data);

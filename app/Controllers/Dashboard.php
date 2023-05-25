@@ -25,6 +25,8 @@ class Dashboard extends BaseController
     {
         if ($this->checkAccess() == "true"){
             $data['title'] = "Dashboard";
+            $data['isLoggedIn'] = isLoggedIn();
+            $data['isManager'] = isManager();
             return view('dashboard/index');
         }
     }
@@ -35,12 +37,13 @@ class Dashboard extends BaseController
 
         if ($this->checkAccess() == "true"){
             $data['title'] = "Users Management";
-           // $data['users'] = callAPI('/manager/all', 'get', []);
-            $data['managers'] = callAPI('/manager/all', 'get', []);
-            $data['contractors'] = callAPI('/contractor/all', 'get', []);
-            $data['clients'] = callAPI('/client/all', 'get', []);
-            //UNDER IS no cuz how do we keept track of the role of each
-            // $data['users'] = array_merge($data['managers'], $data['contractors'], $data['clients']);
+            $data['isLoggedIn'] = isLoggedIn();
+            $data['isManager'] = isManager();
+
+            $data['users']['managers'] = callAPI('/manager/all', 'get', []);
+            $data['users']['contractors'] = callAPI('/contractor/all', 'get', []);
+            $data['users']['clients'] = callAPI('/client/all', 'get', []);
+
             return view('dashboard/user_management', $data);
         }
     }
@@ -51,6 +54,8 @@ class Dashboard extends BaseController
             //This will be the same page that users and contractors will see when going on the events page
             //BUT the manager can add , delete an event and mofify them too
             $data['managerView'] = true; //check thru this or thru the session(role) might be better too
+            $data['isLoggedIn'] = isLoggedIn();
+            $data['isManager'] = isManager();
             return view('events/index', $data);
         }
     }

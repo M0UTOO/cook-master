@@ -19,6 +19,7 @@
         </div>
         <div class="card-body">
             <h5 class="card-title">User management</h5>
+<!--            get user/all and count for under-->
             <p class="card-text">There are XXX users.</p>
         </div>
     </a>
