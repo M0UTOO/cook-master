@@ -7,7 +7,7 @@ $miniForm = (isset($mini) && $mini == true ) ? true : false;
 $email_value = (isset($email)) ? $email : "";
 $url = uri_string();
 $type= isset($userType) ? $userType : "Client";
-var_dump($type);
+
 $hidden_input = ["Type" => $type];
 $email_placeholder = "E-mail";
 $password= "Password";

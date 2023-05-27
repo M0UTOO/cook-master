@@ -10,7 +10,7 @@ class Contractor extends Users
     {
         $data['title'] = "Create an account";
         $data['isManager'] = isManager();
-        $data['userType'] = "Contractor";
+        $data['userType'] = $this->request->getGet('type');
 
         if (!$this->request->is('post')) {
         return view('users/signUp', $data);
@@ -18,9 +18,14 @@ class Contractor extends Users
         else
         {
             $values = $this->request->getPost();
-            //TODO: format dates to be compatible with the database (contractors)
+
             $type = $values['Type'] ;
             unset($values['Type']);
+
+            if (isset($password)) {
+                $values['password'] = new Password($values['password']);
+                echo $values['password'];
+            }
 
             if ($type == "Manager") {
                 if (isset($values['isitemmanager'])) {
@@ -50,7 +55,14 @@ class Contractor extends Users
 
             $data['message'] = callAPI('/user/', 'post', $values, ['Type' => $type]);
             //var_dump($data['message']);
-            return redirect()->to('/dashboard/userManagement');
+
+            if (!$data['message']['error']){
+                $mail = new SendMail();
+                $state = $mail->sendWelcomeMail($values['email'], $type, $values['firstname']);
+                var_dump($state);
+            }
+
+            return redirect()->to('/dashboard/userManagement')->with('message', $data['message']['message']);
         }
     }
 }

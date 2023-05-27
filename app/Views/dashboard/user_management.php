@@ -12,12 +12,20 @@ if (isset($message)) {
         echo "Something went wrong. Please try again later.";
     }
 }
-echo '<a href="'. base_url('contractors/create').'"><img src=' . base_url("assets/images/svg/add-user-icon-blue.svg") . ' alt="modify-icon" class="icons" /></a>';
+echo '<a data-bs-toggle="modal" data-bs-target="#userTypeModal"><img  src=' . base_url("assets/images/svg/add-user-icon-blue.svg") . ' alt="modify-icon" class="icons" /></a>';
+echo $this->include("dashboard/chooseUserTypeModal.php");
+
+//TODO: create some methods and css for the flashdata?
+if (session()->getFlashdata('message')){
+    echo '<div class="alert alert-info" role="alert">';
+    echo session()->getFlashdata('message');
+    echo '</div>';
+}
 
 ?>
 
 <!--THIS WHOLE SECTION IS ACTUALLY USERS/ALL SO SHOULD BE THE VIEW USERS/INDEX.PHP no ?-->
-<section id="users-table">
+<section id="users-table" class="overflow-x:auto">
 <table class="table">
     <thead>
     <tr>
@@ -54,8 +62,10 @@ echo '<a href="'. base_url('contractors/create').'"><img src=' . base_url("asset
                 echo "<td>Manager</td>";
                 echo "<td>$manager->isblocked</td>";
                 echo '<td>';
+                echo '<div class="d-flex justify-content-around">';
                 echo '<a href="#"><img src=' . base_url("assets/images/svg/trash-icon-red.svg") . ' alt="modify-icon" class="icons" /></a>';
                 echo '<a href="#"><img src=' . base_url("assets/images/svg/trash-icon-black.svg") . ' alt="delete-icon" class="icons" /></a>';
+                echo '</div>';
                 echo '</td>';
                 echo "</tr>";
             }
@@ -70,8 +80,10 @@ echo '<a href="'. base_url('contractors/create').'"><img src=' . base_url("asset
                 echo "<td>Client</td>";
                 echo "<td>$client->isblocked</td>";
                 echo '<td>';
+                echo '<div class="d-flex justify-content-around">';
                 echo '<a href="#"><img src=' . base_url("assets/images/svg/trash-icon-red.svg") . ' alt="modify-icon" class="icons" /></a>';
                 echo '<a href="#"><img src=' . base_url("assets/images/svg/trash-icon-black.svg") . ' alt="delete-icon" class="icons" /></a>';
+                echo '</div>';
                 echo '</td>';
                 echo "</tr>";
             }
@@ -86,8 +98,10 @@ echo '<a href="'. base_url('contractors/create').'"><img src=' . base_url("asset
                 echo "<td>Contractor</td>";
                 echo "<td>$contractor->isblocked</td>";
                 echo '<td>';
+                echo '<div class="d-flex justify-content-around">';
                 echo '<a href="#"><img src=' . base_url("assets/images/svg/trash-icon-red.svg") . ' alt="modify-icon" class="icons" /></a>';
                 echo '<a href="#"><img src=' . base_url("assets/images/svg/trash-icon-black.svg") . ' alt="delete-icon" class="icons" /></a>';
+                echo '</div>';
                 echo '</td>';
                 echo "</tr>";
             }
