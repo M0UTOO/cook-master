@@ -35,11 +35,24 @@ class Dashboard extends BaseController
             $data['title'] = "Users Management";
             $data['isManager'] = isManager();
 
-            $data['users']['managers'] = callAPI('/manager/all', 'get', []);
-            $data['users']['contractors'] = callAPI('/contractor/all', 'get', []);
-            $data['users']['clients'] = callAPI('/client/all', 'get', []);
+            $data['users']['managers'] = callAPI('/manager/all', 'get');
+            $data['users']['contractors'] = callAPI('/contractor/all', 'get');
+            $data['users']['clients'] = callAPI('/client/all', 'get');
 
             return view('dashboard/user_management', $data);
+        }
+    }
+    public function subscriptionManagement()
+    {
+        helper('curl_helper');
+
+        if ($this->checkAccess() == "true"){
+            $data['title'] = "Subscription Management";
+            //$data['isManager'] = isManager();
+
+            $data['subscriptions'] = callAPI('/subscription/all', 'get');
+
+            return view('dashboard/subscription_management', $data);
         }
     }
 

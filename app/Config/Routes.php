@@ -33,6 +33,9 @@ $routes->get('/', 'Home::index');
 $routes->get('users/create', 'Users::create');
 $routes->post('users/create', 'Users::create');
 $routes->get('users/profile', 'Users::profile');
+$routes->get('users/delete/(:num)', 'Users::delete/$1');
+$routes->get('users/block/(:num)', 'Users::block/$1');
+$routes->get('users/edit/(:num)', 'Users::edit/$1');
 
 $routes->post('contractors/create', 'Contractor::create');
 $routes->get('contractors/create', 'Contractor::create');
@@ -48,14 +51,20 @@ $routes->post('users/signUp', 'Users::SignUp');
 
 $routes->get('password/forgottenPassword', 'Password::forgottenPassword');
 $routes->get('password/resetPassword', 'Password::resetPassword');
-$routes->get('password/sendMailResetPassword', 'Password::sendMailResetPassword');
+//$routes->get('password/sendMailResetPassword', 'Password::sendMailResetPassword');
 
 $routes->get('dashboard', 'Dashboard::index');
 $routes->get('dashboard/userManagement', 'Dashboard::userManagement');
 $routes->get('dashboard/eventManagement', 'Dashboard::eventManagement');
+$routes->get('dashboard/subscriptionManagement', 'Dashboard::subscriptionManagement');
 
 $routes->get('unauthorized', 'Authorization::unauthorized');
 
+//SUBSCRIPTIONS
+$routes->get('subscription/create', 'Subscription::create');
+$routes->post('subscription/create', 'Subscription::create');
+$routes->get('subscription/delete/(:num)', 'Subscription::delete/$1');
+$routes->get('subscription/edit/(:num)', 'Subscription::edit/$1');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

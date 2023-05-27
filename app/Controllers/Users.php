@@ -54,7 +54,7 @@ class Users extends BaseController
 
         $userId = session()->get('id');
 
-        $data['user'] = callAPI('/user/'.$userId, 'get', []);
+        $data['user'] = callAPI('/user/'.$userId, 'get');
         //$data['events'] = getUsersEvents($data['user']['id']);
         $data['title'] = "My profile";
         $data['isManager'] = isManager();
@@ -63,11 +63,24 @@ class Users extends BaseController
     }
 
 
-    public function edit(){
+    public function edit($id){
 
+        $data['user'] = callAPI('/user/'.$id, 'get');
+        //TODO: SHOW SIGNUP FORM WITH USER DATA PRE-FILLED
+        return view('users/profile', $data);
     }
-    public function delete(){
+    public function delete($id){
+        //delete user from DB - NOT DONE YET BUT :
+        echo $id;
+        $data['message'] = callAPI('/user/'.$id, 'delete');
+        return redirect()->to('/dashboard/userManagement')->with('message', $data['message']['message']);
+    }
 
+    public function block($id){
+        //blocked user can't login but data still here
+        echo $id;
+        $data['message'] = callAPI('/user/'.$id, 'patch', ['isblocked' => '2023-05-27']);
+        return redirect()->to('/dashboard/userManagement')->with('message', $data['message']['message']);
     }
 
     protected function getUsersEvents($id){
