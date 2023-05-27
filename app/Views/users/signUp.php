@@ -11,7 +11,7 @@
     echo $this->include('users/signUpForm.php');
 
     echo "</section>";
-    echo $this->include("users/subscriptionsModal.php");
+
     ?>
 
 </main>

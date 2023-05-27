@@ -4,6 +4,7 @@
 <?= $this->include('layouts/header') ?>
 
 <?php
+echo "<h2>Users Management</h2>";
 if (isset($message)) {
     try {
         echo $message ;
@@ -38,7 +39,7 @@ echo '<a href="'. base_url('contractors/create').'"><img src=' . base_url("asset
         //THIS CAN BE REFACTORED INTO A LOOP WITH A MAP.
         //TODO: ADD AN ICON TO BLOCK USER
         //TODO: ADD SEARCH BAR CHECK BOOTSTRAP DOCS
-        if (isset($users["managers"])){
+        if (isset($users["managers"]) && is_array($users["managers"])){
             foreach ($users["managers"] as $manager){
                 $count +=1;
                 if ($manager->issuperadmin) {
@@ -59,7 +60,7 @@ echo '<a href="'. base_url('contractors/create').'"><img src=' . base_url("asset
                 echo "</tr>";
             }
         }
-        if (isset($users["clients"])){
+        if (isset($users["clients"]) && is_array($users["clients"])){
             foreach ($users["clients"] as $client) {
                 $count += 1;
                 echo "<tr>";
@@ -75,7 +76,7 @@ echo '<a href="'. base_url('contractors/create').'"><img src=' . base_url("asset
                 echo "</tr>";
             }
         }
-       if (isset($users["contractors"])){
+       if (isset($users["contractors"]) && is_array($users["contractors"])){
             foreach ($users["contractors"] as $contractor) {
                 $count += 1;
                 echo "<tr>";
