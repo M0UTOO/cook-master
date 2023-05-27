@@ -14,15 +14,15 @@
 <nav id="burger-menu" class="d-none vh-100 d-flex flex-column align-items-center mt-1">
     <a class="m-2 p-3" href="#" class="nav-link">Next page</a>
     <?php
-        if (isset($isLoggedIn) && $isLoggedIn){
-            if (isset($isManager) && $isManager){
+        if (isLoggedIn()){
+            if ((isset($isManager) && $isManager) || isManager()){
                 echo '<a class="m-2 p-3" href="'.base_url('dashboard').'" class="nav-link">Dashboard (Manager)</a>';
             }
-            echo '<a class="m-2 p-3" href="'.base_url('users/signOut').'" class="nav-link">Sign Out</a>';
+            echo '<a class="m-2 p-3" href="'.base_url('/signOut').'" class="nav-link">Sign Out</a>';
         }
         else
         {
-            echo '<a class="m-2 p-3" href="'. base_url('users/signIn').'" class="nav-link">Sign In</a>';
+            echo '<a class="m-2 p-3" href="'. base_url('/signIn').'" class="nav-link">Sign In</a>';
             echo '<a class="m-2 p-3" href="'. base_url('users/signUp').'" class="nav-link">Sign Up</a>';
         }
     ?>
@@ -31,11 +31,11 @@
 
 <main class="main d-flex flex-column align-items-center">
     <?php
-    if ((session()->get('id')) !== null ){
+/*    if ((session()->get('id')) !== null ){
         echo "Logged In - ID: " . session()->get('id');
         echo "<br>";
     } else {
         echo "You are not logged in";
     }
-?>
+*/?>
 

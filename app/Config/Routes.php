@@ -34,11 +34,14 @@ $routes->get('users/create', 'Users::create');
 $routes->post('users/create', 'Users::create');
 $routes->get('users/profile', 'Users::profile');
 
-$routes->get('users/signIn', 'Users::SignIn');
-$routes->post('users/signIn', 'Users::SignIn');
+$routes->post('contractors/create', 'Contractor::create');
+$routes->get('contractors/create', 'Contractor::create');
+
+$routes->get('signIn', 'SignIn::SignIn');
+$routes->post('signIn', 'SignIn::SignIn');
 $routes->get('users/index', 'Home::index');
 
-$routes->get('users/signOut', 'Users::SignOut');
+$routes->get('signOut', 'SignIn::SignOut');
 
 $routes->get('users/signUp', 'Users::SignUp');
 $routes->post('users/signUp', 'Users::SignUp');
