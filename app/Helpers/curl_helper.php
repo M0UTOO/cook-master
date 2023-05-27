@@ -19,7 +19,6 @@
         }
 
         $res = [];
-        var_dump($data);
         try {
             $response = $request->request($method, $url, ['http_errors' => false]); //Disabling native Behaviour to panik when getting http errors
             $body = json_decode($response->getBody());

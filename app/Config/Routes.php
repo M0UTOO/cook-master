@@ -55,6 +55,7 @@ $routes->get('dashboard/userManagement', 'Dashboard::userManagement');
 $routes->get('dashboard/eventManagement', 'Dashboard::eventManagement');
 
 $routes->get('unauthorized', 'Authorization::unauthorized');
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing

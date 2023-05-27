@@ -1,3 +1,2 @@
-<?php
-
+<h1>RESET YOUR PASSWORD</h1>
 

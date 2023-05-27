@@ -13,9 +13,7 @@ class Dashboard extends BaseController
     protected function checkAccess(){
         // Check if the user is a manager (check role in session data)
         if ($this->isManager() != 'manager') {
-
-            echo "Unauthorized\n";
-            redirect('unauthorized');
+            redirect()->to('unauthorized');
         } else{
             return "true";
         }
@@ -25,8 +23,6 @@ class Dashboard extends BaseController
     {
         if ($this->checkAccess() == "true"){
             $data['title'] = "Dashboard";
-            $data['isLoggedIn'] = isLoggedIn();
-            $data['isManager'] = isManager();
             return view('dashboard/index');
         }
     }
@@ -37,7 +33,6 @@ class Dashboard extends BaseController
 
         if ($this->checkAccess() == "true"){
             $data['title'] = "Users Management";
-            $data['isLoggedIn'] = isLoggedIn();
             $data['isManager'] = isManager();
 
             $data['users']['managers'] = callAPI('/manager/all', 'get', []);
