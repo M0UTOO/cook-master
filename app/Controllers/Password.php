@@ -4,6 +4,13 @@ namespace App\Controllers;
 
 class Password extends BaseController
 {
+    private string $password;
+
+    public function __construct($string)
+    {
+        $this->password = $this->hashPassword($string);
+    }
+
     public function forgottenPassword(){
         $data['title'] = "Forgotten password";
         return view('password/forgottenPassword', $data);
@@ -30,4 +37,11 @@ class Password extends BaseController
     public function decodeHashPassword($password){
         //TODO:UNHASH THE PASSWORD WHEN RECEIVING IT FROM THE API.
     }
+
+    public function __toString()
+    {
+        return $this->password;
+    }
+
+
 }

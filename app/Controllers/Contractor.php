@@ -22,9 +22,9 @@ class Contractor extends Users
             $type = $values['Type'] ;
             unset($values['Type']);
 
-            if (isset($password)) {
-                $values['password'] = new Password($values['password']);
-                echo $values['password'];
+            if (isset($values['password'])) {
+                $password = new Password($values['password']);
+                $values['password'] = $password->__toString();
             }
 
             if ($type == "Manager") {
@@ -54,12 +54,10 @@ class Contractor extends Users
             }
 
             $data['message'] = callAPI('/user/', 'post', $values, ['Type' => $type]);
-            //var_dump($data['message']);
 
             if (!$data['message']['error']){
-                $mail = new SendMail();
-                $state = $mail->sendWelcomeMail($values['email'], $type, $values['firstname']);
-                var_dump($state);
+//                $mail = new SendMail();
+//                $state = $mail->sendWelcomeMail($values['email'], $type, $values['firstname']);
             }
 
             return redirect()->to('/dashboard/userManagement')->with('message', $data['message']['message']);
