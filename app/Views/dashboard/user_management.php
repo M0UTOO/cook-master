@@ -42,6 +42,18 @@ if (session()->getFlashdata('message')){
     <?php
     $count = 0 ;
 
+    function displayUsers($typeOfUser): void
+    {
+        echo "<td>$typeOfUser->isblocked</td>";
+        echo '<td>';
+        echo '<div class="d-flex justify-content-around">';
+        echo '<a href="/users/delete/' . $typeOfUser->id . '"><img src=' . base_url("assets/images/svg/trash-icon-red.svg") . ' alt="modify-icon" class="icons" /></a>';
+        echo '<a href="/users/block/' . $typeOfUser->id . '"><img src=' . base_url("assets/images/svg/trash-icon-black.svg") . ' alt="delete-icon" class="icons" /></a>';
+        echo '</div>';
+        echo '</td>';
+        echo "</tr>";
+    }
+
     if (isset($users)){
 
         //THIS CAN BE REFACTORED INTO A LOOP WITH A MAP.
@@ -51,23 +63,17 @@ if (session()->getFlashdata('message')){
             foreach ($users["managers"] as $manager){
                 $count +=1;
                 if ($manager->issuperadmin) {
-                    echo '<tr class="table-info">';
+                    //TODO: add clickable row to edit the user :NOT WORKING ATM
+                    echo '<tr onclick="window.location='.base_url('/users/edit/'.$manager->id).'" class="table-info">';
                 } else {
-                    echo "<tr>";
+                    echo "<tr onclick='/users/edit'".$manager->id.">";
                 }
 
                 echo "<th scope='row'>$count</th>";
                 echo "<td>$manager->firstname</td>";
                 echo "<td>$manager->lastname</td>";
                 echo "<td>Manager</td>";
-                echo "<td>$manager->isblocked</td>";
-                echo '<td>';
-                echo '<div class="d-flex justify-content-around">';
-                echo '<a href="#"><img src=' . base_url("assets/images/svg/trash-icon-red.svg") . ' alt="modify-icon" class="icons" /></a>';
-                echo '<a href="#"><img src=' . base_url("assets/images/svg/trash-icon-black.svg") . ' alt="delete-icon" class="icons" /></a>';
-                echo '</div>';
-                echo '</td>';
-                echo "</tr>";
+                displayUsers($manager);
             }
         }
         if (isset($users["clients"]) && is_array($users["clients"])){
@@ -78,14 +84,7 @@ if (session()->getFlashdata('message')){
                 echo "<td>$client->firstname</td>";
                 echo "<td>$client->lastname</td>";
                 echo "<td>Client</td>";
-                echo "<td>$client->isblocked</td>";
-                echo '<td>';
-                echo '<div class="d-flex justify-content-around">';
-                echo '<a href="#"><img src=' . base_url("assets/images/svg/trash-icon-red.svg") . ' alt="modify-icon" class="icons" /></a>';
-                echo '<a href="#"><img src=' . base_url("assets/images/svg/trash-icon-black.svg") . ' alt="delete-icon" class="icons" /></a>';
-                echo '</div>';
-                echo '</td>';
-                echo "</tr>";
+                displayUsers($client);
             }
         }
        if (isset($users["contractors"]) && is_array($users["contractors"])){
@@ -96,14 +95,7 @@ if (session()->getFlashdata('message')){
                 echo "<td>$contractor->firstname</td>";
                 echo "<td>$contractor->lastname</td>";
                 echo "<td>Contractor</td>";
-                echo "<td>$contractor->isblocked</td>";
-                echo '<td>';
-                echo '<div class="d-flex justify-content-around">';
-                echo '<a href="#"><img src=' . base_url("assets/images/svg/trash-icon-red.svg") . ' alt="modify-icon" class="icons" /></a>';
-                echo '<a href="#"><img src=' . base_url("assets/images/svg/trash-icon-black.svg") . ' alt="delete-icon" class="icons" /></a>';
-                echo '</div>';
-                echo '</td>';
-                echo "</tr>";
+                displayUsers($contractor);
             }
         }
 
