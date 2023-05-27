@@ -47,20 +47,20 @@ if ((isset($mini) && $mini == false) || !isset($mini)){
 
     echo '<div class="form-group">';
     echo form_label('Re-enter password <img src=' . base_url("assets/images/svg/menu.svg") . ' alt="email-icon" class="icons" />', "label-password-2");
-    echo form_password("password", "", 'class="form-control" required="required" placeholder="' . $password . '"');
+    echo form_password("password-confirm", "", 'class="form-control" required="required" placeholder="' . $password . '"');
     echo '</div>';
 
     echo '<div class="form-group">';
-    echo form_label('Your first name  <img src=' . base_url("assets/images/svg/menu.svg") . ' alt="email-icon" class="icons" />', "label-email");
+    echo form_label('Your first name', "label-firstname");
     echo form_input(['type'  => 'text', 'name'  => 'firstname', 'class' => 'form-control', 'placeholder' => $firstname, 'required' => 'required']);
     echo '</div>';
 
     echo '<div class="form-group">';
-    echo form_label('Your lastname <img src=' . base_url("assets/images/svg/menu.svg") . ' alt="email-icon" class="icons" />', "label-email");
+    echo form_label('Your lastname', "label-lastname");
     echo form_input(['type'  => 'text', 'name'  => 'lastname', 'class' => 'form-control', 'placeholder' => $lastname, 'required' => 'required']);
     echo '</div>';
 
-    echo '<div class="form-group">';
+    echo '<div class="form-group">'; //TODO: add country list
     echo form_label('Your country' , "label-country");
     echo form_input(['type'  => 'text', 'name'  => 'country', 'class' => 'form-control', 'placeholder' => "Your country", 'required' => 'required']);
     echo '</div>';
