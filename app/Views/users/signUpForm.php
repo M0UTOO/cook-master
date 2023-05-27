@@ -75,6 +75,8 @@ if ((isset($mini) && $mini == false) || !isset($mini)){
         echo '<div>';
         echo '<button type="button" class="btn mt-3" data-bs-toggle="modal" data-bs-target="#subscriptionsModal">Choose your subscription</button>';
         echo '</div>';
+
+        echo $this->include("users/subscriptionsModal.php");
     }
     elseif (isset($type) && $type == "Contractor"){
 
@@ -104,7 +106,7 @@ if ((isset($mini) && $mini == false) || !isset($mini)){
 
         echo '<div class="form-group">';
         echo form_label('Type of contractors' , "label-type-contractor");
-        echo form_dropdown('typeOfContractors', $typeOfContractors, 'cook', 'class="form-control"');
+        echo form_dropdown('contractortype', $typeOfContractors, 'cook', 'class="form-control"');
         echo '</div>';
     }
     elseif (isset($type) && $type == "Manager"){
