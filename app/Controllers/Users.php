@@ -7,46 +7,10 @@ class Users extends BaseController
     public function index()
     {
     }
-    public function signIn(){
 
-        $data['title'] = "Sign In";
-        $data['mini'] = true; //TO SHOW THE MINI SIGNUP FORM
-
-        if (isLoggedIn()){
-            $data['message'] = "You are already logged in";
-            return view('users/index', $data);
-        }
-        elseif (!$this->request->is('post')){
-            return view('users/signIn', $data);
-        }
-        else {
-
-            $logins = $this->request->getPost(['email', 'password']);
-            $data['message'] = callAPI('/user/login', 'get', $logins);
-
-            if ($data['message']['error']){
-                    $data['message'] = $data['message']['message'];
-                    return view('users/signIn', $data);
-            }
-
-            #SESSION#
-            if (isset($data['message']['id'])) {
-                $userInfo = [
-                    'id' => $data['message']['id'],
-                    'role' => $data['message']['role'],
-                ];
-                $session = session();
-                $session->set($userInfo);
-
-                $data['message'] = "You are now logged in";
-            }
-            return redirect('/');
-        }
-    }
     public function signUp(){
 
         $data['title'] = "Sign Up";
-        $data['isLoggedIn'] = isLoggedIn();
         $data['isManager'] = isManager();
 
         if (isLoggedIn()){
@@ -59,26 +23,20 @@ class Users extends BaseController
             return view('users/signUp', $data);
         }
         elseif (!$this->request->is('post')){
+            $data['userType'] = "Client";
             return view('users/signUp', $data);
-        } else{
-            $this->create($this->request->getPost());
-        }
-
-    }
-    public function signOut(){
-
-        if (!isLoggedIn()){
-            $data['message'] = "You are not logged in";
         }
         else
         {
-            $session = session();
-            $session->destroy();
+            $values = $this->request->getPost();
+            $type = $values['Type'] ;
+            unset($values['Type']);
 
-            $data['title'] = "Sign Out";
-            $data['message'] = "You are now logged out";
+            $data['message'] = callAPI('/user/', 'post', $this->request->getPost(), ['Type' => $type]);
+
+            return view('users/index', $data);
         }
-        return redirect('users/index')->with('message', $data['message']); //doesn't display message ?
+
     }
 
     private function getError(array $data, string $redirectionUrl): string{
@@ -99,32 +57,11 @@ class Users extends BaseController
         $data['user'] = callAPI('/user/'.$userId, 'get', []);
         //$data['events'] = getUsersEvents($data['user']['id']);
         $data['title'] = "My profile";
-        $data['isLoggedIn'] = isLoggedIn();
         $data['isManager'] = isManager();
         //var_dump($data);
         return view('users/profile', $data);
     }
 
-    public function create($values)
-    {
-        $data['title'] = "Create an account";
-        $data['isLoggedIn'] = isLoggedIn();
-        $data['isManager'] = isManager();
-        $data['mini'] = false; //TO SHOW THE FULL FORM AND NOT THE MINI ONE
-
-        var_dump($values);
-        helper('form');
-
-        if (!$this->request->is('post')){
-            return view('users/signUp', $data);
-        }
-
-        $type = $values['Type'] ;
-        unset($values['Type']);
-        $data['message'] = callAPI('/user/', 'post', $this->request->getPost(), ['Type' => $type]);
-
-        return view('users/index', $data);
-    }
 
     public function edit(){
 

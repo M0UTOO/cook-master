@@ -11,7 +11,7 @@ if (isset($message)) {
         echo "Something went wrong. Please try again later.";
     }
 }
-echo '<a href="users/create"><img src=' . base_url("assets/images/svg/add-user-icon-blue.svg") . ' alt="modify-icon" class="icons" /></a>';
+echo '<a href="'. base_url('contractors/create').'"><img src=' . base_url("assets/images/svg/add-user-icon-blue.svg") . ' alt="modify-icon" class="icons" /></a>';
 
 ?>
 
@@ -24,6 +24,7 @@ echo '<a href="users/create"><img src=' . base_url("assets/images/svg/add-user-i
         <th scope="col">Firstname</th>
         <th scope="col">Lastname</th>
         <th scope="col">Role</th>
+        <th scope="col">Blocked_at</th>
         <th scope="col">Actions</th>
     </tr>
     </thead>
@@ -33,55 +34,64 @@ echo '<a href="users/create"><img src=' . base_url("assets/images/svg/add-user-i
     $count = 0 ;
 
     if (isset($users)){
+
         //THIS CAN BE REFACTORED INTO A LOOP WITH A MAP.
-        if (isset($managers)){
-            foreach ($managers as $manager){
+        //TODO: ADD AN ICON TO BLOCK USER
+        //TODO: ADD SEARCH BAR CHECK BOOTSTRAP DOCS
+        if (isset($users["managers"])){
+            foreach ($users["managers"] as $manager){
                 $count +=1;
-                echo "<tr>";
+                if ($manager->issuperadmin) {
+                    echo '<tr class="table-info">';
+                } else {
+                    echo "<tr>";
+                }
+
                 echo "<th scope='row'>$count</th>";
                 echo "<td>$manager->firstname</td>";
                 echo "<td>$manager->lastname</td>";
                 echo "<td>Manager</td>";
-                echo '<td>TBH</td>';
+                echo "<td>$manager->isblocked</td>";
                 echo '<td>';
                 echo '<a href="#"><img src=' . base_url("assets/images/svg/trash-icon-red.svg") . ' alt="modify-icon" class="icons" /></a>';
-                echo '<a href="#"><img src=' . base_url("assets/images/svg/menu.svg") . ' alt="delete-icon" class="icons" /></a>';
+                echo '<a href="#"><img src=' . base_url("assets/images/svg/trash-icon-black.svg") . ' alt="delete-icon" class="icons" /></a>';
                 echo '</td>';
                 echo "</tr>";
             }
         }
-        if (isset($contractors)) {
-            foreach ($contractors as $contractor) {
-                $count += 1;
-                echo "<tr>";
-                echo "<th scope='row'>$count</th>";
-                echo "<td>$contractor->firstname</td>";
-                echo "<td>$contractor->lastname</td>";
-                echo "<td>Contractor</td>";
-                echo '<td>TBH</td>';
-                echo '<td>';
-                echo '<a href="#"><img src=' . base_url("assets/images/svg/trash-icon-red.svg") . ' alt="modify-icon" class="icons" /></a>';
-                echo '<a href="#"><img src=' . base_url("assets/images/svg/menu.svg") . ' alt="delete-icon" class="icons" /></a>';
-                echo '</td>';
-                echo "</tr>";
-            }
-        }
-        if (isset($clients)) {
-            foreach ($clients as $client) {
+        if (isset($users["clients"])){
+            foreach ($users["clients"] as $client) {
                 $count += 1;
                 echo "<tr>";
                 echo "<th scope='row'>$count</th>";
                 echo "<td>$client->firstname</td>";
                 echo "<td>$client->lastname</td>";
                 echo "<td>Client</td>";
-                echo '<td>TBH</td>';
+                echo "<td>$client->isblocked</td>";
                 echo '<td>';
                 echo '<a href="#"><img src=' . base_url("assets/images/svg/trash-icon-red.svg") . ' alt="modify-icon" class="icons" /></a>';
-                echo '<a href="#"><img src=' . base_url("assets/images/svg/menu.svg") . ' alt="delete-icon" class="icons" /></a>';
+                echo '<a href="#"><img src=' . base_url("assets/images/svg/trash-icon-black.svg") . ' alt="delete-icon" class="icons" /></a>';
                 echo '</td>';
                 echo "</tr>";
             }
         }
+       if (isset($users["contractors"])){
+            foreach ($users["contractors"] as $contractor) {
+                $count += 1;
+                echo "<tr>";
+                echo "<th scope='row'>$count</th>";
+                echo "<td>$contractor->firstname</td>";
+                echo "<td>$contractor->lastname</td>";
+                echo "<td>Contractor</td>";
+                echo "<td>$contractor->isblocked</td>";
+                echo '<td>';
+                echo '<a href="#"><img src=' . base_url("assets/images/svg/trash-icon-red.svg") . ' alt="modify-icon" class="icons" /></a>';
+                echo '<a href="#"><img src=' . base_url("assets/images/svg/trash-icon-black.svg") . ' alt="delete-icon" class="icons" /></a>';
+                echo '</td>';
+                echo "</tr>";
+            }
+        }
+
     } else {
     echo "There are no users.";
     }

@@ -7,7 +7,6 @@
         $request = \Config\Services::curlrequest();
 
         $request->setHeader('Token', $token); //ALWAYS NEEDED TO ACCESS API
-
         if (!empty($headers)){
             foreach ($headers as $key => $value){
                 $request->setHeader($key, $value);
@@ -20,13 +19,13 @@
         }
 
         $res = [];
+        var_dump($data);
         try {
             $response = $request->request($method, $url, ['http_errors' => false]); //Disabling native Behaviour to panik when getting http errors
             $body = json_decode($response->getBody());
             if ($response->getStatusCode() != 200){
                 $res['message'] = $body->message;
                 $res['error'] = $body->error;
-
                 var_dump($res);
             } else {
                 foreach ($body as $key => $value){
