@@ -41,15 +41,8 @@ class Dashboard extends BaseController
     }
     public function subscriptionManagement()
     {
-        helper('curl_helper');
-
         if ($this->checkAccess() == "true"){
-            $data['title'] = "Subscription Management";
-            //$data['isManager'] = isManager();
-
-            $data['subscriptions'] = callAPI('/subscription/all', 'get');
-
-            return view('dashboard/subscription_management', $data);
+            return redirect()->to('/subscriptions')->with('message', 'As a manager, you can view, add, delete and modify subscriptions');
         }
     }
 

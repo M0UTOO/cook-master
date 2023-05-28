@@ -8,6 +8,7 @@
 body{
     margin :0;
     font-family: 'Heebo';
+    overflow-x: hidden;
 }
 
 /*HEADER*/
@@ -220,5 +221,21 @@ footer{
     0 0 0 8px var(--brand-primary-color);
 }
 
+/*DASHBOARD*/
+#management{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    min-height : 100vh;
+}
+#management a {
+    width : 100%;
+    min-height: 10vh;
+}
 
 
+/*USER MANAGEMENT*/
+#users-table {
+    max-width: 100%;
+}
