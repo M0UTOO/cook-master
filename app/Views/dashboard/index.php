@@ -12,17 +12,48 @@
             }
         }
         ?>
-
+<section id="management" class="">
     <a href="<?=base_url('dashboard/userManagement')?>" class="card">
-        <div class="card-header">
-            Featured
-        </div>
         <div class="card-body">
             <h5 class="card-title">User management</h5>
-<!--            get user/all and count for under-->
+            <!--            get user/all and count for under-->
             <p class="card-text">There are XXX users.</p>
         </div>
     </a>
+
+    <a href="<?=base_url('dashboard/subscriptionManagement')?>" class="card">
+        <div class="card-body">
+            <h5 class="card-title">Subscription management</h5>
+            <!--            get user/all and count for under-->
+            <p class="card-text">There are XXX subscriptions.</p>
+        </div>
+    </a>
+
+    <a href="<?=base_url('dashboard/eventManagement')?>" class="card">
+        <div class="card-body">
+            <h5 class="card-title">Event management</h5>
+            <!--            get user/all and count for under-->
+            <p class="card-text">There are  XXX events.</p>
+        </div>
+    </a>
+
+    <a href="<?=base_url('dashboard/shopManagement')?>" class="card">
+        <div class="card-body">
+            <h5 class="card-title">Shop management</h5>
+            <!--            get user/all and count for under-->
+            <p class="card-text">There are XXX items.</p>
+        </div>
+    </a>
+
+    <a href="<?=base_url('dashboard/premisesManagement')?>" class="card">
+        <div class="card-body">
+            <h5 class="card-title">Premises management</h5>
+            <!--            get user/all and count for under-->
+            <p class="card-text">There are XXX cooking spaces in XX premises.</p>
+        </div>
+    </a>
+</section>
+
 
     </main>
     <?= $this->include('layouts/footer') ?>

@@ -12,6 +12,12 @@ if (isset($message)) {
         echo "Something went wrong. Please try again later.";
     }
 }
+if (session()->getFlashdata('message')){
+    echo '<div class="alert alert-warning" role="alert">';
+    echo session()->getFlashdata('message');
+    echo '</div>';
+}
+
 echo '<a data-bs-toggle="modal" data-bs-target="#userTypeModal"><img  src=' . base_url("assets/images/svg/add-user-icon-blue.svg") . ' alt="modify-icon" class="icons" /></a>';
 echo $this->include("dashboard/chooseUserTypeModal.php");
 
@@ -25,7 +31,7 @@ if (session()->getFlashdata('message')){
 ?>
 
 <!--THIS WHOLE SECTION IS ACTUALLY USERS/ALL SO SHOULD BE THE VIEW USERS/INDEX.PHP no ?-->
-<section id="users-table" class="overflow-x:auto">
+<section id="users-table" class="table-responsive">
 <table class="table">
     <thead>
     <tr>
