@@ -10,7 +10,13 @@
     if (isset($message)) {
         echo $message;
     }
-    echo "</p>"
+    echo "</p>";
+    if (session()->getFlashdata('message')){
+        echo '<div class="alert alert-warning" role="alert">';
+        echo session()->getFlashdata('message');
+        echo '</div>';
+    }
+
     ?>
 
     <section id="incoming-events">

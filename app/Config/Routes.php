@@ -61,10 +61,12 @@ $routes->get('dashboard/subscriptionManagement', 'Dashboard::subscriptionManagem
 $routes->get('unauthorized', 'Authorization::unauthorized');
 
 //SUBSCRIPTIONS
+$routes->get('subscriptions', 'Subscription::index'); //show all subscriptions
 $routes->get('subscription/create', 'Subscription::create');
 $routes->post('subscription/create', 'Subscription::create');
 $routes->get('subscription/delete/(:num)', 'Subscription::delete/$1');
 $routes->get('subscription/edit/(:num)', 'Subscription::edit/$1');
+$routes->get('subscription/(:num)', 'Subscription::show/$1'); //show one subscription
 /*
  * --------------------------------------------------------------------
  * Additional Routing

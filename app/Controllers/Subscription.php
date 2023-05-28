@@ -2,15 +2,16 @@
 
 namespace App\Controllers;
 
-class Subscriptions extends BaseController
+class Subscription extends BaseController
 {
     //Everyone can
-    public function show()
+    public function index()
     {
         //SHOW ALL INFO ABOUT ALL SUBSCRIPTIONS
-        $data['title'] = "Cookmaster - Subscriptions";
+        $data['title'] = "Cookmaster - Subscription";
         $data['subscriptions'] = callAPI('/subscription/all', 'get');
-        return view('subscriptions/index', $data);
+        //var_dump($data['subscriptions']);
+        return view('subscription/index', $data);
     }
 
     //Manager and Super admin can
@@ -29,7 +30,7 @@ class Subscriptions extends BaseController
 
     public function edit($id){
 
-        $data['subscription'] = callAPI('/user/'.$id, 'get');
+        $data['subscription'] = callAPI('/subscription/'.$id, 'get');
         //TODO: SHOW SIGNUP FORM WITH USER DATA PRE-FILLED
         return view('subscription/index', $data);
     }

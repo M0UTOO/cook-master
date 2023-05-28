@@ -4,26 +4,23 @@ namespace App\Controllers;
 
 class Dashboard extends BaseController
 {
-    public function isManager(): bool{
-        helper('session');
-        return (session()->get('role') == 'manager');
-
-    }
-
-    protected function checkAccess(){
+    protected function checkAccess(): bool
+    {
         // Check if the user is a manager (check role in session data)
-        if ($this->isManager() != 'manager') {
-            redirect()->to('unauthorized');
-        } else{
-            return "true";
+        if (!isManager()) {
+            return false;
+        } else {
+            return true;
         }
     }
 
     public function index()
     {
-        if ($this->checkAccess() == "true"){
+        if ($this->checkAccess()){
             $data['title'] = "Dashboard";
-            return view('dashboard/index');
+            return view('dashboard/index', $data);
+        } else {
+            return redirect()->to('/')->with('message', 'You are not authorized to access this page');
         }
     }
 
