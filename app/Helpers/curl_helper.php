@@ -36,6 +36,7 @@
         } catch (\Exception $e) {
             $res = "Something went wrong. Please try again later.";
         }
+
         return $res;
 
     }

@@ -25,7 +25,7 @@ echo $this->include('layouts/head') ;
 
     echo "<section id='all-subscriptions'>";
 
-            if (isset($subscriptions)){
+            if (isset($subscriptions) && is_array($subscriptions)){
                 foreach ($subscriptions as $subscription){
                     echo "<div class='subscription-card'>";
                     echo "<h3>";
@@ -40,6 +40,8 @@ echo $this->include('layouts/head') ;
                     echo "<a href='#' class='btn'>Subscribe</a>";
                     echo "</div>";
                 }
+            } else {
+                echo "<p>There are no subscription plans yet.</p>";
             }
 
         echo "</section>";
