@@ -66,6 +66,7 @@ $routes->get('subscription/create', 'Subscription::create');
 $routes->post('subscription/create', 'Subscription::create');
 $routes->get('subscription/delete/(:num)', 'Subscription::delete/$1');
 $routes->get('subscription/edit/(:num)', 'Subscription::edit/$1');
+$routes->post('subscription/edit/(:num)', 'Subscription::edit/$1');
 $routes->get('subscription/(:num)', 'Subscription::show/$1'); //show one subscription
 /*
  * --------------------------------------------------------------------

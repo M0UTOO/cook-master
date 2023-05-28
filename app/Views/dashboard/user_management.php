@@ -47,8 +47,8 @@ if (session()->getFlashdata('message')){
         echo "<td>$typeOfUser->isblocked</td>";
         echo '<td>';
         echo '<div class="d-flex justify-content-around">';
-        echo '<a href="/users/delete/' . $typeOfUser->id . '"><img src=' . base_url("assets/images/svg/trash-icon-red.svg") . ' alt="modify-icon" class="icons" /></a>';
-        echo '<a href="/users/block/' . $typeOfUser->id . '"><img src=' . base_url("assets/images/svg/trash-icon-black.svg") . ' alt="delete-icon" class="icons" /></a>';
+        echo '<a href="/users/delete/' . $typeOfUser->id . '"><img src=' . base_url("assets/images/svg/trash-icon-red.svg") . ' alt="delete-icon" class="icons" /></a>';
+        echo '<a href="/users/block/' . $typeOfUser->id . '"><img src=' . base_url("assets/images/svg/trash-icon-black.svg") . ' alt="block-icon" class="icons" /></a>';
         echo '</div>';
         echo '</td>';
         echo "</tr>";
