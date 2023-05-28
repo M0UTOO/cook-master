@@ -71,70 +71,23 @@ if ((isset($mini) && $mini == false) || !isset($mini)){
     echo '</div>';
 
 
-    if (isset($type) && $type == "Client"){
+    if (isset($type) && $type == "Client")
+    {
         echo '<div>';
         echo '<button type="button" class="btn mt-3" data-bs-toggle="modal" data-bs-target="#subscriptionsModal">Choose your subscription</button>';
         echo '</div>';
 
         echo $this->include("users/subscriptionsModal.php");
     }
-    elseif (isset($type) && $type == "Contractor"){
-
-        //TODO : disable picture and presentation input if manager is creating account or do not put it.
-        echo '<div class="form-group">';
-        echo form_label('Your presentation' , "label-presentation");
-        echo form_input(['type'  => 'textarea', 'name'  => 'presentation', 'class' => 'form-control', 'placeholder' => "Your presentation (can use MD format)"]);
-        echo '</div>';
-
-        echo '<div class="form-group">';
-        echo form_label('Contract start date' , "label-start-date");
-        echo form_input(['type'  => 'date', 'name'  => 'contractstart', 'class' => 'form-control', 'placeholder' => "Contract start date", 'required' => 'required']);
-        echo '</div>';
-
-        echo '<div class="form-group">';
-        echo form_label('Contract end date' , "label-end-date");
-        echo form_input(['type'  => 'date', 'name'  => 'contractend', 'class' => 'form-control', 'placeholder' => "Contract end date", 'required' => 'required']);
-        echo '</div>';
-
-        //TODO: GET THIS FROM THE DATABASE ONCE IT'S DONE IN THE API
-        $typeOfContractors = [
-            'cook'  => 'Cook',
-            'deliverer'    => 'Deliverer',
-            'seller'  => 'Seller',
-            'other' => 'Other contractor type',
-        ];
-
-        echo '<div class="form-group">';
-        echo form_label('Type of contractors' , "label-type-contractor");
-        echo form_dropdown('contractortype', $typeOfContractors, 'cook', 'class="form-control"');
-        echo '</div>';
+    elseif (isset($type) && $type == "Contractor")
+    {
+        echo $this->include("contractors/form.php");
     }
-    elseif (isset($type) && $type == "Manager"){
-
-        $typeOfManagers = [
-            'isitemmanager'  => 'Can manage items',
-            'isusermanager'    => 'Can manage users',
-            'iseventmanager'  => 'Can manage events',
-            'isothermanager' => 'Can manage other things',
-            'issuperadmin' => 'Is super admin'
-        ];
-        $isChecked = true; //but sends back a string cuz all forms send back strings.
-
-        //THIS IS MODIFIABLE ONLY BY MANAGER NOT CONTRACTOR THEMSELVES
-        echo "<div class='form-group'>";
-        echo "<label>What can this manager manage ?</label>";
-        foreach ($typeOfManagers as $key => $value){
-            echo '<div class="form-check">';
-            echo '<input class="form-check-input" type="checkbox" id="check-'.$key.'" name='. $key .' value="'. $isChecked.'">';
-            echo '<label class="form-check-label">'. $value .'</label>';
-            echo "</div>";
-        }
-        echo "</div>";
-
+    elseif (isset($type) && $type == "Manager")
+    {
+        echo $this->include("managers/form.php");
     }
 
-    // FOR NOW THIS IS THE CLIENT FORM
-    // NEED TO INCLUDE THE OTHER INFO ABOUT CONTRACTORS FOR WHEN MANAGER CREATE THE ACCOUNT CHECK IF IS MANAGER ?.
     // TODO: (random password generator and change password on first connection page)
 
 

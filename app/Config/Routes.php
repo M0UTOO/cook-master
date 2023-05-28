@@ -68,6 +68,14 @@ $routes->get('subscription/delete/(:num)', 'Subscription::delete/$1');
 $routes->get('subscription/edit/(:num)', 'Subscription::edit/$1');
 $routes->post('subscription/edit/(:num)', 'Subscription::edit/$1');
 $routes->get('subscription/(:num)', 'Subscription::show/$1'); //show one subscription
+
+//CONTRACTOR TYPES
+$routes->get('contractorTypes', 'ContractorType::index'); //show all contractorTypes
+$routes->get('contractorType/create', 'ContractorType::create');
+$routes->post('contractorType/create', 'ContractorType::create');
+$routes->get('contractorType/delete/(:num)', 'ContractorType::delete/$1');
+
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
