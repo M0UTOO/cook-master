@@ -12,12 +12,6 @@ if (isset($message)) {
     }
 }
 
-if (session()->getFlashdata('message')){
-    echo '<div class="alert alert-warning" role="alert">';
-    echo session()->getFlashdata('message');
-    echo '</div>';
-}
-
 echo "<section id='all-subscriptions'>";
     if (isset($subscription)){
 

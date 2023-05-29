@@ -14,12 +14,6 @@ echo $this->include('layouts/head') ;
         }
     }
 
-    if (session()->getFlashdata('message')){
-        echo '<div class="alert alert-warning" role="alert">';
-        echo session()->getFlashdata('message');
-        echo '</div>';
-    }
-
     $hidden_input = [];
     $action = "contractorType/create";
 

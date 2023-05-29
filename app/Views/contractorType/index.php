@@ -13,12 +13,6 @@ echo $this->include('layouts/head') ;
                 echo "Something went wrong. Please try again later.";
             }
         }
-
-        if (session()->getFlashdata('message')){
-            echo '<div class="alert alert-warning" role="alert">';
-            echo session()->getFlashdata('message');
-            echo '</div>';
-        }
         if (isManager()){
             echo '<a href="/contractorType/create"><img src=' . base_url("assets/images/svg/add-user-icon-blue.svg") . ' alt="plus-icon" class="icons" /></a>';
         }

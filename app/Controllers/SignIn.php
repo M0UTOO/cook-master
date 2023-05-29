@@ -19,7 +19,7 @@ class SignIn extends BaseController
         else {
             //VALUES FROM FORM
             $email = $this->request->getPost(['email']);
-            $password = $this->request->getPost(['email']);
+            $password = ($this->request->getPost(['password']))['password'];
 
             //GET HASHED PASSWORD
             $hashPassword = callAPI('/user/password', 'get', $email);
@@ -39,7 +39,7 @@ class SignIn extends BaseController
 
                     $logins =
                         [
-                            'email' => $email,
+                            'email' => $email['email'],
                             'password' => $password,
                         ];
 
@@ -66,7 +66,7 @@ class SignIn extends BaseController
 
                         $data['message'] = "You are now logged in";
                     }
-                    return redirect('/');
+                    return redirect()->to('/')->with('message', $data['message']);
                 }
             }
         }
