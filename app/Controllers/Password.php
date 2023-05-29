@@ -25,18 +25,10 @@ class Password extends BaseController
         //TODO:
     }
 
-    public function checkPassword(){
-        //TODO: CHECK IF PASSWORD IS CORRECT (CHECKING DONE IN JS FIRST)
-    }
-
     public function hashPassword($password){
-        //TODO:HASH THE PASSWORD BEFORE SENDING IT TO THE API.
-        return password_hash($password, PASSWORD_BCRYPT);
+        return password_hash($password, PASSWORD_BCRYPT); //New hash every time
     }
 
-    public function decodeHashPassword($password){
-        //TODO:UNHASH THE PASSWORD WHEN RECEIVING IT FROM THE API.
-    }
 
     public function __toString()
     {

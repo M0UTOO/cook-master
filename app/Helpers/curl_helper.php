@@ -34,7 +34,8 @@
             }
 
         } catch (\Exception $e) {
-            $res = "Something went wrong. Please try again later.";
+            $res['message'] = $e->getMessage();
+            $res['error'] = true;
         }
 
         return $res;
