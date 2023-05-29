@@ -10,7 +10,6 @@ class Subscription extends BaseController
         //SHOW ALL INFO ABOUT ALL SUBSCRIPTIONS
         $data['title'] = "Cookmaster - Subscription";
         $data['subscriptions'] = callAPI('/subscription/all', 'get');
-        //var_dump($data['subscriptions']);
         return view('subscription/index', $data);
     }
 

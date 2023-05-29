@@ -65,7 +65,7 @@ if (session()->getFlashdata('message')){
         //THIS CAN BE REFACTORED INTO A LOOP WITH A MAP.
         //TODO: ADD AN ICON TO BLOCK USER
         //TODO: ADD SEARCH BAR CHECK BOOTSTRAP DOCS
-        if (isset($users["managers"]) && is_array($users["managers"])){
+        if (isset($users["managers"]) && is_array($users["managers"]) && count($users["managers"]) > 0){
             foreach ($users["managers"] as $manager){
                 $count +=1;
                 if ($manager->issuperadmin) {
