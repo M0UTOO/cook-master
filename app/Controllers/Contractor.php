@@ -46,16 +46,20 @@ class Contractor extends Users
             }
             elseif ($type == "Contractor")
             {
-                if (isset($values['contractstart'], $values['contractend'])) {
+                if (isset($values['contractstart'], $values['contractend'], $values['idcontractortype'])) {
+
                     //String will be converted to DB format whatever the string date format is, thx PHP.
                    $values['contractstart'] = date("Y-m-d", strtotime($values['contractstart']));
                    $values['contractend'] = date("Y-m-d", strtotime($values['contractend']));
+
+                   $values['idcontractortype'] = intval($values['idcontractortype']);
                 }
             }
 
             $data['message'] = callAPI('/user/', 'post', $values, ['Type' => $type]);
 
             if (!$data['message']['error']){
+                //TODO:PUT THIS BACK ON BEFORE PRODUCTION
 //                $mail = new SendMail();
 //                $state = $mail->sendWelcomeMail($values['email'], $type, $values['firstname']);
             }

@@ -18,19 +18,21 @@ echo form_label('Contract end date' , "label-end-date");
 echo form_input(['type'  => 'date', 'name'  => 'contractend', 'class' => 'form-control', 'placeholder' => "Contract end date", 'required' => 'required']);
 echo '</div>';
 
-/*//TODO: GET THIS FROM THE DATABASE ONCE IT'S DONE IN THE API
-$typeOfContractors = [
-    'cook'  => 'Cook',
-    'deliverer'    => 'Deliverer',
-    'seller'  => 'Seller',
-    'other' => 'Other contractor type',
-];*/
+echo '<div class="form-group">';
+echo form_label('Type of contractors', "label-type-contractor");
 
 $typeOfContractors = new ContractorType();
-$typeOfContractors = (array)$typeOfContractors->getContractorTypes()[0];
+$typeOfContractors = $typeOfContractors->getContractorTypes();
 
-
-echo '<div class="form-group">';
-echo form_label('Type of contractors' , "label-type-contractor");
-echo form_dropdown('idcontractortype', $typeOfContractors, '', 'class="form-control"');
+if (!empty($typeOfContractors)) {
+    foreach ($typeOfContractors as $key) {
+        $key = (array)$key;
+        $tmp[$key['idcontractortype']] = $key['name'];
+    }
+    echo form_dropdown('idcontractortype', $tmp, '', 'class="form-control"');
+}
+else
+{
+    echo '<p>No contractor type found, please <a href="'.base_url('contractorType/create').'">create</a> one before creating a contractor.</p>';
+}
 echo '</div>';

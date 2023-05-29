@@ -23,7 +23,6 @@
         try {
             $response = $request->request($method, $url, ['http_errors' => false]); //Disabling native Behaviour to panik when getting http errors
             $body = json_decode($response->getBody());
-            var_dump($body);
             if ($response->getStatusCode() != 200){
                 $res['message'] = $body->message;
                 $res['error'] = $body->error;
