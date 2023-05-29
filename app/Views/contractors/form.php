@@ -27,10 +27,10 @@ $typeOfContractors = [
 ];*/
 
 $typeOfContractors = new ContractorType();
-//var_dump($typeOfContractors);
+$typeOfContractors = (array)$typeOfContractors->getContractorTypes()[0];
 
 
 echo '<div class="form-group">';
 echo form_label('Type of contractors' , "label-type-contractor");
-//echo form_dropdown('idcontractortype', $typeOfContractors, '1', 'class="form-control"');
+echo form_dropdown('idcontractortype', $typeOfContractors, '', 'class="form-control"');
 echo '</div>';
