@@ -46,9 +46,8 @@ class ContractorType extends BaseController
     public function getContractorTypes()
     {
         $response = callAPI('/contractor/type', 'get');
-        var_dump($response);
-//        $contractorTypes = json_decode($response, true);
-//        return $contractorTypes;
+
+        return $response;
     }
 
 }
