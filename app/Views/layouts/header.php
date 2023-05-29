@@ -31,11 +31,13 @@
 
 <main class="main d-flex flex-column align-items-center">
     <?php
-/*    if ((session()->get('id')) !== null ){
-        echo "Logged In - ID: " . session()->get('id');
-        echo "<br>";
-    } else {
-        echo "You are not logged in";
-    }
-*/?>
+            //DISPLAY FLASH MESSAGES
+            if (session()->getFlashdata('message')){
+                echo '<div class="alert alert-warning" role="alert">';
+                echo session()->getFlashdata('message');
+                echo '</div>';
+            }
+
+
+?>
 

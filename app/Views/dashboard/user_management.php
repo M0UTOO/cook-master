@@ -12,21 +12,9 @@ if (isset($message)) {
         echo "Something went wrong. Please try again later.";
     }
 }
-if (session()->getFlashdata('message')){
-    echo '<div class="alert alert-warning" role="alert">';
-    echo session()->getFlashdata('message');
-    echo '</div>';
-}
 
 echo '<a data-bs-toggle="modal" data-bs-target="#userTypeModal"><img  src=' . base_url("assets/images/svg/add-user-icon-blue.svg") . ' alt="modify-icon" class="icons" /></a>';
 echo $this->include("dashboard/chooseUserTypeModal.php");
-
-//TODO: create some methods and css for the flashdata?
-if (session()->getFlashdata('message')){
-    echo '<div class="alert alert-info" role="alert">';
-    echo session()->getFlashdata('message');
-    echo '</div>';
-}
 
 ?>
 

@@ -11,11 +11,6 @@
         echo $message;
     }
     echo "</p>";
-    if (session()->getFlashdata('message')){
-        echo '<div class="alert alert-warning" role="alert">';
-        echo session()->getFlashdata('message');
-        echo '</div>';
-    }
 
     ?>
 
