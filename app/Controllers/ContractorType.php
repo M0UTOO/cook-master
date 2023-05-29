@@ -8,7 +8,7 @@ class ContractorType extends BaseController
     public function __construct()
     {
         helper('curl_helper');
-        $this->contractorTypes = $this->getContractorTypes();
+        $this->contractorTypes = $this->getContractorTypesFromDB();
     }
 
     public function index()
@@ -24,9 +24,12 @@ class ContractorType extends BaseController
     {
         $data['title'] = "Create a new contractor type";
 
-        if (!$this->request->is('post')) {
+        if (!$this->request->is('post'))
+        {
             return view('contractorType/form', $data);
-        } else {
+        }
+        else
+        {
             $values = $this->request->getPost();
 
             $data['message'] = callAPI('/contractor/type', 'post', $values);
@@ -35,7 +38,8 @@ class ContractorType extends BaseController
         }
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         helper('filesystem');
 
         $data['message'] = callAPI('/contractor/type/'.$id, 'delete');
@@ -43,11 +47,15 @@ class ContractorType extends BaseController
         return redirect()->to('/contractorTypes')->with('message', $data['message']['message']);
     }
 
-    public function getContractorTypes()
+    public function getContractorTypesFromDB()
     {
         $response = callAPI('/contractor/type', 'get');
 
         return $response;
     }
 
+    public function getContractorTypes()
+    {
+        return $this->contractorTypes;
+    }
 }
