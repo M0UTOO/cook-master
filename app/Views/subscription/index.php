@@ -25,7 +25,7 @@ echo $this->include('layouts/head') ;
 
     echo "<section id='all-subscriptions'>";
 
-            if (isset($subscriptions) && is_array($subscriptions)){
+            if (isset($subscriptions) && is_array($subscriptions) && count($subscriptions) > 0){
                 foreach ($subscriptions as $subscription){
                     echo "<div class='subscription-card'>";
                     echo "<h3>";
