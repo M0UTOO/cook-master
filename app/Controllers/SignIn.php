@@ -17,28 +17,58 @@ class SignIn extends BaseController
             return view('signin/signIn', $data);
         }
         else {
+            //VALUES FROM FORM
+            $email = $this->request->getPost(['email']);
+            $password = $this->request->getPost(['email']);
 
-            $logins = $this->request->getPost(['email', 'password']);
-            $data['message'] = callAPI('/user/login', 'get', $logins);
+            //GET HASHED PASSWORD
+            $hashPassword = callAPI('/user/password', 'get', $email);
 
-            if ($data['message']['error']){
-                $data['message'] = $data['message']['message'];
+            if ($hashPassword['error']){
+                $data['message'] = $hashPassword['message'];
                 return view('signin/signIn', $data);
-            }
+            } else {
+                $hashPassword = $hashPassword['password'];
 
-            #SESSION#
-            if (isset($data['message']['id'])) {
-                $userInfo = [
-                    'id' => $data['message']['id'],
-                    'role' => $data['message']['role'],
-                    'isLoggedIn' => true,
-                ];
-                $session = session();
-                $session->set($userInfo);
+                //CHECK PASSWORD MATCH
+                if (!password_verify($password, $hashPassword)){
+                    $data['message'] = "Wrong password";
+                    return view('signin/signIn', $data);
+                } else {
+                    $password = $hashPassword;
 
-                $data['message'] = "You are now logged in";
+                    $logins =
+                        [
+                            'email' => $email,
+                            'password' => $password,
+                        ];
+
+                    $data['message'] = callAPI('/user/login', 'get', $logins);
+
+                    if ($data['message']['error']){
+                        $data['message'] = $data['message']['message'];
+                        return view('signin/signIn', $data);
+                    }
+
+                    #SESSION#
+                    if (isset($data['message']['id'])) {
+                        $userInfo = [
+                            'id' => $data['message']['id'],
+                            'role' => $data['message']['role'],
+                            'isLoggedIn' => true,
+                        ];
+                        if (isset($data['message']['subscription'])) {
+                            $userInfo['subscription'] = $data['message']['subscription'];
+                        }
+
+                        $session = session();
+                        $session->set($userInfo);
+
+                        $data['message'] = "You are now logged in";
+                    }
+                    return redirect('/');
+                }
             }
-            return redirect('/');
         }
     }
 
