@@ -4,7 +4,12 @@ namespace App\Controllers;
 
 class Lesson extends BaseController
 {
-    //Everyone can
+    private array $lessons;
+    public function __construct()
+    {   helper('curl_helper');
+        $this->lessons = $this->getAllLessons();
+    }
+
     public function index()
     {
         //SHOW ALL INFO ABOUT ALL LESSONS
@@ -21,17 +26,22 @@ class Lesson extends BaseController
         $data['title'] = "Create a new lesson";
 
         if (!$this->request->is('post')) {
-            return view('lesson/form', $data);
+            return view('lesson/create', $data);
         } else {
             $values = $this->request->getPost();
 
-            $values['price'] = (float)$values['price'];
-            $values['maxlessonaccess'] = (int)$values['maxlessonaccess'];
+            $values['difficulty'] = (int)$values['difficulty'];
 
-            $picture = $this->request->getFile('picture');
+            /*$content = $this->request->getFile('content');
 
-            $data['message'] = callAPI('/lesson/', 'post', $values);
-            $lessonID = $data['message']['id'];
+            $values['content'] = $content;*/
+
+            $userId = $values['user_id'];
+            unset($values['user_id']);
+
+            $data['message'] = callAPI('/lesson/'.$userId, 'post', $values);
+
+            /*$lessonID = $data['message']['id'];
 
             $picture = "img-lesson-".$lessonID.".". $picture->getExtension(); //check extension
 
@@ -39,7 +49,7 @@ class Lesson extends BaseController
 
             if (!$data['state']['error']){
                 $picture->move('./assets/images/lessons/', 'img-lesson-'.$lessonID.'.'.$picture->getExtension());
-            }
+            }*/
 
             return redirect()->to('/lessons')->with('message', $data['message']['message']);
         }
@@ -47,13 +57,24 @@ class Lesson extends BaseController
 
     public function edit($id){
 
+        $currentUser['id'] = session()->get('id');
+        $curentUser['role'] = session()->get('role');
+
         $data['title'] = "Edit the lesson";
         $data['lesson'] = callAPI('/lesson/'.$id, 'get'); //TO DISPLAY THE CURRENT VALUES IN THE FORM
 
+        //TODO: find lesson author and you can edit lesson only if u are the author or a manager.
+
         if (!$this->request->is('post')) {
-            return view('lesson/form', $data);
-        } else {
+            return view('lesson/edit', $data);
+        }
+        else
+        {
             $values = $this->request->getPost();
+            $values['difficulty'] = (int)$values['difficulty'];
+
+            unset($values['user_id']);
+
             $data['message'] = callAPI('/lesson/'.$id, 'patch', $values);
             return redirect()->to('/lesson/'.$id)->with('message', $data['message']['message']);
         }
@@ -74,6 +95,11 @@ class Lesson extends BaseController
         $data['title'] = "Lesson";
         $data['lesson'] = callAPI('/lesson/'.$id, 'get');
         return view('lesson/show', $data);
+    }
+
+    public function getAllLessons()
+    {
+        return callAPI('/lesson/all', 'get');
     }
 
 }
