@@ -75,6 +75,21 @@ $routes->get('contractorType/create', 'ContractorType::create');
 $routes->post('contractorType/create', 'ContractorType::create');
 $routes->get('contractorType/delete/(:num)', 'ContractorType::delete/$1');
 
+//LESSON
+$routes->get('lessons', 'Lesson::index'); //show all lessons
+$routes->get('lesson/create', 'Lesson::create');
+$routes->post('lesson/create', 'Lesson::create');
+$routes->get('lesson/delete/(:num)', 'Lesson::delete/$1');
+$routes->get('lesson/edit/(:num)', 'Lesson::edit/$1');
+$routes->post('lesson/edit/(:num)', 'Lesson::edit/$1');
+$routes->get('lesson/(:num)', 'Lesson::show/$1'); //show one lesson
+
+//CONTRACTOR TYPES
+$routes->get('lessonGroups', 'LessonGroup::index'); //show all lessonGroups
+$routes->get('lessonGroup/create', 'LessonGroup::create');
+$routes->post('lessonGroup/create', 'LessonGroup::create');
+$routes->get('lessonGroup/delete/(:num)', 'LessonGroup::delete/$1');
+
 
 /*
  * --------------------------------------------------------------------
