@@ -14,20 +14,42 @@ class LessonGroup extends BaseController
 
     public function index()
     {
-        $data['title'] = "All contractor types";
-        $data['lessonGroups'] = callAPI('/lesson/group', 'get');
+        $data['title'] = "All lesson groups";
+        $data['lessonGroups'] = callAPI('/lesson/group/all', 'get');
 
-        return view('lessonGroups/index', $data);
+        return view('lessonGroup/index', $data);
     }
 
-    //Manager can
-    public function create()
+
+
+      public function add()
     {
-        $data['title'] = "Create a new contractor type";
+        $data['title'] = "Add a lesson to a group";
 
         if (!$this->request->is('post'))
         {
-            return view('contractorType/form', $data);
+            return view('lessonGroup/add', $data);
+        }
+        else
+        {
+            $values = $this->request->getPost();
+            var_dump($values);
+            $lessonid = $values['idlesson'];
+            unset($values['idlesson']);
+
+            $data['message'] = callAPI('/lesson/group/'.$lessonid, 'post', $values);
+
+            return redirect()->to('/lessons')->with('message', $data['message']['message']);
+        }
+    }
+
+    /*public function create()
+    {
+        $data['title'] = "Create a new lesson group";
+
+        if (!$this->request->is('post'))
+        {
+            return view('lessonGroup/create', $data);
         }
         else
         {
@@ -37,7 +59,7 @@ class LessonGroup extends BaseController
 
             return redirect()->to('/lessonGroups')->with('message', $data['message']['message']);
         }
-    }
+    }*/
 
     public function delete($id)
     {
@@ -46,9 +68,15 @@ class LessonGroup extends BaseController
         return redirect()->to('/lessonGroups')->with('message', $data['message']['message']);
     }
 
+    public function getLessonsByGroup($id)
+    {
+        $data['title'] = "Lessons by group";
+        return $data['lessons'] = callAPI('/lesson/group/'.$id, 'get');
+    }
+
     public function getLessonGroupsFromDB()
     {
-        $response = callAPI('/lesson/group', 'get');
+        $response = callAPI('/lesson/group/all', 'get');
 
         return $response;
     }

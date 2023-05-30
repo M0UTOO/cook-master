@@ -1,3 +1,17 @@
 <?php
-echo "<h2>" . $title . "<img alt='logo' class='' src=" . base_url("assets/images/svg/moon-icon.svg") . " /></h2>";
-echo $this->include('lesson/form') ;
+helper('form');
+helper('url');
+echo $this->include('layouts/head') ;
+
+echo '<body>';
+echo $this->include('layouts/header') ;
+
+if (isset($message)) {
+    try {
+        echo $message ;
+    } catch (\Exception $e) {
+        echo "Something went wrong. Please try again later.";
+    }
+}
+
+echo "<h2>" . $title ."</h2>";echo $this->include('lesson/form') ;

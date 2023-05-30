@@ -127,7 +127,7 @@ form a {
     border: none !important;
 }
 
-#signIn-form .btn {
+.blue-btn {
     background-color: var(--brand-second-color);
 }
 #signUp-form .btn {

@@ -84,10 +84,10 @@ $routes->get('lesson/edit/(:num)', 'Lesson::edit/$1');
 $routes->post('lesson/edit/(:num)', 'Lesson::edit/$1');
 $routes->get('lesson/(:num)', 'Lesson::show/$1'); //show one lesson
 
-//CONTRACTOR TYPES
+//LESSON GROUPS
 $routes->get('lessonGroups', 'LessonGroup::index'); //show all lessonGroups
-$routes->get('lessonGroup/create', 'LessonGroup::create');
-$routes->post('lessonGroup/create', 'LessonGroup::create');
+$routes->get('lessonGroup/add/', 'LessonGroup::add');
+$routes->post('lessonGroup/add/', 'LessonGroup::add/');
 $routes->get('lessonGroup/delete/(:num)', 'LessonGroup::delete/$1');
 
 

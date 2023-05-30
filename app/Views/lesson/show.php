@@ -2,37 +2,64 @@
 echo $this->include('layouts/head') ;
 
 echo '<body>';
-echo $this->include('layouts/header') ;
+    echo $this->include('layouts/header') ;
 
-if (isset($message)) {
-    try {
-        echo $message ;
-    } catch (\Exception $e) {
-        echo "Something went wrong. Please try again later.";
-    }
-}
-
-echo "<section id='all-subscriptions'>";
-    if (isset($subscription)){
-
-        echo "<div class='subscription-card'>";
-        echo "<h3>";
-        echo $subscription['name'] ;
-        if (isManager()){
-            echo '<a href="/subscription/delete/' . $subscription["idsubscription"] . '"><img src=' . base_url("assets/images/svg/trash-icon-red.svg") . ' alt="delete-icon" class="icons" /></a>';
-            echo '<a href="/subscription/edit/' . $subscription["idsubscription"] . '"><img src=' . base_url("assets/images/svg/moon-icon.svg") . ' alt="modify-icon" class="icons" /></a>';
+    if (isset($message)) {
+        try {
+            echo $message ;
+        } catch (\Exception $e) {
+            echo "Something went wrong. Please try again later.";
         }
-        echo "</h3>";
-        echo "<p>Welcome to Cookmaster, where we're passionate about making your culinary journey a deliciously unforgettable one".$subscription['maxlessonaccess']."</p>";
-        echo "<p id='subscription-price'>$".$subscription['price']."€/month</p>";
-        echo "<a href='#' class='btn'>Subscribe</a>";
-        echo "</div>";
     }
+    function displayDifficultyLevel( $difficulty )
+    {
+        echo '<div id="difficulty-stars">';
+        for ($i = 0; $i<$difficulty;$i++) {
+            echo '<img src=' . base_url("assets/images/svg/moon-icon.svg") . ' alt="modify-icon" class="icons" />';
+        }
+        echo "</div>";
 
-echo "</section>";
-echo '</main>';
-echo $this->include('layouts/footer')
-?>
+    }
+    echo '<div class="ad-spot" style="min-height: 5rem; min-width: 50vw;background-color: var(--placeholder-color);">ADD SPOT</div>';
+
+    echo "<section id='lesson-info d-flex' style='min-width: 100%'>";
+        if (isset($lesson)){
+
+            echo "<div class='lesson-card d-flex flex-column'>";
+            if (isManager() || isContractor()){
+                echo '<div class="">';
+                echo '<a class="me-3" href="/lesson/delete/' . $lesson["idlesson"] . '"><img src=' . base_url("assets/images/svg/trash-icon-red.svg") . ' alt="delete-icon" class="icons" /></a>';
+                echo '<a href="/lesson/edit/' . $lesson["idlesson"] . '"><img src=' . base_url("assets/images/svg/moon-icon.svg") . ' alt="modify-icon" class="icons" /></a>';
+                echo '</div>';
+            }
+
+            echo '<div>';
+                echo "<h1>";
+                    echo $lesson['name'] ;
+                echo "</h1>";
+                echo "<div class='d-flex'>";
+                        echo '<h3>Difficulté:</h3>';
+                        displayDifficultyLevel($lesson['difficulty']);
+                echo '</div>';
+            echo '</div>';
+
+            echo '<div>';
+            echo "<p>By: the author</p>";
+            echo "<p>". $lesson['content']."</p>";
+            echo '</div>';
+            echo "</div>";
+        }
+
+    echo "</section>";
+
+        echo "<section id='other-lessons'>";
+        //TODO: DISPLAY SMALL CARDS OF THE NEXT LESSON OF THE GROUP OR RANDOM OTHER LESSON.
+        //echo $this->include("suggested_lessons");
+        echo "</section>";
+
+    echo '</main>';
+    echo $this->include('layouts/footer')
+    ?>
 </body>
 <script src=<?= base_url('assets/js/create_users.js')?>></script>
 </html>

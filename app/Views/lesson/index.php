@@ -1,4 +1,14 @@
 <?php
+function displayDifficultyLevel( $difficulty )
+{
+    echo '<td>';
+    for ($i = 0; $i<$difficulty;$i++) {
+        echo '<img src=' . base_url("assets/images/svg/moon-icon.svg") . ' alt="modify-icon" class="icons" />';
+    }
+    echo "</td>";
+
+}
+
 echo $this->include('layouts/head') ;
 
     echo '<body>';
@@ -13,33 +23,51 @@ echo $this->include('layouts/head') ;
                 echo "Something went wrong. Please try again later.";
             }
         }
-        if (isManager()){
-            echo '<a href="/subscription/create"><img src=' . base_url("assets/images/svg/add-user-icon-blue.svg") . ' alt="plus-icon" class="icons" /></a>';
+        if (isContractor()){
+            echo '<div>';
+            echo '<a href="/lesson/create"><img src=' . base_url("assets/images/svg/add-user-icon-blue.svg") . ' alt="plus-icon" class="icons" /></a>';
+            echo '<a href="/lessonGroup/add"><img src=' . base_url("assets/images/svg/add-user-icon-blue.svg") . ' alt="plus-icon" class="icons" /></a>';
+            echo '</div>';
         }
 
-    echo "<section id='all-lessons'>";
+    echo '<section class="table-responsive">';
+        echo '<table class="table">';
+
+            echo '<thead>';
+                echo '<tr>';
+                    echo '<th scope="col">Name</th>';
+                    echo '<th scope="col">Description</th>';
+                    echo '<th scope="col">Author</th>';
+                    echo '<th scope="col">Difficulty</th>';
+                    echo '<th scope="col">Actions</th>';
+                echo '</tr>';
+            echo '</thead>';
+
+            echo '<tbody class="table-group-divider">';
 
             if (isset($lessons) && is_array($lessons) && count($lessons) > 0){
-                //TODO: MAKE IT A TABLE !
-                foreach ($lessons as $lesson){
-                    echo "<div class='lesson-card'>";
-                    echo "<h3>";
-                    echo $lesson->name ;
-                    if (isManager()){
-                        echo '<a href="/lesson/delete/' . $lesson->idlesson . '"><img src=' . base_url("assets/images/svg/trash-icon-red.svg") . ' alt="delete-icon" class="icons" /></a>';
-                        echo '<a href="/lesson/edit/' . $lesson->idlesson . '"><img src=' . base_url("assets/images/svg/moon-icon.svg") . ' alt="modify-icon" class="icons" /></a>';
-                    }
-                    echo "</h3>";
-                    echo "<p>Welcome to Cookmaster, where we're passionate about making your culinary journey a deliciously unforgettable one".lesson->maxlessonaccess."</p>";
-                    echo "<a href='#' class='btn'>Subscribe</a>";
-                    echo "</div>";
-                }
-            } else {
-                echo "<p>There are no lessons yet.</p>";
-            }
+                    foreach ($lessons as $lesson){
+                        echo "<tr>";
+                        echo "<td>$lesson->name</td>";
+                        echo "<td>$lesson->description</td>";
+                        echo "<td>Author</td>";
+                        displayDifficultyLevel($lesson->difficulty);
 
+                        if (isContractor() || isManager()){
+                            echo "<td>";
+                                echo '<a href="/lesson/delete/' . $lesson->idlesson . '"><img src=' . base_url("assets/images/svg/trash-icon-red.svg") . ' alt="delete-icon" class="icons" /></a>';
+                                echo '<a href="/lesson/edit/' . $lesson->idlesson . '"><img src=' . base_url("assets/images/svg/moon-icon.svg") . ' alt="modify-icon" class="icons" /></a>';
+                             echo "</td>";
+                        }
+                    }
+                } else {
+                    echo "<p>There are no lessons yet.</p>";
+                }
+                echo "</tbody>";
+                echo "</table>";
         echo "</section>";
     echo '</main>';
+
     echo $this->include('layouts/footer')
     ?>
     </body>
