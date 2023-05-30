@@ -67,4 +67,8 @@ class Contractor extends Users
             return redirect()->to('/dashboard/userManagement')->with('message', $data['message']['message']);
         }
     }
+
+    public function profile(){
+
+    }
 }
