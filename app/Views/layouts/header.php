@@ -23,7 +23,7 @@ helper('html') ?>
             if ((isset($isManager) && $isManager) || isManager()) {
                 echo '<a class="m-2 p-3" href="' . base_url('dashboard') . '" class="nav-link">Dashboard (Manager)</a>';
             }
-            echo '<a class="m-2 p-3" href="' . base_url('/profile') . '" class="nav-link">Your account</a>';
+            echo '<a class="m-2 p-3" href="' . base_url('user/profile') . '" class="nav-link">Your account</a>';
             echo '<a class="m-2 p-3" href="' . base_url('/signOut') . '" class="nav-link">Sign Out</a>';
         }
             else
