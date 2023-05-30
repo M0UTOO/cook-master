@@ -32,7 +32,7 @@ $routes->set404Override();
 $routes->get('/', 'Home::index');
 $routes->get('users/create', 'Users::create');
 $routes->post('users/create', 'Users::create');
-$routes->get('users/profile', 'Users::profile');
+$routes->get('user/profile', 'Users::profile');
 $routes->get('users/delete/(:num)', 'Users::delete/$1');
 $routes->get('users/block/(:num)', 'Users::block/$1');
 $routes->get('users/edit/(:num)', 'Users::edit/$1');
