@@ -1,23 +1,25 @@
 <?= $this->include('layouts/head') ?>
 
-<body>
-<?= $this->include('layouts/header') ?>
+<body >
+    <div class="signInBody">
+        <?= $this->include('layouts/header') ?>
 
-    <?php
-    if (isset($message)) {
-        echo $message;
-    }
-    echo "<section id='signIn-section' class='w-100 column-list'>";
-    echo $this->include('signin/signInForm.php');
+            <?php
+            if (isset($message)) {
+                echo $message;
+            }
+            echo "<section id='signIn-section' class='w-100 column-list'>";
+            echo $this->include('signin/signInForm.php');
 
-    echo "</section>";
+            echo "</section>";
 
-    echo '<section id="signUp-section" class="w-100 column-list">';
-    echo $this->include('users/signUpForm.php');
+            echo '<section id="signUp-section" class="w-100 column-list">';
+            echo $this->include('users/signUpForm.php');
 
-    echo "</section>";
-    ?>
-</main>
+            echo "</section>";
+            ?>
+        </main>
+    </div>
 <?= $this->include('layouts/footer') ?>
 </body>
 

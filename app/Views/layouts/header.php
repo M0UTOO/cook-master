@@ -10,6 +10,10 @@ helper('html') ?>
             <span class="burger-menu-icon"><?= img(base_url("assets/images/svg/menu.svg")) ?></span>
         </button>
     </div>
+    <div>
+        <a class="" href="/" id="nav-bar-signIn"></a>
+    </div>
+
 </header>
 
 <nav id="burger-menu" class="d-none vh-100 d-flex flex-column align-items-center mt-1">
