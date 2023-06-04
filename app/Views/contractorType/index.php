@@ -33,6 +33,7 @@ echo $this->include('layouts/head') ;
                 $count = 0;
                 foreach ($contractorTypes as $contractorType){
                     $count +=1;
+                    echo '<tr>';
                     echo "<td>$count</td>";
                     echo "<td>$contractorType->name</td>";
                     echo '<td>';
