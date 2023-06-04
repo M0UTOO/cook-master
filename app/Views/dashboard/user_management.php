@@ -13,9 +13,12 @@ if (isset($message)) {
     }
 }
 
+echo '<div>';
 echo '<a data-bs-toggle="modal" data-bs-target="#userTypeModal"><img  src=' . base_url("assets/images/svg/add-user-icon-blue.svg") . ' alt="modify-icon" class="icons" /></a>';
 echo $this->include("dashboard/chooseUserTypeModal.php");
 
+echo '<a href="'.base_url('contractorTypes').'"><img  src=' . base_url("assets/images/svg/add-user-icon-blue.svg") . ' alt="modify-icon" class="icons" /></a>';
+echo '</div>';
 ?>
 
 <!--THIS WHOLE SECTION IS ACTUALLY USERS/ALL SO SHOULD BE THE VIEW USERS/INDEX.PHP no ?-->

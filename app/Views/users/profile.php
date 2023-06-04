@@ -1,6 +1,7 @@
 <?= $this->include('layouts/head') ?>
 
 <body>
+
     <?= $this->include('layouts/header') ?>
 
 <!--TODO: ADD DASHBOARD NAV-->

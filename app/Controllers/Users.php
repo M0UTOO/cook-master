@@ -20,7 +20,9 @@ class Users extends BaseController
         else if ($this->request->getPost('mini')){
             $data['mini'] = false; //TO SHOW THE FULL FORM AND NOT THE MINI ONE
             $data['email'] = $this->request->getPost('email');//TO ADD THE EMAIL AUTOMATICALLY IN NEXT PAGE
+           echo "ok";
             return view('users/signUp', $data);
+
         }
         elseif (!$this->request->is('post')){
             $data['userType'] = "Client";
@@ -52,13 +54,14 @@ class Users extends BaseController
 
     public function profile(){
 
-        $userId = session()->get('id');
+        if (!isLoggedIn()){
+            return redirect()->to('/signIn')->with('message', 'You need to be logged in to access this page');
+        }
 
+        $userId = session()->get('id');
         $data['user'] = callAPI('/user/'.$userId, 'get');
-        //$data['events'] = getUsersEvents($data['user']['id']);
         $data['title'] = "My profile";
-        $data['isManager'] = isManager();
-        //var_dump($data);
+
         return view('users/profile', $data);
     }
 
