@@ -7,10 +7,10 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body d-flex flex-column justify-content-around">
-                <a class="btn blue-btn mb-3 href="<?= base_url('events/create')?>">Create an event</a>
-                <a class="btn blue-btn mb-3 href="<?= base_url('events/create?type=Contractor')?>">Add an event to a group</a>
-                <a class="btn blue-btn mb-3 href="<?= base_url('events/create?type=Contractor')?>">Assign a contractor to an event</a>
-                <a class="btn blue-btn mb-3 href="<?= base_url('events/create?type=Contractor')?>">Select a cooking space for the event</a>
+                <a class="btn blue-btn mb-3" href="<?= base_url('event/create')?>">Create an event</a>
+                <a class="btn blue-btn mb-3" href="<?= base_url('event/create?type=Contractor')?>">Add an event to a group</a>
+                <a class="btn blue-btn mb-3" href="<?= base_url('events/create?type=Contractor')?>">Assign a contractor to an event</a>
+                <a class="btn blue-btn mb-3" href="<?= base_url('events/create?type=Contractor')?>">Select a cooking space for the event</a>
             </div>
         </div>
     </div>
