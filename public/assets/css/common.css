@@ -208,6 +208,12 @@ p{
     font-size: 14px;
 }
 
+/*SUBSCRIPTIONS MODAL */
+#subscriptionsModal{
+
+}
+
+
 /*FOOTER*/
 
 footer{
@@ -241,7 +247,9 @@ footer{
     border: 2px solid #ccc;
     margin-bottom: 20px;
 }
-
+.subscription-card:hover {
+    cursor: pointer;
+}
 .subscription-card h3 {
     margin-bottom: 10px;
 }
@@ -289,3 +297,20 @@ footer{
 #users-table {
     max-width: 100%;
 }
+
+/*EVENTS */
+
+#eventOptionLink{
+    display: flex;
+    min-height: 6vh;
+    min-width: 4vw;
+
+    background-image: url('../../../assets/images/svg/logo-cookmaster/logo-cookmaster-BIG.svg');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+#eventOptionLink:hover{
+    cursor: pointer;
+}
+
