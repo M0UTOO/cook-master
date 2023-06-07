@@ -7,8 +7,9 @@ echo $this->include('layouts/head') ;
 
     echo "<h2>" . $title . "<img alt='logo' class='' src=" . base_url("assets/images/svg/moon-icon.svg") . " /></h2>";
 
-    $this->include('event/eventOptionsModal') ;
+
         if (isManager()){
+            echo $this->include('event/eventOptionsModal') ;
             echo '<div>';
                 echo '<a id="eventOptionLink" data-bs-toggle="modal" data-bs-target="#eventOptionsModal"></a>';
             echo '</div>';
