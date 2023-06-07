@@ -73,11 +73,13 @@ if ((isset($mini) && $mini == false) || !isset($mini)){
 
     if (isset($type) && $type == "Client")
     {
-        echo '<div>';
-        echo '<button type="button" class="btn mt-3" data-bs-toggle="modal" data-bs-target="#subscriptionsModal">Choose your subscription</button>';
+        echo '<div class="d-flex">';
+        echo '<div id="subscription-input-div" class="form-group">';
+        echo form_label('Your subscription', "label-subscription");
+        echo form_input(['type'  => 'text', 'name'  => 'idsubscription', 'id'=> 'sign-up-subscription-input', 'class' => 'form-control', 'placeholder' => "No subscription selected yet.", 'required' => 'required', 'readonly' => 'readonly']);
         echo '</div>';
-
-        echo $this->include("users/subscriptionsModal.php");
+        echo '<button type="button" class="btn mt-3 ms-3 " data-bs-toggle="modal" data-bs-target="#subscriptionsModal">Select</button>';
+        echo '</div>';
     }
     elseif (isset($type) && $type == "Contractor")
     {

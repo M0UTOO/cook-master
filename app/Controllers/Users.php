@@ -26,6 +26,7 @@ class Users extends BaseController
         }
         elseif (!$this->request->is('post')){
             $data['userType'] = "Client";
+            $data['subscriptions'] = callAPI('/subscription/all', 'get');
             return view('users/signUp', $data);
         }
         else

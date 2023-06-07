@@ -90,6 +90,21 @@ $routes->get('lessonGroup/add/', 'LessonGroup::add');
 $routes->post('lessonGroup/add/', 'LessonGroup::add/');
 $routes->get('lessonGroup/delete/(:num)', 'LessonGroup::delete/$1');
 
+//EVENTS
+$routes->get('events', 'Event::index'); //show all events
+$routes->get('event/create', 'Event::create');
+$routes->post('event/create', 'Event::create');
+$routes->get('event/delete/(:num)', 'Event::delete/$1');
+$routes->get('event/edit/(:num)', 'Event::edit/$1');
+$routes->post('event/edit/(:num)', 'Event::edit/$1');
+$routes->get('event/(:num)', 'Event::show/$1'); //show one event
+
+//EVENT GROUPS
+/*$routes->get('eventGroups', 'EventGroup::index'); //show all lessonGroups
+$routes->get('eventGroup/add/', 'EventGroup::add');
+$routes->post('eventGroup/add/', 'EventGroup::add/');
+$routes->get('eventGroup/delete/(:num)', 'EventGroup::delete/$1');*/
+
 
 /*
  * --------------------------------------------------------------------
