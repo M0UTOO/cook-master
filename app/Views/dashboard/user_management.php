@@ -44,8 +44,8 @@ echo '</div>';
         echo "<td>$typeOfUser->isblocked</td>";
         echo '<td>';
         echo '<div class="d-flex justify-content-around">';
-        echo '<a href="/users/delete/' . $typeOfUser->id . '"><img src=' . base_url("assets/images/svg/trash-icon-red.svg") . ' alt="delete-icon" class="icons" /></a>';
-        echo '<a href="/users/block/' . $typeOfUser->id . '"><img src=' . base_url("assets/images/svg/trash-icon-black.svg") . ' alt="block-icon" class="icons" /></a>';
+        echo '<a href="/users/delete/' . $typeOfUser->idusers . '"><img src=' . base_url("assets/images/svg/trash-icon-red.svg") . ' alt="delete-icon" class="icons" /></a>';
+        echo '<a href="/users/block/' . $typeOfUser->idusers . '"><img src=' . base_url("assets/images/svg/trash-icon-black.svg") . ' alt="block-icon" class="icons" /></a>';
         echo '</div>';
         echo '</td>';
         echo "</tr>";
@@ -53,17 +53,15 @@ echo '</div>';
 
     if (isset($users)){
 
-        //THIS CAN BE REFACTORED INTO A LOOP WITH A MAP.
-        //TODO: ADD AN ICON TO BLOCK USER
         //TODO: ADD SEARCH BAR CHECK BOOTSTRAP DOCS
         if (isset($users["managers"]) && is_array($users["managers"]) && count($users["managers"]) > 0){
             foreach ($users["managers"] as $manager){
                 $count +=1;
+                $redirection = base_url("/users/edit/".$manager->idusers);
                 if ($manager->issuperadmin) {
-                    //TODO: add clickable row to edit the user :NOT WORKING ATM
-                    echo '<tr onclick="window.location='.base_url('/users/edit/'.$manager->id).'" class="table-info">';
+                    echo '<tr class="table-info" data-href='.$redirection.'>';
                 } else {
-                    echo "<tr onclick='/users/edit'".$manager->id.">";
+                    echo "<tr data-href=".$redirection.">";
                 }
 
                 echo "<th scope='row'>$count</th>";
@@ -111,5 +109,5 @@ echo '</div>';
 </main>
 <?= $this->include('layouts/footer') ?>
 </body>
-<script src=<?= base_url('assets/js/create_users.js')?>></script>
+<script src=<?= base_url('assets/js/tables.js')?>></script>
 </html>

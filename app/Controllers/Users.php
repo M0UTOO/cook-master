@@ -81,9 +81,10 @@ class Users extends BaseController
     }
 
     public function block($id){
+        helper('date');
         //blocked user can't login but data still here
-        echo $id;
-        $data['message'] = callAPI('/user/'.$id, 'patch', ['isblocked' => '2023-05-27']);
+        $time = date("Y-m-d H:i:s", now()); //TODO:CHECK TIME LOCATION
+        $data['message'] = callAPI('/user/'.$id, 'patch', ['isblocked' => $time]);
         return redirect()->to('/dashboard/userManagement')->with('message', $data['message']['message']);
     }
 
