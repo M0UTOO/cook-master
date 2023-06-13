@@ -4,15 +4,7 @@ echo $this->include('layouts/head') ;
 echo '<body>';
 echo $this->include('layouts/header') ;
 
-if (isset($message)) {
-    try {
-        echo $message ;
-    } catch (\Exception $e) {
-        echo "Something went wrong. Please try again later.";
-    }
-}
-
-echo "<section id='all-subscriptions'>";
+echo "<section id='focus-subscription'>";
     if (isset($subscription)){
 
         echo "<div class='subscription-card'>";
@@ -23,8 +15,10 @@ echo "<section id='all-subscriptions'>";
             echo '<a href="/subscription/edit/' . $subscription["idsubscription"] . '"><img src=' . base_url("assets/images/svg/moon-icon.svg") . ' alt="modify-icon" class="icons" /></a>';
         }
         echo "</h3>";
-        echo "<p>Welcome to Cookmaster, where we're passionate about making your culinary journey a deliciously unforgettable one".$subscription['maxlessonaccess']."</p>";
-        echo "<p id='subscription-price'>$".$subscription['price']."€/month</p>";
+        echo "<p>" . $subscription["description"] ."</p>";
+        $spelling = ($subscription["maxlessonaccess"] > 1) ? " lessons" : " lesson";
+        echo "<p>Access " . $subscription['maxlessonaccess'] .$spelling. " a day !</p>";
+        echo "<p id='subscription-price'>".$subscription['price']."€/month</p>";
         echo "<a href='#' class='btn'>Subscribe</a>";
         echo "</div>";
     }
