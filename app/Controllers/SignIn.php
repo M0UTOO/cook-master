@@ -22,7 +22,7 @@ class SignIn extends BaseController
             $password = ($this->request->getPost(['password']))['password'];
 
             //GET HASHED PASSWORD
-            $hashPassword = callAPI('/user/password', 'get', $email);
+            $hashPassword = callAPI('/user/password', 'post', $email);
 
             if ($hashPassword['error']){
                 $data['message'] = $hashPassword['message'];
@@ -43,7 +43,7 @@ class SignIn extends BaseController
                             'password' => $password,
                         ];
 
-                    $data['message'] = callAPI('/user/login', 'get', $logins);
+                    $data['message'] = callAPI('/user/login', 'post', $logins);
 
                     if ($data['message']['error']){
                         $data['message'] = $data['message']['message'];
@@ -85,6 +85,6 @@ class SignIn extends BaseController
             $data['title'] = "Sign Out";
             $data['message'] = "You are now logged out";
         }
-        return redirect('/')->with('message', $data['message']); //doesn't display message ?
+        return redirect('/')->with('message', $data['message']);
     }
 }
