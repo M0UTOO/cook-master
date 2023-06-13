@@ -4,17 +4,10 @@ echo $this->include('layouts/head') ;
     echo '<body>';
     echo $this->include('layouts/header') ;
 
-    echo "<h2>" . $title . "<img alt='logo' class='' src=" . base_url("assets/images/svg/moon-icon.svg") . " /></h2>";
+    echo "<h2>" . $title . "</h2>";
 
-    if (isset($message)) {
-            try {
-                echo $message ;
-            } catch (\Exception $e) {
-                echo "Something went wrong. Please try again later.";
-            }
-        }
         if (isManager()){
-            echo '<a href="/subscription/create"><img src=' . base_url("assets/images/svg/add-user-icon-blue.svg") . ' alt="plus-icon" class="icons" /></a>';
+            echo '<a href="/subscription/create"><img src=' . base_url("assets/images/svg/add-circle-icon.svg") . ' alt="plus-icon" class="icons" /></a>';
         }
 
     echo $this->include('subscription/subscriptions');

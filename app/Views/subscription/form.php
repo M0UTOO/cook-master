@@ -1,18 +1,6 @@
 <?php
 helper('form');
 helper('url');
-echo $this->include('layouts/head') ;
-
-    echo '<body>';
-    echo $this->include('layouts/header') ;
-
-    if (isset($message)) {
-        try {
-            echo $message ;
-        } catch (\Exception $e) {
-            echo "Something went wrong. Please try again later.";
-        }
-    }
 
     $hidden_input = [];
     $url = uri_string();
@@ -25,17 +13,23 @@ echo $this->include('layouts/head') ;
 
     echo form_open_multipart($action, 'id="subscription-create-form" class="subscription-card"', $hidden_input);
 
+                $value = (isset($subscription) ? $subscription['picture'] :'');
+                if ($value)
+                {
+                    echo '<img class="mb-3 img-fluid img-thumbnail"  alt="can\'t load picture" src="' . base_url("assets/images/subscriptions/" . $value) . '" />';
+                }
+
                 echo '<div class="form-group mb-3">';
                             echo form_label('Subscription name' , "label-subscription-name");
                             $value = (isset($subscription) ? $subscription['name'] :'');
                             echo form_input(['type'  => 'text', 'name'  => 'name', 'class' => 'form-control', 'value' => $value, 'placeholder' => "Name of subscription", 'required' => 'required']);
                 echo '</div>';
 
-                //echo '<div class="form-group mb-3">';
-                //echo form_label('Subscription description' , "label-subscription-description");
-        //  $value = (isset($subscription) ? $subscription['description'] :'');
-                //echo form_input(['type'  => 'textarea', 'name'  => 'description', 'class' => 'form-control', 'value' => $value, 'placeholder' => "Description of subscription", 'required' => 'required']);
-                //echo '</div>';
+                echo '<div class="form-group mb-3">';
+                echo form_label('Subscription description' , "label-subscription-description");
+                $value = (isset($subscription) ? $subscription['description'] :'');
+                echo form_input(['type'  => 'textarea', 'name'  => 'description', 'class' => 'form-control', 'value' => $value, 'placeholder' => "Description of subscription", 'required' => 'required']);
+                echo '</div>';
 
                 echo '<div class="form-group mb-3">';
                     echo form_label('Subscription price (€/month)' , "label-subscription-price");

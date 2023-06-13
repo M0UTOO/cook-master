@@ -22,7 +22,7 @@ class Subscription extends BaseController
         $data['title'] = "Create a new subscription";
 
         if (!$this->request->is('post')) {
-            return view('subscription/form', $data);
+            return view('subscription/create', $data);
         } else {
             $values = $this->request->getPost();
 
@@ -32,14 +32,21 @@ class Subscription extends BaseController
             $picture = $this->request->getFile('picture');
 
             $data['message'] = callAPI('/subscription/', 'post', $values);
-            $subscriptionID = $data['message']['id'];
+            if (isset($data['message']['id'])){
+                $subscriptionID = $data['message']['id'];
 
-            $picture = "img-subscription-".$subscriptionID.".". $picture->getExtension(); //check extension
+                $picture_name = "img-subscription-".$subscriptionID.".". $picture->getExtension(); //check extension
 
-            $data['state'] = callAPI('/subscription/'.$subscriptionID, 'patch', ['picture' => $picture]);
+                $data['state'] = callAPI('/subscription/'.$subscriptionID, 'patch', ['picture' => $picture_name]);
 
-            if (!$data['state']['error']){
-                $picture->move('./assets/images/subscriptions/', 'img-subscription-'.$subscriptionID.'.'.$picture->getExtension());
+                if (!$data['state']['error']){
+                    $directory = './assets/images/subscriptions';
+                    if (!file_exists($directory)){
+                        mkdir($directory, 755, true);
+                        chmod($directory, 755);
+                    }
+                    $picture->move($directory, $picture_name);
+                }
             }
 
             return redirect()->to('/subscriptions')->with('message', $data['message']['message']);
@@ -52,10 +59,28 @@ class Subscription extends BaseController
         $data['subscription'] = callAPI('/subscription/'.$id, 'get'); //TO DISPLAY THE CURRENT VALUES IN THE FORM
 
         if (!$this->request->is('post')) {
-            return view('subscription/form', $data);
+            return view('subscription/edit', $data);
         } else {
             $values = $this->request->getPost();
+            $values['price'] = (float)$values['price'];
+            $values['maxlessonaccess'] = (int)$values['maxlessonaccess'];
+
+            $picture = $this->request->getFile('picture');
+            $picture_name = "img-subscription-".$id.".". $picture->getExtension(); //check extension
+            $values["picture"] = $picture_name;
+
             $data['message'] = callAPI('/subscription/'.$id, 'patch', $values);
+
+            if (!$data['message']['error']){
+                $directory = './assets/images/subscriptions';
+                if (!file_exists($directory)){
+                    mkdir($directory, 755, true);
+                    chmod($directory, 770);
+                }
+                $picture->move('./assets/images/subscriptions/', $picture_name, true);
+                chmod($directory, 770);
+            }
+
             return redirect()->to('/subscription/'.$id)->with('message', $data['message']['message']);
         }
     }
@@ -65,16 +90,25 @@ class Subscription extends BaseController
         $data['message'] = callAPI('/subscription/'.$id, 'delete');
 
         if (!$data['message']['error']){
-            delete_files('./assets/images/subscriptions/img-subscription-'.$id, true);
+            echo 'deleted';
+            //TODO: delete the picture FROM SERVER
+            delete_files('./assets/images/subscriptions/img-subscription-'.$id.".png", true);
+            delete_files('./assets/images/subscriptions/img-subscription-'.$id.".jpeg", true);
         }
 
-        return redirect()->to('/subscriptions')->with('message', $data['message']['message']);
+        //return redirect()->to('/subscriptions')->with('message', $data['message']['message']);
     }
 
     public function show($id){
         $data['title'] = "Subscription";
         $data['subscription'] = callAPI('/subscription/'.$id, 'get');
         return view('subscription/show', $data);
+    }
+
+    public function subscribe($id){
+        $data['title'] = "Become a member";
+        //check if user logged in and if it is a customer then send to confirm subscription page. (payement)
+        return redirect()->back()->with('message', $data['message']['message']);
     }
 
 }
