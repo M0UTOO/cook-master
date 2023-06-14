@@ -5,13 +5,6 @@
 
 <?php
 echo "<h2>Users Management</h2>";
-if (isset($message)) {
-    try {
-        echo $message ;
-    } catch (\Exception $e) {
-        echo "Something went wrong. Please try again later.";
-    }
-}
 
 echo '<div>';
 echo '<a data-bs-toggle="modal" data-bs-target="#userTypeModal"><img  src=' . base_url("assets/images/svg/add-user-icon-blue.svg") . ' alt="modify-icon" class="icons" /></a>';
@@ -21,7 +14,7 @@ echo '<a href="'.base_url('contractorTypes').'"><img  src=' . base_url("assets/i
 echo '</div>';
 ?>
 
-<!--THIS WHOLE SECTION IS ACTUALLY USERS/ALL SO SHOULD BE THE VIEW USERS/INDEX.PHP no ?-->
+<!--THIS WHOLE SECTION IS ACTUALLY USERS/ALL SO SHOULD BE THE VIEW USERS/INDEX.PHP no ? YES.-->
 <section id="users-table" class="table-responsive">
 <table class="table">
     <thead>
