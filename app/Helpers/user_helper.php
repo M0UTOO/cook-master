@@ -28,5 +28,5 @@ function isBlocked(){
     }
 }
 function getSubscription(){
-   return ((session()->get('id')) !== null);
+   return ((session()->get('subscription')));
 }
