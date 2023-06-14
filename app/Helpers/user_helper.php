@@ -19,3 +19,14 @@ function isSuperAdmin(): bool
 function isLoggedIn(): bool{
     return ((session()->get('id')) !== null);
 }
+function isBlocked(){
+    if (((session()->get('isblocked')) !== "not blocked")){
+        return false;
+    } else
+    {
+        return true;
+    }
+}
+function getSubscription(){
+   return ((session()->get('id')) !== null);
+}

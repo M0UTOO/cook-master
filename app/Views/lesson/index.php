@@ -16,20 +16,13 @@ echo $this->include('layouts/head') ;
 
     echo "<h2>" . $title . "<img alt='logo' class='' src=" . base_url("assets/images/svg/moon-icon.svg") . " /></h2>";
 
-    if (isset($message)) {
-            try {
-                echo $message ;
-            } catch (\Exception $e) {
-                echo "Something went wrong. Please try again later.";
-            }
-        }
         if (isContractor()){
             echo '<div>';
             echo '<a href="/lesson/create"><img src=' . base_url("assets/images/svg/add-user-icon-blue.svg") . ' alt="plus-icon" class="icons" /></a>';
             echo '<a href="/lessonGroup/add"><img src=' . base_url("assets/images/svg/add-user-icon-blue.svg") . ' alt="plus-icon" class="icons" /></a>';
             echo '</div>';
         }
-
+if (isset($lessons) && is_array($lessons) && count($lessons) > 0){
     echo '<section class="table-responsive">';
         echo '<table class="table">';
 
@@ -45,9 +38,16 @@ echo $this->include('layouts/head') ;
 
             echo '<tbody class="table-group-divider">';
 
-            if (isset($lessons) && is_array($lessons) && count($lessons) > 0){
+
                     foreach ($lessons as $lesson){
-                        echo "<tr>";
+                        $redirection = base_url("/lesson/".$lesson->idlesson);
+                        if (isLoggedIn() && isClient()) {
+                            //TODO: alert users that he will access a lesson so it will be decounted of his counter of lessons a day
+                            echo '<tr id="row-clickable-client" data-href='.$redirection.'>';
+                        } else {
+                            //for others
+                            echo "<tr data-href=".$redirection.">";
+                        }
                         echo "<td>$lesson->name</td>";
                         echo "<td>$lesson->description</td>";
                         echo "<td>Author</td>";
@@ -59,17 +59,19 @@ echo $this->include('layouts/head') ;
                                 echo '<a href="/lesson/edit/' . $lesson->idlesson . '"><img src=' . base_url("assets/images/svg/moon-icon.svg") . ' alt="modify-icon" class="icons" /></a>';
                              echo "</td>";
                         }
+                        echo '</tr>';
                     }
+    echo "</tbody>";
+    echo "</table>";
+    echo "</section>";
                 } else {
                     echo "<p>There are no lessons yet.</p>";
                 }
-                echo "</tbody>";
-                echo "</table>";
-        echo "</section>";
+
     echo '</main>';
 
     echo $this->include('layouts/footer')
     ?>
     </body>
-<script src=<?= base_url('assets/js/create_users.js')?>></script>
+<script src=<?= base_url('assets/js/tables.js')?>></script>
 </html>

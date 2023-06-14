@@ -56,15 +56,25 @@ class SignIn extends BaseController
                             'id' => $data['message']['id'],
                             'role' => $data['message']['role'],
                             'isLoggedIn' => true,
+                            'isblocked' => false
                         ];
                         if (isset($data['message']['subscription'])) {
                             $userInfo['subscription'] = $data['message']['subscription'];
                         }
 
-                        $session = session();
-                        $session->set($userInfo);
+                        //CHECK IF USER IS BLOCKED
+                        // TODO: PUT THIS IF FIRST.
+                        if (isset($data['message']['isblocked']) && $data['message']['isblocked'] == "not blocked"){
+                            $data['message'] = "You've been blocked, you can't log in anymore. Contact an administrator or come back in 30min if you've enter wrong password too much.";
+                            return redirect()->to('/signIn')->with('message', $data['message']);
 
-                        $data['message'] = "You are now logged in";
+                        } else {
+                            $session = session();
+                            $session->set($userInfo);
+                            $data['message'] = "You are now logged in";
+                        }
+
+
                     }
                     return redirect()->to('/')->with('message', $data['message']);
                 }

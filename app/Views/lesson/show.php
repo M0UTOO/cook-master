@@ -4,13 +4,6 @@ echo $this->include('layouts/head') ;
 echo '<body>';
     echo $this->include('layouts/header') ;
 
-    if (isset($message)) {
-        try {
-            echo $message ;
-        } catch (\Exception $e) {
-            echo "Something went wrong. Please try again later.";
-        }
-    }
     function displayDifficultyLevel( $difficulty )
     {
         echo '<div id="difficulty-stars">';
