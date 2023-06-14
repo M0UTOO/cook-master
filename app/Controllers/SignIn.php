@@ -52,29 +52,33 @@ class SignIn extends BaseController
 
                     #SESSION#
                     if (isset($data['message']['id'])) {
-                        $userInfo = [
-                            'id' => $data['message']['id'],
-                            'role' => $data['message']['role'],
-                            'isLoggedIn' => true,
-                            'isblocked' => false
-                        ];
-                        if (isset($data['message']['subscription'])) {
-                            $userInfo['subscription'] = $data['message']['subscription'];
-                        }
-
-                        //CHECK IF USER IS BLOCKED
-                        // TODO: PUT THIS IF FIRST.
                         if (isset($data['message']['isblocked']) && $data['message']['isblocked'] == "not blocked"){
                             $data['message'] = "You've been blocked, you can't log in anymore. Contact an administrator or come back in 30min if you've enter wrong password too much.";
                             return redirect()->to('/signIn')->with('message', $data['message']);
 
-                        } else {
+                        }
+                        else
+                        {
+                            $userInfo = [
+                                'id' => $data['message']['id'],
+                                'role' => $data['message']['role'],
+                                'isLoggedIn' => true,
+                                'isblocked' => false
+                            ];
+
+                            if (isset($data['message']['subscription'])) {
+                                $userInfo['subscription'] = callAPI('/subscription/'.$data['message']['subscription'], 'get');
+                                if(isset($userInfo['subscription']['error'])){
+                                    return redirect()->to('/')->with('message', $userInfo['subscription']['message']);
+                                } else {
+                                    unset($userInfo['subscription']['picture']);
+                                    unset($userInfo['subscription']['description']);
+                                }
+                            }
                             $session = session();
                             $session->set($userInfo);
                             $data['message'] = "You are now logged in";
                         }
-
-
                     }
                     return redirect()->to('/')->with('message', $data['message']);
                 }

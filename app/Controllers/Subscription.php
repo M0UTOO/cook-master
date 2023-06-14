@@ -108,7 +108,12 @@ class Subscription extends BaseController
     public function subscribe($id){
         $data['title'] = "Become a member";
         //check if user logged in and if it is a customer then send to confirm subscription page. (payement)
+        //ROUTE: client.PATCH("/subscription/:iduser/:idsubscription")
         return redirect()->back()->with('message', $data['message']['message']);
+    }
+
+    protected function paySubscription($id){
+
     }
 
 }
