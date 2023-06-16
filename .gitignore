@@ -1,5 +1,10 @@
 /.idea/
+.env
+
+#WRITABLE
 /writable/logs/
 /writable/debugbar/
 /writable/session/
 /builds
+
+#STATIC FILES
