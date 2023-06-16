@@ -96,7 +96,7 @@ class Subscription extends BaseController
             delete_files('./assets/images/subscriptions/img-subscription-'.$id.".jpeg", true);
         }
 
-        //return redirect()->to('/subscriptions')->with('message', $data['message']['message']);
+        return redirect()->to('/subscriptions')->with('message', $data['message']['message']);
     }
 
     public function show($id){
@@ -105,14 +105,8 @@ class Subscription extends BaseController
         return view('subscription/show', $data);
     }
 
-    public function subscribe($id){
-        $data['title'] = "Become a member";
-        //check if user logged in and if it is a customer then send to confirm subscription page. (payement)
-        //ROUTE: client.PATCH("/subscription/:iduser/:idsubscription")
-        return redirect()->back()->with('message', $data['message']['message']);
-    }
-
-    protected function paySubscription($id){
+    public function getPayementStatus(){
+        $data['title'] = "Confirm and pay your subscription";
 
     }
 
