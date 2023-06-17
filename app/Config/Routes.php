@@ -69,6 +69,10 @@ $routes->get('subscription/edit/(:num)', 'Subscription::edit/$1');
 $routes->post('subscription/edit/(:num)', 'Subscription::edit/$1');
 $routes->get('subscription/(:num)', 'Subscription::show/$1'); //show one subscription
 
+//PAYMENT METHODS
+$routes->get('checkout', 'Payment::index');
+$routes->post('checkout', 'Payment::createCharge');
+
 //CONTRACTOR TYPES
 $routes->get('contractorTypes', 'ContractorType::index'); //show all contractorTypes
 $routes->get('contractorType/create', 'ContractorType::create');
