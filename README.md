@@ -16,7 +16,7 @@
     (You should now have all dependecies in the vendor foler)
     
     In the project folder, import the .env file
-    Run php sparke serve to start the server in development mode.
+    Run php spark serve to start the server in development mode.
 
     
 
