@@ -6,5 +6,6 @@
 /writable/debugbar/
 /writable/session/
 /builds
+/vendor
 
 #STATIC FILES
