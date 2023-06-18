@@ -1,28 +1,3 @@
-<?php
-try {
-
-    $stripe = new \Stripe\StripeClient('sk_test_51NDazQA36Phbw0Qb2RScUzvSM4zL7Jl3M55NELKH8U415lAtDZDIwh6qssyxdoMDSbE42CTIW1I1P9pTxkYfyVnu00CqRNNXup');
-    $paymentIntent = $stripe->paymentIntents->create([
-        'amount' => 50,
-        'currency' => 'eur',
-        'payment_method_types' => ['card']
-    ]);
-} catch (\Stripe\Exception\ApiErrorException $e) {
-    http_response_code(400);
-    echo $e->getError()->message;
-    ?>
-    <h1>Error</h1>
-    <p>Failed to create a PaymentIntent</p>
-    <p>Please check the server logs for more information</p>
-    <?php
-    exit;
-} catch (Exception $e) {
-    echo $e->getMessage();
-    http_response_code(500);
-    exit;
-}
-?>
-
 <main>
     <form id="payment-form">
         <label for="payment-element">Payment details</label>
@@ -53,11 +28,11 @@ try {
         };
 
         document.addEventListener('DOMContentLoaded', async () => {
-            const stripe = Stripe('<?=env('STRIPE_TEST_PUBLIC_KEY'); ?>', {
+            const stripe = Stripe('<?= env('STRIPE_TEST_PUBLIC_KEY') ?>', {
             });
 
             const elements = stripe.elements({
-                clientSecret: '<?= $paymentIntent->client_secret; ?>'
+                clientSecret: '<?= $clientSecret ?>'
             });
             const paymentElement = elements.create('payment', {layout: "tabs"});
             paymentElement.mount('#payment-element');

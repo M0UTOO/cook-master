@@ -68,10 +68,10 @@ $routes->get('subscription/delete/(:num)', 'Subscription::delete/$1');
 $routes->get('subscription/edit/(:num)', 'Subscription::edit/$1');
 $routes->post('subscription/edit/(:num)', 'Subscription::edit/$1');
 $routes->get('subscription/(:num)', 'Subscription::show/$1'); //show one subscription
+$routes->get('subscription/payment/(:num)', 'Client::paySubscription/$1');
 
 //PAYMENT METHODS
-$routes->get('checkout', 'Payment::index');
-$routes->post('checkout', 'Payment::createCharge');
+$routes->get('checkout', 'Payment::checkout'); //display checkout form page
 
 //CONTRACTOR TYPES
 $routes->get('contractorTypes', 'ContractorType::index'); //show all contractorTypes

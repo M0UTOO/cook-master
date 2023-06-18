@@ -16,7 +16,6 @@ class Subscription extends BaseController
     //Manager can
     public function create()
     {
-        //todo: pull api and check This WITH DELETE() TOO
         helper('filesystem');
 
         $data['title'] = "Create a new subscription";

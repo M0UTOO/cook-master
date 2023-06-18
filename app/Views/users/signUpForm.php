@@ -8,7 +8,7 @@ $email_value = (isset($email)) ? $email : "";
 $url = uri_string();
 $type= isset($userType) ? $userType : "Client";
 
-$hidden_input = ["Type" => $type];
+$hidden_input = ["Type" => $type, "language" => 1];
 $email_placeholder = "E-mail";
 $password= "Password";
 $firstname = "First name";
@@ -76,7 +76,7 @@ if ((isset($mini) && $mini == false) || !isset($mini)){
         echo '<div class="d-flex">';
         echo '<div id="subscription-input-div" class="form-group">';
         echo form_label('Your subscription', "label-subscription");
-        echo form_input(['type'  => 'text', 'name'  => 'idsubscription', 'id'=> 'sign-up-subscription-input', 'class' => 'form-control', 'placeholder' => "No subscription selected yet.", 'required' => 'required', 'readonly' => 'readonly']);
+        echo form_input(['type'  => 'text', 'name'  => 'subscription', 'id'=> 'sign-up-subscription-input', 'class' => 'form-control', 'placeholder' => "No subscription selected yet.", 'required' => 'required', 'readonly' => 'readonly']);
         echo '</div>';
         echo '<button type="button" class="btn mt-3 ms-3 " data-bs-toggle="modal" data-bs-target="#subscriptionsModal">Select</button>';
         echo '</div>';

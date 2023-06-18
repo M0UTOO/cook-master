@@ -13,7 +13,7 @@ class Client extends Users
         return redirect()->back()->with('message', $data['message']['message']);
     }
 
-    protected function paySubscription($id){
-
+    public function paySubscription($id){
+        redirect()->to('checkout')->with('subscriptionId', $id);
     }
 }

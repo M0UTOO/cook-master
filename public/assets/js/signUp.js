@@ -1,5 +1,4 @@
-
-document.getElementsByClassName('subscription-card').addEventListener("click", selectSubscription());
-function selectSubscription(id, name){
-    document.getElementById('subscription-id').value = id;
+function selectSubscription($id){
+    document.getElementById('sign-up-subscription-input').value = $id;
+    console.log(1);
 }

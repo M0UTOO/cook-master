@@ -32,12 +32,25 @@ class Users extends BaseController
         else
         {
             $values = $this->request->getPost();
-            $type = $values['Type'] ;
-            unset($values['Type']);
 
-            $data['message'] = callAPI('/user/', 'post', $this->request->getPost(), ['Type' => $type]);
+            if ($values['password'] != $values['password-confirm']){
+                $data['message'] = "Passwords don't match";
+                return view('users/signUp', $data);
+            } else {
+                unset($values['password-confirm']);
+                $type = $values['Type'] ;
+                unset($values['Type']);
+                $values['subscription'] = (int)$values['subscription'];
+                $values['language'] = (int)$values['language'];
 
-            return view('users/index', $data);
+                $tmp = new Password($values['password']);
+                $values['password'] = $tmp->__toString();
+
+
+                $data['message'] = callAPI('/user/', 'post', $values, ['Type' => $type]);
+                return redirect()->to('/signIn')->with('message', $data['message']['message']);
+            }
+
         }
 
     }

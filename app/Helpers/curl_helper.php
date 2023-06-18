@@ -2,7 +2,7 @@
     function callAPI(string $endpoint, string $method, array $data = [], array $headers = [])
     {
         $token = env('API_TOKEN');
-        $baseUrl = 'http://localhost:9000'; //TODO: change to env variable
+        $baseUrl = env('API_URL');
         $url = $baseUrl . $endpoint;
         $request = \Config\Services::curlrequest();
 
@@ -15,7 +15,7 @@
 
         if (!empty($data)){
             $data = json_encode($data);
-            //var_dump($data);
+            var_dump($data);
             $request->setBody($data);
         }
 
