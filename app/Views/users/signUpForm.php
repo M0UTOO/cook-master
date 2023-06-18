@@ -77,7 +77,7 @@ if ((isset($mini) && $mini == false) || !isset($mini)){
     echo '</div>';
 
 
-    if (isset($type) && $type == "Client")
+    /*if (isset($type) && $type == "Client")
     {
         echo '<div class="d-flex">';
         echo '<div id="subscription-input-div" class="form-group">';
@@ -87,8 +87,8 @@ if ((isset($mini) && $mini == false) || !isset($mini)){
         echo '</div>';
         echo '<button type="button" class="btn mt-3 ms-3 " data-bs-toggle="modal" data-bs-target="#subscriptionsModal">Select</button>';
         echo '</div>';
-    }
-    elseif (isset($type) && $type == "Contractor")
+    }*/
+    if (isset($type) && $type == "Contractor")
     {
         echo $this->include("contractors/form.php");
     }

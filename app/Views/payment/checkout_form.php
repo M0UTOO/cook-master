@@ -24,7 +24,7 @@
             messagesDiv.style.display = 'block';
             const messageWithLinks = addDashboardLinks(message);
             messagesDiv.innerHTML += `> ${messageWithLinks}<br>`;
-            console.log(`Debug: ${message}`);
+            console.log(`Debsubscription/payment/ug: ${message}`);
         };
 
         document.addEventListener('DOMContentLoaded', async () => {
