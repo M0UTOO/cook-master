@@ -13,6 +13,23 @@ class Users extends BaseController
         $data['title'] = "Sign Up";
         $data['isManager'] = isManager();
 
+        //TODO: SET COOKIE
+        //TODO: DELETE COOKIE*
+
+/*
+         * FORM -> creer un compte
+         * si compte crééer par api:
+         * alors redirect vers page de paiement et choix de la subscription avec message de création de compte succesful
+ * si paiement ok :
+ * redirect vers sign In avec message de chanegemnt de subscription
+ * sinon paiement echoué :
+ * redirect vers page paiement avec message d'erreur
+ * si annulation des actions :
+ * redirect vers
+         * */
+
+
+
         if (isLoggedIn()){
             $data['message'] = "You are already logged in";
             return view('users/index', $data);
@@ -25,8 +42,8 @@ class Users extends BaseController
 
         }
         elseif (!$this->request->is('post')){
+
             $data['userType'] = "Client";
-            $data['subscriptions'] = callAPI('/subscription/all', 'get');
             return view('users/signUp', $data);
         }
         else
@@ -40,15 +57,24 @@ class Users extends BaseController
                 unset($values['password-confirm']);
                 $type = $values['Type'] ;
                 unset($values['Type']);
-                $values['subscription'] = (int)$values['subscription'];
+
+                $subscriptions= callAPI('/subscription/all', 'get');
+
+                    foreach ($subscriptions as $subscription) {
+                        if ($subscription->price == 0) {
+                            $default_subscription = $subscription->idsubscription;
+                            break; // Stop the loop after finding the first match
+                        }
+                    }
+
+                $values['subscription'] = $default_subscription;
                 $values['language'] = (int)$values['language'];
 
                 $tmp = new Password($values['password']);
                 $values['password'] = $tmp->__toString();
 
-
                 $data['message'] = callAPI('/user/', 'post', $values, ['Type' => $type]);
-                return redirect()->to('/signIn')->with('message', $data['message']['message']);
+                return redirect()->to('/signIn')->with('message', $data['message']['message'] . " with free subscription");
             }
 
         }
@@ -59,7 +85,6 @@ class Users extends BaseController
 
         if ($data['message']['error']){
             $data['message'] = $data['message']['message'];
-            //var_dump($data) ;
             return view($redirectionUrl, $data);
         } else {
             return "0";

@@ -17,7 +17,7 @@
             }
 
 
-        //echo $this->include('');
+        echo '<a href='.base_url('/subscriptions').'>Change subscriptions</a>';
         ?>
         </section>
 
