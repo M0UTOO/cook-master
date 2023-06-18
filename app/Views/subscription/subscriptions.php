@@ -5,7 +5,7 @@ echo "<section id='all-subscriptions'>";
 
 if (isset($subscriptions) && is_array($subscriptions) && count($subscriptions) > 0){
     foreach ($subscriptions as $subscription){
-        echo "<div onclick='selectSubscription(".$subscription->idsubscription.")' class='subscription-card' >";
+        echo "<div onclick='selectSubscription(".$subscription->idsubscription.",".$subscription->price.")' class='subscription-card' >";
         echo "<h3>";
         echo $subscription->name ;
         if (isManager()){

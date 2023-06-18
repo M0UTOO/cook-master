@@ -9,18 +9,28 @@ class Payment extends BaseController
 {
     public function checkout()
     {
-        if (session()->getFlashdata('subscriptionId')) {
-            $subscriptionId = session()->getFlashdata('subscriptionId');
-        }
-
         $data['title'] = "Cookmaster - Payment";
         $stripe = new \Stripe\StripeClient('sk_test_51NDazQA36Phbw0Qb2RScUzvSM4zL7Jl3M55NELKH8U415lAtDZDIwh6qssyxdoMDSbE42CTIW1I1P9pTxkYfyVnu00CqRNNXup');
+        //TODO: GET TOKEN FROM ENV FILE.
+        //TODO: GET LANGUAGE AND THUS CURRENCY THE USER IS USING
+
+       $subscription = $this->request->getGet('subscription');
+       if (!$subscription == null) {
+           $data['subscription'] = callAPI('/subscription/'.$subscription, 'get');
+           $price = $data['subscription']['price'];
+           if ($price == 0){
+               redirect()->to('users/signUp')->with('message', 'An error has occurred.');
+           }
+       } else {
+           //LIST ALL OTHER POSSIBLE CHECKOUT OPTIONS (SUBSCRIPTIONS, TODO: ITEMS, ...)
+            $price = 5; //to test
+       }
+
 
         try {
-
             // Create a PaymentIntent with amount and currency
             $paymentIntent = $stripe->paymentIntents->create([
-                'amount' => 50, //TODO:get this dynmically.
+                'amount' => (int)$price*100, //amount must be an integer in the smallest unit of the currency
                 'currency' => 'eur',
                 'payment_method_types' => ['card']
             ]);
