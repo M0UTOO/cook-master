@@ -19,7 +19,8 @@ echo '<body>';
         if (isset($lesson)){
 
             echo "<div class='lesson-card d-flex flex-column'>";
-            if (isManager() || isContractor()){
+            $currentId = getCurrentUserId();
+            if (isManager() || $currentId == $lesson['iduser']){
                 echo '<div class="">';
                 echo '<a class="me-3" href="/lesson/delete/' . $lesson["idlesson"] . '"><img src=' . base_url("assets/images/svg/trash-icon-red.svg") . ' alt="delete-icon" class="icons" /></a>';
                 echo '<a href="/lesson/edit/' . $lesson["idlesson"] . '"><img src=' . base_url("assets/images/svg/moon-icon.svg") . ' alt="modify-icon" class="icons" /></a>';
@@ -37,7 +38,7 @@ echo '<body>';
             echo '</div>';
 
             echo '<div>';
-            echo "<p>By: the author</p>";
+            echo "<p>By:" . $lesson['firstname'] . " " . $lesson['lastname'] . "</p>";
             echo "<p>". $lesson['content']."</p>";
             echo '</div>';
             echo "</div>";

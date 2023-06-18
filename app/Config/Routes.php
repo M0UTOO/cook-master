@@ -91,6 +91,8 @@ $routes->get('lesson/(:num)', 'Lesson::show/$1'); //show one lesson
 //LESSON GROUPS
 $routes->get('lessonGroups', 'LessonGroup::index'); //show all lessonGroups
 $routes->get('lessonGroup/add/', 'LessonGroup::add');
+$routes->get('lessonGroup/add/group', 'LessonGroup::addgroup');
+$routes->post('lessonGroup/add/group/', 'LessonGroup::addgroup/');
 $routes->post('lessonGroup/add/', 'LessonGroup::add/');
 $routes->get('lessonGroup/delete/(:num)', 'LessonGroup::delete/$1');
 

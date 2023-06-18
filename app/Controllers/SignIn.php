@@ -52,7 +52,7 @@ class SignIn extends BaseController
 
                     #SESSION#
                     if (isset($data['message']['id'])) {
-                        if (isset($data['message']['isblocked']) && $data['message']['isblocked'] != "not blocked"){
+                        if (isset($data['message']['isblocked']) && $data['message']['isblocked'] == "not blocked"){
                             $data['message'] = "You've been blocked, you can't log in anymore. Contact an administrator or come back in 30min if you've enter wrong password too much.";
                             return redirect()->to('/signIn')->with('message', $data['message']);
 
