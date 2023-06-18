@@ -106,7 +106,6 @@ class Subscription extends BaseController
 
     public function getPayementStatus(){
         $data['title'] = "Confirm and pay your subscription";
-
     }
 
 }
