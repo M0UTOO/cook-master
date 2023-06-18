@@ -5,7 +5,7 @@ echo "<section id='all-subscriptions'>";
 
 if (isset($subscriptions) && is_array($subscriptions) && count($subscriptions) > 0){
     foreach ($subscriptions as $subscription){
-        echo "<div onclick='selectSubscription(".$subscription->idsubscription.",".$subscription->price.")' class='subscription-card' >";
+        echo "<div onclick='' class='subscription-card' >";
         echo "<h3>";
         echo $subscription->name ;
         if (isManager()){
@@ -17,7 +17,7 @@ if (isset($subscriptions) && is_array($subscriptions) && count($subscriptions) >
         $spelling = ($subscription->maxlessonaccess > 1) ? " lessons" : " lesson";
         echo "<p>Access " . $subscription->maxlessonaccess. $spelling. " a day !</p>";
         echo "<p id='subscription-price'>".$subscription->price."€/month</p>";
-        echo "<a href='".base_url('/subscription/payment/'.$subscription->idsubscription)."' class='btn'>Subscribe</a>";
+        echo "<a href='".base_url('/checkout?subscription='.$subscription->idsubscription)."' class='btn'>Subscribe</a>";
         echo "</div>";
     }
 } else {

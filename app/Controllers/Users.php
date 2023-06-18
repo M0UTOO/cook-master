@@ -16,20 +16,6 @@ class Users extends BaseController
         //TODO: SET COOKIE
         //TODO: DELETE COOKIE*
 
-/*
-         * FORM -> creer un compte
-         * si compte crééer par api:
-         * alors redirect vers page de paiement et choix de la subscription avec message de création de compte succesful
- * si paiement ok :
- * redirect vers sign In avec message de chanegemnt de subscription
- * sinon paiement echoué :
- * redirect vers page paiement avec message d'erreur
- * si annulation des actions :
- * redirect vers
-         * */
-
-
-
         if (isLoggedIn()){
             $data['message'] = "You are already logged in";
             return view('users/index', $data);
