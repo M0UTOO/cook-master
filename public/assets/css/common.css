@@ -211,10 +211,10 @@ p{
     font-size: 14px;
 }
 
-/*SUBSCRIPTIONS MODAL */
+/* SUBSCRIPTIONS MODAL
 #subscriptionsModal{
 
-}
+} */
 
 
 /*FOOTER*/
@@ -351,6 +351,7 @@ footer{
     width: 15em;
     height: 15em;
     border-radius: 50%;
+    box-shadow: 0 3px 8px var(--brand-primary-color);
     margin-right: 2em;
 }
 
@@ -384,8 +385,8 @@ footer{
     margin: 0 1em;
     padding: 1em;
     border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    background-color: var(--bg-color);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    background-color: var(--brand-second-color);
     color: var(--text-color);
     text-align: center;
     text-decoration: none;
