@@ -45,7 +45,7 @@
         </div>
     </a>
 
-    <a href="<?=base_url('dashboard/premisesManagement')?>" class="card">
+    <a href="<?=base_url('dashboard/premiseManagement')?>" class="card">
         <div class="card-body">
             <h5 class="card-title">Premises management</h5>
             <!--            get user/all and count for under-->
