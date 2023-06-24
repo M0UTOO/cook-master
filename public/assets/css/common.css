@@ -391,3 +391,28 @@ footer{
     text-align: center;
     text-decoration: none;
 }
+
+/* HOME PAGE */
+
+.container-home-title{
+    align-self: flex-start;
+}
+
+.order-image-suggestion {
+    width: 5em;
+    height: 5em;
+    border-radius: 10px;
+}
+
+.recommended-orders{
+    align-self: center;
+}
+
+.random-orders-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 50 auto;
+    padding: 10px 0;
+}
