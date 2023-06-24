@@ -20,6 +20,7 @@ echo "<section id='focus-premise'>";
     }
 echo "</section>";
 
+    //Cookingspaces-list-tables
 echo "<section id='room-in-premise'>";
 if (isset($premise)) {
     if (isset($cookingSpaces) && is_array($cookingSpaces) && count($cookingSpaces) > 0) {
