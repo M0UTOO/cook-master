@@ -303,6 +303,27 @@ footer{
 
 /*EVENTS */
 
+.grid-events {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card-suggestion-event {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 23em;
+    height: 30em;
+    margin: 0 1em;
+    padding: 1em;
+    border-radius: 10px;
+    background-color: var(--brand-second-color);
+    color: var(--text-color);
+    text-align: center;
+    text-decoration: none;
+}
+
 #eventOptionLink{
     display: flex;
     min-height: 6vh;

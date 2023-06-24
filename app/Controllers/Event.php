@@ -4,10 +4,16 @@ namespace App\Controllers;
 
 class Event extends BaseController
 {
-    public function index(){
+    public function index() {
+        helper('pagination');
 
-        $data['title'] = "Cookmaster - Events";
-        $data['events'] = callAPI('/event/all', 'get');
+        $data['title'] = "Join the cooking course of your dreams";
+        $events['events'] = callAPI('/event/all', 'get');
+        
+        $events['pagination'] = pagination($events['events']);
+        $data['events'] = $events['pagination']['display'];
+        $data['totalPages'] = $events['pagination']['totalPages'];
+    
         return view('event/index', $data);
     }
 
