@@ -9,7 +9,7 @@ class Event extends BaseController
 
         if($this->request->is('post')) {
             $values = $this->request->getPost();
-            $values['search'] = str_replace(' ', '', $values['search']);
+            $values['search'] = str_replace(' ', '%20', $values['search']);
             $data['title'] = "Join the cooking course of your dreams";
             $data['events'] = callAPI('/event/search/' . $values['search'] . '', 'post', $this->request->getPost());
             $data['search'] = $values['search'];
