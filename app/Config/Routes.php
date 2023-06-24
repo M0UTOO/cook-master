@@ -57,6 +57,7 @@ $routes->get('dashboard', 'Dashboard::index');
 $routes->get('dashboard/userManagement', 'Dashboard::userManagement');
 $routes->get('dashboard/eventManagement', 'Dashboard::eventManagement');
 $routes->get('dashboard/subscriptionManagement', 'Dashboard::subscriptionManagement');
+$routes->get('dashboard/premiseManagement', 'Dashboard::premiseManagement');
 
 $routes->get('unauthorized', 'Authorization::unauthorized');
 
@@ -113,6 +114,16 @@ $routes->get('event/(:num)', 'Event::show/$1'); //show one event
 $routes->get('eventGroup/add/', 'EventGroup::add');
 $routes->post('eventGroup/add/', 'EventGroup::add/');
 $routes->get('eventGroup/delete/(:num)', 'EventGroup::delete/$1');*/
+
+//PREMISES
+$routes->get('premises', 'Premise::index'); //show all premises
+$routes->get('premise/create', 'Premise::create');
+$routes->post('premise/create', 'Premise::create');
+$routes->get('premise/delete/(:num)', 'Premise::delete/$1');
+$routes->get('premise/edit/(:num)', 'Premise::edit/$1');
+$routes->post('premise/edit/(:num)', 'Premise::edit/$1');
+$routes->get('premise/(:num)', 'Premise::show/$1'); //show one premise
+
 
 
 /*
