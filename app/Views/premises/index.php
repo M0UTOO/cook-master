@@ -7,7 +7,7 @@ echo $this->include('layouts/head') ;
     echo "<h2>" . $title . "</h2>";
 
         if (isManager()){
-            echo '<a href="/premises/create"><img src=' . base_url("assets/images/svg/add-circle-icon.svg") . ' alt="plus-icon" class="icons" /></a>';
+            echo '<a href="/premise/create"><img src=' . base_url("assets/images/svg/add-circle-icon.svg") . ' alt="plus-icon" class="icons" /></a>';
         }
 
 if (isset($premises) && is_array($premises) && count($premises) > 0){
@@ -53,6 +53,6 @@ if (isset($premises) && is_array($premises) && count($premises) > 0){
     echo $this->include('layouts/footer')
     ?>
     </body>
-<script src=<?= base_url('assets/js/create_users.js')?>></script>
+<script src=<?= base_url('assets/js/tables.js')?>></script>
 </html>
 
