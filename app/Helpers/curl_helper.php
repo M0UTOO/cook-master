@@ -15,7 +15,6 @@
 
         if (!empty($data)){
             $data = json_encode($data);
-            var_dump($data);
             $request->setBody($data);
         }
 

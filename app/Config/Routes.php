@@ -98,6 +98,7 @@ $routes->get('lessonGroup/delete/(:num)', 'LessonGroup::delete/$1');
 
 //EVENTS
 $routes->get('events', 'Event::index'); //show all events
+$routes->post('events', 'Event::index'); //search events
 $routes->get('event/create', 'Event::create');
 $routes->post('event/create', 'Event::create');
 $routes->get('event/delete/(:num)', 'Event::delete/$1');

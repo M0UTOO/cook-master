@@ -7,6 +7,15 @@ class Event extends BaseController
     public function index() {
         helper('pagination');
 
+        if($this->request->is('post')) {
+            $values = $this->request->getPost();
+            $values['search'] = str_replace(' ', '', $values['search']);
+            $data['title'] = "Join the cooking course of your dreams";
+            $data['events'] = callAPI('/event/search/' . $values['search'] . '', 'post', $this->request->getPost());
+            $data['search'] = $values['search'];
+            return view('event/index', $data);
+        }
+
         $data['title'] = "Join the cooking course of your dreams";
         $events['events'] = callAPI('/event/all', 'get');
         

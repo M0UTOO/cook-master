@@ -4,8 +4,9 @@ echo $this->include('layouts/head') ;
 
     echo '<body>';
     echo $this->include('layouts/header') ;
+    helper('form');
 
-    echo "<h1 class='mb-5'>" . $title . "<img alt='logo' class='' src=" . base_url("assets/images/svg/moon-icon.svg") . " /></h1>";
+    echo "<h1 class='mb-3'>" . $title . "<img alt='logo' class='' src=" . base_url("assets/images/svg/moon-icon.svg") . " /></h1>";
 
 
         if (isManager()){
@@ -14,6 +15,16 @@ echo $this->include('layouts/head') ;
                 echo '<a id="eventOptionLink" data-bs-toggle="modal" data-bs-target="#eventOptionsModal"></a>';
             echo '</div>';
         }
+
+        echo "<nav class='navbar navbar-light bg-light'>";
+            echo "<div class='container-fluid mb-4'>";
+                $action = base_url('events');
+                echo "<form class='d-flex' action=" . $action . " method='post'>";
+                    echo "<input class='form-control me-2 form-cookmaster' type='search' placeholder='Search' aria-label='Search' name='search'>";
+                        echo form_submit('', 'Search', 'class="btn blue-btn form-control"');
+                echo "</form>";
+            echo "</div>";
+        echo "</nav>";
 
         echo "<div class='row grid-events' id='event-container'>"; //MAKE IT A GRID
 
@@ -115,26 +126,29 @@ echo $this->include('layouts/head') ;
         } else {
             echo "<p>There are no events plans yet.</p>";
         }
+        echo "</div>";
 
-        echo "<nav aria-label='Page navigation example'>";
-            echo "<ul class='pagination'>";
-                echo "<li class='page-item'>";
-                $page = isset($_GET['page']) ? $_GET['page'] : 1;
-                $before = $page == 1 ? 1 : $page-1;
-                $after = $page == $totalPages ? $totalPages : $page+1;
-                    echo "<a class='page-link' href='" . base_url("events?page=" . $before . "") . "' aria-label='Previous'>";
-                        echo "<span aria-hidden='true'>&laquo;</span>";
-                    echo "</a>";
-                echo "</li>";
-                for ($i = 1; $i <= $totalPages; $i++) {
-                    echo "<li class='page-item'><a class='page-link pagination-link' href='" . base_url("events?page=" . $i . "") . "' data-page='" . $i . "'>" . $i . "</a></li>";
-                }
-                    echo "<a class='page-link' href='" . base_url("events?page=" . $after . "") . "' aria-label='Next'>";
-                        echo "<span aria-hidden='true'>&raquo;</span>";
-                    echo "</a>";
-                echo "</li>";
-            echo "</ul>";
-        echo "</nav>";
+        if (!isset($search)) {
+                echo "<nav aria-label='Page navigation example'>";
+                    echo "<ul class='pagination'>";
+                        echo "<li class='page-item'>";
+                        $page = isset($_GET['page']) ? $_GET['page'] : 1;
+                        $before = $page == 1 ? 1 : $page-1;
+                        $after = $page == $totalPages ? $totalPages : $page+1;
+                                echo "<a class='page-link' href='" . base_url("events?page=" . $before . "") . "' aria-label='Previous'>";
+                                echo "<span aria-hidden='true'>&laquo;</span>";
+                            echo "</a>";
+                        echo "</li>";
+                        for ($i = 1; $i <= $totalPages; $i++) {
+                            echo "<li class='page-item'><a class='page-link pagination-link' href='" . base_url("events?page=" . $i . "") . "' data-page='" . $i . "'>" . $i . "</a></li>";
+                        }
+                            echo "<a class='page-link' href='" . base_url("events?page=" . $after . "") . "' aria-label='Next'>";
+                                echo "<span aria-hidden='true'>&raquo;</span>";
+                            echo "</a>";
+                        echo "</li>";
+                    echo "</ul>";
+                echo "</nav>";
+        }
 
         echo "</div>";
 
