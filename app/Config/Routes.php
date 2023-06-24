@@ -68,7 +68,10 @@ $routes->get('subscription/delete/(:num)', 'Subscription::delete/$1');
 $routes->get('subscription/edit/(:num)', 'Subscription::edit/$1');
 $routes->post('subscription/edit/(:num)', 'Subscription::edit/$1');
 $routes->get('subscription/(:num)', 'Subscription::show/$1'); //show one subscription
-$routes->get('subscription/payment/(:num)', 'Client::paySubscription/$1');
+
+//CLIENT
+$routes->get('client/subscribe', 'Client::subscribe'); //update subscription
+
 
 //PAYMENT METHODS
 $routes->get('checkout', 'Payment::checkout'); //display checkout form page
