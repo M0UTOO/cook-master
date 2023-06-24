@@ -20,11 +20,11 @@ class Premise extends BaseController
         $data['title'] = "Create a new premise";
 
         if (!$this->request->is('post')) {
-            return view('premise/create', $data);
+            return view('premises/create', $data);
         } else {
             $values = $this->request->getPost();
 
-            $values['streetnumber'] = (int)$values['streetnumber'];
+            $values['streetnumber'] = $values['streetnumber'];
 
             $data['message'] = callAPI('/premise/', 'post', $values);
 
@@ -39,14 +39,14 @@ class Premise extends BaseController
         $data['premise'] = callAPI('/premise/' . $id, 'get'); //TO DISPLAY THE CURRENT VALUES IN THE FORM
 
         if (!$this->request->is('post')) {
-            return view('premise/edit', $data);
+            return view('premises/edit', $data);
         } else {
             $values = $this->request->getPost();
-            $values['streetnumber'] = (int)$values['streetnumber'];
+            $values['streetnumber'] = $values['streetnumber'];
 
             $data['message'] = callAPI('/premise/' . $id, 'patch', $values);
 
-            return redirect()->to('/premise/' . $id)->with('message', $data['message']['message']);
+            return redirect()->to('/premise/edit/' . $id)->with('message', $data['message']['message']);
         }
     }
 
@@ -60,9 +60,12 @@ class Premise extends BaseController
 
     public function show($id)
     {
-        $data['title'] = "Subscription";
+        //SHOW INFO OF A PREMISE AND LIST COOKING SPACES IN SAID PREMISE
+
         $data['premise'] = callAPI('/premise/' . $id, 'get');
-        return view('premise/show', $data);
+        $data['cookingSpaces'] = callAPI('cookingspace/premise/' . $id, 'get');
+        $data['title'] = "Premise - " . $data['premise']['name'];
+        return view('premises/show', $data);
     }
 
 
