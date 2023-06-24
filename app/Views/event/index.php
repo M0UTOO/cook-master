@@ -105,7 +105,6 @@ echo $this->include('layouts/head') ;
                                 echo "<p class='card-text'>Hosted in: To be defind</p>";
                             }
                             // TO DO : ADD REAL ADS
-                            // TO DO : REDIRECT TO LOG IN IF NOT LOGGED IN
                         echo "</div>";
                         echo "<div class='event-card-body-right'>";
                         echo "</div>";
@@ -136,8 +135,6 @@ echo $this->include('layouts/head') ;
                 echo "</li>";
             echo "</ul>";
         echo "</nav>";
-
-        //TODO:ADD PAGINATION TO THIS SECTION (ALWAYS SHOW X EVENTS PER PAGE)
 
         echo "</div>";
 
