@@ -8,21 +8,20 @@ class CookingSpace extends BaseController
     public function index()
     {
         //SHOW ALL INFO ABOUT ALL SUBSCRIPTIONS
-        $data['title'] = "Cookmaster - Subscription";
-        $data['subscriptions'] = callAPI('/subscription/all', 'get');
-        return view('subscription/index', $data);
+        $data['title'] = "Cookmaster - Cooking spaces";
+        $data['cookingSpace'] = callAPI('/cookingSpace/all', 'get');
+        return view('cookingSpace/index', $data);
     }
 
     //Manager can
     public function create()
     {
-        //todo: pull api and check This WITH DELETE() TOO
         helper('filesystem');
 
-        $data['title'] = "Create a new subscription";
+        $data['title'] = "Create a new cookingSpace";
 
         if (!$this->request->is('post')) {
-            return view('subscription/form', $data);
+            return view('cookingSpace/form', $data);
         } else {
             $values = $this->request->getPost();
 
@@ -31,50 +30,50 @@ class CookingSpace extends BaseController
 
             $picture = $this->request->getFile('picture');
 
-            $data['message'] = callAPI('/subscription/', 'post', $values);
-            $subscriptionID = $data['message']['id'];
+            $data['message'] = callAPI('/cookingSpace/', 'post', $values);
+            $cookingSpaceID = $data['message']['id'];
 
-            $picture = "img-subscription-".$subscriptionID.".". $picture->getExtension(); //check extension
+            $picture = "img-cookingSpace-".$cookingSpaceID.".". $picture->getExtension(); //check extension
 
-            $data['state'] = callAPI('/subscription/'.$subscriptionID, 'patch', ['picture' => $picture]);
+            $data['state'] = callAPI('/cookingSpace/'.$cookingSpaceID, 'patch', ['picture' => $picture]);
 
             if (!$data['state']['error']){
-                $picture->move('./assets/images/subscriptions/', 'img-subscription-'.$subscriptionID.'.'.$picture->getExtension());
+                $picture->move('./assets/images/cookingSpace/', 'img-cookingSpace-'.$cookingSpaceID.'.'.$picture->getExtension());
             }
 
-            return redirect()->to('/subscriptions')->with('message', $data['message']['message']);
+            return redirect()->to('/cookingSpace')->with('message', $data['message']['message']);
         }
     }
 
     public function edit($id){
 
-        $data['title'] = "Edit the subscription";
-        $data['subscription'] = callAPI('/subscription/'.$id, 'get'); //TO DISPLAY THE CURRENT VALUES IN THE FORM
+        $data['title'] = "Edit the cooking space";
+        $data['cookingSpace'] = callAPI('/cookingSpace/'.$id, 'get'); //TO DISPLAY THE CURRENT VALUES IN THE FORM
 
         if (!$this->request->is('post')) {
-            return view('subscription/form', $data);
+            return view('cookingSpace/form', $data);
         } else {
             $values = $this->request->getPost();
-            $data['message'] = callAPI('/subscription/'.$id, 'patch', $values);
-            return redirect()->to('/subscription/'.$id)->with('message', $data['message']['message']);
+            $data['message'] = callAPI('/cookingSpace/'.$id, 'patch', $values);
+            return redirect()->to('/cookingSpace/'.$id)->with('message', $data['message']['message']);
         }
     }
     public function delete($id){
         helper('filesystem');
 
-        $data['message'] = callAPI('/subscription/'.$id, 'delete');
+        $data['message'] = callAPI('/cookingSpace/'.$id, 'delete');
 
         if (!$data['message']['error']){
-            delete_files('./assets/images/subscriptions/img-subscription-'.$id, true);
+            delete_files('./assets/images/cookingSpace/img-cookingSpace-'.$id, true);
         }
 
-        return redirect()->to('/subscriptions')->with('message', $data['message']['message']);
+        return redirect()->to('/cookingSpace')->with('message', $data['message']['message']);
     }
 
     public function show($id){
-        $data['title'] = "Subscription";
-        $data['subscription'] = callAPI('/subscription/'.$id, 'get');
-        return view('subscription/show', $data);
+        $data['title'] = "Cooking spaces";
+        $data['cookingSpace'] = callAPI('/cookingSpace/'.$id, 'get');
+        return view('cookingSpace/show', $data);
     }
 
 }

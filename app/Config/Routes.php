@@ -125,6 +125,15 @@ $routes->get('premise/edit/(:num)', 'Premise::edit/$1');
 $routes->post('premise/edit/(:num)', 'Premise::edit/$1');
 $routes->get('premise/(:num)', 'Premise::show/$1'); //show one premise
 
+//COOKING SPACES
+$routes->get('cookingSpace', 'CookingSpace::index'); //show all cookingspaces
+$routes->get('cookingSpace/create', 'CookingSpace::create');
+$routes->post('cookingSpace/create', 'CookingSpace::create');
+$routes->get('cookingSpace/delete/(:num)', 'CookingSpace::delete/$1');
+$routes->get('cookingSpace/edit/(:num)', 'CookingSpace::edit/$1');
+$routes->post('cookingSpace/edit/(:num)', 'CookingSpace::edit/$1');
+$routes->get('cookingSpace/(:num)', 'CookingSpace::show/$1'); //show one cookingSpace
+
 
 
 /*
