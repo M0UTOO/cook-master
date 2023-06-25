@@ -63,7 +63,7 @@ class Premise extends BaseController
         //SHOW INFO OF A PREMISE AND LIST COOKING SPACES IN SAID PREMISE
 
         $data['premise'] = callAPI('/premise/' . $id, 'get');
-        $data['cookingSpace'] = callAPI('/cookingspace/premise/' . $id, 'get');
+        $data['cookingSpaces'] = callAPI('/cookingspace/premise/' . $id, 'get');
         $data['title'] = "Premise - " . $data['premise']['name'];
         return view('premises/show', $data);
     }

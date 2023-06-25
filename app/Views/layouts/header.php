@@ -20,7 +20,8 @@ helper('html') ?>
     <a class="m-2 p-3" href="/lessons" class="nav-link">Our Lessons</a>
     <a class="m-2 p-3" href="/events" class="nav-link">Our Events(in construction)</a>
     <a class="m-2 p-3" href="#" class="nav-link">Our shop (in construction)</a>
-    <a class="m-2 p-3" href="#" class="nav-link">Cook in our spaces (in construction)</a>
+    <a class="m-2 p-3" href="/premises" class="nav-link">Cook in our spaces (in construction)</a>
+    <a class="m-2 p-3" href="/subscriptions" class="nav-link">Our subscriptions</a>
 
     <?php
         if (isLoggedIn()) {
