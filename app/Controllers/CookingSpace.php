@@ -18,44 +18,71 @@ class CookingSpace extends BaseController
     {
         helper('filesystem');
 
-        $data['title'] = "Create a new cookingSpace";
+        $data['title'] = "Create a new cooking space";
 
         if (!$this->request->is('post')) {
-            return view('cookingSpace/form', $data);
+            return view('cookingSpace/create', $data);
         } else {
             $values = $this->request->getPost();
-
-            $values['price'] = (float)$values['price'];
-            $values['maxlessonaccess'] = (int)$values['maxlessonaccess'];
-
             $picture = $this->request->getFile('picture');
 
-            $data['message'] = callAPI('/cookingSpace/', 'post', $values);
-            $cookingSpaceID = $data['message']['id'];
+            $pictureName = 'img-cookingspace-'.uniqid().'.'.$picture->getExtension(); //TODO: check extension
+            $values['priceperhour'] = (float)$values['priceperhour'];
+            $values['size'] = (int)$values['size'];
+            $values['picture'] = $pictureName;
 
-            $picture = "img-cookingSpace-".$cookingSpaceID.".". $picture->getExtension(); //check extension
+            $data['message'] = callAPI('/cookingspace/', 'post', $values);
 
-            $data['state'] = callAPI('/cookingSpace/'.$cookingSpaceID, 'patch', ['picture' => $picture]);
-
-            if (!$data['state']['error']){
-                $picture->move('./assets/images/cookingSpace/', 'img-cookingSpace-'.$cookingSpaceID.'.'.$picture->getExtension());
+            if (!$data['message']['error']){
+                $directory = './assets/images/cookingSpaces/'.$data['message']['id'] . '/';
+                if (!file_exists($directory)){
+                    mkdir($directory, 755, true);
+                    chmod($directory, 755);
+                }
+                $picture->move($directory, $pictureName);
             }
 
-            return redirect()->to('/cookingSpace')->with('message', $data['message']['message']);
+            return redirect()->to('/spaces')->with('message', $data['message']['message']);
         }
     }
 
     public function edit($id){
 
         $data['title'] = "Edit the cooking space";
-        $data['cookingSpace'] = callAPI('/cookingSpace/'.$id, 'get'); //TO DISPLAY THE CURRENT VALUES IN THE FORM
+        $data['cookingSpace'] = callAPI('/cookingspace/'.$id, 'get'); //TO DISPLAY THE CURRENT VALUES IN THE FORM
 
         if (!$this->request->is('post')) {
-            return view('cookingSpace/form', $data);
+            return view('cookingSpace/edit', $data);
         } else {
             $values = $this->request->getPost();
-            $data['message'] = callAPI('/cookingSpace/'.$id, 'patch', $values);
-            return redirect()->to('/cookingSpace/'.$id)->with('message', $data['message']['message']);
+            $picture = $this->request->getFile('picture');
+
+            $pictureName = 'img-cookingspace-'.uniqid().'.'.$picture->getExtension(); //TODO: check extension
+            $values['priceperhour'] = (float)$values['priceperhour'];
+            $values['size'] = (int)$values['size'];
+            //TODO : check if picture is empty and remove from patch array if yes.
+            $values['picture'] = $pictureName;
+
+            $data['message'] = callAPI('/cookingspace/'.$id, 'patch', $values);
+
+            if (!$data['message']['error']){
+                $directory = './assets/images/cookingSpaces/'.$data['message']['id'] ;
+                if (file_exists($directory)){
+                 $objects = scandir($directory);
+                    foreach ($objects as $file){
+                        if (is_dir($file)){
+                            continue;
+                        } else {
+                            unlink($directory. DIRECTORY_SEPARATOR.$file);
+                        }
+                    }
+                } else {
+                    mkdir($directory, 755, true);
+                    chmod($directory, 755);
+                }
+                $picture->move($directory, $pictureName);
+            }
+            return redirect()->to('/premises')->with('message', $data['message']['message']);
         }
     }
     public function delete($id){
@@ -64,7 +91,9 @@ class CookingSpace extends BaseController
         $data['message'] = callAPI('/cookingSpace/'.$id, 'delete');
 
         if (!$data['message']['error']){
-            delete_files('./assets/images/cookingSpace/img-cookingSpace-'.$id, true);
+            echo 'deleted';
+            //TODO: delete the picture FROM SERVER
+            delete_files('assets/images/cookingSpaces/'.$data['picture'], true);
         }
 
         return redirect()->to('/cookingSpace')->with('message', $data['message']['message']);

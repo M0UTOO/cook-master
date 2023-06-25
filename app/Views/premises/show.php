@@ -24,14 +24,14 @@ echo "</section>";
 echo "<section id='room-in-premise'>";
 if (isset($premise)) {
     if (isset($cookingSpaces) && is_array($cookingSpaces) && count($cookingSpaces) > 0) {
-        echo "<h3>Cooking spaces in this premise<a class='ms-4' href='/cookingspace/create'><img src=" . base_url("assets/images/svg/add-circle-icon.svg") . " alt='plus-icon' class='icons' /></a>" ."</h3>";
+        echo "<h3>Cooking spaces in this premise<a class='ms-4' href='/cookingSpace/create'><img src=" . base_url("assets/images/svg/add-circle-icon.svg") . " alt='plus-icon' class='icons' /></a>" ."</h3>";
         echo '<section class="table-responsive">';
         echo '<table class="table">';
 
         echo '<thead>';
         echo '<tr>';
         echo '<th scope="col">Name</th>';
-        echo '<th class="text-nowrap" scope="col">Area (size in m²)</th>';
+        echo '<th class="text-nowrap" scope="col">Room capacity</th>';
         echo '<th class="text-nowrap" scope="col">Current state</th>';
         echo '<th class="text-nowrap" scope="col">Price per hour (€)</th>';
         echo '<th scope="col">Actions</th>';
@@ -41,7 +41,7 @@ if (isset($premise)) {
         echo '<tbody class="table-group-divider">';
 
         foreach ($cookingSpaces as $cookingSpace){
-            $redirection = base_url("/cookingSpace/".$cookingSpace->idCookingSpace);
+            $redirection = base_url("/cookingSpace/edit/".$cookingSpace->idCookingSpace);
 
             if (isManager()){
 
@@ -73,5 +73,5 @@ echo '</main>';
 echo $this->include('layouts/footer')
 ?>
 </body>
-<script src=<?= base_url('assets/js/create_users.js')?>></script>
+<script src=<?= base_url('assets/js/tables.js')?>></script>
 </html>
