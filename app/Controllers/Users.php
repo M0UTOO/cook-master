@@ -32,12 +32,25 @@ class Users extends BaseController
         else
         {
             $values = $this->request->getPost();
-            $type = $values['Type'] ;
-            unset($values['Type']);
 
-            $data['message'] = callAPI('/user/', 'post', $this->request->getPost(), ['Type' => $type]);
+            if ($values['password'] != $values['password-confirm']){
+                $data['message'] = "Passwords don't match";
+                return view('users/signUp', $data);
+            } else {
+                unset($values['password-confirm']);
+                $type = $values['Type'] ;
+                unset($values['Type']);
+                $values['subscription'] = (int)$values['subscription'];
+                $values['language'] = (int)$values['language'];
 
-            return view('users/index', $data);
+                $tmp = new Password($values['password']);
+                $values['password'] = $tmp->__toString();
+
+
+                $data['message'] = callAPI('/user/', 'post', $values, ['Type' => $type]);
+                return redirect()->to('/signIn')->with('message', $data['message']['message']);
+            }
+
         }
 
     }
@@ -86,26 +99,5 @@ class Users extends BaseController
         $time = date("Y-m-d H:i:s", now()); //TODO:CHECK TIME LOCATION
         $data['message'] = callAPI('/user/'.$id, 'patch', ['isblocked' => $time]);
         return redirect()->to('/dashboard/userManagement')->with('message', $data['message']['message']);
-    }
-
-    protected function getUsersEvents($id){
-        //API CALL with $id
-        return $events =
-            [
-                [
-                    'id' => 1,
-                    'name' => 'Event 1',
-                    'date' => '2021-01-01',
-                    'location' => 'Paris',
-                    'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl vitae aliquam ultricies, nunc nisl ultricies nunc',
-                ],
-                [
-                    'id' => 2,
-                    'name' => 'Event 2',
-                    'date' => '2021-01-02',
-                    'location' => 'Paris',
-                    'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl vitae aliquam ultricies, nunc nisl ultricies nunc',
-                ]
-            ];
     }
 }

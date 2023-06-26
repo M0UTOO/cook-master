@@ -20,6 +20,7 @@ echo $this->include('layouts/head') ;
             echo '<div>';
             echo '<a href="/lesson/create"><img src=' . base_url("assets/images/svg/add-user-icon-blue.svg") . ' alt="plus-icon" class="icons" /></a>';
             echo '<a href="/lessonGroup/add"><img src=' . base_url("assets/images/svg/add-user-icon-blue.svg") . ' alt="plus-icon" class="icons" /></a>';
+            echo '<a href="/lessonGroups"><img src=' . base_url("assets/images/svg/add-user-icon-blue.svg") . ' alt="plus-icon" class="icons" /></a>';
             echo '</div>';
         }
 if (isset($lessons) && is_array($lessons) && count($lessons) > 0){
@@ -50,10 +51,11 @@ if (isset($lessons) && is_array($lessons) && count($lessons) > 0){
                         }
                         echo "<td>$lesson->name</td>";
                         echo "<td>$lesson->description</td>";
-                        echo "<td>Author</td>";
+                        echo "<td>$lesson->firstname $lesson->lastname</td>";
                         displayDifficultyLevel($lesson->difficulty);
 
-                        if (isContractor() || isManager()){
+                        $currentId = getCurrentUserId();
+                        if ($currentId == $lesson->iduser || isManager()){
                             echo "<td>";
                                 echo '<a href="/lesson/delete/' . $lesson->idlesson . '"><img src=' . base_url("assets/images/svg/trash-icon-red.svg") . ' alt="delete-icon" class="icons" /></a>';
                                 echo '<a href="/lesson/edit/' . $lesson->idlesson . '"><img src=' . base_url("assets/images/svg/moon-icon.svg") . ' alt="modify-icon" class="icons" /></a>';

@@ -11,6 +11,9 @@ body{
     overflow-x: hidden;
 }
 
+.hidden{
+    display: none;
+}
 
 /*HEADER*/
 
@@ -208,10 +211,10 @@ p{
     font-size: 14px;
 }
 
-/*SUBSCRIPTIONS MODAL */
+/* SUBSCRIPTIONS MODAL
 #subscriptionsModal{
 
-}
+} */
 
 
 /*FOOTER*/
@@ -314,3 +317,77 @@ footer{
     cursor: pointer;
 }
 
+/*LESSONS*/
+
+.lesson-suggestion {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 50 auto;
+    padding: 10px 0;
+}
+
+.lesson-suggest {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 7em;
+    margin-bottom: 2em;
+}
+
+.title-suggestion {
+    display: flex;
+    margin-top: 10em;
+    margin-bottom: 2em;
+    margin-right: 4em;
+    font-size: 1.5em;
+    font-weight: bold;
+    color : var(--brand-primary-color);
+    justify-content: center;
+}
+
+.lesson-image {
+    width: 15em;
+    height: 15em;
+    border-radius: 50%;
+    box-shadow: 0 3px 8px var(--brand-primary-color);
+    margin-right: 2em;
+}
+
+.lesson-image-suggestion {
+    width: 10em;
+    height: 10em;
+    border-radius: 50%;
+}
+
+.lesson-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.info-1 {
+    order: 1;
+}
+
+.info-2 {
+    order: 2;
+}
+
+.card-suggestion {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 18em;
+    height: 20em;
+    margin: 0 1em;
+    padding: 1em;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    background-color: var(--brand-second-color);
+    color: var(--text-color);
+    text-align: center;
+    text-decoration: none;
+}

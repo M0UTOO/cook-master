@@ -30,3 +30,7 @@ function isBlocked(){
 function getSubscription(){
    return ((session()->get('subscription')));
 }
+
+function getCurrentUserId(){
+    return ((session()->get('id')));
+}

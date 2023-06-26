@@ -32,24 +32,28 @@ class Lesson extends BaseController
 
             $values['difficulty'] = (int)$values['difficulty'];
 
-            /*$content = $this->request->getFile('content');
-
-            $values['content'] = $content;*/
+            $picture = $this->request->getFile('picture');
 
             $userId = $values['user_id'];
             unset($values['user_id']);
 
             $data['message'] = callAPI('/lesson/'.$userId, 'post', $values);
+            if (isset($data['message']['id'])) {
+                $lessonID = $data['message']['id'];
 
-            /*$lessonID = $data['message']['id'];
+                $picture_name = "img-lesson-".$lessonID.".". $picture->getExtension(); //check extension
 
-            $picture = "img-lesson-".$lessonID.".". $picture->getExtension(); //check extension
+                $data['state'] = callAPI('/lesson/'.$lessonID, 'patch', ['picture' => $picture_name]);
 
-            $data['state'] = callAPI('/lesson/'.$lessonID, 'patch', ['picture' => $picture]);
-
-            if (!$data['state']['error']){
-                $picture->move('./assets/images/lessons/', 'img-lesson-'.$lessonID.'.'.$picture->getExtension());
-            }*/
+                if (!$data['state']['error']){
+                    $directory = './assets/images/lessons';
+                    if (!file_exists($directory)){
+                        mkdir($directory, 755, true);
+                        chmod($directory, 755);
+                    }
+                    $picture->move($directory, $picture_name);
+                }
+            }
 
             return redirect()->to('/lessons')->with('message', $data['message']['message']);
         }
@@ -58,7 +62,7 @@ class Lesson extends BaseController
     public function edit($id){
 
         $currentUser['id'] = session()->get('id');
-        $curentUser['role'] = session()->get('role');
+        $currentUser['role'] = session()->get('role');
 
         $data['title'] = "Edit the lesson";
         $data['lesson'] = callAPI('/lesson/'.$id, 'get'); //TO DISPLAY THE CURRENT VALUES IN THE FORM
@@ -80,7 +84,16 @@ class Lesson extends BaseController
         }
     }
     public function delete($id){
+
         helper('filesystem');
+
+        $verif['message'] = callAPI('/lesson/'.$id, 'get');
+
+        var_dump(session()->get('role'));
+
+        if ($verif['message']['iduser'] != session()->get('id') && session()->get('role') != "manager"){
+            return redirect()->to('/lessons')->with('message', "You can't delete this lesson");
+        }
 
         $data['message'] = callAPI('/lesson/'.$id, 'delete');
 
@@ -92,8 +105,38 @@ class Lesson extends BaseController
     }
 
     public function show($id){
+
+        $currentUser['id'] = session()->get('id');
+        $currentUser['role'] = session()->get('role');
+        $currentUser['subscription'] = session()->get('subscription');
+
+        if ($currentUser['role'] == "client"){
+            $update['message'] = callAPI('/lesson/views/'.$currentUser['id'], 'delete');
+            $update['count'] = callAPI('/lesson/views/'.$currentUser['id'], 'get');
+            $update['watched'] = callAPI('/lesson/watch/'.$currentUser['id'].'/'.$id, 'get');
+            if ($currentUser['subscription']['name'] != "Master") {
+                if ($update['watched']['iswatched'] == false) {
+                    if ($currentUser['subscription']['maxlessonaccess'] - $update['count']['count'] <= 0) {
+                            return redirect()->to('/lessons')->with('message', "You can't access this lesson, you have reached your limit of lessons a day.");
+                
+                    } else {
+                        $update['message'] = callAPI('/client/watch/'.$currentUser['id'].'/'.$id, 'patch');
+                    }
+                }
+            }
+        }
+
         $data['title'] = "Lesson";
         $data['lesson'] = callAPI('/lesson/'.$id, 'get');
+        if ($data['lesson']['idlessongroup'] != 0 || $data['lesson']['idlessongroup'] != 1) {
+            $data['lessonGroup'] = callAPI('/lesson/group/'.$data['lesson']['idlessongroup'], 'get');
+            $data['others'] = true;
+        }
+        if ($data['lesson']['idlessongroup'] == 1 || $data['lessonGroup'] == null){
+            $data['lessonGroup'] = callAPI('/lesson/suggested', 'get');
+            $data['random'] = true;
+        }
+        
         return view('lesson/show', $data);
     }
 

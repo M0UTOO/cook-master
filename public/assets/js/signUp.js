@@ -1,5 +1,13 @@
+function selectSubscription(id, price){
 
-document.getElementsByClassName('subscription-card').addEventListener("click", selectSubscription());
-function selectSubscription(id, name){
-    document.getElementById('subscription-id').value = id;
+    if (price === 0) {
+        //SUBSCRIPTION IS FREE : NO NEED TO CHECKOUT
+        document.getElementById('sign-up-subscription-input').value = id;
+        console.log("free");
+    } else {
+        if (id > 0) {
+            window.location.href = '/checkout?subscription=' + id;
+       }
+    }
+
 }
