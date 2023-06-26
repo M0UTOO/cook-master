@@ -441,3 +441,9 @@ footer{
 .form-cookmaster{
     width: 10vw;
 }
+
+.event-info {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}

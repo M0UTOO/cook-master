@@ -73,4 +73,22 @@ class Event extends BaseController
             return redirect()->to('/events')->with('message', $data['message']['message']);
         }
     }
+    
+    public function show($id){
+
+        $currentUser['id'] = session()->get('id');
+        $currentUser['role'] = session()->get('role');
+        $currentUser['subscription'] = session()->get('subscription');
+        $data['event'] = callAPI('/event/'.$id, 'get');
+        $participation = callAPI('/event/participation/' . $data['event']['idevent'], 'get');
+        if ($data['event']['isprivate'] == true) {
+            if ($participation != null) {
+                return redirect()->to('/events')->with('message', "Event already joined.");
+            }
+        }
+        
+        return view('event/show', $data);
+    }
+
+
 }
