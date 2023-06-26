@@ -34,3 +34,10 @@ function getSubscription(){
 function getCurrentUserId(){
     return ((session()->get('id')));
 }
+
+function getUserInfos(){
+    $user['id'] = session()->get('id');
+    $user['role'] = session()->get('role');
+    $user['subscription'] = session()->get('subscription');
+    return $user;
+}

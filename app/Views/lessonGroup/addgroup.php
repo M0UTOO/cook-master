@@ -12,14 +12,6 @@ echo $this->include('layouts/header') ;
 
 echo "<h2>" . $title . "</h2>";
 
-    if (isset($message)) {
-        try {
-            echo $message ;
-        } catch (\Exception $e) {
-            echo "Something went wrong. Please try again later.";
-        }
-    }
-
     $hidden_input = [];
     $action = "lessonGroup/add/group/";
 
@@ -61,7 +53,7 @@ echo "<h2>" . $title . "</h2>";
             if (selectedGroup == 1) {
                 return;
             }
-            let url = 'http://localhost:9000/lesson/group/' + selectedGroup;
+            let url = API_URL + selectedGroup;
 
             const headers = new Headers();
             headers.append('Content-Type', 'application/json');

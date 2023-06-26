@@ -13,6 +13,7 @@ echo '<body>';
         echo "</div>";
 
     }
+    echo "<h2>" . $title . "</h2>";
     echo '<div class="ad-spot" style="min-height: 5rem; min-width: 50vw;background-color: var(--placeholder-color);">ADD SPOT</div>';
 
     echo "<section id='lesson-info d-flex' style='min-width: 100%'>";

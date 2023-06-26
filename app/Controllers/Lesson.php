@@ -89,10 +89,8 @@ class Lesson extends BaseController
 
         $verif['message'] = callAPI('/lesson/'.$id, 'get');
 
-        var_dump(session()->get('role'));
-
-        if ($verif['message']['iduser'] != session()->get('id') && session()->get('role') != "manager"){
-            return redirect()->to('/lessons')->with('message', "You can't delete this lesson");
+        if ($verif['message']['iduser'] != session()->get('id') && isManager() == false){
+            return redirect()->to('/lessons')->with('message', "You can't delete this lesson if u are not the author or a manager.");
         }
 
         $data['message'] = callAPI('/lesson/'.$id, 'delete');
@@ -106,9 +104,7 @@ class Lesson extends BaseController
 
     public function show($id){
 
-        $currentUser['id'] = session()->get('id');
-        $currentUser['role'] = session()->get('role');
-        $currentUser['subscription'] = session()->get('subscription');
+        $currentUser = getUserInfos();
 
         if ($currentUser['role'] == "client"){
             $update['message'] = callAPI('/lesson/views/'.$currentUser['id'], 'delete');
@@ -125,8 +121,6 @@ class Lesson extends BaseController
                 }
             }
         }
-
-        $data['title'] = "Lesson";
         $data['lesson'] = callAPI('/lesson/'.$id, 'get');
         if ($data['lesson']['idlessongroup'] != 0 || $data['lesson']['idlessongroup'] != 1) {
             $data['lessonGroup'] = callAPI('/lesson/group/'.$data['lesson']['idlessongroup'], 'get');
@@ -137,6 +131,8 @@ class Lesson extends BaseController
             $data['random'] = true;
         }
         
+        $data['title'] = "Lesson" . $data['lesson']['name'];
+
         return view('lesson/show', $data);
     }
 
