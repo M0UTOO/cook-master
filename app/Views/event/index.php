@@ -50,13 +50,9 @@ echo $this->include('layouts/head') ;
                     if (($ads % 3) == 0){
                         echo "<div class='event-card col mb-3'>";
                             echo "<div class='card-suggestion-event'>";
-                                echo "<div class='event-card-header'>";
-                                    echo "<h2>AD</h2>";
-                                echo "</div>";
                                 echo "<div class='card mb-5'>";
-                                    echo "<img alt='event picture' class='card-img-top' height='200vh' src=" . base_url("assets/images/events/ads.jpg") . " />";
-                                    echo "<div class='card-body'>";
-                                        echo "<p class='card-text'>This is an ad</p>";
+                                    echo "<div class='ad-container'>";
+                                        echo "<img src='https://via.placeholder.com/300x440' alt='Sample Ad' />";
                                     echo "</div>";
                                     echo "<div class='event-card-body-right'>";
                                     echo "</div>";
@@ -184,4 +180,6 @@ echo $this->include('layouts/head') ;
     // Initially display the events for the first page
     displayEvents(1);
 </script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5567240416427109"
+     crossorigin="anonymous"></script>
 </html>
