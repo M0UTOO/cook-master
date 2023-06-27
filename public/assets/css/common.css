@@ -35,13 +35,21 @@ body{
     }
 
     #menu-icon{
-        height: auto;
-        width: 8%;
+
+        min-height: 3vh;
+        min-width: 10vw;
+
+        background-image: url('../../../assets/images/svg/menu.svg');
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+
     }
 
     #burger-menu{
         background-color: var(--brand-primary-color);
         color: var(--bg-color);
+        z-index: 10;
         }
 
     .navbar-brand{
