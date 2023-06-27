@@ -74,7 +74,7 @@ class Premise extends BaseController
             return redirect()->to('/premises')->with('message', $data['message']['message']);
 
         } else {
-            return redirect()->to('/')->with('message', 'You do not have access to the page : '. $data['title']);
+            return redirect()->to('/')->with('message', 'You do not have access to the page : ');
         }
     }
 
