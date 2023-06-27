@@ -9,12 +9,8 @@ class CookingSpace extends BaseController
     {
         $data['title'] = "Cookmaster - Cooking spaces";
 
-        if (isManager()){
-            $data['cookingSpace'] = callAPI('/cookingSpace/all', 'get');
-            return view('cookingSpace/index', $data);
-        } else {
-            return redirect()->to('/')->with('message', 'You do not have access to the page : '. $data['title']);
-        }
+        $data['cookingSpaces'] = callAPI('/cookingspace/all', 'get');
+        return view('cookingSpace/index', $data);
     }
 
     //Manager can
@@ -62,6 +58,13 @@ class CookingSpace extends BaseController
         if (isManager()){
 
             $data['cookingSpace'] = callAPI('/cookingspace/'.$id, 'get'); //TO DISPLAY THE CURRENT VALUES IN THE FORM
+//            cookingSpace.PATCH("/books/:idclient/:idcookingspace", cookingspaces.AddABooks(tokenAPI))     // WORKING
+//	cookingSpace.GET("/books/all", cookingspaces.GetCookingSpacesBooks(tokenAPI)) // WORKING")
+//	cookingSpace.DELETE("/books/:idclient/:idcookingspace", cookingspaces.DeleteABooks(tokenAPI)) // WORKING
+//	cookingSpace.GET("/books/:id", cookingspaces.GetBooksByCookingSpaceID(tokenAPI)) // WORKING
+            $data['reservations'] = callAPI('/cookingspace/books/'.$id, 'get');
+
+            $data['reservations'] = json_decode(json_encode($data['reservations']), true);
 
             if (!$this->request->is('post')) {
                 return view('cookingSpace/edit', $data);

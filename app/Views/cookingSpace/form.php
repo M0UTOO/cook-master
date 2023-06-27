@@ -53,10 +53,4 @@ helper('url');
                     echo form_submit('', 'Save', 'class="blue-btn btn mt-3 form-control"');
                 echo '</div>';
     echo form_close();
-
-    echo '</main>';
-    echo $this->include('layouts/footer')
 ?>
-</body>
-<script src=<?= base_url('assets/js/create_users.js')?>></script>
-</html>
