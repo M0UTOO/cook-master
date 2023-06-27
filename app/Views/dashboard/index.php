@@ -3,15 +3,6 @@
 <body>
     <?= $this->include('layouts/header') ?>
 
-        <?php
-        if (isset($message)) {
-            try {
-                echo $message ;
-            } catch (\Exception $e) {
-                echo "Something went wrong. Please try again later.";
-            }
-        }
-        ?>
 <section id="management" class="">
     <a href="<?=base_url('dashboard/userManagement')?>" class="card">
         <div class="card-body">

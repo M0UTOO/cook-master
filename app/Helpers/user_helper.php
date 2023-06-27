@@ -34,3 +34,13 @@ function getSubscription(){
 function getCurrentUserId(){
     return ((session()->get('id')));
 }
+
+function checkAccess()
+{
+    // Check if the user is a manager (check role in session data)
+    if (!isManager()) {
+        return redirect()->to('/unauthorized')->with('message', 'You are not authorized to access this page');
+    } else {
+        return "true";
+    }
+}

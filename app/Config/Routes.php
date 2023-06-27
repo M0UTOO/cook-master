@@ -136,6 +136,10 @@ $routes->get('cookingSpace/(:num)', 'CookingSpace::show/$1'); //show one cooking
 
 
 
+$routes->get('unauthorized', 'Authorization::unauthorized');
+
+
+
 /*
  * --------------------------------------------------------------------
  * Additional Routing
