@@ -33,6 +33,7 @@
 
         // echo '</section>';
         //echo '<section>';
+        //echo '<section>';
 
         // echo '<div class="d-flex flex-row">';
         // echo '<div class="d-flex flex-column">';
@@ -210,6 +211,10 @@
             echo "<p>Subscription: ". $subscription['name']."</p>";
             echo "<p>You can access : ". $subscription['maxlessonaccess']." lessons a day</p>";
         }
+        echo '</div>';
+        echo '</div>';
+        echo '</section>';
+
 
         ?>
 
