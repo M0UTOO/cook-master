@@ -466,3 +466,36 @@ footer{
     text-align: center;
     text-decoration: none;
 }
+
+.account-row {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.card-title {
+    background-color: var(--brand-second-color);
+    min-width: 100%;
+    padding: 1em;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-bottom: 3.5em;
+}
+
+.account-event-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40em;
+    height: 15em;
+    margin: 0 1em;
+    border-radius: 10px;
+    box-shadow: 0 0px 2px rgba(0, 0, 0, 0.5);
+    color: var(--text-color);
+    text-align: center;
+    text-decoration: none;
+    margin-bottom: 5em;
+}
