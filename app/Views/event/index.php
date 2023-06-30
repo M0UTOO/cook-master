@@ -2,6 +2,7 @@
 
 echo $this->include('layouts/head') ;
 
+
     echo '<body>';
     echo $this->include('layouts/header') ;
     helper('form');
@@ -16,7 +17,7 @@ echo $this->include('layouts/head') ;
             echo '</div>';
         }
 
-        echo "<nav class='navbar navbar-light bg-light'>";
+        echo "<nav class='navbar navbar-light'>";
             echo "<div class='container-fluid mb-4'>";
                 $action = base_url('events');
                 echo "<form class='d-flex' action=" . $action . " method='post'>";
@@ -31,9 +32,9 @@ echo $this->include('layouts/head') ;
         if (isset($events) && is_array($events) && count($events) > 0){
             $ads = 0;
             foreach ($events as $event){
-                if ($event->isclosed == 1){
-                    continue;
-                }
+                // if ($event->isclosed == 1){
+                //     continue;
+                // }
                 if ($event->isprivate == 1) {
                     if (!isContractor() && !isManager()){
                         $participation = callAPI('/event/participation/' . $event->idevent, 'get');

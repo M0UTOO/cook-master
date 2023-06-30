@@ -89,8 +89,6 @@ class Lesson extends BaseController
 
         $verif['message'] = callAPI('/lesson/'.$id, 'get');
 
-        var_dump(session()->get('role'));
-
         if ($verif['message']['iduser'] != session()->get('id') && session()->get('role') != "manager"){
             return redirect()->to('/lessons')->with('message', "You can't delete this lesson");
         }

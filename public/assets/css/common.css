@@ -192,6 +192,10 @@ form a {
 .blue-btn {
     background-color: var(--brand-second-color);
 }
+
+.red-btn {
+    background-color: var(--brand-fifth-color);
+}
 #signUp-form .btn {
     background-color: var(--bg-color);
 }
@@ -455,4 +459,18 @@ footer{
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+}
+
+.comment-user {
+    display: flex;
+    align-items: center;
+}
+
+.comment-container {
+    padding: 1em;
+    border-radius: 10px;
+    background-color: var(--brand-second-color);
+    color: var(--text-color);
+    text-align: center;
+    text-decoration: none;
 }

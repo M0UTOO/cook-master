@@ -80,7 +80,9 @@ class Event extends BaseController
         $currentUser['role'] = session()->get('role');
         $currentUser['subscription'] = session()->get('subscription');
         $data['event'] = callAPI('/event/'.$id, 'get');
-        $participation = callAPI('/event/participation/' . $data['event']['idevent'], 'get');
+        $data['rate'] = callAPI('/event/rate/'.$id, 'get');
+        $data['participation'] = callAPI('/event/participate/' . $data['event']['idevent'], 'get');
+        $data['comments'] = callAPI('/event/comment/' . $data['event']['idevent'], 'get');
         if ($data['event']['isprivate'] == true) {
             if ($participation != null) {
                 return redirect()->to('/events')->with('message', "Event already joined.");
@@ -90,5 +92,15 @@ class Event extends BaseController
         return view('event/show', $data);
     }
 
+    public function join() {
+        $values = $this->request->getPost();
+        $data['message'] = callAPI('/event/participate/' . $values['idevent'] . '/' . $values['iduser'] . '', 'post');
+        return redirect()->to('/event/' . $values['idevent'] . '')->with('message', $data['message']['message']);
+    }
 
+    public function leave() {
+        $values = $this->request->getPost();
+        $data['message'] = callAPI('/event/participate/' . $values['idevent'] . '/' . $values['iduser'] . '', 'delete');
+        return redirect()->to('/event/' . $values['idevent'] . '')->with('message', $data['message']['message']);
+    }
 }
