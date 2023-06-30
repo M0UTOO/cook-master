@@ -45,9 +45,8 @@ echo $this->include('layouts/head') ;
                 }
                 $ads++;
 
-                // CHECK ONCE SUBSCRIPTIONS ARE IMPLEMENTED
                 $subscrition = getSubscription();
-                if (!isContractor() && !isManager()){//&& $subscrition['price'] == 0){
+                if (!isContractor() && !isManager() && $subscrition['price'] == 0){
                     if (($ads % 3) == 0){
                         echo "<div class='event-card col mb-3'>";
                             echo "<div class='card-suggestion-event'>";
@@ -63,8 +62,12 @@ echo $this->include('layouts/head') ;
                     }
                 }   
 
+                // Print the private events
                 if ($event->isinternal == 1) {
-                    if (isContractor() && isManager() ){//&& $subscrition['price'] != 0){
+                    if (!isContractor() && !isManager()){
+                        if ($subscrition['price'] == 0) {
+                            continue;
+                        }
                         continue;
                     } else {
                         echo "<div class='event-card col mb-3'>";
