@@ -205,20 +205,12 @@
             } else {
                 echo '<p>You have ' . sizeof($formations) . ' formations</p>';
             }
-            echo '</div>';
-        } else {
-            echo '<p>No Formations</p>';
-        }
-        echo '</div>';
-        echo '</div>';
-        echo '</section>';
-
         $subscription = getSubscription();
         if ($subscription){
             echo "<p>Subscription: ". $subscription['name']."</p>";
             echo "<p>You can access : ". $subscription['maxlessonaccess']." lessons a day</p>";
         }
-        echo '<a href='.base_url('/subscriptions').'>Change subscriptions</a>';
+
         ?>
 
     </main>

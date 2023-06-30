@@ -63,10 +63,3 @@ div7.addEventListener("click", function() {
 });
 
 const div8 = document.querySelector("#clickable-div8");
-
-div8.addEventListener("click", function() {
-    let url = this.getAttribute("data-href");
-    if (url) {
-        window.location.href = url;
-    }
-});
