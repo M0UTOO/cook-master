@@ -6,6 +6,7 @@ echo '<body>';
 echo $this->include('layouts/header') ;
 
 echo "<h2>" . $title ."</h2>";
+
 echo "<section id='first'>";
 echo $this->include('cookingSpace/form') ;
 echo "</section>";

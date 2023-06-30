@@ -9,8 +9,12 @@ class CookingSpace extends BaseController
     {
         $data['title'] = "Cookmaster - Cooking spaces";
 
-        $data['cookingSpaces'] = callAPI('/cookingspace/all', 'get');
-        return view('cookingSpace/index', $data);
+        if (isManager()){
+            $data['cookingSpace'] = callAPI('/cookingSpace/all', 'get');
+            return view('cookingSpace/index', $data);
+        } else {
+            return redirect()->to('/')->with('message', 'You do not have access to the page : '. $data['title']);
+        }
     }
 
     //Manager can
@@ -105,6 +109,7 @@ class CookingSpace extends BaseController
             return redirect()->to('/')->with('message', 'You do not have access to the page : '. $data['title']);
         }
     }
+
     public function delete($id){
         helper('filesystem');
         if (isManager()){
