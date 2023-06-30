@@ -7,74 +7,129 @@ class CookingSpace extends BaseController
     //Everyone can
     public function index()
     {
-        //SHOW ALL INFO ABOUT ALL SUBSCRIPTIONS
-        $data['title'] = "Cookmaster - Subscription";
-        $data['subscriptions'] = callAPI('/subscription/all', 'get');
-        return view('subscription/index', $data);
+        $data['title'] = "Cookmaster - Cooking spaces";
+
+        if (isManager()){
+            $data['cookingSpace'] = callAPI('/cookingSpace/all', 'get');
+            return view('cookingSpace/index', $data);
+        } else {
+            return redirect()->to('/')->with('message', 'You do not have access to the page : '. $data['title']);
+        }
     }
 
     //Manager can
     public function create()
     {
-        //todo: pull api and check This WITH DELETE() TOO
-        helper('filesystem');
+        $data['title'] = "Create a new cooking space";
 
-        $data['title'] = "Create a new subscription";
+        if (isManager()){
 
-        if (!$this->request->is('post')) {
-            return view('subscription/form', $data);
-        } else {
-            $values = $this->request->getPost();
+            helper('filesystem');
 
-            $values['price'] = (float)$values['price'];
-            $values['maxlessonaccess'] = (int)$values['maxlessonaccess'];
-
-            $picture = $this->request->getFile('picture');
-
-            $data['message'] = callAPI('/subscription/', 'post', $values);
-            $subscriptionID = $data['message']['id'];
-
-            $picture = "img-subscription-".$subscriptionID.".". $picture->getExtension(); //check extension
-
-            $data['state'] = callAPI('/subscription/'.$subscriptionID, 'patch', ['picture' => $picture]);
-
-            if (!$data['state']['error']){
-                $picture->move('./assets/images/subscriptions/', 'img-subscription-'.$subscriptionID.'.'.$picture->getExtension());
+            if (!$this->request->is('post')) {
+                return view('cookingSpace/create', $data);
             }
+            else
+            {
+                $values = $this->request->getPost();
+                $picture = $this->request->getFile('picture');
 
-            return redirect()->to('/subscriptions')->with('message', $data['message']['message']);
+                $pictureName = 'img-cookingspace-'.uniqid().'.'.$picture->getExtension(); //TODO: check extension
+                $values['priceperhour'] = (float)$values['priceperhour'];
+                $values['size'] = (int)$values['size'];
+                $values['picture'] = $pictureName;
+
+                $data['message'] = callAPI('/cookingspace/', 'post', $values);
+
+                if (!$data['message']['error']){
+                    $directory = './assets/images/cookingSpaces/'.$data['message']['id'] . '/';
+                    if (!file_exists($directory)){
+                        mkdir($directory, 755, true);
+                        chmod($directory, 755);
+                    }
+                    $picture->move($directory, $pictureName);
+                }
+                return redirect()->to('/spaces')->with('message', $data['message']['message']);
+            }
+        } else {
+            return redirect()->to('/')->with('message', 'You do not have access to the page : '. $data['title']);
         }
     }
 
     public function edit($id){
 
-        $data['title'] = "Edit the subscription";
-        $data['subscription'] = callAPI('/subscription/'.$id, 'get'); //TO DISPLAY THE CURRENT VALUES IN THE FORM
+        $data['title'] = "Edit the cooking space";
+        if (isManager()){
 
-        if (!$this->request->is('post')) {
-            return view('subscription/form', $data);
+            $data['cookingSpace'] = callAPI('/cookingspace/'.$id, 'get'); //TO DISPLAY THE CURRENT VALUES IN THE FORM
+//            cookingSpace.PATCH("/books/:idclient/:idcookingspace", cookingspaces.AddABooks(tokenAPI))     // WORKING
+//	cookingSpace.GET("/books/all", cookingspaces.GetCookingSpacesBooks(tokenAPI)) // WORKING")
+//	cookingSpace.DELETE("/books/:idclient/:idcookingspace", cookingspaces.DeleteABooks(tokenAPI)) // WORKING
+//	cookingSpace.GET("/books/:id", cookingspaces.GetBooksByCookingSpaceID(tokenAPI)) // WORKING
+            $data['reservations'] = callAPI('/cookingspace/books/'.$id, 'get');
+
+            $data['reservations'] = json_decode(json_encode($data['reservations']), true);
+
+            if (!$this->request->is('post')) {
+                return view('cookingSpace/edit', $data);
+            }
+            else
+            {
+                $values = $this->request->getPost();
+                $picture = $this->request->getFile('picture');
+
+                $pictureName = 'img-cookingspace-'.uniqid().'.'.$picture->getExtension(); //TODO: check extension
+                $values['priceperhour'] = (float)$values['priceperhour'];
+                $values['size'] = (int)$values['size'];
+                //TODO : check if picture is empty and remove from patch array if yes.
+                $values['picture'] = $pictureName;
+
+                $data['message'] = callAPI('/cookingspace/'.$id, 'patch', $values);
+
+                if (!$data['message']['error']){
+                    $directory = './assets/images/cookingSpaces/'.$data['message']['id'] ;
+                    if (file_exists($directory)){
+                     $objects = scandir($directory);
+                        foreach ($objects as $file){
+                            if (is_dir($file)){
+                                continue;
+                            } else {
+                                unlink($directory. DIRECTORY_SEPARATOR.$file);
+                            }
+                        }
+                    } else {
+                        mkdir($directory, 755, true);
+                        chmod($directory, 755);
+                    }
+                    $picture->move($directory, $pictureName);
+                }
+                return redirect()->to('/premises')->with('message', $data['message']['message']);
+            }
         } else {
-            $values = $this->request->getPost();
-            $data['message'] = callAPI('/subscription/'.$id, 'patch', $values);
-            return redirect()->to('/subscription/'.$id)->with('message', $data['message']['message']);
+            return redirect()->to('/')->with('message', 'You do not have access to the page : '. $data['title']);
         }
     }
+
     public function delete($id){
         helper('filesystem');
+        if (isManager()){
+            $data['message'] = callAPI('/cookingSpace/'.$id, 'delete');
 
-        $data['message'] = callAPI('/subscription/'.$id, 'delete');
-
-        if (!$data['message']['error']){
-            delete_files('./assets/images/subscriptions/img-subscription-'.$id, true);
+            if (!$data['message']['error']){
+                echo 'deleted';
+                //TODO: delete the picture FROM SERVER
+                delete_files('assets/images/cookingSpaces/'.$data['picture'], true);
+            }
+            return redirect()->to('/cookingSpace')->with('message', $data['message']['message']);
+        } else {
+            return redirect()->to('/')->with('message', 'You do not have access to the page');
         }
-
-        return redirect()->to('/subscriptions')->with('message', $data['message']['message']);
     }
 
     public function show($id){
-        $data['title'] = "Subscription";
-        $data['subscription'] = callAPI('/subscription/'.$id, 'get');
-        return view('subscription/show', $data);
+        $data['title'] = "Cooking spaces";
+        $data['cookingSpace'] = callAPI('/cookingSpace/'.$id, 'get');
+        return view('cookingSpace/show', $data);
     }
 
 }

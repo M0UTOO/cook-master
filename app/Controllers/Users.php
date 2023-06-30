@@ -13,6 +13,9 @@ class Users extends BaseController
         $data['title'] = "Sign Up";
         $data['isManager'] = isManager();
 
+        //TODO: SET COOKIE
+        //TODO: DELETE COOKIE*
+
         if (isLoggedIn()){
             $data['message'] = "You are already logged in";
             return view('users/index', $data);
@@ -25,19 +28,41 @@ class Users extends BaseController
 
         }
         elseif (!$this->request->is('post')){
+
             $data['userType'] = "Client";
-            $data['subscriptions'] = callAPI('/subscription/all', 'get');
             return view('users/signUp', $data);
         }
         else
         {
             $values = $this->request->getPost();
-            $type = $values['Type'] ;
-            unset($values['Type']);
 
-            $data['message'] = callAPI('/user/', 'post', $this->request->getPost(), ['Type' => $type]);
+            if ($values['password'] != $values['password-confirm']){
+                $data['message'] = "Passwords don't match";
+                return view('users/signUp', $data);
+            } else {
+                unset($values['password-confirm']);
+                $type = $values['Type'] ;
+                unset($values['Type']);
 
-            return view('users/index', $data);
+                $subscriptions= callAPI('/subscription/all', 'get');
+
+                    foreach ($subscriptions as $subscription) {
+                        if ($subscription->price == 0) {
+                            $default_subscription = $subscription->idsubscription;
+                            break; // Stop the loop after finding the first match
+                        }
+                    }
+
+                $values['subscription'] = $default_subscription;
+                $values['language'] = (int)$values['language'];
+
+                $tmp = new Password($values['password']);
+                $values['password'] = $tmp->__toString();
+
+                $data['message'] = callAPI('/user/', 'post', $values, ['Type' => $type]);
+                return redirect()->to('/signIn')->with('message', $data['message']['message'] . " with free subscription");
+            }
+
         }
 
     }
@@ -46,7 +71,6 @@ class Users extends BaseController
 
         if ($data['message']['error']){
             $data['message'] = $data['message']['message'];
-            //var_dump($data) ;
             return view($redirectionUrl, $data);
         } else {
             return "0";
@@ -86,26 +110,5 @@ class Users extends BaseController
         $time = date("Y-m-d H:i:s", now()); //TODO:CHECK TIME LOCATION
         $data['message'] = callAPI('/user/'.$id, 'patch', ['isblocked' => $time]);
         return redirect()->to('/dashboard/userManagement')->with('message', $data['message']['message']);
-    }
-
-    protected function getUsersEvents($id){
-        //API CALL with $id
-        return $events =
-            [
-                [
-                    'id' => 1,
-                    'name' => 'Event 1',
-                    'date' => '2021-01-01',
-                    'location' => 'Paris',
-                    'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl vitae aliquam ultricies, nunc nisl ultricies nunc',
-                ],
-                [
-                    'id' => 2,
-                    'name' => 'Event 2',
-                    'date' => '2021-01-02',
-                    'location' => 'Paris',
-                    'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl vitae aliquam ultricies, nunc nisl ultricies nunc',
-                ]
-            ];
     }
 }

@@ -57,6 +57,7 @@ $routes->get('dashboard', 'Dashboard::index');
 $routes->get('dashboard/userManagement', 'Dashboard::userManagement');
 $routes->get('dashboard/eventManagement', 'Dashboard::eventManagement');
 $routes->get('dashboard/subscriptionManagement', 'Dashboard::subscriptionManagement');
+$routes->get('dashboard/premiseManagement', 'Dashboard::premiseManagement');
 
 $routes->get('unauthorized', 'Authorization::unauthorized');
 
@@ -68,6 +69,13 @@ $routes->get('subscription/delete/(:num)', 'Subscription::delete/$1');
 $routes->get('subscription/edit/(:num)', 'Subscription::edit/$1');
 $routes->post('subscription/edit/(:num)', 'Subscription::edit/$1');
 $routes->get('subscription/(:num)', 'Subscription::show/$1'); //show one subscription
+
+//CLIENT
+$routes->get('client/subscribe', 'Client::subscribe'); //update subscription
+
+
+//PAYMENT METHODS
+$routes->get('checkout', 'Payment::checkout'); //display checkout form page
 
 //CONTRACTOR TYPES
 $routes->get('contractorTypes', 'ContractorType::index'); //show all contractorTypes
@@ -87,23 +95,56 @@ $routes->get('lesson/(:num)', 'Lesson::show/$1'); //show one lesson
 //LESSON GROUPS
 $routes->get('lessonGroups', 'LessonGroup::index'); //show all lessonGroups
 $routes->get('lessonGroup/add/', 'LessonGroup::add');
+$routes->get('lessonGroup/add/group', 'LessonGroup::addgroup');
+$routes->post('lessonGroup/add/group/', 'LessonGroup::addgroup/');
 $routes->post('lessonGroup/add/', 'LessonGroup::add/');
 $routes->get('lessonGroup/delete/(:num)', 'LessonGroup::delete/$1');
 
 //EVENTS
 $routes->get('events', 'Event::index'); //show all events
+$routes->post('events', 'Event::index'); //search events
 $routes->get('event/create', 'Event::create');
 $routes->post('event/create', 'Event::create');
 $routes->get('event/delete/(:num)', 'Event::delete/$1');
 $routes->get('event/edit/(:num)', 'Event::edit/$1');
 $routes->post('event/edit/(:num)', 'Event::edit/$1');
 $routes->get('event/(:num)', 'Event::show/$1'); //show one event
+$routes->post('event/join', 'Event::join');
+$routes->post('event/leave', 'Event::leave');
+
+//COMMENTS
+$routes->get('comment/create/(:num)', 'Comment::create/$1');
+$routes->post('comment/create/(:num)', 'Comment::create/$1');
+$routes->get('comment/delete/(:num)', 'Comment::delete/$1');
 
 //EVENT GROUPS
 /*$routes->get('eventGroups', 'EventGroup::index'); //show all lessonGroups
 $routes->get('eventGroup/add/', 'EventGroup::add');
 $routes->post('eventGroup/add/', 'EventGroup::add/');
 $routes->get('eventGroup/delete/(:num)', 'EventGroup::delete/$1');*/
+
+//PREMISES
+$routes->get('premises', 'Premise::index'); //show all premises
+$routes->get('premise/create', 'Premise::create');
+$routes->post('premise/create', 'Premise::create');
+$routes->get('premise/delete/(:num)', 'Premise::delete/$1');
+$routes->get('premise/edit/(:num)', 'Premise::edit/$1');
+$routes->post('premise/edit/(:num)', 'Premise::edit/$1');
+$routes->get('premise/(:num)', 'Premise::show/$1'); //show one premise
+
+//COOKING SPACES
+$routes->get('cookingSpace', 'CookingSpace::index'); //show all cookingspaces
+$routes->get('cookingSpace/create', 'CookingSpace::create');
+$routes->post('cookingSpace/create', 'CookingSpace::create');
+$routes->get('cookingSpace/delete/(:num)', 'CookingSpace::delete/$1');
+$routes->get('cookingSpace/edit/(:num)', 'CookingSpace::edit/$1');
+$routes->post('cookingSpace/edit/(:num)', 'CookingSpace::edit/$1');
+$routes->get('cookingSpace/(:num)', 'CookingSpace::show/$1'); //show one cookingSpace
+
+
+
+$routes->get('unauthorized', 'Authorization::unauthorized');
+
 
 
 /*

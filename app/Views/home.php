@@ -1,16 +1,28 @@
 <?= $this->include('layouts/head') ?>
 <body>
 <?= $this->include('layouts/header') ?>
-<main class="main">
 
-    <?php
-    ?>
+    <div class="container-home-title">
+        <h2 class="incoming-events-title">HOME PAGE</h2>
+    </div>
 
-    <section id="incoming-events">
-        <h2 id="incoming-events-title">Evènements à venir</h2>
-        <?php
-        ?>
-    </section>
+    <div class="recommended-orders">
+        <h2 class="recommended-orders-title">Recommended Orders :</h2>
+        <div class="random-orders-container">
+            <?php
+            foreach ($orders as $order) {
+                echo '<div class="food-card flex-column">';
+                echo '<div class="food-card-img">';
+                echo '<img src=' . base_url("assets/images/lessons/") . $order->picture . ' alt="lesson-picture" class="order-image-suggestion"/>';
+                echo '</div>';
+                echo '<div class="food-card-content">';
+                echo '<h5 class="food-card-title">' . $order->name . '</h5>';
+                echo '</div>';
+                echo '</div>';
+            }
+            ?>
+        </div>
+    </div>
 
 </main>
 <?= $this->include('layouts/footer') ?>
