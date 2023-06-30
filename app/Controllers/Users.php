@@ -87,6 +87,15 @@ class Users extends BaseController
         $data['user'] = callAPI('/user/'.$userId, 'get');
         $data['title'] = "My profile";
 
+        if (isClient()){
+            $data['client'] = callAPI('/client/'.$userId, 'get');
+            $data['comingEvents'] = callAPI('/event/coming/'.$userId, 'get');
+        } else if (isContractor()){
+            $data['contractor'] = callAPI('/contractor/'.$userId, 'get');
+        } else if (isManager()){
+            $data['manager'] = callAPI('/manager/'.$userId, 'get');
+        }
+
         return view('users/profile', $data);
     }
 
