@@ -4,77 +4,95 @@ namespace App\Controllers;
 
 class Premise extends BaseController
 {
-    //Everyone can
     public function index()
     {
-        //SHOW ALL INFO ABOUT ALL SUBSCRIPTIONS
-        $data['title'] = "Cookmaster - Subscription";
-        $data['subscriptions'] = callAPI('/subscription/all', 'get');
-        return view('subscription/index', $data);
+        $data['title'] = "Cookmaster - Premises";
+        if (isManager()){
+            //SHOW ALL INFO ABOUT ALL PREMISE
+            $data['premises'] = callAPI('/premise/all', 'get');
+            // var_dump($data['premises']);
+            return view('premises/index', $data);
+        } else {
+            return redirect()->to('/')->with('message', 'You do not have access to the page : '. $data['title']);
+        }
     }
 
     //Manager can
     public function create()
     {
-        //todo: pull api and check This WITH DELETE() TOO
-        helper('filesystem');
 
-        $data['title'] = "Create a new subscription";
+        $data['title'] = "Create a new premise";
 
-        if (!$this->request->is('post')) {
-            return view('subscription/form', $data);
-        } else {
-            $values = $this->request->getPost();
+        if (isManager()){
 
-            $values['price'] = (float)$values['price'];
-            $values['maxlessonaccess'] = (int)$values['maxlessonaccess'];
+            if (!$this->request->is('post')) {
+                return view('premises/create', $data);
+            } else {
+                $values = $this->request->getPost();
 
-            $picture = $this->request->getFile('picture');
+                $values['streetnumber'] = $values['streetnumber'];
 
-            $data['message'] = callAPI('/subscription/', 'post', $values);
-            $subscriptionID = $data['message']['id'];
+                $data['message'] = callAPI('/premise/', 'post', $values);
 
-            $picture = "img-subscription-".$subscriptionID.".". $picture->getExtension(); //check extension
-
-            $data['state'] = callAPI('/subscription/'.$subscriptionID, 'patch', ['picture' => $picture]);
-
-            if (!$data['state']['error']){
-                $picture->move('./assets/images/subscriptions/', 'img-subscription-'.$subscriptionID.'.'.$picture->getExtension());
+                return redirect()->to('/premises')->with('message', $data['message']['message']);
             }
-
-            return redirect()->to('/subscriptions')->with('message', $data['message']['message']);
-        }
-    }
-
-    public function edit($id){
-
-        $data['title'] = "Edit the subscription";
-        $data['subscription'] = callAPI('/subscription/'.$id, 'get'); //TO DISPLAY THE CURRENT VALUES IN THE FORM
-
-        if (!$this->request->is('post')) {
-            return view('subscription/form', $data);
         } else {
-            $values = $this->request->getPost();
-            $data['message'] = callAPI('/subscription/'.$id, 'patch', $values);
-            return redirect()->to('/subscription/'.$id)->with('message', $data['message']['message']);
+            return redirect()->to('/')->with('message', 'You do not have access to the page : '. $data['title']);
         }
     }
-    public function delete($id){
-        helper('filesystem');
 
-        $data['message'] = callAPI('/subscription/'.$id, 'delete');
+    public function edit($id)
+    {
 
-        if (!$data['message']['error']){
-            delete_files('./assets/images/subscriptions/img-subscription-'.$id, true);
+        $data['title'] = "Edit the premise";
+
+        if (isManager()){
+
+            $data['premise'] = callAPI('/premise/' . $id, 'get'); //TO DISPLAY THE CURRENT VALUES IN THE FORM
+
+            if (!$this->request->is('post')) {
+                return view('premises/edit', $data);
+            } else {
+                $values = $this->request->getPost();
+                $values['streetnumber'] = $values['streetnumber'];
+
+                $data['message'] = callAPI('/premise/' . $id, 'patch', $values);
+
+                return redirect()->to('/premise/edit/' . $id)->with('message', $data['message']['message']);
+            }
+        } else {
+            return redirect()->to('/')->with('message', 'You do not have access to the page : '. $data['title']);
         }
-
-        return redirect()->to('/subscriptions')->with('message', $data['message']['message']);
     }
 
-    public function show($id){
-        $data['title'] = "Subscription";
-        $data['subscription'] = callAPI('/subscription/'.$id, 'get');
-        return view('subscription/show', $data);
+    public function delete($id)
+    {
+
+        if (isManager()) {
+
+            $data['message'] = callAPI('/premise/' . $id, 'delete');
+            return redirect()->to('/premises')->with('message', $data['message']['message']);
+
+        } else {
+            return redirect()->to('/')->with('message', 'You do not have access to the page : '. $data['title']);
+        }
     }
+
+    public function show($id)
+    {
+        //SHOW INFO OF A PREMISE AND LIST COOKING SPACES IN SAID PREMISE
+        if (isManager()) {
+
+        $data['premise'] = callAPI('/premise/' . $id, 'get');
+        $data['cookingSpaces'] = callAPI('/cookingspace/premise/' . $id, 'get');
+        $data['title'] = "Premise - " . $data['premise']['name'];
+        return view('premises/show', $data);
+
+        } else {
+            $data['title'] = "Premise - X";
+            return redirect()->to('/')->with('message', 'You do not have access to the page : '. $data['title']);
+        }
+    }
+
 
 }

@@ -7,8 +7,9 @@
     "require": {
         "php": "^7.4 || ^8.0",
         "ext-curl": "*",
+        "ext-json": "*",
         "codeigniter4/framework": "^4.0",
-      "ext-json": "*"
+        "stripe/stripe-php": "^10.15"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9",

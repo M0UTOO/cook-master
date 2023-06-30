@@ -3,15 +3,6 @@
 <body>
     <?= $this->include('layouts/header') ?>
 
-        <?php
-        if (isset($message)) {
-            try {
-                echo $message ;
-            } catch (\Exception $e) {
-                echo "Something went wrong. Please try again later.";
-            }
-        }
-        ?>
 <section id="management" class="">
     <a href="<?=base_url('dashboard/userManagement')?>" class="card">
         <div class="card-body">
@@ -45,7 +36,7 @@
         </div>
     </a>
 
-    <a href="<?=base_url('dashboard/premisesManagement')?>" class="card">
+    <a href="<?=base_url('dashboard/premiseManagement')?>" class="card">
         <div class="card-body">
             <h5 class="card-title">Premises management</h5>
             <!--            get user/all and count for under-->
