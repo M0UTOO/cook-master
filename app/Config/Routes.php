@@ -105,6 +105,13 @@ $routes->get('event/delete/(:num)', 'Event::delete/$1');
 $routes->get('event/edit/(:num)', 'Event::edit/$1');
 $routes->post('event/edit/(:num)', 'Event::edit/$1');
 $routes->get('event/(:num)', 'Event::show/$1'); //show one event
+$routes->post('event/join', 'Event::join');
+$routes->post('event/leave', 'Event::leave');
+
+//COMMENTS
+$routes->get('comment/create/(:num)', 'Comment::create/$1');
+$routes->post('comment/create/(:num)', 'Comment::create/$1');
+$routes->get('comment/delete/(:num)', 'Comment::delete/$1');
 
 //EVENT GROUPS
 /*$routes->get('eventGroups', 'EventGroup::index'); //show all lessonGroups
