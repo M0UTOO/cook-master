@@ -46,26 +46,30 @@ echo $this->include('layouts/head') ;
                 $ads++;
 
                 $subscrition = getSubscription();
-                if (!isContractor() && !isManager() && $subscrition['price'] == 0){
-                    if (($ads % 3) == 0){
-                        echo "<div class='event-card col mb-3'>";
-                            echo "<div class='card-suggestion-event'>";
-                                echo "<div class='card mb-5'>";
-                                    echo "<div class='ad-container'>";
-                                        echo "<img src='https://via.placeholder.com/300x440' alt='Sample Ad' />";
-                                    echo "</div>";
-                                    echo "<div class='event-card-body-right'>";
-                                    echo "</div>";
-                                echo "</div>";
-                            echo "</div>";
-                        echo "</div>";
-                    }
+                #DISPLAY ADS
+                if (!isContractor() && !isManager()){
+                     if (isset($subscritions) && $subscrition['price'] == 0) {
+                         if (($ads % 3) == 0) {
+                             echo "<div class='event-card col mb-3'>";
+                             echo "<div class='card-suggestion-event'>";
+                             echo "<div class='card mb-5'>";
+                             echo "<div class='ad-container'>";
+                             echo "<img src='https://via.placeholder.com/300x440' alt='Sample Ad' />";
+                             echo "</div>";
+                             echo "<div class='event-card-body-right'>";
+                             echo "</div>";
+                             echo "</div>";
+                             echo "</div>";
+                             echo "</div>";
+                         }
+                     }
                 }   
 
                 // Print the private events
                 if ($event->isinternal == 1) {
                     if (!isContractor() && !isManager()){
-                        if ($subscrition['price'] == 0) {
+                        if (isset($subscritions) &&
+                            $subscrition['price'] == 0) {
                             continue;
                         }
                         continue;
