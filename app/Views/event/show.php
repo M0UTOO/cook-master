@@ -132,7 +132,7 @@ echo '<body>';
             echo '<h1 class="mt-4" style="justify-content: center;display: flex;">Comments :</h1>';
 
             if ($event['isclosed'] == true) {
-                if ($verif == false) {
+                if ($verif == true) {
                     echo '<div class="mb-4">';
                         echo '<a href="/comment/create/' . $event['idevent'] . '" id="eventOptionLink"></a>';
                     echo '</div>';

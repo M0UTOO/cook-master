@@ -32,9 +32,6 @@ echo $this->include('layouts/head') ;
         if (isset($events) && is_array($events) && count($events) > 0){
             $ads = 0;
             foreach ($events as $event){
-                // if ($event->isclosed == 1){
-                //     continue;
-                // }
                 if ($event->isprivate == 1) {
                     if (!isContractor() && !isManager()){
                         $participation = callAPI('/event/participation/' . $event->idevent, 'get');
@@ -45,11 +42,11 @@ echo $this->include('layouts/head') ;
                 }
                 $ads++;
 
-                $subscrition = getSubscription();
+                $subscription = getSubscription();
                 #DISPLAY ADS
                 if (!isContractor() && !isManager()){
-                     if (isset($subscritions) && $subscrition['price'] == 0) {
-                         if (($ads % 3) == 0) {
+                     if (isset($subscription) && $subscription['price'] == 0) {
+                         if (($ads % 5) == 0) {
                              echo "<div class='event-card col mb-3'>";
                              echo "<div class='card-suggestion-event'>";
                              echo "<div class='card mb-5'>";
@@ -68,13 +65,8 @@ echo $this->include('layouts/head') ;
                 // Print the private events
                 if ($event->isinternal == 1) {
                     if (!isContractor() && !isManager()){
-                        if (isset($subscritions) &&
-                            $subscrition['price'] == 0) {
-                            continue;
-                        }
-                        continue;
-                    } else {
-                        echo "<div class='event-card col mb-3'>";
+                        if (isset($subscription) && $subscription['price'] == 0) {
+                            echo "<div class='event-card col mb-3'>";
                             if (!isLoggedIn()){
                                 $redirection = base_url("signIn");
                             } else {
@@ -94,6 +86,7 @@ echo $this->include('layouts/head') ;
                                 echo "</div>";
                             echo "</a>";
                         echo "</div>";
+                        }
                     }
                 }
 

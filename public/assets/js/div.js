@@ -1,5 +1,4 @@
 //MAKE DIVS CLICKABLE
-<<<<<<< HEAD
 const div1 = document.querySelector("#clickable-div1");
 
 div1.addEventListener("click", function() {
@@ -48,11 +47,6 @@ div5.addEventListener("click", function() {
 const div6 = document.querySelector("#clickable-div6");
 
 div6.addEventListener("click", function() {
-=======
-const div = document.querySelector("#clickable-div");
-
-div.addEventListener("click", function() {
->>>>>>> 16a8f42 (div are clickables)
     let url = this.getAttribute("data-href");
     if (url) {
         window.location.href = url;
