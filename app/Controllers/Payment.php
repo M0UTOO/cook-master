@@ -19,7 +19,7 @@ class Payment extends BaseController
            $data['subscription'] = callAPI('/subscription/'.$subscription, 'get');
            $price = $data['subscription']['price'];
            if ($price == 0){
-               redirect()->to('/')->with('message', 'An error has occurred.');
+               return redirect()->to('/client/subscribe?subscription='.$data['subscription']['idsubscription']);
            }
        } else {
            //LIST ALL OTHER POSSIBLE CHECKOUT OPTIONS (SUBSCRIPTIONS, TODO: ITEMS, ...)
