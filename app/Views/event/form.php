@@ -34,10 +34,15 @@ use App\Controllers\LessonGroup;
                 echo form_input(['type'  => 'datetime-local', 'name'  => 'endtime', 'class' => 'form-control', 'placeholder' => "Contract end date", 'required' => 'required']);
                 echo '</div>';
 
+                echo '<div class="form-group mb-3">';
+                echo form_label('Event description' , "label-event-description");
+                $value = (isset($event) ? $event['description'] :'');
+                echo form_input(['type'  => 'text', 'name'  => 'description', 'class' => 'form-control', 'value' => $value, 'placeholder' => "Description of the event", 'required' => 'required']);
+                echo '</div>';
+
                 $booleans = [
                     'isprivate'  => 'Is a private event (customers house)',
                     'isinternal'    => 'Is an internal event (cooking space)',
-                    'isclosed' => 'Is finished'
                 ];
                 $isChecked = true;
 
@@ -57,13 +62,6 @@ use App\Controllers\LessonGroup;
                     echo form_label('Event main picture' , "label-event-picture");
                     $value = (isset($event) ? $event['defaultpicture'] :'');
                     echo form_input(['type'  => 'file', 'name'  => 'defaultpicture','value' => $value, 'class' => 'form-control']);
-                echo '</div>';
-
-                //APPEAR BUT CAN'T BE MODIFIED BUT BY MANAGER.
-                echo '<div class="form-group mb-3">'; //AUTHOR
-                    echo form_label('Event creator' , "label-event-creator");
-                    $value = (isset($author) ? $event['author'] :'');
-                    echo form_input(['type'  => 'text', 'name'  => 'content','value' => $value, 'class' => 'form-control', 'disabled' =>'disabled'], );
                 echo '</div>';
 
                 echo '<div class="form-group mb-3">';

@@ -128,8 +128,56 @@ echo '<body>';
                         } else {
                             echo "<p>There are no participation yet.</p>";
                         }
+            echo "</div>";
+            
+            echo "<section id='other-lessons'>";
+            if (isset($eventGroup)){
+            echo "<h2 class='title-suggestion-event'>Other events from this formation :</h2>";
+            echo "<div class='lesson-suggestion flex-rows'>";
+                foreach ($eventGroup as $suggestedEvent){
+                    if ($suggestedEvent->idevent != $event['idevent']){
+                        echo "<div class='event-card col mb-5'>";
+                        if (!isLoggedIn()){
+                            $redirection = base_url("signIn");
+                        } else {
+                            $redirection = base_url("event/" . $suggestedEvent->idevent);
+                        }
+                        if ($suggestedEvent->ideventgroups != 1) {
+                            $color = "card-suggestion-event-red";
+                        } else {
+                            $color = "card-suggestion-event-blue";
+                        }
+                        echo "<a href=".$redirection." class='" . $color . "'>";
+                        echo "<div class='event-card-header'>";
+                            echo "<h2>" . $suggestedEvent->name . "</h2>";
+                        echo "</div>";
+                        echo "<div class='card mb-3'>";
+                        echo "<img alt='event picture' class='card-img-top' height='250vh' src=" . base_url("assets/images/events/" . $suggestedEvent->defaultpicture) . " />";
+                            echo "<div class='card-body'>";
+                                $date['start'] = $suggestedEvent->starttime;
+                                $date['start'] = date("d/m/Y H:i:s", strtotime($date['start']));
+                                echo "<p class='card-text'>Starts at: " . $date['start'] . "</p>";
+                                $cookingspace['space'] = callAPI('/event/host/' . $suggestedEvent->idevent, 'get');
+                                if (isset($cookingspace['space']) && !empty($cookingspace['space'][0]->name)){
+                                    echo "<p class='card-text'>Hosted in: " . $cookingspace['space'][0]->name . "</p>";
+                                } else {
+                                    echo "<p class='card-text'>Hosted in: To be defind</p>";
+                                }
+                            echo "</div>";
+                            echo "<div class='event-card-body-right'>";
+                            echo "</div>";
+                        echo "</div>";
+                    echo "</div>";
+                    echo "</a>";
+                }
+            }
+            echo "</div>";
+            echo "</div>";
+            }
 
-            echo '<h1 class="mt-4" style="justify-content: center;display: flex;">Comments :</h1>';
+            if ($event['isclosed'] == true) {
+                echo '<h1 class="mt-4" style="justify-content: center;display: flex;">Comments :</h1>';
+            }
 
             if ($event['isclosed'] == true) {
                 if ($verif == true) {
@@ -167,11 +215,6 @@ echo '<body>';
                     echo '</div>';
                 }
             }
-
-            echo "<section id='other-lessons'>";
-            //TODO: DISPLAY SMALL CARDS OF THE NEXT LESSON OF THE GROUP OR RANDOM OTHER LESSON.
-            //echo $this->include("suggested_lessons");
-            echo "</section>";
 
         echo "</div>";
         

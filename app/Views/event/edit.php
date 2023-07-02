@@ -15,4 +15,4 @@ if (isset($message)) {
 }
 
 echo "<h2>" . $title ."</h2>";
-echo $this->include('lesson/form') ;
+echo $this->include('event/form') ;

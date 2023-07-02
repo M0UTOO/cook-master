@@ -321,7 +321,7 @@ footer{
     flex-wrap: wrap;
 }
 
-.card-suggestion-event {
+.card-suggestion-event-blue {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -332,6 +332,22 @@ footer{
     padding: 1em;
     border-radius: 10px;
     background-color: var(--brand-second-color);
+    color: var(--text-color);
+    text-align: center;
+    text-decoration: none;
+}
+
+.card-suggestion-event-red {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 23em;
+    height: 30em;
+    margin: 0 1em;
+    padding: 1em;
+    border-radius: 10px;
+    background-color: var(--brand-fifth-color);
     color: var(--text-color);
     text-align: center;
     text-decoration: none;
@@ -373,6 +389,16 @@ footer{
 .title-suggestion {
     display: flex;
     margin-top: 10em;
+    margin-bottom: 2em;
+    margin-right: 4em;
+    font-size: 1.5em;
+    font-weight: bold;
+    color : var(--brand-primary-color);
+    justify-content: center;
+}
+
+.title-suggestion-event {
+    display: flex;
     margin-bottom: 2em;
     margin-right: 4em;
     font-size: 1.5em;
