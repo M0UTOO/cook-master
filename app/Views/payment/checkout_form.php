@@ -49,8 +49,7 @@
                 const {error} = await stripe.confirmPayment({
                     elements,
                     confirmParams: {
-                        return_url: '#'
-                        //return_url: `${window.location.origin}/client/subscribe?subscription=` + <?php //= $subscription['idsubscription']?>//,
+                        return_url: `${window.location.origin}/client/subscribe?subscription=` + <?= $subscription['idsubscription']?>,
                     }
                     redirect: 'if_required'
                 });
