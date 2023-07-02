@@ -71,6 +71,7 @@
             } else {
                 echo '<p>You have ' . sizeof($comingEvents) . ' coming events</p>';
             }
+<<<<<<< HEAD
             echo '</div>';
         } else {
             echo '<div style="min-width: 100%;">';
@@ -173,6 +174,11 @@
         echo '</section>';
 
 
+=======
+
+
+        echo '<a href='.base_url('/subscriptions').'>Change subscriptions</a>';
+>>>>>>> 16a8f42 (div are clickables)
         ?>
 
     </main>
