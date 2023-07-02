@@ -90,6 +90,10 @@ class Users extends BaseController
         if (isClient()){
             $data['client'] = callAPI('/client/'.$userId, 'get');
             $data['comingEvents'] = callAPI('/event/coming/'.$userId, 'get');
+            $data['comments'] = callAPI('/comment/client/'.$userId, 'get');
+            $data['bills'] = callAPI('/bill/user/'.$userId, 'get');
+            $data['formations'] = callAPI('/event/formation/'.$userId, 'get');
+            $data['pastEvents'] = callAPI('/event/past/'.$userId, 'get');
         } else if (isContractor()){
             $data['contractor'] = callAPI('/contractor/'.$userId, 'get');
         } else if (isManager()){
@@ -119,5 +123,12 @@ class Users extends BaseController
         $time = date("Y-m-d H:i:s", now()); //TODO:CHECK TIME LOCATION
         $data['message'] = callAPI('/user/'.$id, 'patch', ['isblocked' => $time]);
         return redirect()->to('/dashboard/userManagement')->with('message', $data['message']['message']);
+    }
+
+    public function coming(){
+        $data['title'] = "Coming events";
+        $userId = session()->get('id');
+        $data['events'] = callAPI('/event/coming/'.$userId, 'get');
+        return view('users/coming', $data);
     }
 }

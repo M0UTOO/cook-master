@@ -36,6 +36,7 @@ $routes->get('user/profile', 'Users::profile');
 $routes->get('users/delete/(:num)', 'Users::delete/$1');
 $routes->get('users/block/(:num)', 'Users::block/$1');
 $routes->get('users/edit/(:num)', 'Users::edit/$1');
+$routes->get('user/profile/comingEvents', 'Users::coming'); //show profile coming events
 
 $routes->post('contractors/create', 'Contractor::create');
 $routes->get('contractors/create', 'Contractor::create');

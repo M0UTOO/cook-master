@@ -16,4 +16,5 @@ class Client extends Users
     public function paySubscription($id){
         redirect()->to('checkout?subscription='.$id);
     }
+
 }

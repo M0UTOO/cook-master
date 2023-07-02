@@ -59,20 +59,19 @@
         echo '<section class="account-cards" style="min-width: 100%;">';
         echo "<h1 class='mb-3'>" . $title . "</h1>";
         echo '<div class="account-row">';
-        $redirection = base_url("users/profile/comingEvents");
-        echo '<div class="d-flex flex-column account-event-card" id="clickable-div" data-href='.$redirection.'>';
+        $redirection = base_url("user/profile/comingEvents");
+        echo '<div class="d-flex flex-column account-event-card" id="clickable-div1" data-href='.$redirection.'>';
         echo '<div class="card-title">';
         echo '<h2 class="mb-3">Coming events</h2>';
         echo '</div>';
         if (isset($comingEvents) && !empty($comingEvents)) {
-            foreach ($comingEvents as $event) {
-                echo '<div class="d-flex flex-row">';
-                echo '<div class="d-flex flex-column">';
-                echo '<p>' . $event['name'] . '</p>';
-                echo '<p>' . $event['starttime'] . '</p>';
-                echo '</div>';
-                echo '</div>';
+            echo '<div style="min-width: 100%;">';
+            if (sizeof($comingEvents) == 1) {
+                echo '<p>You have ' . sizeof($comingEvents) . ' coming event</p>';
+            } else {
+                echo '<p>You have ' . sizeof($comingEvents) . ' coming events</p>';
             }
+            echo '</div>';
         } else {
             echo '<div style="min-width: 100%;">';
             echo '<p>No coming events</p>';
@@ -80,19 +79,18 @@
         }
         echo '</div>';
         $redirection = base_url("users/profile/pastEvents");
-        echo '<div class="d-flex flex-column account-event-card" id="clickable-div" data-href='.$redirection.'>';
+        echo '<div class="d-flex flex-column account-event-card" id="clickable-div2" data-href='.$redirection.'>';
         echo '<div class="card-title">';
-        echo '<h2 class="mb-3">Past events</h2>';
+        echo '<h2 class="mb-3">Past events / orders / reservations</h2>';
         echo '</div>';
         if (isset($pastEvents) && !empty($pastEvents)) {
-            foreach ($pastEvents as $event) {
-                echo '<div class="d-flex flex-row">';
-                echo '<div class="d-flex flex-column">';
-                echo '<p>' . $event['name'] . '</p>';
-                echo '<p>' . $event['starttime'] . '</p>';
-                echo '</div>';
-                echo '</div>';
+            echo '<div style="min-width: 100%;">';
+            if (sizeof($pastEvents) == 1) {
+                echo '<p>You have ' . sizeof($pastEvents) . ' past event</p>';
+            } else {
+                echo '<p>You have ' . sizeof($pastEvents) . ' past events</p>';
             }
+            echo '</div>';
         } else {
             echo '<p>No past events</p>';
         }
@@ -103,19 +101,18 @@
         echo '<section class="account-cards" style="min-width: 100%;">';
         echo '<div class="account-row">';
         $redirection = base_url("users/profile/comingEvents");
-        echo '<div class="d-flex flex-column account-event-card" id="clickable-div" data-href='.$redirection.'>';
+        echo '<div class="d-flex flex-column account-event-card" id="clickable-div3" data-href='.$redirection.'>';
         echo '<div class="card-title">';
         echo '<h2 class="mb-3">My Comments</h2>';
         echo '</div>';
         if (isset($comments) && !empty($comments)) {
-            foreach ($comments as $event) {
-                echo '<div class="d-flex flex-row">';
-                echo '<div class="d-flex flex-column">';
-                echo '<p>' . $event['name'] . '</p>';
-                echo '<p>' . $event['starttime'] . '</p>';
-                echo '</div>';
-                echo '</div>';
+            echo '<div style="min-width: 100%;">';
+            if (sizeof($comments) == 1) {
+                echo '<p>You have ' . sizeof($comments) . ' comment</p>';
+            } else {
+                echo '<p>You have ' . sizeof($comments) . ' comments</p>';
             }
+            echo '</div>';
         } else {
             echo '<div style="min-width: 100%;">';
             echo '<p>No comments</p>';
@@ -123,22 +120,13 @@
         }
         echo '</div>';
         $redirection = base_url("users/profile/pastEvents");
-        echo '<div class="d-flex flex-column account-event-card" id="clickable-div" data-href='.$redirection.'>';
+        echo '<div class="d-flex flex-column account-event-card" id="clickable-div4" data-href='.$redirection.'>';
         echo '<div class="card-title">';
         echo '<h2 class="mb-3">My Account</h2>';
         echo '</div>';
-        if (isset($account) && !empty($account)) {
-            foreach ($account as $event) {
-                echo '<div class="d-flex flex-row">';
-                echo '<div class="d-flex flex-column">';
-                echo '<p>' . $event['name'] . '</p>';
-                echo '<p>' . $event['starttime'] . '</p>';
-                echo '</div>';
-                echo '</div>';
-            }
-        } else {
-            echo '<p>No Account</p>';
-        }
+        echo '<div style="min-width: 100%;">';
+        echo '<p>See your account informations</p>';
+        echo '</div>';
         echo '</div>';
         echo '</div>';
         echo '</section>';
@@ -146,19 +134,18 @@
         echo '<section class="account-cards" style="min-width: 100%;">';
         echo '<div class="account-row">';
         $redirection = base_url("users/profile/comingEvents");
-        echo '<div class="d-flex flex-column account-event-card" id="clickable-div" data-href='.$redirection.'>';
+        echo '<div class="d-flex flex-column account-event-card" id="clickable-div5" data-href='.$redirection.'>';
         echo '<div class="card-title">';
         echo '<h2 class="mb-3">My Bills</h2>';
         echo '</div>';
         if (isset($bills) && !empty($bills)) {
-            foreach ($bills as $event) {
-                echo '<div class="d-flex flex-row">';
-                echo '<div class="d-flex flex-column">';
-                echo '<p>' . $event['name'] . '</p>';
-                echo '<p>' . $event['starttime'] . '</p>';
-                echo '</div>';
-                echo '</div>';
+            echo '<div style="min-width: 100%;">';
+            if (sizeof($bills) == 1) {
+                echo '<p>You have ' . sizeof($bills) . ' bill</p>';
+            } else {
+                echo '<p>You have ' . sizeof($bills) . ' bills</p>';
             }
+            echo '</div>';
         } else {
             echo '<div style="min-width: 100%;">';
             echo '<p>No Bills</p>';
@@ -166,19 +153,18 @@
         }
         echo '</div>';
         $redirection = base_url("users/profile/pastEvents");
-        echo '<div class="d-flex flex-column account-event-card" id="clickable-div" data-href='.$redirection.'>';
+        echo '<div class="d-flex flex-column account-event-card" id="clickable-div6" data-href='.$redirection.'>';
         echo '<div class="card-title">';
         echo '<h2 class="mb-3">My Formations</h2>';
         echo '</div>';
-        if (isset($pastEvents) && !empty($pastEvents)) {
-            foreach ($pastEvents as $event) {
-                echo '<div class="d-flex flex-row">';
-                echo '<div class="d-flex flex-column">';
-                echo '<p>' . $event['name'] . '</p>';
-                echo '<p>' . $event['starttime'] . '</p>';
-                echo '</div>';
-                echo '</div>';
+        if (isset($formations) && !empty($formations)) {
+            echo '<div style="min-width: 100%;">';
+            if (sizeof($formations) == 1) {
+                echo '<p>You have ' . sizeof($formations) . ' formation</p>';
+            } else {
+                echo '<p>You have ' . sizeof($formations) . ' formations</p>';
             }
+            echo '</div>';
         } else {
             echo '<p>No Formations</p>';
         }
