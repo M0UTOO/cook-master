@@ -59,12 +59,18 @@
         echo '<section class="account-cards" style="min-width: 100%;">';
         echo "<h1 class='mb-3'>" . $title . "</h1>";
         echo '<div class="account-row">';
+<<<<<<< HEAD
         $redirection = base_url("user/profile/comingEvents");
         echo '<div class="d-flex flex-column account-event-card" id="clickable-div1" data-href='.$redirection.'>';
+=======
+        $redirection = base_url("users/profile/comingEvents");
+        echo '<div class="d-flex flex-column account-event-card" id="clickable-div" data-href='.$redirection.'>';
+>>>>>>> c640057 (wip on account page)
         echo '<div class="card-title">';
         echo '<h2 class="mb-3">Coming events</h2>';
         echo '</div>';
         if (isset($comingEvents) && !empty($comingEvents)) {
+<<<<<<< HEAD
             echo '<div style="min-width: 100%;">';
             if (sizeof($comingEvents) == 1) {
                 echo '<p>You have ' . sizeof($comingEvents) . ' coming event</p>';
@@ -73,6 +79,16 @@
             }
 <<<<<<< HEAD
             echo '</div>';
+=======
+            foreach ($comingEvents as $event) {
+                echo '<div class="d-flex flex-row">';
+                echo '<div class="d-flex flex-column">';
+                echo '<p>' . $event['name'] . '</p>';
+                echo '<p>' . $event['starttime'] . '</p>';
+                echo '</div>';
+                echo '</div>';
+            }
+>>>>>>> c640057 (wip on account page)
         } else {
             echo '<div style="min-width: 100%;">';
             echo '<p>No coming events</p>';
@@ -80,6 +96,7 @@
         }
         echo '</div>';
         $redirection = base_url("users/profile/pastEvents");
+<<<<<<< HEAD
         echo '<div class="d-flex flex-column account-event-card" id="clickable-div2" data-href='.$redirection.'>';
         echo '<div class="card-title">';
         echo '<h2 class="mb-3">Past events / orders / reservations</h2>';
@@ -92,6 +109,21 @@
                 echo '<p>You have ' . sizeof($pastEvents) . ' past events</p>';
             }
             echo '</div>';
+=======
+        echo '<div class="d-flex flex-column account-event-card" id="clickable-div" data-href='.$redirection.'>';
+        echo '<div class="card-title">';
+        echo '<h2 class="mb-3">Past events</h2>';
+        echo '</div>';
+        if (isset($pastEvents) && !empty($pastEvents)) {
+            foreach ($pastEvents as $event) {
+                echo '<div class="d-flex flex-row">';
+                echo '<div class="d-flex flex-column">';
+                echo '<p>' . $event['name'] . '</p>';
+                echo '<p>' . $event['starttime'] . '</p>';
+                echo '</div>';
+                echo '</div>';
+            }
+>>>>>>> c640057 (wip on account page)
         } else {
             echo '<p>No past events</p>';
         }
@@ -102,11 +134,16 @@
         echo '<section class="account-cards" style="min-width: 100%;">';
         echo '<div class="account-row">';
         $redirection = base_url("users/profile/comingEvents");
+<<<<<<< HEAD
         echo '<div class="d-flex flex-column account-event-card" id="clickable-div3" data-href='.$redirection.'>';
+=======
+        echo '<div class="d-flex flex-column account-event-card" id="clickable-div" data-href='.$redirection.'>';
+>>>>>>> c640057 (wip on account page)
         echo '<div class="card-title">';
         echo '<h2 class="mb-3">My Comments</h2>';
         echo '</div>';
         if (isset($comments) && !empty($comments)) {
+<<<<<<< HEAD
             echo '<div style="min-width: 100%;">';
             if (sizeof($comments) == 1) {
                 echo '<p>You have ' . sizeof($comments) . ' comment</p>';
@@ -114,6 +151,16 @@
                 echo '<p>You have ' . sizeof($comments) . ' comments</p>';
             }
             echo '</div>';
+=======
+            foreach ($comments as $event) {
+                echo '<div class="d-flex flex-row">';
+                echo '<div class="d-flex flex-column">';
+                echo '<p>' . $event['name'] . '</p>';
+                echo '<p>' . $event['starttime'] . '</p>';
+                echo '</div>';
+                echo '</div>';
+            }
+>>>>>>> c640057 (wip on account page)
         } else {
             echo '<div style="min-width: 100%;">';
             echo '<p>No comments</p>';
@@ -121,6 +168,7 @@
         }
         echo '</div>';
         $redirection = base_url("users/profile/pastEvents");
+<<<<<<< HEAD
         echo '<div class="d-flex flex-column account-event-card" id="clickable-div4" data-href='.$redirection.'>';
         echo '<div class="card-title">';
         echo '<h2 class="mb-3">My Account</h2>';
@@ -128,6 +176,24 @@
         echo '<div style="min-width: 100%;">';
         echo '<p>See your account informations</p>';
         echo '</div>';
+=======
+        echo '<div class="d-flex flex-column account-event-card" id="clickable-div" data-href='.$redirection.'>';
+        echo '<div class="card-title">';
+        echo '<h2 class="mb-3">My Account</h2>';
+        echo '</div>';
+        if (isset($account) && !empty($account)) {
+            foreach ($account as $event) {
+                echo '<div class="d-flex flex-row">';
+                echo '<div class="d-flex flex-column">';
+                echo '<p>' . $event['name'] . '</p>';
+                echo '<p>' . $event['starttime'] . '</p>';
+                echo '</div>';
+                echo '</div>';
+            }
+        } else {
+            echo '<p>No Account</p>';
+        }
+>>>>>>> c640057 (wip on account page)
         echo '</div>';
         echo '</div>';
         echo '</section>';
@@ -135,11 +201,16 @@
         echo '<section class="account-cards" style="min-width: 100%;">';
         echo '<div class="account-row">';
         $redirection = base_url("users/profile/comingEvents");
+<<<<<<< HEAD
         echo '<div class="d-flex flex-column account-event-card" id="clickable-div5" data-href='.$redirection.'>';
+=======
+        echo '<div class="d-flex flex-column account-event-card" id="clickable-div" data-href='.$redirection.'>';
+>>>>>>> c640057 (wip on account page)
         echo '<div class="card-title">';
         echo '<h2 class="mb-3">My Bills</h2>';
         echo '</div>';
         if (isset($bills) && !empty($bills)) {
+<<<<<<< HEAD
             echo '<div style="min-width: 100%;">';
             if (sizeof($bills) == 1) {
                 echo '<p>You have ' . sizeof($bills) . ' bill</p>';
@@ -147,6 +218,16 @@
                 echo '<p>You have ' . sizeof($bills) . ' bills</p>';
             }
             echo '</div>';
+=======
+            foreach ($bills as $event) {
+                echo '<div class="d-flex flex-row">';
+                echo '<div class="d-flex flex-column">';
+                echo '<p>' . $event['name'] . '</p>';
+                echo '<p>' . $event['starttime'] . '</p>';
+                echo '</div>';
+                echo '</div>';
+            }
+>>>>>>> c640057 (wip on account page)
         } else {
             echo '<div style="min-width: 100%;">';
             echo '<p>No Bills</p>';
@@ -154,6 +235,7 @@
         }
         echo '</div>';
         $redirection = base_url("users/profile/pastEvents");
+<<<<<<< HEAD
         echo '<div class="d-flex flex-column account-event-card" id="clickable-div6" data-href='.$redirection.'>';
         echo '<div class="card-title">';
         echo '<h2 class="mb-3">My Formations</h2>';
@@ -166,6 +248,21 @@
                 echo '<p>You have ' . sizeof($formations) . ' formations</p>';
             }
             echo '</div>';
+=======
+        echo '<div class="d-flex flex-column account-event-card" id="clickable-div" data-href='.$redirection.'>';
+        echo '<div class="card-title">';
+        echo '<h2 class="mb-3">My Formations</h2>';
+        echo '</div>';
+        if (isset($pastEvents) && !empty($pastEvents)) {
+            foreach ($pastEvents as $event) {
+                echo '<div class="d-flex flex-row">';
+                echo '<div class="d-flex flex-column">';
+                echo '<p>' . $event['name'] . '</p>';
+                echo '<p>' . $event['starttime'] . '</p>';
+                echo '</div>';
+                echo '</div>';
+            }
+>>>>>>> c640057 (wip on account page)
         } else {
             echo '<p>No Formations</p>';
         }
@@ -173,8 +270,11 @@
         echo '</div>';
         echo '</section>';
 
+<<<<<<< HEAD
 
 =======
+=======
+>>>>>>> c640057 (wip on account page)
 
 
         echo '<a href='.base_url('/subscriptions').'>Change subscriptions</a>';
