@@ -533,3 +533,10 @@ footer{
     text-decoration: none;
     margin-bottom: 5em;
 }
+
+.event-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}

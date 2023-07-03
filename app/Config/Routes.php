@@ -113,6 +113,11 @@ $routes->get('event/(:num)', 'Event::show/$1'); //show one event
 $routes->post('event/join', 'Event::join');
 $routes->post('event/leave', 'Event::leave');
 
+//EVENTS CONTRACTORS
+$routes->get('eventContractor/delete/(:num)/(:num)', 'EventContractor::delete/$1/$2');
+$routes->get('eventContractor/add', 'EventContractor::addcontractor');
+$routes->post('eventContractor/add', 'EventContractor::addcontractor/');
+
 //EVENTS GROUPS
 $routes->get('eventGroups', 'EventGroup::index'); //show all lessonGroups
 $routes->get('eventGroup/add/', 'EventGroup::add');

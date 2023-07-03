@@ -11,11 +11,18 @@ function displayDifficultyLevel( $difficulty )
 $currentId = getCurrentUserId();
             $action = base_url('event/join');
             $verif = false;
+            $verifContractor = false;
             foreach ($participation as $client) {
                 if ($client->iduser == $currentId) {
                     $verif = true;
                 }
             }
+            foreach ($animate as $contractor) {
+                if ($contractor->iduser == $currentId) {
+                    $verifContractor = true;
+                }
+            }
+
 
 
 echo '<body>';
@@ -44,7 +51,7 @@ echo '<body>';
         if (isset($event)){
 
             echo "<div class='lesson-card d-flex flex-column'>";
-            if (isManager() || session()->get('id') == $animate[0]->iduser){
+            if (isManager() || $verifContractor == true){
                 echo '<div class="">';
                 echo '<a class="me-3" href="/event/delete/' . $event["idevent"] . '"><img src=' . base_url("assets/images/svg/trash-icon-red.svg") . ' alt="delete-icon" class="icons" /></a>';
                 echo '<a class="me-3" href="/eventGroup/delete/' . $event["idevent"] . '"><img src=' . base_url("assets/images/svg/trash-icon-red.svg") . ' alt="delete-icon" class="icons" /></a>';
@@ -77,6 +84,22 @@ echo '<body>';
                             $date['start'] = date("d/m/Y H:i:s", strtotime($date['start']));
                             echo "<h3>Starts at: " . $date['start'] . "</h3>";
                         echo "</h3>";
+                    echo '</div>';
+                    echo '<div>';
+                        echo "<h3>Hosted by :</h3>";
+                        if (isset($animate) && !empty($animate)) {
+                            foreach($animate as $contractor){
+                                $info = callAPI('/contractor/'.$contractor->idcontractor, 'get');
+                                echo '<div class="d-flex" style="justify-content: space-between;">';
+                                    echo "<h5>" . $info['firstname'] . " " . $info['lastname'] . "</h5>";
+                                    if (isManager() || $verifContractor == true){
+                                        echo '<a class="ml-3" href="/eventContractor/delete/' . $event["idevent"] . '/' . $contractor->idcontractor . '"><img src=' . base_url("assets/images/svg/trash-icon-red.svg") . ' alt="delete-icon" class="icons" /></a>';
+                                    }
+                                    echo '</div>';
+                            }
+                        } else {
+                            echo "<h5>To be defined</h5>";
+                        }
                     echo '</div>';
                 echo '</div>';
             echo '</div>';
