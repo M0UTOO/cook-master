@@ -6,7 +6,10 @@ echo $this->include('layouts/head') ;
 
     echo "<h2>" . $title . "</h2>";
 
-if (isset($cookingSpaces) && is_array($cookingSpaces) && count($cookingSpaces) > 0) {
+
+    echo "<div id='calendar'></div>";
+
+//if (isset($cookingSpaces) && is_array($cookingSpaces) && count($cookingSpaces) > 0) {
 
 //    echo '<section class="table-responsive">';
 //    echo '<table class="table">';
@@ -51,37 +54,50 @@ if (isset($cookingSpaces) && is_array($cookingSpaces) && count($cookingSpaces) >
 //        echo "</tbody>";
 //        echo "</table>";
 //        echo '</section>';
- foreach ($cookingSpaces as $cookingSpace){
-      echo "<div class='event-card col mb-5'>";
-                    if (!isLoggedIn()){
-                        $redirection = base_url("signIn");
-                    } else {
-                        $redirection = base_url("cookingSpace/" . $cookingSpace->idCookingSpace);
-                    }
-                    echo "<a href=".$redirection." class='card-suggestion-event'>";
-                    echo "<div class='event-card-header'>";
-                        echo "<h2>" . $cookingSpace->name . "</h2>";
-                    echo "</div>";
-                    echo "<div class='card mb-3'>";
-                    echo "<img alt='event picture' class='card-img-top' height='250vh' src=" . base_url("assets/images/cookingSpaces/default.png") . " />";
-                        echo "<div class='card-body'>";
-
-                        echo "</div>";
-                        echo "<div class='event-card-body-right'>";
-                        echo "</div>";
-                    echo "</div>";
-                echo "</div>";
-                echo "</a>";
-    }
-} else
-    {
-    echo "<p>There are no premises yet.</p>";
-    }
-
+// foreach ($cookingSpaces as $cookingSpace){
+//      echo "<div class='event-card col mb-5'>";
+//                    if (!isLoggedIn()){
+//                        $redirection = base_url("signIn");
+//                    } else {
+//                        $redirection = base_url("cookingSpace/" . $cookingSpace->idCookingSpace);
+//                    }
+//                    echo "<a href=".$redirection." class='card-suggestion-event'>";
+//                    echo "<div class='event-card-header'>";
+//                        echo "<h2>" . $cookingSpace->name . "</h2>";
+//                    echo "</div>";
+//                    echo "<div class='card mb-3'>";
+//                    echo "<img alt='event picture' class='card-img-top' height='250vh' src=" . base_url("assets/images/cookingSpaces/default.png") . " />";
+//                        echo "<div class='card-body'>";
+//
+//                        echo "</div>";
+//                        echo "<div class='event-card-body-right'>";
+//                        echo "</div>";
+//                    echo "</div>";
+//                echo "</div>";
+//                echo "</a>";
+//    }
+//} else
+//    {
+//    echo "<p>There are no premises yet.</p>";
+//    }
+//
     echo '</main>';
     echo $this->include('layouts/footer')
     ?>
     </body>
+
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
+<script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'timeGridWeek'
+        });
+        calendar.render();
+    });
+
+</script>
 <script src=<?= base_url('assets/js/tables.js')?>></script>
 </html>
 
