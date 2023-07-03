@@ -6,10 +6,6 @@ echo $this->include('layouts/head') ;
 
     echo "<h2>" . $title . "</h2>";
 
-        if (isManager()){
-            echo '<a href="/cookingSpace/create"><img src=' . base_url("assets/images/svg/add-circle-icon.svg") . ' alt="plus-icon" class="icons" /></a>';
-        }
-
 if (isset($cookingSpaces) && is_array($cookingSpaces) && count($cookingSpaces) > 0) {
 
 //    echo '<section class="table-responsive">';
@@ -77,8 +73,7 @@ if (isset($cookingSpaces) && is_array($cookingSpaces) && count($cookingSpaces) >
                 echo "</div>";
                 echo "</a>";
     }
-}
-    else
+} else
     {
     echo "<p>There are no premises yet.</p>";
     }

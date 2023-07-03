@@ -12,7 +12,7 @@ echo "<section id='focus-premise'>";
         echo $premise['name'] ;
         if (isManager()){
             echo '<a href="/premise/delete/' . $premise["idPremise"] . '"><img src=' . base_url("assets/images/svg/trash-icon-red.svg") . ' alt="delete-icon" class="icons ms-5" /></a>';
-            echo '<a href="/premise/edit/' . $premise["idPremise"] . '"><img src=' . base_url("assets/images/svg/moon-icon.svg") . ' alt="modify-icon" class="icons ms-3" /></a>';
+            echo '<a href="/premise/edit/' . $premise["idPremise"] . '"><img src=' . base_url("assets/images/svg/edit-icon.svg") . ' alt="modify-icon" class="icons ms-3" /></a>';
             echo "</h3>";
             echo "<p>Location: " . $premise['streetNumber'] . " " . $premise['streetName']  . " - " . $premise['city'] ."</p>";
             echo "</div>";
@@ -58,7 +58,7 @@ if (isset($premise)) {
 
                 echo "<td>";
                 echo '<a href="/cookingSpace/delete/' . $cookingSpace->idPremise . '"><img src=' . base_url("assets/images/svg/trash-icon-red.svg") . ' alt="delete-icon" class="icons ms-3" /></a>';
-                echo '<a href="/cookingSpace/edit/' . $cookingSpace->idPremise . '"><img src=' . base_url("assets/images/svg/moon-icon.svg") . ' alt="modify-icon" class="icons ms-1" /></a>';
+                echo '<a href="/cookingSpace/edit/' . $cookingSpace->idPremise . '"><img src=' . base_url("assets/images/svg/edit-icon.svg") . ' alt="modify-icon" class="icons ms-1" /></a>';
                 echo "</td>";
             }
             echo '</tr>';
