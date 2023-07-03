@@ -11,6 +11,9 @@
             if (isset($user)){
                 foreach ($user as $key => $value){
                     echo "<p>$key: $value</p>";
+                    if ($key == "profilepicture"){
+                        echo "<img width='100px' src=".base_url('assets/images/users/'.$value)." alt='use profile picture'>";
+                    }
                 }
             } else {
                 echo "Error charging user info.";

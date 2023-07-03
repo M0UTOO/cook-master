@@ -10,7 +10,7 @@ echo '<div>';
 echo '<a data-bs-toggle="modal" data-bs-target="#userTypeModal"><img  src=' . base_url("assets/images/svg/add-user-icon-blue.svg") . ' alt="modify-icon" class="icons" /></a>';
 echo $this->include("dashboard/chooseUserTypeModal.php");
 
-echo '<a href="'.base_url('contractorTypes').'"><img  src=' . base_url("assets/images/svg/add-user-icon-blue.svg") . ' alt="modify-icon" class="icons" /></a>';
+echo '<a href="'.base_url('contractorTypes').'"><img  src=' . base_url("assets/images/svg/add-circle-icon.svg") . ' alt="modify-icon" class="icons" /></a>';
 echo '</div>';
 ?>
 
@@ -38,7 +38,7 @@ echo '</div>';
         echo '<td>';
         echo '<div class="d-flex justify-content-around">';
         echo '<a href="/users/delete/' . $typeOfUser->idusers . '"><img src=' . base_url("assets/images/svg/trash-icon-red.svg") . ' alt="delete-icon" class="icons" /></a>';
-        echo '<a href="/users/block/' . $typeOfUser->idusers . '"><img src=' . base_url("assets/images/svg/trash-icon-black.svg") . ' alt="block-icon" class="icons" /></a>';
+        echo '<a href="/users/block/' . $typeOfUser->idusers . '"><img src=' . base_url("assets/images/svg/lock-icon-blue.svg") . ' alt="block-icon" class="icons" /></a>';
         echo '</div>';
         echo '</td>';
         echo "</tr>";

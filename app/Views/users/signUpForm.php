@@ -34,7 +34,7 @@ echo form_open_multipart($action, 'id="signUp-form" class="w-75 v-50 d-flex flex
 
 echo '<div class="form-group">';
 $value = get_cookie('email');
-$email_value = ($value != null) ? $value : $email_value;
+$email_value = isset($email_value) ? $email_value : (isset($value) ? $value : "");
 echo form_label('Your email <img src=' . base_url("assets/images/svg/icon-mail-red.svg") . ' alt="email-icon" class="icons ms-2 mb-1" />', "label-email");
 echo form_input(['type'  => 'email', 'id' => 'sign-up-email-input', 'name'  => 'email', 'value' => $email_value,'class' => 'form-control mb-1', 'placeholder' => $email_placeholder, 'required' => 'required']);
 echo '</div>';

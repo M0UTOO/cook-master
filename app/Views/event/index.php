@@ -7,7 +7,7 @@ echo $this->include('layouts/head') ;
     echo $this->include('layouts/header') ;
     helper('form');
 
-    echo "<h1 class='mb-3'>" . $title . "<img alt='logo' class='' src=" . base_url("assets/images/svg/moon-icon.svg") . " /></h1>";
+    echo "<h1 class='mb-3'>" . $title . "<img alt='logo' width='50px' class='ms-2' src=" . base_url("assets/images/svg/start-event-icon-blue.svg") . " /></h1>";
 
 
         if (isManager()){
