@@ -2,12 +2,8 @@
 
 <body >
     <div class="signInBody">
-        <?= $this->include('layouts/header') ?>
+            <?= $this->include('layouts/header');
 
-            <?php
-            if (isset($message)) {
-                echo $message;
-            }
             echo "<section id='signIn-section' class='w-100 column-list'>";
             echo $this->include('signin/signInForm.php');
 

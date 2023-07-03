@@ -13,17 +13,14 @@ class Users extends BaseController
         $data['title'] = "Sign Up";
         $data['isManager'] = isManager();
 
-        //TODO: SET COOKIE
-        //TODO: DELETE COOKIE*
-
         if (isLoggedIn()){
             $data['message'] = "You are already logged in";
-            return view('users/index', $data);
+            return redirect()->to('/')->with('message', $data['message']);
         }
         else if ($this->request->getPost('mini')){
             $data['mini'] = false; //TO SHOW THE FULL FORM AND NOT THE MINI ONE
             $data['email'] = $this->request->getPost('email');//TO ADD THE EMAIL AUTOMATICALLY IN NEXT PAGE
-           echo "ok";
+
             return view('users/signUp', $data);
 
         }

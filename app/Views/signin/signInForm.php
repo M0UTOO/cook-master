@@ -6,13 +6,13 @@ $email = "E-mail";
 
 helper('form');
 
-echo "<h2>".$signIn."<img alt='logo' src=". base_url("assets/images/toque-logo-1-medium.svg") ." /></h2>";
+echo "<h2>".$signIn."<img class='ms-3 mb-3' alt='logo' src=". base_url("assets/images/svg/logo-cookmaster/logo-cookmaster-medium.svg") ." /></h2>";
 echo form_open("", 'id="signIn-form" class="w-75 v-50 d-flex flex-column justify-content-around"');
 
-    //TODO:change type to email when end of testing
+
     echo '<div class="form-group">';
-    echo form_label('Your email <img src='.base_url("assets/images/svg/menu.svg").' alt="email-icon" class="icons" />', "label-email");
-    echo form_input(['type'  => 'text', 'name'  => 'email' ,'class' => 'form-control', 'placeholder' => $email, 'required' => 'required']);
+    echo form_label('Your email <img src='.base_url("assets/images/svg/icon-mail-red.svg").' alt="email-icon" class="icons ms-1 mb-1" />', "label-email");
+    echo form_input(['type'  => 'email', 'name'  => 'email' ,'class' => 'form-control', 'placeholder' => $email, 'required' => 'required']);
     echo '</div>';
 
     echo '<div class="form-group">';
