@@ -5,41 +5,43 @@ namespace App\Controllers;
 class EventGroup extends BaseController
 {
     //TODO: CREATE ROUTES IN ROUTES.php
-    private $lessonGroups;
+    private $eventGroups;
     public function __construct()
     {
         helper('curl_helper');
-        $this->lessonGroups = $this->getLessonGroupsFromDB();
+        $this->eventGroups = $this->getEventGroupsFromDB();
     }
 
     public function index()
     {
-        $data['title'] = "All lesson groups";
-        $data['lessonGroups'] = callAPI('/lesson/group/all', 'get');
+        $data['title'] = "All event groups";
+        $data['eventGroups'] = callAPI('/event/group/all', 'get');
 
-        return view('lessonGroup/index', $data);
+        return view('eventGroup/index', $data);
     }
 
 
 
       public function add()
     {
-        $data['title'] = "Add a lesson to a group";
+        $data['title'] = "Add a event to a formation";
 
         if (!$this->request->is('post'))
         {
-            return view('lessonGroup/add', $data);
+            return view('eventGroup/add', $data);
         }
         else
         {
             $values = $this->request->getPost();
-            var_dump($values);
-            $lessonid = $values['idlesson'];
-            unset($values['idlesson']);
+            $eventid = $values['idevent'];
+            unset($values['idevent']);
+            $values['name'] = $values['lesson-group-choice'];
+            unset($values['lesson-group-choice']);
+            $values['group_display_order'] = (int)$values['group_display_order'];
 
-            $data['message'] = callAPI('/lesson/group/'.$lessonid, 'post', $values);
+            $data['message'] = callAPI('/event/group/'.$eventid, 'post', $values);
 
-            return redirect()->to('/lessons')->with('message', $data['message']['message']);
+            return redirect()->to('/events')->with('message', $data['message']['message']);
         }
     }
 
@@ -63,27 +65,27 @@ class EventGroup extends BaseController
 
     public function delete($id)
     {
-        $data['message'] = callAPI('/lesson/group/'.$id, 'delete');
+        $data['message'] = callAPI('/event/group/'.$id, 'delete');
 
-        return redirect()->to('/lessonGroups')->with('message', $data['message']['message']);
+        return redirect()->to('/event/' . $id)->with('message', $data['message']['message']);
     }
 
-    public function getLessonsByGroup($id)
+    public function getEventsByGroup($id)
     {
-        $data['title'] = "Lessons by group";
-        return $data['lessons'] = callAPI('/lesson/group/'.$id, 'get');
+        $data['title'] = "Events by group";
+        return $data['events'] = callAPI('/event/group/'.$id, 'get');
     }
 
-    public function getLessonGroupsFromDB()
+    public function getEventGroupsFromDB()
     {
-        $response = callAPI('/lesson/group/all', 'get');
+        $response = callAPI('/event/group/all', 'get');
 
         return $response;
     }
 
-    public function getLessonGroups()
+    public function getEventGroups()
     {
-        return $this->lessonGroups;
+        return $this->eventGroups;
     }
 
 

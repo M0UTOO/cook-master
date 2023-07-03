@@ -87,13 +87,15 @@ class Event extends BaseController
         $currentUser['subscription'] = session()->get('subscription');
         $data['event'] = callAPI('/event/'.$id, 'get');
         $data['rate'] = callAPI('/event/rate/'.$id, 'get');
+        $data['animate'] = callAPI('/event/animate/'.$id, 'get');
         $data['participation'] = callAPI('/event/participate/' . $data['event']['idevent'], 'get');
         $data['comments'] = callAPI('/event/comment/' . $data['event']['idevent'], 'get');
         if ($data['event']['ideventgroups'] != 1) {
             $data['eventGroup'] = callAPI('/event/group/' . $data['event']['ideventgroups'], 'get');
+            $data['group'] = callAPI('/event/groups/' . $data['event']['idevent'], 'get');
         }
         if ($data['event']['isprivate'] == true) {
-            if ($data['participation'] != null) {
+            if ($data['participation'] != null && $currentUser['role'] != 'manager' && $currentUser['role'] != 'contractor') {
                 return redirect()->to('/events')->with('message', "Event already joined.");
             }
         }
@@ -202,5 +204,17 @@ class Event extends BaseController
         }
 
         return redirect()->to('/events')->with('message', $data['message']['message']);
+    }
+
+    public function group() {
+        $data['title'] = "Add an event to a group";
+        $data['events'] = callAPI('/event/all', 'get');
+        $data['groups'] = callAPI('/eventGroup/all', 'get');
+        return view('event/group', $data);
+    }
+
+    public function getAllEvents()
+    {
+        return callAPI('/event/all', 'get');
     }
 }

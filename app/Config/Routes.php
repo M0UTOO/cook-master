@@ -113,6 +113,14 @@ $routes->get('event/(:num)', 'Event::show/$1'); //show one event
 $routes->post('event/join', 'Event::join');
 $routes->post('event/leave', 'Event::leave');
 
+//EVENTS GROUPS
+$routes->get('eventGroups', 'EventGroup::index'); //show all lessonGroups
+$routes->get('eventGroup/add/', 'EventGroup::add');
+$routes->get('eventGroup/add/group', 'EventGroup::addgroup');
+$routes->post('eventGroup/add/group/', 'EventGroup::addgroup/');
+$routes->post('eventGroup/add/', 'EventGroup::add/');
+$routes->get('eventGroup/delete/(:num)', 'EventGroup::delete/$1');
+
 //COMMENTS
 $routes->get('comment/create/(:num)', 'Comment::create/$1');
 $routes->post('comment/create/(:num)', 'Comment::create/$1');

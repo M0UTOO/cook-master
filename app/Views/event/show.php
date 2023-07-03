@@ -19,6 +19,7 @@ $currentId = getCurrentUserId();
 
 
 echo '<body>';
+
     echo $this->include('layouts/header') ;
 
     helper('form');
@@ -43,9 +44,10 @@ echo '<body>';
         if (isset($event)){
 
             echo "<div class='lesson-card d-flex flex-column'>";
-            if (isManager() || isContractor()){
+            if (isManager() || session()->get('id') == $animate[0]->iduser){
                 echo '<div class="">';
                 echo '<a class="me-3" href="/event/delete/' . $event["idevent"] . '"><img src=' . base_url("assets/images/svg/trash-icon-red.svg") . ' alt="delete-icon" class="icons" /></a>';
+                echo '<a class="me-3" href="/eventGroup/delete/' . $event["idevent"] . '"><img src=' . base_url("assets/images/svg/trash-icon-red.svg") . ' alt="delete-icon" class="icons" /></a>';
                 echo '<a href="/event/edit/' . $event["idevent"] . '"><img src=' . base_url("assets/images/svg/moon-icon.svg") . ' alt="modify-icon" class="icons" /></a>';
                 echo '</div>';
             }
@@ -132,7 +134,7 @@ echo '<body>';
             
             echo "<section id='other-lessons'>";
             if (isset($eventGroup)){
-            echo "<h2 class='title-suggestion-event'>Other events from this formation :</h2>";
+            echo "<h2 class='title-suggestion-event'>Other events from the formation " . $group[0]->name . " :</h2>";
             echo "<div class='lesson-suggestion flex-rows'>";
                 foreach ($eventGroup as $suggestedEvent){
                     if ($suggestedEvent->idevent != $event['idevent']){

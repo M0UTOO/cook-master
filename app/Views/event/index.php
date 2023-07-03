@@ -10,7 +10,7 @@ echo $this->include('layouts/head') ;
     echo "<h1 class='mb-3'>" . $title . "<img alt='logo' class='' src=" . base_url("assets/images/svg/moon-icon.svg") . " /></h1>";
 
 
-        if (isManager()){
+        if (isManager() || isContractor()){
             echo $this->include('event/eventOptionsModal') ;
             echo '<div>';
                 echo '<a id="eventOptionLink" data-bs-toggle="modal" data-bs-target="#eventOptionsModal"></a>';
@@ -45,7 +45,7 @@ echo $this->include('layouts/head') ;
                 $subscription = getSubscription();
                 #DISPLAY ADS
                 if (!isContractor() && !isManager()){
-                     if (isset($subscription) && $subscription['price'] == 0) {
+                     if ((isset($subscription) && $subscription['price'] == 0) || !isLoggedIn()) {
                          if (($ads % 5) == 0) {
                              echo "<div class='event-card col mb-3'>";
                              echo "<div class='card-suggestion-event-blue'>";
@@ -65,7 +65,7 @@ echo $this->include('layouts/head') ;
                 // Print the private events
                 if ($event->isinternal == 1) {
                     if (!isContractor() && !isManager()){
-                        if (isset($subscription) && $subscription['price'] == 0) {
+                        if ((isset($subscription) && $subscription['price'] == 0) || !isLoggedIn()) {
                             echo "<div class='event-card col mb-3'>";
                             if (!isLoggedIn()){
                                 $redirection = base_url("signIn");
