@@ -95,9 +95,7 @@ class SignIn extends BaseController
         {
             $session = session();
             $session->destroy();
-
-            $data['title'] = "Sign Out";
-            $data['message'] = "You are now logged out";
+            $data['message'] = "Come back soon !";
         }
         return redirect('/')->with('message', $data['message']);
     }
