@@ -6,7 +6,10 @@ echo $this->include('layouts/head') ;
 
     echo "<h2>" . $title . "</h2>";
 
-if (isset($cookingSpaces) && is_array($cookingSpaces) && count($cookingSpaces) > 0) {
+
+    echo "<div id='calendar'></div>";
+
+//if (isset($cookingSpaces) && is_array($cookingSpaces) && count($cookingSpaces) > 0) {
 
 //    echo '<section class="table-responsive">';
 //    echo '<table class="table">';
@@ -82,6 +85,19 @@ if (isset($cookingSpaces) && is_array($cookingSpaces) && count($cookingSpaces) >
     echo $this->include('layouts/footer')
     ?>
     </body>
+
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
+<script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'timeGridWeek'
+        });
+        calendar.render();
+    });
+
+</script>
 <script src=<?= base_url('assets/js/tables.js')?>></script>
 </html>
 
