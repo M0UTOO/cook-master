@@ -4,7 +4,7 @@ echo "<section>";
 
         if (isManager()){
             //CREATE A RESERVATION FOR A CLIENT ?  LINK THE ROOM TO AN EVENT.
-            echo '<a href="/cookingSpace/create"><img src=' . base_url("assets/images/svg/add-circle-icon.svg") . ' alt="plus-icon" class="icons" /></a>';
+            echo '<a href="#"><img src=' . base_url("assets/images/svg/add-circle-icon.svg") . ' alt="plus-icon" class="icons" /></a>';
         }
 
 if (isset($reservations) && is_array($reservations) && count($reservations) > 0) {
