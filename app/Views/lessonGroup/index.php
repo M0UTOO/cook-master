@@ -4,7 +4,7 @@ echo $this->include('layouts/head') ;
     echo '<body>';
     echo $this->include('layouts/header') ;
 
-    echo "<h2>" . $title . "<img alt='logo' class='' src=" . base_url("assets/images/svg/moon-icon.svg") . " /></h2>";
+    echo "<h2>" . $title . "<img alt='logo' class='ms-3' src=" . base_url("assets/images/svg/package-icon-blue.svg") . " /></h2>";
 
     if (isset($message)) {
             try {
@@ -14,7 +14,7 @@ echo $this->include('layouts/head') ;
             }
         }
         if (isContractor()){
-            echo '<a href="/lessonGroup/add/group"><img src=' . base_url("assets/images/svg/add-user-icon-blue.svg") . ' alt="plus-icon" class="icons" /></a>';
+            echo '<a href="/lessonGroup/add/group"><img src=' . base_url("assets/images/svg/package-icon-blue.svg") . ' alt="plus-icon" class="icons" /></a>';
         }
 
     if (isset($lessonGroups) && is_array($lessonGroups) && count($lessonGroups) > 0){

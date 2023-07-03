@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use CodeIgniter\I18n\Time;
+
 class Users extends BaseController
 {
     public function index()
@@ -32,6 +34,7 @@ class Users extends BaseController
         else
         {
             $values = $this->request->getPost();
+            $picture = $this->request->getFile('profilepicture');
 
             if ($values['password'] != $values['password-confirm']){
                 $data['message'] = "Passwords don't match";
@@ -57,21 +60,26 @@ class Users extends BaseController
                 $values['password'] = $tmp->__toString();
 
                 $data['message'] = callAPI('/user/', 'post', $values, ['Type' => $type]);
-                return redirect()->to('/signIn')->with('message', $data['message']['message'] . " with free subscription");
+                $user_id = $data['message']['iduser'];
+
+                //SAVE PROFILEPICTURE ON SERVER: PICTURE NAME IS TIMESTAMP TO NOT MAKE IT OBVIOUS TO FIND
+                $picture_name = "img-".$user_id . "_" . date('Y_mdHis', (new Time())->now()->getTimestamp()) . "." . $picture->getExtension(); //check extension
+
+                $data['state'] = callAPI('/user/'.$user_id, 'patch', ['profilepicture' => $picture_name]);
+
+                if (!$data['state']['error']){
+                    $directory = './assets/images/users';
+                    if (!file_exists($directory)){
+                        mkdir($directory, 755, true);
+                        chmod($directory, 755);
+                    }
+                    $picture->move($directory, $picture_name);
+                }
+                return redirect()->to('/signIn')->with('message', $data['message']['message'] . ". Log in to start your cookmaster experience !");
             }
 
         }
 
-    }
-
-    private function getError(array $data, string $redirectionUrl): string{
-
-        if ($data['message']['error']){
-            $data['message'] = $data['message']['message'];
-            return view($redirectionUrl, $data);
-        } else {
-            return "0";
-        }
     }
 
     public function profile(){
@@ -104,7 +112,6 @@ class Users extends BaseController
     public function edit($id){
 
         $data['user'] = callAPI('/user/'.$id, 'get');
-        //TODO: SHOW SIGNUP FORM WITH USER DATA PRE-FILLED
         return view('users/profile', $data);
     }
     public function delete($id){

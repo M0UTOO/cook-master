@@ -33,7 +33,7 @@ echo $this->include('layouts/head') ;
 
                 echo "<td>";
                 echo '<a href="/premise/delete/' . $premise->idPremise . '"><img src=' . base_url("assets/images/svg/trash-icon-red.svg") . ' alt="delete-icon" class="icons" /></a>';
-                echo '<a href="/premise/edit/' . $premise->idPremise . '"><img src=' . base_url("assets/images/svg/moon-icon.svg") . ' alt="modify-icon" class="icons" /></a>';
+                echo '<a href="/premise/edit/' . $premise->idPremise . '"><img src=' . base_url("assets/images/svg/edit-icon.svg") . ' alt="modify-icon" class="icons ms-3" /></a>';
                 echo "</td>";
 
                 echo '</tr>';
