@@ -90,6 +90,7 @@ class Event extends BaseController
         $data['animate'] = callAPI('/event/animate/'.$id, 'get');
         $data['participation'] = callAPI('/event/participate/' . $data['event']['idevent'], 'get');
         $data['comments'] = callAPI('/event/comment/' . $data['event']['idevent'], 'get');
+        $data['space'] = callAPI('/event/host/' . $data['event']['idevent'], 'get');
         if ($data['event']['ideventgroups'] != 1) {
             $data['eventGroup'] = callAPI('/event/group/' . $data['event']['ideventgroups'], 'get');
             $data['group'] = callAPI('/event/groups/' . $data['event']['idevent'], 'get');

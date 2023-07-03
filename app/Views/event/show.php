@@ -86,6 +86,19 @@ echo '<body>';
                         echo "</h3>";
                     echo '</div>';
                     echo '<div>';
+                    echo '<div class="event-host">';
+                        echo "<h4 style='margin-right: 5px;'>Will take place in :</h4>";
+                        if (isset($space) && !empty($space[0]->name)){
+                                echo "<h4>" . $space[0]->name . "</h4>";
+                                if (isManager() || $verifContractor == true){
+                                    echo '<a class="mr-3" href="/eventSpace/delete/' . $event["idevent"] . '/' . $space[0]->idcookingspace .'"><img src="http://localhost:8080/assets/images/svg/trash-icon-red.svg" alt="delete-icon" class="icons" style="margin-left: 5px;margin-bottom: 4px;"></a>';
+                                }
+                        } else {
+                            echo "<h4>To be defined</h4>";
+                        }   
+                        echo '</div>';
+                    echo '</div>';
+                    echo '<div>';
                         echo "<h3>Hosted by :</h3>";
                         if (isset($animate) && !empty($animate)) {
                             foreach($animate as $contractor){
