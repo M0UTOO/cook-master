@@ -152,6 +152,11 @@ $routes->get('eventContractor/delete/(:num)/(:num)', 'EventContractor::delete/$1
 $routes->get('eventContractor/add', 'EventContractor::addcontractor');
 $routes->post('eventContractor/add', 'EventContractor::addcontractor/');
 
+//EVENTS SPACE
+$routes->get('eventSpace/delete/(:num)/(:num)', 'EventSpace::delete/$1/$2');
+$routes->get('eventSpace/add', 'EventSpace::addspace');
+$routes->post('eventSpace/add', 'EventSpace::addspace/');
+
 //EVENTS GROUPS
 $routes->get('eventGroups', 'EventGroup::index'); //show all lessonGroups
 $routes->get('eventGroup/add/', 'EventGroup::add');
