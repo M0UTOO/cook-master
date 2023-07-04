@@ -474,7 +474,9 @@ footer{
     text-align: center;
     text-decoration: none;
 }
-
+.all_parent{
+    width: 100%;
+}
 .room-calendar {
-    min-width: 80%;
+    min-width: 85%;
 }
