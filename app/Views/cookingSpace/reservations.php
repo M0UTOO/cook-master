@@ -48,4 +48,5 @@ if (isset($reservations) && is_array($reservations) && count($reservations) > 0)
     else {
         echo '<p>No cooking spaces reservations found</p>';
     }
+echo "</section>";
 

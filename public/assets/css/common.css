@@ -504,9 +504,96 @@ footer{
     text-align: center;
     text-decoration: none;
 }
-
+.all_parent{
+    width: 100%;
+}
 .room-calendar {
-    min-width: 80%;
+    min-width: 85%;
+}
+
+.account-row {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+}
+
+.card-title {
+    background-color: var(--brand-second-color);
+    min-width: 100%;
+    padding: 1em;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin-bottom: 3.5em;
+}
+
+.account-event-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40em;
+    height: 15em;
+    margin: 0 1em;
+    border-radius: 10px;
+    box-shadow: 0 0px 2px rgba(0, 0, 0, 0.5);
+    color: var(--text-color);
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    margin-bottom: 5em;
+}
+
+.event-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.event-host {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+tr.no-pointer {
+    cursor: default;
+}
+
+.img-participation {
+    margin-left: 10px;
+}
+
+.btn-closed-event {
+    background-color: var(--brand-second-color);
+    color: var(--text-color);
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-closed-event:hover {
+    background-color: var(--brand-primary-color);
+    color : var(--bg-color);
+}
+
+.account-formation-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20em;
+    height: 15em;
+    margin: 0 1em;
+    border-radius: 10px;
+    box-shadow: 0 0px 2px rgba(0, 0, 0, 0.5);
+    color: var(--text-color);
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    margin-bottom: 5em;
 }
 
 .account-row {
