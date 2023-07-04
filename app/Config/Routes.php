@@ -151,6 +151,11 @@ $routes->get('eventGroup/delete/(:num)', 'EventGroup::delete/$1');
 $routes->get('eventContractor/delete/(:num)/(:num)', 'EventContractor::delete/$1/$2');
 $routes->get('eventContractor/add', 'EventContractor::addcontractor');
 $routes->post('eventContractor/add', 'EventContractor::addcontractor/');
+$routes->get('eventContractor/index/(:num)', 'EventContractor::index/$1');
+$routes->get('eventContractor/validate/(:num)', 'EventContractor::clientValidation/$1'); //show one event
+$routes->get('eventContractor/removeParticipant/(:num)/(:num)', 'EventContractor::removeParticipant/$1/$2');
+$routes->get('eventContractor/addParticipant/(:num)/(:num)', 'EventContractor::addParticipant/$1/$2');
+
 
 //EVENTS SPACE
 $routes->get('eventSpace/delete/(:num)/(:num)', 'EventSpace::delete/$1/$2');
