@@ -82,7 +82,7 @@
         $redirection = base_url("user/profile/pastEvents");
         echo '<div class="d-flex flex-column account-event-card" id="clickable-div2" data-href='.$redirection.'>';
         echo '<div class="card-title">';
-        echo '<h2 class="mb-3">Past events / orders / reservations</h2>';
+        echo '<h2 class="mb-3">Past events</h2>';
         echo '</div>';
         if (isset($pastEvents) && !empty($pastEvents)) {
             echo '<div style="min-width: 100%;">';
