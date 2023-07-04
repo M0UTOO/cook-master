@@ -7,14 +7,16 @@ class CookingSpace extends BaseController
     //Everyone can
     public function index()
     {
+        helper('pagination');
         $data['title'] = "Cookmaster - Cooking spaces";
 
-        if (isManager()){
-            $data['cookingSpace'] = callAPI('/cookingspace/all', 'get');
-            return view('cookingSpace/index', $data);
-        } else {
-            return redirect()->to('/')->with('message', 'You do not have access to the page : '. $data['title']);
-        }
+        $cookingSpaces['cookingSpaces'] = callAPI('/cookingspace/all', 'get');
+
+        $cookingSpaces['pagination'] = pagination($cookingSpaces['cookingSpaces']);
+        $data['cookingSpaces'] = $cookingSpaces['pagination']['display'];
+        $data['totalPages'] = $cookingSpaces['pagination']['totalPages'];
+
+        return view('cookingSpace/index', $data);
     }
 
     //Manager can
@@ -127,8 +129,13 @@ class CookingSpace extends BaseController
     }
 
     public function show($id){
-        $data['title'] = "Cooking spaces";
+        $data['title'] = "Cookmaster - Cooking space";
+
         $data['cookingSpace'] = callAPI('/cookingspace/'.$id, 'get');
+
+        $data['reservations'] = callAPI('/cookingspace/books/'.$id, 'get');
+        $data['reservations'] = json_decode(json_encode($data['reservations']), true);
+
         return view('cookingSpace/show', $data);
     }
 
