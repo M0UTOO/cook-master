@@ -16,7 +16,7 @@ echo "<div id='calendar' class='mt-4 mb-4 room-calendar'></div>";
 
 
     foreach ($reservations as $reservation){
-        //CHANGE DATE FORMAT BEACAUSE OF THE LIBRARY : ISO 8601
+        //CHANGE DATE FORMAT BECAUSE OF THE LIBRARY : ISO 8601
         $startTime= (new DateTime($reservation['starttime']))->format('Y-m-d\TH:i:s');
         $endTime= (new DateTime($reservation['endtime']))->format('Y-m-d\TH:i:s');
         echo "reservations.push({title: 'Client reservation',color: '#4D47A7','allDay': false, start: '".$startTime."', end: '".$endTime."'});";
@@ -40,6 +40,10 @@ echo "<div id='calendar' class='mt-4 mb-4 room-calendar'></div>";
                 startTime: '8:00',
                 endTime: '20:00',
             },
+            selectable: true,
+            selectMirror: true,
+            selectOverlap: false,
+            selectConstraint: 'businessHours',
             events: reservations,
             headerToolbar: {
                 left: 'title',
@@ -47,6 +51,10 @@ echo "<div id='calendar' class='mt-4 mb-4 room-calendar'></div>";
             eventClick: function(info) {
                 alert('Event: ' + info.event.title);
                 //info.el.style.borderColor = 'green';
+            },
+            select: function(info) {
+                //redirect to controller to allow user to make a reservation
+                alert('selected ' + info.startStr + ' to ' + info.endStr);
             }
         });
         calendar.render();
