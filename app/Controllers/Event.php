@@ -214,8 +214,24 @@ class Event extends BaseController
         return view('event/group', $data);
     }
 
-    public function getAllEvents()
-    {
+    public function getAllEvents() {
         return callAPI('/event/all', 'get');
+    }
+
+    public function close($id) {
+        $data['animate'] = callAPI('/event/animate/'.$id, 'get');
+        $currentId = getCurrentUserId();
+        $verifContractor = false;
+        foreach ($data['animate'] as $contractor) {
+            if ($contractor->iduser == $currentId) {
+                $verifContractor = true;
+            }
+        }
+        if (isManager() || $verifContractor) {
+            $data['message'] = callAPI('/event/'.$id, 'patch', ['isclosed' => 1]);
+            return redirect()->to('/eventContractor/index/' . $currentId)->with('message', $data['message']['message']);
+        } else {
+            return redirect()->to('/eventContractor/index/' . $currentId)->with('message', "You are not allowed to access this page.");
+        }
     }
 }

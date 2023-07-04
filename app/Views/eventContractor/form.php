@@ -53,17 +53,21 @@ echo "<h2>" . $title . "</h2>";
         $contractors = new EventContractor();
         $contractors = $contractors->getAllContractors();
 
-        if (!empty($contractors)) {
-            foreach ($contractors as $key) {
-                $key = (array)$key;
-                $tmp[$key['idcontractor']] = $key['email'];
-            }
+        if (isContractor()) {
+            $tmp[$contractors['idcontractor']] = $contractors['email'];
             echo form_dropdown('idcontractor', $tmp, '', 'class="form-control" required="required"');
+        } else {
+            if (!empty($contractors)) {
+                foreach ($contractors as $key) {
+                    $key = (array)$key;
+                    $tmp[$key['idcontractor']] = $key['email'];
+                }
+                echo form_dropdown('idcontractor', $tmp, '', 'class="form-control" required="required"');
+            } else {
+                echo '<p>No contractors found, please <a href="'.base_url('signIn').'">create</a>some first.</p>';
+           }
+           echo '</div>';
         }
-        else {
-             echo '<p>No contractors found, please <a href="'.base_url('signIn').'">create</a>some first.</p>';
-        }
-        echo '</div>';
 
         echo '<div class="form-group mb-3">';
         echo form_submit('', 'Save', 'class="btn blue-btn form-control mt-3"');

@@ -35,9 +35,13 @@ echo '<body>';
         echo "<h1 class='mb-3'>This event is closed !</h1>";
         if (isset($rate)) {
             echo '<div class="d-flex flex-row">';
-            echo '<h3 class="me-2">Rating : </h3>';
-            displayDifficultyLevel($rate['grade']);
-            echo '<h3 class="me-2">/5</h3>';
+            if (isset($comments) && is_array($comments) && count($comments) > 0) {
+                echo '<h3 class="me-2">Rating : </h3>';
+                displayDifficultyLevel($rate['grade']);
+                echo '<h3 class="me-2">/5</h3>';
+            } else {
+                echo '<h3 class="me-2">No rating yet.</h3>';
+            }
             echo "</div>";
         } else {
             echo "<h2 class='mb-3'>No rating yet.</h2>";
@@ -214,7 +218,11 @@ echo '<body>';
             }
 
             if ($event['isclosed'] == true) {
-                echo '<h1 class="mt-4" style="justify-content: center;display: flex;">Comments :</h1>';
+                if (isset($comments) && is_array($comments) && count($comments) > 0) {
+                    echo '<h1 class="mt-4" style="justify-content: center;display: flex;">Comments :</h1>';
+                } else {
+                    echo '<h1 class="mt-4" style="justify-content: center;display: flex;">No comments yet.</h1>';
+                }
             }
 
             if ($event['isclosed'] == true) {

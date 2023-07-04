@@ -112,11 +112,17 @@ $routes->post('event/edit/(:num)', 'Event::edit/$1');
 $routes->get('event/(:num)', 'Event::show/$1'); //show one event
 $routes->post('event/join', 'Event::join');
 $routes->post('event/leave', 'Event::leave');
+$routes->get('event/close/(:num)', 'Event::close/$1');
 
 //EVENTS CONTRACTORS
 $routes->get('eventContractor/delete/(:num)/(:num)', 'EventContractor::delete/$1/$2');
 $routes->get('eventContractor/add', 'EventContractor::addcontractor');
 $routes->post('eventContractor/add', 'EventContractor::addcontractor/');
+$routes->get('eventContractor/index/(:num)', 'EventContractor::index/$1');
+$routes->get('eventContractor/validate/(:num)', 'EventContractor::clientValidation/$1'); //show one event
+$routes->get('eventContractor/removeParticipant/(:num)/(:num)', 'EventContractor::removeParticipant/$1/$2');
+$routes->get('eventContractor/addParticipant/(:num)/(:num)', 'EventContractor::addParticipant/$1/$2');
+
 
 //EVENTS SPACE
 $routes->get('eventSpace/delete/(:num)/(:num)', 'EventSpace::delete/$1/$2');

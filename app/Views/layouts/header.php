@@ -18,6 +18,11 @@ helper('html') ?>
 <nav id="burger-menu" class="d-none vh-100 d-flex flex-column align-items-center mt-1">
     <a class="m-2 p-3" href="/lessons" class="nav-link">Our Lessons</a>
     <a class="m-2 p-3" href="/events" class="nav-link">Our Events</a>
+    <?php
+    if (isContractor()) {
+        echo '<a class="m-2 p-3" href="' . base_url('eventContractor/index/' . session()->get('id') . '') . '" class="nav-link">My events</a>';
+    }
+    ?>
     <a class="m-2 p-3" href="#" class="nav-link">Our shop (in construction)</a>
     <a class="m-2 p-3" href="/cookingSpace" class="nav-link">Cook in our spaces</a>
     <a class="m-2 p-3" href="/subscriptions" class="nav-link">Our subscriptions</a>

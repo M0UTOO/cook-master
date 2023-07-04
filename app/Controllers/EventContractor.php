@@ -27,6 +27,15 @@ class EventContractor extends BaseController
         }
     }
 
+    public function index($id)
+    {
+        $data['title'] = "My events";
+        $data['events'] = callAPI('/event/animate/get/'.$id, 'get');
+        $data['idcontractor'] = $id;
+
+        return view('eventContractor/index', $data);
+    }
+
     public function delete($idevent, $idcontractor)
     {
         $data['message'] = callAPI('/event/animate/'.$idevent . '/' . $idcontractor, 'delete');
@@ -49,7 +58,36 @@ class EventContractor extends BaseController
 
     public function getAllContractors()
     {
-        return callAPI('/contractor/all', 'get');
+        if (isContractor()) {
+            $id = getCurrentUserId();
+            return callAPI('/contractor/' . $id, 'get');
+        } else {
+            return callAPI('/contractor/all', 'get');
+        }
+    }
+
+    public function clientValidation($id)
+    {
+        $data['title'] = "Validate client participation";
+        $data['clients'] = callAPI('/event/participate/'.$id, 'get');
+        $data['event'] = callAPI('/event/'.$id, 'get');
+        $data['animate'] = callAPI('/event/animate/'.$id, 'get');
+
+        return view('eventContractor/validate', $data);
+    }
+
+    public function removeParticipant($idevent, $iduser)
+    {
+        $data['message'] = callAPI('/event/participation/'.$idevent . '/' . $iduser, 'delete');
+
+        return redirect()->to('/eventContractor/validate/' . $idevent)->with('message', $data['message']['message']);
+    }
+
+    public function addParticipant($idevent, $iduser)
+    {
+        $data['message'] = callAPI('/event/participation/'.$idevent . '/' . $iduser, 'patch');
+
+        return redirect()->to('/eventContractor/validate/' . $idevent)->with('message', $data['message']['message']);
     }
 
 }
