@@ -244,8 +244,8 @@ echo '<body>';
                                 echo '</div>';
                                 if ($comment->iduser == $currentId) {
                                     echo '<div class="d-flex flex-row">';
-                                        echo '<a class="me-3" href="/comment/delete/' . $comment->idcomment . '"><img src=' . base_url("assets/images/svg/trash-icon-red.svg") . ' alt="delete-icon" class="icons" /></a>';
-                                        echo '<a href="/comment/edit/' . $comment->idcomment . '"><img src=' . base_url("assets/images/svg/moon-icon.svg") . ' alt="modify-icon" class="icons" /></a>';
+                                        echo '<a class="me-3" href="/comment/delete/' . $comment->idcomment . '/0"><img src=' . base_url("assets/images/svg/trash-icon-red.svg") . ' alt="delete-icon" class="icons" /></a>';
+                                        echo '<a href="/comment/edit/' . $comment->idcomment . '/0"><img src=' . base_url("assets/images/svg/moon-icon.svg") . ' alt="modify-icon" class="icons" /></a>';
                                     echo '</div>';
                                 }
                             echo '</div>';

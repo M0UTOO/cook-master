@@ -52,3 +52,21 @@ div6.addEventListener("click", function() {
         window.location.href = url;
     }
 });
+
+const div7 = document.querySelector("#clickable-div7");
+
+div7.addEventListener("click", function() {
+    let url = this.getAttribute("data-href");
+    if (url) {
+        window.location.href = url;
+    }
+});
+
+const div8 = document.querySelector("#clickable-div8");
+
+div8.addEventListener("click", function() {
+    let url = this.getAttribute("data-href");
+    if (url) {
+        window.location.href = url;
+    }
+});

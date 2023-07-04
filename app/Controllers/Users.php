@@ -131,4 +131,18 @@ class Users extends BaseController
         $data['events'] = callAPI('/event/coming/'.$userId, 'get');
         return view('users/coming', $data);
     }
+
+    public function past(){
+        $data['title'] = "Past events";
+        $userId = session()->get('id');
+        $data['events'] = callAPI('/event/past/'.$userId, 'get');
+        return view('users/coming', $data);
+    }
+
+    public function comment(){
+        $data['title'] = "My Comments";
+        $userId = session()->get('id');
+        $data['comments'] = callAPI('/comment/client/'.$userId, 'get');
+        return view('users/comment', $data);
+    }
 }

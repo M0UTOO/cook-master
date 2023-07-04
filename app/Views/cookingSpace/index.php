@@ -62,7 +62,7 @@ if (isset($cookingSpaces) && is_array($cookingSpaces) && count($cookingSpaces) >
                     } else {
                         $redirection = base_url("cookingSpace/" . $cookingSpace->idCookingSpace);
                     }
-                    echo "<a href=".$redirection." class='card-suggestion-event'>";
+                    echo "<a href=".$redirection." class='card-suggestion-event-blue'>";
                     echo "<div class='event-card-header'>";
                         echo "<h2>" . $cookingSpace->name . "</h2>";
                     echo "</div>";

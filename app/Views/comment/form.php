@@ -2,12 +2,11 @@
 
 use App\Controllers\Comment;
 
-
     $hidden_input = ['user_id' => session()->get('id')];
     $url = uri_string();
     $url = preg_replace('/[0-9]+/', '', $url);
-    if ($url == "comment/edit/") {
-        $action = "comment/edit/".$comment['idcomment'];
+    if ($url == "comment/edit//") {
+        $action = "comment/edit/".$idcomment . "/" . $page . "";
     } else {
         $action = "comment/create/" . $idevent . "";
     }

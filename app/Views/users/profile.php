@@ -78,10 +78,10 @@
             echo '</div>';
         }
         echo '</div>';
-        $redirection = base_url("users/profile/pastEvents");
+        $redirection = base_url("user/profile/pastEvents");
         echo '<div class="d-flex flex-column account-event-card" id="clickable-div2" data-href='.$redirection.'>';
         echo '<div class="card-title">';
-        echo '<h2 class="mb-3">Past events / orders / reservations</h2>';
+        echo '<h2 class="mb-3">Past events</h2>';
         echo '</div>';
         if (isset($pastEvents) && !empty($pastEvents)) {
             echo '<div style="min-width: 100%;">';
@@ -100,7 +100,48 @@
 
         echo '<section class="account-cards" style="min-width: 100%;">';
         echo '<div class="account-row">';
-        $redirection = base_url("users/profile/comingEvents");
+        $redirection = base_url("user/profile/pastOrders");
+        echo '<div class="d-flex flex-column account-event-card" id="clickable-div7" data-href='.$redirection.'>';
+        echo '<div class="card-title">';
+        echo '<h2 class="mb-3">Past orders</h2>';
+        echo '</div>';
+        if (isset($pastOrders) && !empty($pastOrders)) {
+            echo '<div style="min-width: 100%;">';
+            if (sizeof($pastOrders) == 1) {
+                echo '<p>You have ' . sizeof($pastOrders) . ' past order</p>';
+            } else {
+                echo '<p>You have ' . sizeof($pastOrders) . ' past orders</p>';
+            }
+            echo '</div>';
+        } else {
+            echo '<div style="min-width: 100%;">';
+            echo '<p>No past orders</p>';
+            echo '</div>';
+        }
+        echo '</div>';
+        $redirection = base_url("user/profile/pastReservations");
+        echo '<div class="d-flex flex-column account-event-card" id="clickable-div8" data-href='.$redirection.'>';
+        echo '<div class="card-title">';
+        echo '<h2 class="mb-3">Past reservations</h2>';
+        echo '</div>';
+        if (isset($pastReservations) && !empty($pastReservations)) {
+            echo '<div style="min-width: 100%;">';
+            if (sizeof($pastReservations) == 1) {
+                echo '<p>You have ' . sizeof($pastReservations) . ' past reservation</p>';
+            } else {
+                echo '<p>You have ' . sizeof($pastReservations) . ' past reservations</p>';
+            }
+            echo '</div>';
+        } else {
+            echo '<p>No past reservations</p>';
+        }
+        echo '</div>';
+        echo '</div>';
+        echo '</section>';
+
+        echo '<section class="account-cards" style="min-width: 100%;">';
+        echo '<div class="account-row">';
+        $redirection = base_url("user/profile/comments");
         echo '<div class="d-flex flex-column account-event-card" id="clickable-div3" data-href='.$redirection.'>';
         echo '<div class="card-title">';
         echo '<h2 class="mb-3">My Comments</h2>';
@@ -119,7 +160,7 @@
             echo '</div>';
         }
         echo '</div>';
-        $redirection = base_url("users/profile/pastEvents");
+        $redirection = base_url("users/profile/account");
         echo '<div class="d-flex flex-column account-event-card" id="clickable-div4" data-href='.$redirection.'>';
         echo '<div class="card-title">';
         echo '<h2 class="mb-3">My Account</h2>';

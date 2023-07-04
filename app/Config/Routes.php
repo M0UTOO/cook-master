@@ -37,6 +37,8 @@ $routes->get('users/delete/(:num)', 'Users::delete/$1');
 $routes->get('users/block/(:num)', 'Users::block/$1');
 $routes->get('users/edit/(:num)', 'Users::edit/$1');
 $routes->get('user/profile/comingEvents', 'Users::coming'); //show profile coming events
+$routes->get('user/profile/pastEvents', 'Users::past'); //show profile coming events
+$routes->get('user/profile/comments', 'Users::comment'); //show profile coming events
 
 $routes->post('contractors/create', 'Contractor::create');
 $routes->get('contractors/create', 'Contractor::create');
@@ -140,7 +142,9 @@ $routes->get('eventGroup/delete/(:num)', 'EventGroup::delete/$1');
 //COMMENTS
 $routes->get('comment/create/(:num)', 'Comment::create/$1');
 $routes->post('comment/create/(:num)', 'Comment::create/$1');
-$routes->get('comment/delete/(:num)', 'Comment::delete/$1');
+$routes->get('comment/delete/(:num)/(:num)', 'Comment::delete/$1/$2');
+$routes->get('comment/edit/(:num)/(:num)', 'Comment::edit/$1/$2');
+$routes->post('comment/edit/(:num)/(:num)', 'Comment::edit/$1/$2');
 
 //EVENT GROUPS
 /*$routes->get('eventGroups', 'EventGroup::index'); //show all lessonGroups

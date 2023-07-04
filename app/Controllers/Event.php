@@ -96,8 +96,17 @@ class Event extends BaseController
             $data['group'] = callAPI('/event/groups/' . $data['event']['idevent'], 'get');
         }
         if ($data['event']['isprivate'] == true) {
-            if ($data['participation'] != null && $currentUser['role'] != 'manager' && $currentUser['role'] != 'contractor') {
-                return redirect()->to('/events')->with('message', "Event already joined.");
+            if ($data['participation'] != null ) {
+                $currentId = getCurrentUserId();
+                $verif = false;
+                foreach ($data['participation'] as $client) {
+                    if ($client->iduser == $currentId) {
+                        $verif = true;
+                    }
+                }
+                if ($currentUser['role'] != 'manager' && $currentUser['role'] != 'contractor' && !$verif) {
+                    return redirect()->to('/events')->with('message', "Event already joined.");
+                }
             }
         }
         
