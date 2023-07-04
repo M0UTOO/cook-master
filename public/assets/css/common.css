@@ -505,6 +505,10 @@ footer{
     text-decoration: none;
 }
 
+.room-calendar {
+    min-width: 80%;
+}
+
 .account-row {
     display: flex !important;
     flex-wrap: wrap !important;
