@@ -1,12 +1,10 @@
 <?php
 
-echo "<h2 class='mt-4'>Availabilty</h2>";
+echo "<h2 class='align-self-start mt-4'>Availabilty</h2>";
 
-echo "<p id='test'></p>";
-echo "<div id='calendar' class='mt-4 room-calendar'></div>";
+echo "<div id='calendar' class='mt-4 mb-4 room-calendar'></div>";
 
 ?>
-</body>
 
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
 <script>
@@ -35,7 +33,7 @@ echo "<div id='calendar' class='mt-4 room-calendar'></div>";
             slotMinTime: "07:00:00",
             slotMaxTime: "21:00:00",
             themeSystem: 'bootstrap5',
-            timeZone: 'UTC',
+            expandRows: true,
             businessHours: {
                 // days of week. an array of zero-based day of week integers (0=Sunday)
                 daysOfWeek: [ 0, 1, 2, 3, 4, 5, 6 ],
@@ -56,5 +54,5 @@ echo "<div id='calendar' class='mt-4 room-calendar'></div>";
 
 </script>
 <script src=<?= base_url('assets/js/tables.js')?>></script>
-</html>
+
 

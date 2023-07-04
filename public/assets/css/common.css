@@ -507,9 +507,27 @@ footer{
 .all_parent{
     width: 100%;
 }
+
+/*COOKIGN SPACES */
+
 .room-calendar {
     min-width: 85%;
 }
+#focus-cooking-space{
+    min-width: 100vw ;
+}
+.room-picture{
+    width: 50%;
+    height: 100%;
+}
+.room-picture img{
+    object-fit: cover;
+}
+.room-infos{
+    width: 50%;
+    height: 100%;
+}
+
 
 .account-row {
     display: flex !important;
