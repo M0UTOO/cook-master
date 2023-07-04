@@ -7,7 +7,7 @@ echo $this->include('layouts/head') ;
     echo "<h2>" . $title . "</h2>";
 
 
-    echo "<div id='calendar'></div>";
+    echo "<div id='calendar' class='room-calendar'></div>";
 
 //if (isset($cookingSpaces) && is_array($cookingSpaces) && count($cookingSpaces) > 0) {
 
@@ -82,7 +82,7 @@ echo $this->include('layouts/head') ;
 //    }
 //
     echo '</main>';
-    echo $this->include('layouts/footer')
+    echo $this->include('layouts/footer');
     ?>
     </body>
 
@@ -92,7 +92,30 @@ echo $this->include('layouts/head') ;
     document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'timeGridWeek'
+            initialView: 'timeGridWeek',
+            allDaySlot: false,
+            slotMinTime: "07:00:00",
+            slotMaxTime: "19:00:00",
+            themeSystem: 'bootstrap5',
+            businessHours: {
+                // days of week. an array of zero-based day of week integers (0=Sunday)
+                daysOfWeek: [ 1, 2, 3, 4, 5, 6, 7 ],
+
+                startTime: '9:00', // a start time (10am in this example)
+                endTime: '18:00', // an end time (6pm in this example)
+            },
+            events: [
+                {
+                    id: 'a',
+                    title: 'event3',
+                    start: new Date(2023,7,7),
+                    end: new Date(2023,7,8)
+                }
+            ],
+            // headerToolbar: {
+            //     left: 'prev,next',
+            //     center: 'title',
+            // }
         });
         calendar.render();
     });

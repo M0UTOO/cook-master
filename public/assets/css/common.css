@@ -474,3 +474,7 @@ footer{
     text-align: center;
     text-decoration: none;
 }
+
+.room-calendar {
+    min-width: 80%;
+}
