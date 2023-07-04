@@ -12,6 +12,7 @@ echo $this->include('cookingSpace/form') ;
 echo "</section>";
 
 echo $this->include('cookingSpace/reservations') ;
+echo $this->include('cookingSpace/availability') ;
 
 echo '</main>';
 echo $this->include('layouts/footer')
