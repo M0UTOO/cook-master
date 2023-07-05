@@ -72,6 +72,7 @@ $routes->get('subscription/(:num)', 'Subscription::show/$1'); //show one subscri
 
 //CLIENT
 $routes->get('client/subscribe', 'Client::subscribe'); //update subscription
+$routes->post('client/book', 'Client::books'); //update subscription
 
 
 //PAYMENT METHODS
