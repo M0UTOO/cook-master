@@ -10,13 +10,13 @@ class Event extends BaseController
         if($this->request->is('post')) {
             $values = $this->request->getPost();
             $values['search'] = str_replace(' ', '%20', $values['search']);
-            $data['title'] = "Join the cooking course of your dreams";
+            $data['title'] = lang('Common.eventsTitle');
             $data['events'] = callAPI('/event/search/' . $values['search'] . '', 'post', $this->request->getPost());
             $data['search'] = $values['search'];
             return view('event/index', $data);
         }
 
-        $data['title'] = "Join the cooking course of your dreams";
+        $data['title'] = lang('Common.eventsTitle');
         $events['events'] = callAPI('/event/all', 'get');
         
         $events['pagination'] = pagination($events['events']);
@@ -31,7 +31,7 @@ class Event extends BaseController
     {
         helper('filesystem');
 
-        $data['title'] = "Create a new event";
+        $data['title'] = lang('Common.create_events');;
 
         if (!$this->request->is('post')) {
             return view('event/create', $data);

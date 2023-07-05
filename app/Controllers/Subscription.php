@@ -8,7 +8,7 @@ class Subscription extends BaseController
     public function index()
     {
         //SHOW ALL INFO ABOUT ALL SUBSCRIPTIONS
-        $data['title'] = "Cookmaster - Subscription";
+        $data['title'] = "Cookmaster - " .lang('Common.subscriptions');
         $data['subscriptions'] = callAPI('/subscription/all', 'get');
         return view('subscription/index', $data);
     }
@@ -18,7 +18,7 @@ class Subscription extends BaseController
     {
         helper('filesystem');
 
-        $data['title'] = "Create a new subscription";
+        $data['title'] = lang('Common.create_subscription');
 
         if (!$this->request->is('post')) {
             return view('subscription/create', $data);
@@ -28,33 +28,46 @@ class Subscription extends BaseController
             $values['price'] = (float)$values['price'];
             $values['maxlessonaccess'] = (int)$values['maxlessonaccess'];
 
+            if (isset($values['allowroombooking'])) {
+                $values['allowroombooking'] = (bool)$values['allowroombooking'];
+            }
+            if (isset($values['allowchat'])) {
+                $values['allowchat'] = (bool)$values['allowchat'];
+            }
+            if (isset($values['allowshopreduction'])) {
+                $values['allowshopreduction'] = (bool)$values['allowshopreduction'];
+            }
+
             $picture = $this->request->getFile('picture');
-
             $data['message'] = callAPI('/subscription/', 'post', $values);
-            if (isset($data['message']['id'])){
-                $subscriptionID = $data['message']['id'];
 
-                $picture_name = "img-subscription-".$subscriptionID.".". $picture->getExtension(); //check extension
+            //if < 2MB, valid and not empty:
+            if (!empty($picture->getName()) && $picture->getSize() <= 2000000) {
 
-                $data['state'] = callAPI('/subscription/'.$subscriptionID, 'patch', ['picture' => $picture_name]);
+                if (isset($data['message']['id'])) {
+                    $subscriptionID = $data['message']['id'];
+                    $picture_name = "img-subscription-" . $subscriptionID . "." . $picture->getExtension(); //check extension
 
-                if (!$data['state']['error']){
-                    $directory = './assets/images/subscriptions';
-                    if (!file_exists($directory)){
-                        mkdir($directory, 755, true);
-                        chmod($directory, 755);
+                    $data['state'] = callAPI('/subscription/' . $subscriptionID, 'patch', ['picture' => $picture_name]);
+
+                    if (!$data['state']['error']) {
+                        $directory = './assets/images/subscriptions';
+                        if (!file_exists($directory)) {
+                            mkdir($directory, 755, true);
+                            chmod($directory, 755);
+                        }
+                        $picture->move($directory, $picture_name);
                     }
-                    $picture->move($directory, $picture_name);
                 }
             }
 
-            return redirect()->to('/subscriptions')->with('message', $data['message']['message']);
+          return redirect()->to('/subscriptions')->with('message', $data['message']['message']);
         }
     }
 
     public function edit($id){
 
-        $data['title'] = "Edit the subscription";
+        $data['title'] = lang('Common.edit_subscription');
         $data['subscription'] = callAPI('/subscription/'.$id, 'get'); //TO DISPLAY THE CURRENT VALUES IN THE FORM
 
         if (!$this->request->is('post')) {
