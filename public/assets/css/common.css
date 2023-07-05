@@ -147,6 +147,10 @@ label{
     max-width: 1rem;
 }
 
+.icons-medium{
+    max-width: 3rem;
+}
+
 .column-list{
     display: flex;
     flex-direction: column;
@@ -530,6 +534,7 @@ footer{
     box-shadow: 0 0px 2px rgba(0, 0, 0, 0.5);
     color: var(--text-color);
     text-align: center;
+    cursor: pointer;
     text-decoration: none;
     margin-bottom: 5em;
 }
@@ -567,4 +572,20 @@ tr.no-pointer {
 .btn-closed-event:hover {
     background-color: var(--brand-primary-color);
     color : var(--bg-color);
-  }
+}
+
+.account-formation-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20em;
+    height: 15em;
+    margin: 0 1em;
+    border-radius: 10px;
+    box-shadow: 0 0px 2px rgba(0, 0, 0, 0.5);
+    color: var(--text-color);
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    margin-bottom: 5em;
+}

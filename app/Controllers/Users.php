@@ -145,4 +145,99 @@ class Users extends BaseController
         $data['comments'] = callAPI('/comment/client/'.$userId, 'get');
         return view('users/comment', $data);
     }
+
+    public function formation(){
+        $data['title'] = "My Formations";
+        $userId = session()->get('id');
+        $data['formations'] = callAPI('/event/formation/get/'.$userId, 'get');
+        return view('users/formation', $data);
+    }
+
+    public function certificate($idformation, $iduser) {
+        $data['title'] = "My Certificate";
+        $data['formation'] = callAPI('/event/group/get/'.$idformation, 'get');
+        $data['client'] = callAPI('/client/'.$iduser, 'get');
+        return view('users/certificate', $data);
+    }
+
+    public function account($id){
+        if (!$this->request->is('post')){
+            $data['title'] = "My Account";
+            $userId = session()->get('id');
+            $data['iduser'] = $userId;
+            $data['client'] = callAPI('/client/'.$userId, 'get');
+            return view('users/account', $data);
+        } else {
+            $picture = $this->request->getFile('profilepicture');
+            $values = $this->request->getPost();
+            $iduser = $values['user_id'];
+            unset($values['user_id']);
+            if (isset($values['password'])) {
+                $tmp = new Password($values['password']);
+                $values['password'] = $tmp->__toString();
+            }
+            if (isset($values['keepSubscription'])){
+                $values['keepSubscription'] = (int)$values['keepSubscription'];
+            }
+            if (isset($values['email'] )){
+                $user['email'] = $values['email'];
+            }
+            if (isset($values['password'] )){
+                $user['password'] = $values['password'];
+            }
+            if (isset($values['firstname'] )){
+                $user['firstname'] = $values['firstname'];
+            }
+            if (isset($values['lastname'] )){
+                $user['lastname'] = $values['lastname'];
+            }
+            if (isset($values['streetname'] )){
+                $client['streetname'] = $values['streetname'];
+            }
+            if (isset($values['country'] )){
+                $client['country'] = $values['country'];
+            }
+            if (isset($values['city'] )){
+                $client['city'] = $values['city'];
+            }
+            if (isset($values['streetnumber'] )){
+                $client['streetnumber'] = $values['streetnumber'];
+            }
+            if (isset($values['phonenumber'] )){
+                $client['phonenumber'] = $values['phonenumber'];
+            }
+            if (isset($values['keepSubscription'] )){
+                $client['keepsubscription'] = $values['keepSubscription'];
+            }
+            if (isset($picture) && $picture->isValid()) {
+
+                $picture_name = "img-event-".$iduser.".". $picture->getExtension(); //check extension
+                $user['profilepicture'] = $picture_name;
+                var_dump($user);
+            } else {
+                return redirect()->to('/user/profile/account/' . $iduser . '')->with('message', 'wrong picture');
+            }
+
+            $data['message'] = callAPI('/user/'.$iduser, 'patch', $user);
+            if ($data['message']['message'] == "user updated") {
+
+                if (isset($picture) && $picture->isValid()) {
+                    $directory = './assets/images/users';
+                    if (!file_exists($directory)){
+                        mkdir($directory, 755, true);
+                        chmod($directory, 755);
+                    }
+                    if (file_exists($directory . '/' . $picture_name)){
+                        unlink($directory . '/' . $picture_name);
+                    }
+                    $picture->move($directory, $picture_name);
+                }
+
+                $data['message'] = callAPI('/client/'.$iduser, 'patch', $client);
+                return redirect()->to('/user/profile')->with('message', $data['message']['message']);
+            } else {
+                return redirect()->to('/user/profile')->with('message', $data['message']['message']);
+            }
+        }
+    }
 }

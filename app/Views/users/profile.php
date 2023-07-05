@@ -160,7 +160,7 @@
             echo '</div>';
         }
         echo '</div>';
-        $redirection = base_url("users/profile/account");
+        $redirection = base_url("user/profile/account/". session()->get('id') ."");
         echo '<div class="d-flex flex-column account-event-card" id="clickable-div4" data-href='.$redirection.'>';
         echo '<div class="card-title">';
         echo '<h2 class="mb-3">My Account</h2>';
@@ -174,7 +174,7 @@
 
         echo '<section class="account-cards" style="min-width: 100%;">';
         echo '<div class="account-row">';
-        $redirection = base_url("users/profile/comingEvents");
+        $redirection = base_url("user/profile/comingEvents");
         echo '<div class="d-flex flex-column account-event-card" id="clickable-div5" data-href='.$redirection.'>';
         echo '<div class="card-title">';
         echo '<h2 class="mb-3">My Bills</h2>';
@@ -193,7 +193,7 @@
             echo '</div>';
         }
         echo '</div>';
-        $redirection = base_url("users/profile/pastEvents");
+        $redirection = base_url("user/profile/formations");
         echo '<div class="d-flex flex-column account-event-card" id="clickable-div6" data-href='.$redirection.'>';
         echo '<div class="card-title">';
         echo '<h2 class="mb-3">My Formations</h2>';

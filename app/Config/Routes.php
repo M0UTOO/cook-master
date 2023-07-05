@@ -36,9 +36,16 @@ $routes->get('user/profile', 'Users::profile');
 $routes->get('users/delete/(:num)', 'Users::delete/$1');
 $routes->get('users/block/(:num)', 'Users::block/$1');
 $routes->get('users/edit/(:num)', 'Users::edit/$1');
-$routes->get('user/profile/comingEvents', 'Users::coming'); //show profile coming events
-$routes->get('user/profile/pastEvents', 'Users::past'); //show profile coming events
-$routes->get('user/profile/comments', 'Users::comment'); //show profile coming events
+$routes->post('users/edit/(:num)', 'Users::edit/$1');
+
+// USER PROFILE
+$routes->get('user/profile/comingEvents', 'Users::coming');
+$routes->get('user/profile/pastEvents', 'Users::past');
+$routes->get('user/profile/comments', 'Users::comment');
+$routes->get('user/profile/formations', 'Users::formation');
+$routes->get('user/profile/account/(:num)', 'Users::account/$1');
+$routes->post('user/profile/account/(:num)', 'Users::account/$1');
+$routes->get('user/formation/certificate/(:num)/(:num)', 'Users::certificate/$1/$2'); 
 
 $routes->post('contractors/create', 'Contractor::create');
 $routes->get('contractors/create', 'Contractor::create');
