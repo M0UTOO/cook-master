@@ -1,5 +1,4 @@
 <?php
-
 echo $this->include('cookingSpace/confirmEventsModal') ;
 echo "<h2 class='align-self-start mt-4'>Availabilty</h2>";
 
@@ -37,6 +36,7 @@ echo "<div id='calendar' class='mt-4 mb-4 room-calendar'></div>";
             allDaySlot: false,
             slotMinTime: "07:00:00",
             slotMaxTime: "21:00:00",
+            slotDuration: "01:00:00",
             themeSystem: 'bootstrap5',
             expandRows: true,
             businessHours: {
@@ -54,9 +54,17 @@ echo "<div id='calendar' class='mt-4 mb-4 room-calendar'></div>";
                 left: 'title',
             },
             eventClick: function(info) {
-                alert('Event: ' + info.event.title);
-                //info.el.style.borderColor = 'green';
+                alert(info.event.title + " on " + moment(info.event.start).format('DD/MM/YY HH:mm:ss') + " to " + moment(info.event.end).format('DD/MM/YY HH:mm:ss'))
             },
+
+            selectAllow: function(selectInfo) {
+                var currentDate = new Date();
+                var selectedDate = selectInfo.start;
+
+                // Allow selection if the selected date is greater than or equal to the current date
+                return selectedDate >= currentDate;
+            },
+
             select: function(info) {
                 //set info of the modale with info then show it
 

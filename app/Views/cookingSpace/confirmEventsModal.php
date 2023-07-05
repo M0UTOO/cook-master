@@ -1,4 +1,7 @@
 <!-- Modal -->
+<?php
+if(isLoggedIn() && isClient()){
+?>
 <div class="modal fade" id="confirmEventModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -7,8 +10,8 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body d-flex justify-content-around">
-                <form action="" method="post" class="d-flex flex-column">
-                    <input hidden="hidden" name="idcookingspace" value="<?=$cookingSpace['idCookingSpace']?>" />
+                <form action="<?=base_url('client/book')?>" method="post" class="d-flex flex-column">
+                    <input hidden="hidden" name="idCookingSpace" value="<?=$cookingSpace['idCookingSpace']?>" />
 
                     <label for="date">Date:</label>
                     <input type="date" name="date" id="book-date" value="" min="<?=date('Y-m-d')?>" max="<?=date('Y-m-d', strtotime('+1 month'))?>" required/>
@@ -30,10 +33,13 @@
                         }
                         ?>
                     </select>
-
-
                     <button type="submit" class="mt-4 btn blue-btn">Book the room</button>
                 </form>
+                <?php
+                }else{
+                echo "<a href='".base_url('subscriptions')."'>Get a Master Subscription to book a room</a>";
+                }
+                ?>
             </div>
         </div>
     </div>
