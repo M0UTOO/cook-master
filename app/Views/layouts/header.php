@@ -15,26 +15,27 @@ helper('html') ?>
 </header>
 
 <nav id="burger-menu" class="d-none vh-100 d-flex flex-column align-items-center mt-1">
-    <a class="m-2 p-3" href="/lessons" class="nav-link">Our Lessons</a>
-    <a class="m-2 p-3" href="/events" class="nav-link">Our Events</a>
-    <a class="m-2 p-3" href="#" class="nav-link">Our shop (in construction)</a>
-    <a class="m-2 p-3" href="/cookingSpace" class="nav-link">Cook in our spaces</a>
-    <a class="m-2 p-3" href="/subscriptions" class="nav-link">Our subscriptions</a>
+    <a class="m-2 p-3" href="/lessons" class="nav-link"><?=lang('Common.burger-menu.lessons')?></a>
+    <a class="m-2 p-3" href="/events" class="nav-link"><?=lang('Common.burger-menu.events')?></a>
+    <a class="m-2 p-3" href="/cookingSpace" class="nav-link"><?=lang('Common.burger-menu.cookingSpaces')?></a>
+    <a class="m-2 p-3" href="/subscriptions" class="nav-link"><?=lang('Common.burger-menu.subscriptions')?></a>
 
     <?php
         if (isLoggedIn()) {
             if ((isset($isManager) && $isManager) || isManager()) {
-                echo '<a class="m-2 p-3" href="' . base_url('dashboard') . '" class="nav-link">Dashboard (Manager)</a>';
+                echo '<a class="m-2 p-3" href="' . base_url('dashboard') . '" class="nav-link">'.lang('Common.burger-menu.dashboard').'</a>';
             }
-            echo '<a class="m-2 p-3" href="' . base_url('user/profile') . '" class="nav-link">Your account</a>';
-            echo '<a class="m-2 p-3" href="' . base_url('/signOut') . '" class="nav-link">Sign Out</a>';
+            echo '<a class="m-2 p-3" href="' . base_url('user/profile') . '" class="nav-link">'.lang('Common.burger-menu.yourAccount').'</a>';
+            echo '<a class="m-2 p-3" href="' . base_url('/signOut') . '" class="nav-link">'.lang('Common.burger-menu.signOut').'</a>';
         }
             else
         {
-            echo '<a class="m-2 p-3" href="'. base_url('/signIn').'" class="nav-link">Sign In</a>';
-            echo '<a class="m-2 p-3" href="'. base_url('users/signUp').'" class="nav-link">Sign Up</a>';
+            echo '<a class="m-2 p-3" href="'. base_url('/signIn').'" class="nav-link">'.lang('Common.signIn').'</a>';
+            echo '<a class="m-2 p-3" href="'. base_url('users/signUp').'" class="nav-link">'.lang('Common.signUp').'</a>';
         }
     ?>
+
+
 
 </nav>
 
@@ -44,6 +45,12 @@ helper('html') ?>
             if (session()->getFlashdata('message')){
                 echo '<div class="alert alert-warning" role="alert">';
                 echo session()->getFlashdata('message');
+                echo '</div>';
+            }
+
+            if (isset($message)){
+                echo '<div class="alert alert-warning" role="alert">';
+                echo $message;
                 echo '</div>';
             }
 

@@ -3,11 +3,11 @@
 <?= $this->include('layouts/header') ?>
 
     <div class="container-home-title">
-        <h2 class="incoming-events-title">HOME PAGE</h2>
+        <h2 class="incoming-events-title"><?=lang('Common.homePage')?></h2>
     </div>
 
     <div class="recommended-orders">
-        <h2 class="recommended-orders-title">Recommended Orders :</h2>
+        <h2 class="recommended-orders-title"><?=lang('Common.recommendedOrders')?></h2>
         <div class="random-orders-container">
             <?php
             foreach ($orders as $order) {

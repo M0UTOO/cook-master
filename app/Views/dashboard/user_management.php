@@ -4,7 +4,7 @@
 <?= $this->include('layouts/header') ?>
 
 <?php
-echo "<h2>Users Management</h2>";
+echo "<h2>".lang('Common.userManagementTitle')."</h2>";
 
 echo '<div>';
 echo '<a data-bs-toggle="modal" data-bs-target="#userTypeModal"><img  src=' . base_url("assets/images/svg/add-user-icon-blue.svg") . ' alt="modify-icon" class="icons" /></a>';
@@ -20,11 +20,11 @@ echo '</div>';
     <thead>
     <tr>
         <th scope="col">#</th>
-        <th scope="col">Firstname</th>
-        <th scope="col">Lastname</th>
-        <th scope="col">Role</th>
-        <th scope="col">Blocked_at</th>
-        <th scope="col">Actions</th>
+        <th scope="col"><?=lang('Common.firstname')?></th>
+        <th scope="col"><?=lang('Common.lastname')?></th>
+        <th scope="col"><?=lang('Common.role')?></th>
+        <th scope="col"><?=lang('Common.blocked_at')?></th>
+        <th scope="col"><?=lang('Common.actions')?></th>
     </tr>
     </thead>
     <tbody class="table-group-divider">
@@ -46,7 +46,6 @@ echo '</div>';
 
     if (isset($users)){
 
-        //TODO: ADD SEARCH BAR CHECK BOOTSTRAP DOCS
         if (isset($users["managers"]) && is_array($users["managers"]) && count($users["managers"]) > 0){
             foreach ($users["managers"] as $manager){
                 $count +=1;
@@ -60,7 +59,7 @@ echo '</div>';
                 echo "<th scope='row'>$count</th>";
                 echo "<td>$manager->firstname</td>";
                 echo "<td>$manager->lastname</td>";
-                echo "<td>Manager</td>";
+                echo "<td>".lang('Common.userType.manager')."</td>";
                 displayUsers($manager);
             }
         }
@@ -71,7 +70,7 @@ echo '</div>';
                 echo "<th scope='row'>$count</th>";
                 echo "<td>$client->firstname</td>";
                 echo "<td>$client->lastname</td>";
-                echo "<td>Client</td>";
+                echo "<td>".lang('Common.userType.client')."</td>";
                 displayUsers($client);
             }
         }
@@ -82,13 +81,13 @@ echo '</div>';
                 echo "<th scope='row'>$count</th>";
                 echo "<td>$contractor->firstname</td>";
                 echo "<td>$contractor->lastname</td>";
-                echo "<td>Contractor</td>";
+                echo "<td>".lang('Common.userType.contractor')."</td>";
                 displayUsers($contractor);
             }
         }
 
     } else {
-    echo "There are no users.";
+    echo lang('Common.notFound.users');
     }
 
     ?>
