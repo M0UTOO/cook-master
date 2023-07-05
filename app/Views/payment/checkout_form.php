@@ -49,14 +49,15 @@
                 const {error} = await stripe.confirmPayment({
                     elements,
                     confirmParams: {
-                        return_url: `${window.location.origin}/client/subscribe?subscription=` + <?= $subscription['idsubscription']?>,
+                        return_url: '#'
+                        //return_url: `${window.location.origin}/client/subscribe?subscription=` + <?php //= $subscription['idsubscription']?>//,
                     }
+                    redirect: 'if_required'
                 });
                 if(error) {
                     addMessage(error.message);
                     // Re-enable the form so the customer can resubmit.
-                    paymentForm.querySelector('button').disabled = false;
-                    return;
+                   // paymentForm.querySelector('button').disabled = false;
                 }
             });
         });
