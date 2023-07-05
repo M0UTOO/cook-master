@@ -4,18 +4,9 @@ namespace App\Controllers;
 
 class Reservation extends BaseController
 {
-    //Everyone can
-    public function index()
-    {
-        //SHOW ALL INFO ABOUT ALL SUBSCRIPTIONS
-        $data['title'] = "Cookmaster - Subscription";
-        $data['subscriptions'] = callAPI('/subscription/all', 'get');
-        return view('subscription/index', $data);
-    }
-
-    public function showReservationsByRoom($room_id){
-
-    }
-
-
+    //client makes a reservation
+    //on récupère les infos envoyées par le js du calendar dans mdoal,
+    // on raffiche une page pour confirmer les infos de réservation (date) et payer(stripe youhou.)
+    //si stripe okay, on envoie les infos de réservation à l'api
+    //si stripe pas okay, on raffiche la page de réservation avec un message d'erreur
 }
