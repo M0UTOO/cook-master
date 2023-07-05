@@ -1,4 +1,4 @@
-<?php $copyright = "COOKMASTER - " . date("Y"). " - TOUS DROITS RESERVES"?>
+<?php $copyright = "COOKMASTER - " . date("Y"). " - ". lang('Common.ccRights')?>
 
 <footer class="footer">
     <div id="pre-footer">

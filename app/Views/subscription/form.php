@@ -48,6 +48,24 @@ helper('url');
                     echo form_input(['type'  => 'file', 'name'  => 'picture', 'class' => 'form-control']);
                 echo '</div>';
 
+                $booleans = [
+                    'allowRoomBooking' => lang('Common.allowRoomBooking'),
+                    'allowShopReduction' => lang('Common.allowShopReduction'),
+                    'allowChat' => lang('Common.allowChat'),
+                ];
+                $isChecked = true;
+
+
+                echo "<div class='form-group'>";
+                echo "<label>".lang('Common.subscriptionAutorization')."</label>";
+                foreach ($booleans as $key => $value){
+                    echo '<div class="form-check">';
+                    echo '<input class="form-check-input" type="checkbox" id="check-'.$key.'" name='. $key .' value="'. $isChecked.'" >';
+                    echo '<label class="form-check-label">'. $value .'</label>';
+                    echo "</div>";
+                }
+                echo "</div>";
+
                 echo '<div class="form-group mb-3">';
                     echo form_submit('', 'Save', 'class="btn blue-btn form-control mt-3"');
                     //echo "<button type='button' onclick='document.location.href('/subscriptions')'>Cancel</button>";

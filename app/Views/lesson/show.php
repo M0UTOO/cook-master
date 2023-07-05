@@ -33,7 +33,7 @@ echo '<body>';
                     echo $lesson['name'] ;
                 echo "</h1>";
                 echo "<div class='d-flex'>";
-                        echo '<h3>Difficulty:</h3>';
+                        echo '<h3>'.lang('Common.difficulty').'</h3>';
                         displayDifficultyLevel($lesson['difficulty']);
                 echo '</div>';
             echo '</div>';
@@ -52,9 +52,9 @@ echo '<body>';
         echo "<section id='other-lessons'>";
             if (isset($lessonGroup)){
                 if ($others == true){
-                    echo "<h2 class='title-suggestion'>Other lessons from this group :</h2>";
+                    echo "<h2 class='title-suggestion'>".lang('Common.allLessonsFromGroup')."</h2>";
                 } else {
-                    echo "<h2 class='title-suggestion'>Other random lessons  :</h2>";
+                    echo "<h2 class='title-suggestion'>".lang('Common.randomLessons')."</h2>";
                 }
             echo "<div class='lesson-suggestion flex-rows'>";
                 foreach ($lessonGroup as $suggestedLesson){
@@ -65,7 +65,7 @@ echo '<body>';
                     echo $suggestedLesson->name ;
                     echo "</h5>";
                     echo "<div class='lesson-difficulty d-flex flex-rows'>";
-                    echo '<h6>Difficulty:</h6>';
+                    echo '<h6>'.lang('Common.difficulty').'</h6>';
                     displayDifficultyLevel($suggestedLesson->difficulty);
                     echo '</div>';
                     echo '<img src=' . base_url("assets/images/lessons/") . $suggestedLesson->picture . ' alt="lesson-picture" class="lesson-image-suggestion"/>';

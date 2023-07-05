@@ -29,11 +29,11 @@ if (isset($lessons) && is_array($lessons) && count($lessons) > 0){
 
             echo '<thead>';
                 echo '<tr>';
-                    echo '<th scope="col">Name</th>';
-                    echo '<th scope="col">Description</th>';
-                    echo '<th scope="col">Author</th>';
-                    echo '<th scope="col">Difficulty</th>';
-                    echo '<th scope="col">Actions</th>';
+                    echo '<th scope="col">'.lang('Common.name').'</th>';
+                    echo '<th scope="col">'.lang('Common.description').'</th>';
+                    echo '<th scope="col">'.lang('Common.author').'</th>';
+                    echo '<th scope="col">'.lang('Common.difficulty').'</th>';
+                    echo '<th scope="col">'.lang('Common.actions').'</th>';
                 echo '</tr>';
             echo '</thead>';
 
@@ -66,7 +66,7 @@ if (isset($lessons) && is_array($lessons) && count($lessons) > 0){
     echo "</table>";
     echo "</section>";
                 } else {
-                    echo "<p>There are no lessons yet.</p>";
+                    echo "<p>".lang('Common.notFound.lessons')."</p>";
                 }
 
     echo '</main>';
