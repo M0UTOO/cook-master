@@ -47,9 +47,5 @@ class Payment extends BaseController
 
         return view('subscription/pay_subscription', $data);
     }
-
-    public function createCharge()
-    {
-
-    }
+    
 }
