@@ -33,13 +33,43 @@ class LessonGroup extends BaseController
         else
         {
             $values = $this->request->getPost();
-            var_dump($values);
+            if ($values['lesson-group-choice'] == "1"){
+                return redirect()->to('/lessons')->with('message', "Can't add to the default group");
+            }
             $lessonid = $values['idlesson'];
             unset($values['idlesson']);
 
-            $data['message'] = callAPI('/lesson/group/'.$lessonid, 'post', $values);
+            $group['message'] = callAPI('/lesson/group/get/'.$values['lesson-group-choice'], 'get');
+            if (isset($group['message']['error'])){
+                return redirect()->to('/lessons')->with('message', $group['message']['message']);
+            }
+
+            $body = [
+                'name' => $group['message']['name'],
+                'group_display_order' => (int)$values['group_display_order']
+            ];
+
+            $data['message'] = callAPI('/lesson/group/'.$lessonid, 'post', $body);
 
             return redirect()->to('/lessons')->with('message', $data['message']['message']);
+        }
+    }
+
+    public function addgroup()
+    {
+        $data['title'] = "Add a group";
+
+        if (!$this->request->is('post'))
+        {
+            return view('lessonGroup/addgroup', $data);
+        }
+        else
+        {
+            $values = $this->request->getPost();
+
+            $data['message'] = callAPI('/lesson/group/post', 'post', $values);
+
+            return redirect()->to('/lessonGroups')->with('message', $data['message']['message']);
         }
     }
 
@@ -63,7 +93,7 @@ class LessonGroup extends BaseController
 
     public function delete($id)
     {
-        $data['message'] = callAPI('/lesson/group/'.$id, 'delete');
+        $data['message'] = callAPI('/lesson/group/delete/'.$id, 'delete');
 
         return redirect()->to('/lessonGroups')->with('message', $data['message']['message']);
     }

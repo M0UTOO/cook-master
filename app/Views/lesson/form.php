@@ -42,7 +42,12 @@ use App\Controllers\LessonGroup;
                 echo '<div class="form-group mb-3">'; //AUTHOR
                     echo form_label('Lesson author' , "label-lesson-content");
                     $value = (isset($author) ? $lesson['author'] :'');
-                    echo form_input(['type'  => 'text', 'name'  => 'content','value' => $value, 'class' => 'form-control', 'disabled' =>'disabled'], );
+                    echo form_input(['type'  => 'text', 'name'  => 'author','value' => $value, 'class' => 'form-control', 'disabled' =>'disabled'], );
+                echo '</div>';
+
+                echo '<div class="form-group mb-3">';
+                    echo form_label('Lesson picture' , "label-lesson-picture");
+                    echo form_input(['type'  => 'file', 'name'  => 'picture', 'class' => 'form-control']);
                 echo '</div>';
 
                 echo '<div class="form-group mb-3">';

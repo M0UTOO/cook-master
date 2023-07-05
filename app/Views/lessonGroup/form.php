@@ -58,16 +58,24 @@ echo "<h2>" . $title . "</h2>";
             if (!empty($lessonGroups)) {
                 foreach ($lessonGroups as $key) {
                     $key = (array)$key;
-                    echo '<option value="'.$key['idlessongroup'].'">'.$key['name'].'</option>';
+                    if ($key['idlessongroup'] != 1) {
+                        echo '<option value="'.$key['idlessongroup'].'">'.$key['name'].'</option>';
+                    }
                 }
             }
             echo '</datalist>';
-            //TODO: WHEN EXISTING GROUP CREATED : DISPLAY DIV WITH ALL LESSONS IN GROUP, BUTTON TO DELETE THE GROUP.
+
+            echo form_label('Order in the group', "label-lesson-group");
+            echo form_input('group_display_order', '', 'class="form-control"');
+
+            //TODO: WHEN EXISTING GROUP CREATED : BUTTON TO DELETE THE GROUP.
         echo '</div>';
 
         echo '<div class="form-group mb-3">';
             echo form_submit('', 'Save', 'class="btn blue-btn form-control mt-3"');
         echo '</div>';
+
+        echo '<div "w3-container" id="lesson-list"></div>';
 
     echo form_close();
 
@@ -76,4 +84,60 @@ echo "<h2>" . $title . "</h2>";
 ?>
 </body>
 <script src=<?= base_url('assets/js/create_users.js')?>></script>
+<script>
+    const token = '<?= env('API_TOKEN'); ?>'
+
+    let input = document.getElementById('lesson-group-choice');
+
+    input.addEventListener('input', function () {
+
+        let selectedGroup = input.value;
+
+        if (selectedGroup == 1) {
+            let list = document.getElementById('lesson-list');
+            list.innerHTML = '';
+            let listlessontitle = document.createElement('h5');
+            listlessontitle.innerHTML = "Cant add a lesson to the default group.";
+            list.appendChild(listlessontitle);
+        }
+
+        if (selectedGroup.length > 0) {
+            if (selectedGroup == 1) {
+                return;
+            }
+            let url = 'http://localhost:9000/lesson/group/' + selectedGroup;
+
+            const headers = new Headers();
+            headers.append('Content-Type', 'application/json');
+            headers.append('Token', token);
+
+            fetch(url, {
+               method: 'GET',
+               headers: headers
+            })
+                .then(response => response.json())
+                .then(data => {
+
+                    let list = document.getElementById('lesson-list');
+                    list.innerHTML = '';
+
+                    if (data === null) {
+                        let listlesson = document.createElement('li');
+                        listlesson.innerHTML = "No lessons in this group yet.";
+                        list.appendChild(listlesson);
+                    } else {
+
+                        let listlessontitle = document.createElement('h5');
+                        listlessontitle.innerHTML = "Lessons in this group : ";
+                        list.appendChild(listlessontitle);
+                        data.forEach(function (lesson) {
+                            let listlesson = document.createElement('li');
+                            listlesson.innerHTML = "Name : " + lesson.name + " / Order : " + lesson.group_display_order;
+                            list.appendChild(listlesson);
+                        });
+                    }
+                });
+        }
+    });
+</script>
 </html>

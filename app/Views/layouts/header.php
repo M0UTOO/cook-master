@@ -1,14 +1,12 @@
 <?php
 helper('html') ?>
-<!-- ABOVE LINE TO USE SOME NATIVES HELPERS LIKE img TAG or form tag-->
 
 <header class="header">
     <div class="container-fluid" id="navbar">
         <a class="navbar-brand" id="logo" href="/"><?= img(base_url("assets/images/toque-logo-1-medium.svg")) ?></a>
         <a class="navbar-brand" id="brand-name" href="/">Cookmaster</a>
         <button id="menu-icon" class="navbar-toggler" type="button">
-            <span class="burger-menu-icon"><?= img(base_url("assets/images/svg/menu.svg")) ?></span>
-        </button>
+         </button>
     </div>
     <div>
         <a class="" href="/" id="nav-bar-signIn"></a>
@@ -18,9 +16,10 @@ helper('html') ?>
 
 <nav id="burger-menu" class="d-none vh-100 d-flex flex-column align-items-center mt-1">
     <a class="m-2 p-3" href="/lessons" class="nav-link">Our Lessons</a>
-    <a class="m-2 p-3" href="/events" class="nav-link">Our Events(in construction)</a>
+    <a class="m-2 p-3" href="/events" class="nav-link">Our Events</a>
     <a class="m-2 p-3" href="#" class="nav-link">Our shop (in construction)</a>
-    <a class="m-2 p-3" href="#" class="nav-link">Cook in our spaces (in construction)</a>
+    <a class="m-2 p-3" href="/cookingSpace" class="nav-link">Cook in our spaces</a>
+    <a class="m-2 p-3" href="/subscriptions" class="nav-link">Our subscriptions</a>
 
     <?php
         if (isLoggedIn()) {

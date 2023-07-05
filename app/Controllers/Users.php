@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use CodeIgniter\I18n\Time;
+
 class Users extends BaseController
 {
     public function index()
@@ -15,42 +17,69 @@ class Users extends BaseController
 
         if (isLoggedIn()){
             $data['message'] = "You are already logged in";
-            return view('users/index', $data);
+            return redirect()->to('/')->with('message', $data['message']);
         }
         else if ($this->request->getPost('mini')){
             $data['mini'] = false; //TO SHOW THE FULL FORM AND NOT THE MINI ONE
             $data['email'] = $this->request->getPost('email');//TO ADD THE EMAIL AUTOMATICALLY IN NEXT PAGE
-           echo "ok";
+
             return view('users/signUp', $data);
 
         }
         elseif (!$this->request->is('post')){
+
             $data['userType'] = "Client";
-            $data['subscriptions'] = callAPI('/subscription/all', 'get');
             return view('users/signUp', $data);
         }
         else
         {
             $values = $this->request->getPost();
-            $type = $values['Type'] ;
-            unset($values['Type']);
+            $picture = $this->request->getFile('profilepicture');
 
-            $data['message'] = callAPI('/user/', 'post', $this->request->getPost(), ['Type' => $type]);
+            if ($values['password'] != $values['password-confirm']){
+                $data['message'] = "Passwords don't match";
+                return view('users/signUp', $data);
+            } else {
+                unset($values['password-confirm']);
+                $type = $values['Type'] ;
+                unset($values['Type']);
 
-            return view('users/index', $data);
+                $subscriptions= callAPI('/subscription/all', 'get');
+
+                    foreach ($subscriptions as $subscription) {
+                        if ($subscription->price == 0) {
+                            $default_subscription = $subscription->idsubscription;
+                            break; // Stop the loop after finding the first match
+                        }
+                    }
+
+                $values['subscription'] = $default_subscription;
+                $values['language'] = (int)$values['language'];
+
+                $tmp = new Password($values['password']);
+                $values['password'] = $tmp->__toString();
+
+                $data['message'] = callAPI('/user/', 'post', $values, ['Type' => $type]);
+                $user_id = $data['message']['iduser'];
+
+                //SAVE PROFILEPICTURE ON SERVER: PICTURE NAME IS TIMESTAMP TO NOT MAKE IT OBVIOUS TO FIND
+                $picture_name = "img-".$user_id . "_" . date('Y_mdHis', (new Time())->now()->getTimestamp()) . "." . $picture->getExtension(); //check extension
+
+                $data['state'] = callAPI('/user/'.$user_id, 'patch', ['profilepicture' => $picture_name]);
+
+                if (!$data['state']['error']){
+                    $directory = './assets/images/users';
+                    if (!file_exists($directory)){
+                        mkdir($directory, 755, true);
+                        chmod($directory, 755);
+                    }
+                    $picture->move($directory, $picture_name);
+                }
+                return redirect()->to('/signIn')->with('message', $data['message']['message'] . ". Log in to start your cookmaster experience !");
+            }
+
         }
 
-    }
-
-    private function getError(array $data, string $redirectionUrl): string{
-
-        if ($data['message']['error']){
-            $data['message'] = $data['message']['message'];
-            //var_dump($data) ;
-            return view($redirectionUrl, $data);
-        } else {
-            return "0";
-        }
     }
 
     public function profile(){
@@ -70,7 +99,6 @@ class Users extends BaseController
     public function edit($id){
 
         $data['user'] = callAPI('/user/'.$id, 'get');
-        //TODO: SHOW SIGNUP FORM WITH USER DATA PRE-FILLED
         return view('users/profile', $data);
     }
     public function delete($id){
@@ -86,26 +114,5 @@ class Users extends BaseController
         $time = date("Y-m-d H:i:s", now()); //TODO:CHECK TIME LOCATION
         $data['message'] = callAPI('/user/'.$id, 'patch', ['isblocked' => $time]);
         return redirect()->to('/dashboard/userManagement')->with('message', $data['message']['message']);
-    }
-
-    protected function getUsersEvents($id){
-        //API CALL with $id
-        return $events =
-            [
-                [
-                    'id' => 1,
-                    'name' => 'Event 1',
-                    'date' => '2021-01-01',
-                    'location' => 'Paris',
-                    'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl vitae aliquam ultricies, nunc nisl ultricies nunc',
-                ],
-                [
-                    'id' => 2,
-                    'name' => 'Event 2',
-                    'date' => '2021-01-02',
-                    'location' => 'Paris',
-                    'description' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl vitae aliquam ultricies, nunc nisl ultricies nunc',
-                ]
-            ];
     }
 }

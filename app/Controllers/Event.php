@@ -4,10 +4,25 @@ namespace App\Controllers;
 
 class Event extends BaseController
 {
-    public function index(){
+    public function index() {
+        helper('pagination');
 
-        $data['title'] = "Cookmaster - Events";
-        $data['events'] = callAPI('/event/all', 'get');
+        if($this->request->is('post')) {
+            $values = $this->request->getPost();
+            $values['search'] = str_replace(' ', '%20', $values['search']);
+            $data['title'] = "Join the cooking course of your dreams";
+            $data['events'] = callAPI('/event/search/' . $values['search'] . '', 'post', $this->request->getPost());
+            $data['search'] = $values['search'];
+            return view('event/index', $data);
+        }
+
+        $data['title'] = "Join the cooking course of your dreams";
+        $events['events'] = callAPI('/event/all', 'get');
+        
+        $events['pagination'] = pagination($events['events']);
+        $data['events'] = $events['pagination']['display'];
+        $data['totalPages'] = $events['pagination']['totalPages'];
+    
         return view('event/index', $data);
     }
 
@@ -57,5 +72,35 @@ class Event extends BaseController
 
             return redirect()->to('/events')->with('message', $data['message']['message']);
         }
+    }
+    
+    public function show($id){
+
+        $currentUser['id'] = session()->get('id');
+        $currentUser['role'] = session()->get('role');
+        $currentUser['subscription'] = session()->get('subscription');
+        $data['event'] = callAPI('/event/'.$id, 'get');
+        $data['rate'] = callAPI('/event/rate/'.$id, 'get');
+        $data['participation'] = callAPI('/event/participate/' . $data['event']['idevent'], 'get');
+        $data['comments'] = callAPI('/event/comment/' . $data['event']['idevent'], 'get');
+        if ($data['event']['isprivate'] == true) {
+            if ($participation != null) {
+                return redirect()->to('/events')->with('message', "Event already joined.");
+            }
+        }
+        
+        return view('event/show', $data);
+    }
+
+    public function join() {
+        $values = $this->request->getPost();
+        $data['message'] = callAPI('/event/participate/' . $values['idevent'] . '/' . $values['iduser'] . '', 'post');
+        return redirect()->to('/event/' . $values['idevent'] . '')->with('message', $data['message']['message']);
+    }
+
+    public function leave() {
+        $values = $this->request->getPost();
+        $data['message'] = callAPI('/event/participate/' . $values['idevent'] . '/' . $values['iduser'] . '', 'delete');
+        return redirect()->to('/event/' . $values['idevent'] . '')->with('message', $data['message']['message']);
     }
 }

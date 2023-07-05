@@ -61,7 +61,9 @@ class Dashboard extends BaseController
     public function itemManagement(){
 
     }
-    public function premisesManagement(){
-
+    public function premiseManagement(){
+        if ($this->checkAccess() == "true"){
+            return redirect()->to('/premises')->with('message', 'As a manager, you can view, add, delete and modify premises. You can also add cooking spaces.');
+        }
     }
 }

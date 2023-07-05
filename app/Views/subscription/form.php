@@ -49,7 +49,7 @@ helper('url');
                 echo '</div>';
 
                 echo '<div class="form-group mb-3">';
-                    echo form_submit('', 'Save', 'class="btn btn-primary mt-3"');
+                    echo form_submit('', 'Save', 'class="btn blue-btn form-control mt-3"');
                     //echo "<button type='button' onclick='document.location.href('/subscriptions')'>Cancel</button>";
                 echo '</div>';
     echo form_close();
