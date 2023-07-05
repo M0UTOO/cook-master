@@ -26,32 +26,32 @@ helper('url');
                 echo '</div>';
 
                 echo '<div class="form-group mb-3">';
-                echo form_label('Subscription description' , "label-subscription-description");
+                echo form_label( lang('Common.name') , "label-subscription-description");
                 $value = (isset($subscription) ? $subscription['description'] :'');
                 echo form_input(['type'  => 'textarea', 'name'  => 'description', 'class' => 'form-control', 'value' => $value, 'placeholder' => "Description of subscription", 'required' => 'required']);
                 echo '</div>';
 
                 echo '<div class="form-group mb-3">';
-                    echo form_label('Subscription price (€/month)' , "label-subscription-price");
+                    echo form_label( lang('Common.subscriptionPrice') , "label-subscription-price");
                     $value = (isset($subscription) ? $subscription['price'] :'');
                     echo form_input(['type'  => 'numeric', 'name'  => 'price', 'class' => 'form-control', 'value' => $value,'placeholder' => "Price of subscription (€/month)", 'required' => 'required']);
                 echo '</div>';
 
                 echo '<div class="form-group mb-3">';
-                    echo form_label('Subscription max lessons' , "label-subscription-maxlessonaccess");
+                    echo form_label( lang('Common.maxLessonsPerDay') , "label-subscription-maxlessonaccess");
                     $value = (isset($subscription) ? $subscription['maxlessonaccess'] :'');
                     echo form_input(['type'  => 'numeric', 'name'  => 'maxlessonaccess', 'class' => 'form-control', 'value' => $value, 'placeholder' => "Maximum lesson viewable a day", 'required' => 'required']);
                 echo '</div>';
 
                 echo '<div class="form-group mb-3">';
-                    echo form_label('Subscription picture' , "label-subscription-picture");
+                    echo form_label( lang('Common.picture') , "label-subscription-picture");
                     echo form_input(['type'  => 'file', 'name'  => 'picture', 'class' => 'form-control']);
                 echo '</div>';
 
                 $booleans = [
-                    'allowRoomBooking' => lang('Common.allowRoomBooking'),
-                    'allowShopReduction' => lang('Common.allowShopReduction'),
-                    'allowChat' => lang('Common.allowChat'),
+                    'allowroombooking' => lang('Common.allowRoomBooking'),
+                    'allowshopreduction' => lang('Common.allowShopReduction'),
+                    'allowchat' => lang('Common.allowChat'),
                 ];
                 $isChecked = true;
 
@@ -60,15 +60,19 @@ helper('url');
                 echo "<label>".lang('Common.subscriptionAutorization')."</label>";
                 foreach ($booleans as $key => $value){
                     echo '<div class="form-check">';
-                    echo '<input class="form-check-input" type="checkbox" id="check-'.$key.'" name='. $key .' value="'. $isChecked.'" >';
-                    echo '<label class="form-check-label">'. $value .'</label>';
+                    if (isset($subscription) && $subscription[$key] == 1){
+                        echo '<input class="form-check-input" checked="checked" type="checkbox" id="check-'.$key.'" name='. $key .' value="'. $isChecked.'" >';
+                        echo '<label class="form-check-label">'. $value .'</label>';
+                    } else {
+                        echo '<input class="form-check-input" type="checkbox" id="check-'.$key.'" name='. $key .' value="'. $isChecked.'" >';
+                        echo '<label class="form-check-label">'. $value .'</label>';
+                    }
                     echo "</div>";
                 }
                 echo "</div>";
 
                 echo '<div class="form-group mb-3">';
-                    echo form_submit('', 'Save', 'class="btn blue-btn form-control mt-3"');
-                    //echo "<button type='button' onclick='document.location.href('/subscriptions')'>Cancel</button>";
+                    echo form_submit('', lang('Common.save'), 'class="btn blue-btn form-control mt-3"');
                 echo '</div>';
     echo form_close();
 

@@ -87,6 +87,14 @@ body{
     }
 }
 
+@media screen and (max-width: 500px) {
+
+    #all-subscriptions{
+        flex-direction: column;
+    }
+}
+
+
 @media screen and (min-width: 1100px) {
     .signInBody {
         display: flex;

@@ -3,14 +3,14 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="chooseOptionsTitle">What do you want to do ?</h1>
+                <h1 class="modal-title fs-5" id="chooseOptionsTitle"><?=lang('Common.eventsActions')?></h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body d-flex flex-column justify-content-around">
-                <a class="btn blue-btn mb-3" href="<?= base_url('event/create')?>">Create an event</a>
-                <a class="btn blue-btn mb-3" href="<?= base_url('event/create?type=Contractor')?>">Add an event to a group</a>
-                <a class="btn blue-btn mb-3" href="<?= base_url('events/create?type=Contractor')?>">Assign a contractor to an event</a>
-                <a class="btn blue-btn mb-3" href="<?= base_url('events/create?type=Contractor')?>">Select a cooking space for the event</a>
+                <a class="btn blue-btn mb-3" href="<?= base_url('event/create')?>"><?=lang('Common.create_events')?></a>
+                <a class="btn blue-btn mb-3" href="<?= base_url('event/create?type=Contractor')?>"> <?=lang('Common.addToFormation')?></a>
+                <a class="btn blue-btn mb-3" href="<?= base_url('events/create?type=Contractor')?>"> <?=lang('Common.assignContractorsEvents')?></a>
+                <a class="btn blue-btn mb-3" href="<?= base_url('events/create?type=Contractor')?>"> <?=lang('Common.assignCookingSpacesEvents')?></a>
             </div>
         </div>
     </div>

@@ -18,6 +18,7 @@ return [
     'cookingSpaces'     => 'Espaces de cuisine',
     'subscriptions'     => 'Abonnements',
 
+    'save'              => 'Enregistrer',
     'signIn'            => 'Se connecter',
     'signUp'            => 'S\'inscrire',
     'create-account'    => 'Créer un compte',
@@ -44,7 +45,7 @@ return [
     'actions' => 'Actions',
     'role' => 'Rôle',
     'blocked_at' => 'Bloqué le',
-
+    'picture' => 'Photo',
 
     "userTypeQuestion" => "Quel type d'utilisateur voulez-vous créer ?",
     "userType" => [
@@ -76,10 +77,30 @@ return [
     'allLessonsFromGroup' => 'Toutes les leçons du groupe',
     'randomLessons' => 'Leçons aléatoires',
 
+    'edit_subscription' => 'Modifier l\'abonnement',
+    'create_subscription' => 'Créer un abonnement',
     'subscriptionPrice' => 'Prix de l\'abonnement',
     'maxLessonsPerDay' => 'Nombre maximum de leçons par jour',
     'subscriptionAutorization' => 'Autorisations de l\'abonnement',
    'allowRoomBooking' => 'Autoriser la réservation de salle',
     'allowShopReduction' => 'Appliquer la réduction en boutique',
     'allowChat' => 'Autoriser la discussion en ligne',
-];
+    'accessToLessons' => 'Accédez jusqu\'à {0, number} leçons par jour',
+    'subscribe' => 'S\'abonner',
+
+//    'eventsTitle' => 'Join the cooking course of your dreams',
+    'eventsTitle' => 'Rejoignez le cours de cuisine de vos rêves',
+
+    'create_events' => 'Créer un évènement',
+    'addToFormation' => 'Ajouter un événement à une formation',
+    'assignContractorsEvents' => 'Assigner des prestataires à un évènement',
+    'assignCookingSpacesEvents' => 'Assigner un espace de cuisine à un évènement',
+    'edit_events' => 'Modifier l\'évènement',
+    'eventsActions' => 'Actions sur les évènements',
+    'subscribeToJoin' => 'S\'inscrire pour rejoindre',
+    "privateEvent" => 'Evènement privé',
+    'startsOn' => 'Commence le : ',
+    'endsOn' => 'Se termine le : ',
+    'takesPlaceAt' => 'A lieu dans : ',
+    'searchEventsExemple'=> 'Ex: Patisserie',
+    ];

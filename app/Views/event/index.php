@@ -21,8 +21,8 @@ echo $this->include('layouts/head') ;
             echo "<div class='container-fluid mb-4'>";
                 $action = base_url('events');
                 echo "<form class='d-flex' action=" . $action . " method='post'>";
-                    echo "<input class='form-control me-2 form-cookmaster' type='search' placeholder='Search' aria-label='Search' name='search'>";
-                        echo form_submit('', 'Search', 'class="btn blue-btn form-control"');
+                    echo "<input class='form-control me-2 form-cookmaster' type='search' placeholder='".lang('Common.searchEventsExemple')."' aria-label='Search' name='search'>";
+                        echo form_submit('', lang('Common.search'), 'class="btn blue-btn form-control"');
                 echo "</form>";
             echo "</div>";
         echo "</nav>";
@@ -82,12 +82,12 @@ echo $this->include('layouts/head') ;
                             }
                             echo "<a href=".$redirection." class='card-suggestion-event'>";
                                 echo "<div class='event-card-header'>";
-                                    echo "<h2>Private Event</h2>";
+                                    echo "<h2>".lang('Common.privateEvent')."</h2>";
                                 echo "</div>";
                                 echo "<img alt='event picture' class='card-img-top' height='200vh' src=" . base_url("assets/images/svg/lock-icon-blue.svg") . " />";
                                 echo "<div class='card mb-5'>";
                                     echo "<div class='card-body'>";
-                                        echo "<p class='card-text'>Subscribe to join event</p>";
+                                        echo "<p class='card-text'>".lang('Common.subscribeToJoin')."</p>";
                                     echo "</div>";
                                     echo "<div class='event-card-body-right'>";
                                     echo "</div>";
@@ -112,10 +112,10 @@ echo $this->include('layouts/head') ;
                         echo "<div class='card-body'>";
                             $date['start'] = $event->starttime;
                             $date['start'] = date("d/m/Y H:i:s", strtotime($date['start']));
-                            echo "<p class='card-text'>Starts at: " . $date['start'] . "</p>";
+                            echo "<p class='card-text'>". lang('Common.startsOn'). $date['start'] . "</p>";
                             $cookingspace['space'] = callAPI('/event/host/' . $event->idevent, 'get');
                             if (isset($cookingspace['space'])){
-                                echo "<p class='card-text'>Hosted in: " . $cookingspace['space'][0]->name . "</p>";
+                                echo "<p class='card-text'>" . lang('Common.takesPlaceAt') . $cookingspace['space'][0]->name . "</p>";
                             } else {
                                 echo "<p class='card-text'>Hosted in: To be defind</p>";
                             }
