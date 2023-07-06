@@ -206,10 +206,11 @@
             } else {
                 echo '<p>You have ' . sizeof($formations) . ' formations</p>';
             }
-        $subscription = getSubscription();
-        if ($subscription){
-            echo "<p>Subscription: ". $subscription['name']."</p>";
-            echo "<p>You can access : ". $subscription['maxlessonaccess']." lessons a day</p>";
+            echo '</div>';
+        } else {
+            echo '<div style="min-width: 100%;">';
+            echo '<p>No formations</p>';
+            echo '</div>';
         }
         echo '</div>';
         echo '</div>';
