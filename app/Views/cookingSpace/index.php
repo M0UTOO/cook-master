@@ -26,30 +26,30 @@ echo "</nav>";
 
 echo "<div class='row grid-events' id='event-container'>"; //MAKE IT A GRID
 
-if (isset($cookingSpaces) && is_array($cookingSpaces) && count($cookingSpaces) > 0){
-    $ads = 0;
-    foreach ($cookingSpaces as $cookingSpace){
-        $ads++;
+// if (isset($cookingSpaces) && is_array($cookingSpaces) && count($cookingSpaces) > 0){
+//     $ads = 0;
+//     foreach ($cookingSpaces as $cookingSpace){
+//         $ads++;
 
-        $subscription = getSubscription();
-        #DISPLAY ADS
-        if (!isContractor() && !isManager()){
-            if ((isset($subscription) && $subscription['price'] == 0) || !isLoggedIn()) {
-                if (($ads % 5) == 0) {
-                    echo "<div class='event-card col mb-3'>";
-                    echo "<div class='card-suggestion-event-blue'>";
-                    echo "<div class='card mb-5'>";
-                    echo "<div class='ad-container'>";
-                    echo "<img src='https://via.placeholder.com/300x440' alt='Sample Ad' />";
-                    echo "</div>";
-                    echo "<div class='event-card-body-right'>";
-                    echo "</div>";
-                    echo "</div>";
-                    echo "</div>";
-                    echo "</div>";
-                }
-            }
-        }
+//         $subscription = getSubscription();
+//         #DISPLAY ADS
+//         if (!isContractor() && !isManager()){
+//             if ((isset($subscription) && $subscription['price'] == 0) || !isLoggedIn()) {
+//                 if (($ads % 5) == 0) {
+//                     echo "<div class='event-card col mb-3'>";
+//                     echo "<div class='card-suggestion-event-blue'>";
+//                     echo "<div class='card mb-5'>";
+//                     echo "<div class='ad-container'>";
+//                     echo "<img src='https://via.placeholder.com/300x440' alt='Sample Ad' />";
+//                     echo "</div>";
+//                     echo "<div class='event-card-body-right'>";
+//                     echo "</div>";
+//                     echo "</div>";
+//                     echo "</div>";
+//                     echo "</div>";
+//                 }
+//             }
+//         }
 
 if (isset($cookingSpaces) && is_array($cookingSpaces) && count($cookingSpaces) > 0) {
 
