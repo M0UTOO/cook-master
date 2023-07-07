@@ -24,9 +24,7 @@ class Client extends Users
         $values = $this->request->getPost();
         $idCookingSpace = $values['idCookingSpace'];
 
-        if (isLoggedIn() && isClient()){
-//            if (getSubscription()["allowroombooking"])
-            var_dump(getSubscription());
+        if (isLoggedIn() && isClient() && getSubscription()["allowroombooking"]){
             {
                 $values['starttime']= $values['date'].' '.$values['starttime'];
                 $values['endtime']= $values['date'].' '.$values['endtime'];

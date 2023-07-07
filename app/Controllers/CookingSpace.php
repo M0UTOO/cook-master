@@ -64,10 +64,7 @@ class CookingSpace extends BaseController
         if (isManager()){
 
             $data['cookingSpace'] = callAPI('/cookingspace/'.$id, 'get'); //TO DISPLAY THE CURRENT VALUES IN THE FORM
-//            cookingSpace.PATCH("/books/:idclient/:idcookingspace", cookingspaces.AddABooks(tokenAPI))     // WORKING
-//	cookingSpace.GET("/books/all", cookingspaces.GetCookingSpacesBooks(tokenAPI)) // WORKING")
-//	cookingSpace.DELETE("/books/:idclient/:idcookingspace", cookingspaces.DeleteABooks(tokenAPI)) // WORKING
-//	cookingSpace.GET("/books/:id", cookingspaces.GetBooksByCookingSpaceID(tokenAPI)) // WORKING
+
             $data['reservations'] = callAPI('/cookingspace/books/'.$id, 'get');
 
             $data['reservations'] = json_decode(json_encode($data['reservations']), true);
@@ -83,8 +80,11 @@ class CookingSpace extends BaseController
                 $pictureName = 'img-cookingspace-'.uniqid().'.'.$picture->getExtension(); //TODO: check extension
                 $values['priceperhour'] = (float)$values['priceperhour'];
                 $values['size'] = (int)$values['size'];
-                //TODO : check if picture is empty and remove from patch array if yes.
                 $values['picture'] = $pictureName;
+
+                if (empty($picture->getName())){
+                    unset($values['picture']);
+                }
 
                 $data['message'] = callAPI('/cookingspace/'.$id, 'patch', $values);
 
