@@ -114,10 +114,18 @@ class Users extends BaseController
         $data['user'] = callAPI('/user/'.$id, 'get');
         return view('users/profile', $data);
     }
-    public function delete($id){
-        //delete user from DB - NOT DONE YET BUT :
-        echo $id;
-        $data['message'] = callAPI('/user/'.$id, 'delete');
+    public function delete($id, $role){
+        $data['user']= callAPI('/user/'.$id, 'get');
+        $data['message'] = callAPI('/user/'.$id, 'delete',[], ['Type' => $role]);
+        if (!isset($data['message']['error']) && $data['user']['profilepicture'] != null){
+            if ($data['user']['profilepicture'] != "default.png"){
+                if (file_exists('./assets/images/users/'.$data['user']['profilepicture'])){
+                    unlink('./assets/images/users/'.$data['user']['profilepicture']);
+                } else {
+                    $data['message']['message'] .= " but the profile picture couldn't be deleted";
+                }
+            }
+        }
         return redirect()->to('/dashboard/userManagement')->with('message', $data['message']['message']);
     }
 

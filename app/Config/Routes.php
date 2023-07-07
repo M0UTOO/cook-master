@@ -33,7 +33,7 @@ $routes->get('/', 'Home::index');
 $routes->get('users/create', 'Users::create');
 $routes->post('users/create', 'Users::create');
 $routes->get('user/profile', 'Users::profile');
-$routes->get('users/delete/(:num)', 'Users::delete/$1');
+$routes->get('users/delete/(:num)/(:alpha)', 'Users::delete/$1/$2');
 $routes->get('users/block/(:num)', 'Users::block/$1');
 $routes->get('users/edit/(:num)', 'Users::edit/$1');
 
