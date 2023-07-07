@@ -2,48 +2,34 @@
 
 <body>
     <?= $this->include('layouts/header') ?>
+    <h1 class='mb-3'><?=$title?></h1>
+    <p><?= lang('Common.managerRole')?></p>
+    <section id="management" class="account-cards">
+        <a href="<?=base_url('dashboard/userManagement')?>" class="account-event-card">
+                <h5 class="card-title"><?=lang('Common.userManagement')?></h5>
+            <p><?=lang('Common.management-explanations-user')?></p>
+        </a>
 
-<section id="management" class="">
-    <a href="<?=base_url('dashboard/userManagement')?>" class="card">
-        <div class="card-body">
-            <h5 class="card-title">User management</h5>
-            <!--            get user/all and count for under-->
-            <p class="card-text">There are XXX users.</p>
-        </div>
-    </a>
+        <a href="<?=base_url('dashboard/subscriptionManagement')?>" class="account-event-card">
+                <h5 class="card-title"><?=lang('Common.subscriptionManagement')?></h5>
+            <p><?=lang('Common.management-explanations-subscription')?></p>
+        </a>
 
-    <a href="<?=base_url('dashboard/subscriptionManagement')?>" class="card">
-        <div class="card-body">
-            <h5 class="card-title">Subscription management</h5>
-            <!--            get user/all and count for under-->
-            <p class="card-text">There are XXX subscriptions.</p>
-        </div>
-    </a>
+        <a href="<?=base_url('dashboard/eventManagement')?>" class="account-event-card">
+                <h5 class="card-title"><?=lang('Common.eventManagement')?></h5>
+            <p><?=lang('Common.management-explanations-event')?></p>
+        </a>
 
-    <a href="<?=base_url('dashboard/eventManagement')?>" class="card">
-        <div class="card-body">
-            <h5 class="card-title">Event management</h5>
-            <!--            get user/all and count for under-->
-            <p class="card-text">There are  XXX events.</p>
-        </div>
-    </a>
+        <a href="<?=base_url('dashboard/shopManagement')?>" class="account-event-card">
+                <h5 class="card-title"><?=lang('Common.shopManagement')?></h5>
+            <p><?=lang('Common.management-explanations-shop')?></p>
+        </a>
 
-    <a href="<?=base_url('dashboard/shopManagement')?>" class="card">
-        <div class="card-body">
-            <h5 class="card-title">Shop management</h5>
-            <!--            get user/all and count for under-->
-            <p class="card-text">There are XXX items.</p>
-        </div>
-    </a>
-
-    <a href="<?=base_url('dashboard/premiseManagement')?>" class="card">
-        <div class="card-body">
-            <h5 class="card-title">Premises management</h5>
-            <!--            get user/all and count for under-->
-            <p class="card-text">There are XXX cooking spaces in XX premises.</p>
-        </div>
-    </a>
-</section>
+        <a href="<?=base_url('dashboard/premiseManagement')?>" class="account-event-card">
+                <h5 class="card-title"><?=lang('Common.premisesManagement')?></h5>
+            <p><?=lang('Common.management-explanations-premises')?></p>
+        </a>
+    </section>
 
 
     </main>

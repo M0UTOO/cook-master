@@ -24,7 +24,6 @@
             messagesDiv.style.display = 'block';
             const messageWithLinks = addDashboardLinks(message);
             messagesDiv.innerHTML += `> ${messageWithLinks}<br>`;
-            console.log(`Debsubscription/payment/ug: ${message}`);
         };
 
         document.addEventListener('DOMContentLoaded', async () => {
@@ -50,8 +49,8 @@
                     elements,
                     confirmParams: {
                         return_url: `${window.location.origin}/client/subscribe?subscription=` + <?= $subscription['idsubscription']?>,
-                    }
-                    redirect: 'if_required'
+                    },
+                    // redirect: 'if_required'
                 });
                 if(error) {
                     addMessage(error.message);

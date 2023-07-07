@@ -310,21 +310,34 @@ footer{
 /*DASHBOARD*/
 #management{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    min-height : 100vh;
+    flex-wrap: wrap;
 }
 #management a {
-    width : 100%;
     min-height: 10vh;
+    max-width: 30vw;
 }
-
 
 /*USER MANAGEMENT*/
 #users-table {
     max-width: 100%;
 }
+@media screen and (max-width: 601px) {
+    #management{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
+    #management a {
+        min-height: 8vh;
+        max-width: 70vw;
+    }
+}
+
+
 
 /*EVENTS */
 

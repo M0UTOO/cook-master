@@ -17,7 +17,7 @@ class Dashboard extends BaseController
     public function index()
     {
         if ($this->checkAccess()){
-            $data['title'] = "Dashboard";
+            $data['title'] = "Manager Dashboard";
             return view('dashboard/index', $data);
         } else {
             return redirect()->to('/')->with('message', 'You are not authorized to access this page');
@@ -26,8 +26,6 @@ class Dashboard extends BaseController
 
     public function userManagement()
     {
-        helper('curl_helper');
-
         if ($this->checkAccess() == "true"){
             $data['title'] = "Users Management";
             $data['isManager'] = isManager();
@@ -49,12 +47,7 @@ class Dashboard extends BaseController
     public function eventManagement()
     {
         if ($this->checkAccess() == "true"){
-            //This will be the same page that users and contractors will see when going on the events page
-            //BUT the manager can add , delete an event and mofify them too
-            $data['managerView'] = true; //check thru this or thru the session(role) might be better too
-            $data['isLoggedIn'] = isLoggedIn();
-            $data['isManager'] = isManager();
-            return view('events/index', $data);
+            return redirect()->to('/events')->with('message', 'As a manager, you can view, add, delete and modify events');
         }
     }
 

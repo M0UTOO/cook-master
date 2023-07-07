@@ -107,4 +107,17 @@ return [
     'btn-learn' => 'Learn from the best',
     'btn-events' => 'Join an event',
     'btn-cookingSpaces' => 'Book a cooking space',
+
+    'userManagement' => 'User Management',
+    'premisesManagement' => 'Premises Management',
+    'subscriptionManagement' => 'Subscription Management',
+    'eventManagement' => 'Event Management',
+    'shopManagement' => 'Shop Management',
+
+    'managerRole' => 'As a manager, you may be able to do these things:',
+    'management-explanations-user' => 'Manage users,see their roles, names, block and delete them.',
+    'management-explanations-premises' => 'Manage premises, see their names, addresses and manage cooking spaces associated.',
+    'management-explanations-subscription' => 'Manage subscriptions, create, delete and change their settings.',
+    'management-explanations-event' => 'Manage events, create, delete and change their settings.',
+    'management-explanations-shop' => 'Manage shop, create, delete items.',
 ];
