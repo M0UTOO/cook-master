@@ -10,7 +10,7 @@ echo $this->include('layouts/head') ;
     echo "<h1 class='mb-3'>" . $title . "<img alt='logo' width='50px' class='ms-2' src=" . base_url("assets/images/svg/start-event-icon-blue.svg") . " /></h1>";
 
 
-        if (isManager() || isContractor()){
+        if (isManager()){
             echo $this->include('event/eventOptionsModal') ;
             echo '<div>';
                 echo '<a id="eventOptionLink" data-bs-toggle="modal" data-bs-target="#eventOptionsModal"></a>';

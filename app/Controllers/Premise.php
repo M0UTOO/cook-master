@@ -93,6 +93,4 @@ class Premise extends BaseController
             return redirect()->to('/')->with('message', 'You do not have access to the page : '. $data['title']);
         }
     }
-
-
 }

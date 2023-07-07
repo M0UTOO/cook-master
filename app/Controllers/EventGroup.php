@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 class EventGroup extends BaseController
 {
-    //TODO: CREATE ROUTES IN ROUTES.php
     private $eventGroups;
     public function __construct()
     {

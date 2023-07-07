@@ -100,5 +100,6 @@ return [
     'endsOn' => 'Ends on: ',
     'takesPlaceAt' => 'Takes place at: ',
     'searchEventsExemple'=> 'Ex: Pastry',
+    'my_events'=> 'My events',
 
 ];

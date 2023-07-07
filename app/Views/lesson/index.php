@@ -14,7 +14,7 @@ echo $this->include('layouts/head') ;
     echo '<body>';
     echo $this->include('layouts/header') ;
 
-    echo "<h2>" . $title . "<img alt='logo-lessons' class='ms-2 icons' src=" . base_url("assets/images/svg/lessn-icon.svg") . " /></h2>";
+    echo "<h2>" . $title . "<img alt='logo-lessons' class='ms-2 icons-medium' src=" . base_url("assets/images/svg/lessn-icon.svg") . " /></h2>";
 
         if (isContractor()){
             echo '<div>';

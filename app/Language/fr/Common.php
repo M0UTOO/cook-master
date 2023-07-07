@@ -103,4 +103,5 @@ return [
     'endsOn' => 'Se termine le : ',
     'takesPlaceAt' => 'A lieu dans : ',
     'searchEventsExemple'=> 'Ex: Patisserie',
+    'my_events'=> 'Mes évènements',
     ];

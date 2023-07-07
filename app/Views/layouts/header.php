@@ -1,6 +1,5 @@
 <?php
 helper('html') ?>
-<!-- ABOVE LINE TO USE SOME NATIVES HELPERS LIKE img TAG or form tag-->
 
 <header class="header">
     <div class="container-fluid" id="navbar">
@@ -22,7 +21,7 @@ helper('html') ?>
     <a class="m-2 p-3" href="/subscriptions" class="nav-link"><?=lang('Common.burger-menu.subscriptions')?></a>
     <?php
     if (isContractor()) {
-        echo '<a class="m-2 p-3" href="' . base_url('eventContractor/index/' . session()->get('id') . '') . '" class="nav-link">My events</a>';
+        echo '<a class="m-2 p-3" href="' . base_url('eventContractor/index/' . session()->get('id') . '') . '" class="nav-link">'.lang('Common.my_events').'</a>';
     }
     ?>
 
