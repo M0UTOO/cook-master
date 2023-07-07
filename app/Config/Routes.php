@@ -179,6 +179,7 @@ $routes->get('cookingSpace/(:num)', 'CookingSpace::show/$1'); //show one cooking
 
 // MESSAGES
 $routes->get('message', 'Message::index');
+$routes->get('message/(:num)', 'Message::show/$1');
 
 
 

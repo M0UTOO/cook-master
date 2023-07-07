@@ -166,32 +166,6 @@ echo $this->include('layouts/head') ;
     ?>
     </body>
 <script src=<?= base_url('assets/js/create_users.js')?>></script>
-<script>
-    function displayEvents(page) {
-
-    $.ajax({
-        url: 'index.php',
-        type: 'GET',
-        data: { page: page },
-        success: function (response) {
-            $('#event-container').html(response);
-        },
-        error: function (error) {
-            console.log(error);
-        }
-    });
-    }
-
-    // Handle pagination link clicks
-    $('.pagination-link').on('click', function (event) {
-        event.preventDefault();
-        const page = $(this).data('page'); // Get the page number from the data attribute
-        displayEvents(page);
-    });
-
-    // Initially display the events for the first page
-    displayEvents(1);
-</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5567240416427109"
      crossorigin="anonymous"></script>
 </html>

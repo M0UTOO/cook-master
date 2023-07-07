@@ -8,6 +8,7 @@
         "php": "^7.4 || ^8.0",
         "ext-curl": "*",
         "ext-json": "*",
+        "cboden/ratchet": "^0.4.4",
         "codeigniter4/framework": "^4.0",
         "fpdf/fpdf": "^1.86",
         "stripe/stripe-php": "^10.15",

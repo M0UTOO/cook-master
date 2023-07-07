@@ -22,7 +22,7 @@ if (isset($roles) && is_array($roles) && count($roles) > 0){
 
 
                 foreach ($roles as $role){
-                    $redirection = base_url("/lesson/".$role->idcontractor);
+                    $redirection = base_url("/message/".$role->idcontractor);
                     if (isLoggedIn() && isClient()) {
                         echo '<tr id="row-clickable-client" data-href='.$redirection.'>';
                     } else {

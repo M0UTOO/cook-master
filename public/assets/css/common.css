@@ -695,6 +695,57 @@ tr.no-pointer {
     margin-bottom: 5em;
 }
 
+#chat-container {
+    height: 80vh;
+    border: 1px solid #ddd; /* Add a border around the chat container */
+    border-radius: 8px; /* Add rounded corners to the border */
+    width: 70vw;
+    padding: 10px;
+  }
+  
+  #message-list {
+    display: flex;
+    flex-direction: column-reverse;
+    overflow-y: auto; /* Enable scrolling for messages */
+    height: 100%; /* Occupy remaining height */
+  }
+  
+  #load-more-messages {
+    text-align: center;
+    padding: 10px 0;
+  }
+  
+  #load-more-btn {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .message {
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-size: 28px;
+    line-height: 1.4;
+    display: inline-block; /* Display messages as inline-block elements */
+    max-width: 80%; /* Set a maximum width for the message div */
+    word-wrap: break-word; /* Allow long words to wrap within the div */
+  }
+  
+  .sender-a {
+    background-color: var(--brand-second-color); /* Blue color for messages from user A */
+    max-width: 45%;
+    align-self: flex-start;
+  }
+  
+  .sender-b {
+    background-color: var(--brand-fourth-color); /* Green color for messages from user B */
+    max-width: 45%;
+    align-self: flex-end
+
+  }
+
 /*HOME PAGE*/
 
 #home-page{
@@ -843,3 +894,5 @@ tr.no-pointer {
 
 
 }
+
+

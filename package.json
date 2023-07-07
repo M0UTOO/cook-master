@@ -1,0 +1,26 @@
+{
+  "name": "cook-master",
+  "version": "1.0.0",
+  "description": "## DESCRIPTION     A super website where you can learn how to cook, go to events, learn and shop !",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/M0UTOO/cook-master.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/M0UTOO/cook-master/issues"
+  },
+  "homepage": "https://github.com/M0UTOO/cook-master#readme",
+  "dependencies": {
+    "socket.io": "^4.7.1"
+  }
+}

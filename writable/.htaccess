@@ -4,3 +4,8 @@
 <IfModule !authz_core_module>
     Deny from all
 </IfModule>
+
+RewriteEngine on
+
+RewriteCond %{REQUEST_URI} ^/path/to/websocket/ [NC]
+RewriteRule ^(.*)$ /path/to/websocket/index.php [L]

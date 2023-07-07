@@ -105,6 +105,8 @@ return [
     'takesPlaceAt' => 'A lieu dans : ',
     'searchEventsExemple'=> 'Ex: Patisserie',
     'my_events'=> 'Mes évènements',
+    'notFound.messages' => 'Commencez à discuter avec nos chefs !',
 
-    'message_title' => 'Contacter un chef'
+    'message_title' => 'Contacter un chef',
+    'placeholder_message' => 'Votre message',
     ];
