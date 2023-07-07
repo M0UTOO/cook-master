@@ -123,28 +123,10 @@ $routes->post('event/join', 'Event::join');
 $routes->post('event/leave', 'Event::leave');
 $routes->get('event/close/(:num)', 'Event::close/$1');
 
-//EVENTS CONTRACTORS
-$routes->get('eventContractor/delete/(:num)/(:num)', 'EventContractor::delete/$1/$2');
-$routes->get('eventContractor/add', 'EventContractor::addcontractor');
-$routes->post('eventContractor/add', 'EventContractor::addcontractor/');
-$routes->get('eventContractor/index/(:num)', 'EventContractor::index/$1');
-$routes->get('eventContractor/validate/(:num)', 'EventContractor::clientValidation/$1'); //show one event
-$routes->get('eventContractor/removeParticipant/(:num)/(:num)', 'EventContractor::removeParticipant/$1/$2');
-$routes->get('eventContractor/addParticipant/(:num)/(:num)', 'EventContractor::addParticipant/$1/$2');
-
-
 //EVENTS SPACE
 $routes->get('eventSpace/delete/(:num)/(:num)', 'EventSpace::delete/$1/$2');
 $routes->get('eventSpace/add', 'EventSpace::addspace');
 $routes->post('eventSpace/add', 'EventSpace::addspace/');
-
-//EVENTS GROUPS
-$routes->get('eventGroups', 'EventGroup::index'); //show all lessonGroups
-$routes->get('eventGroup/add/', 'EventGroup::add');
-$routes->get('eventGroup/add/group', 'EventGroup::addgroup');
-$routes->post('eventGroup/add/group/', 'EventGroup::addgroup/');
-$routes->post('eventGroup/add/', 'EventGroup::add/');
-$routes->get('eventGroup/delete/(:num)', 'EventGroup::delete/$1');
 
 //EVENTS CONTRACTORS
 $routes->get('eventContractor/delete/(:num)/(:num)', 'EventContractor::delete/$1/$2');
@@ -155,11 +137,6 @@ $routes->get('eventContractor/validate/(:num)', 'EventContractor::clientValidati
 $routes->get('eventContractor/removeParticipant/(:num)/(:num)', 'EventContractor::removeParticipant/$1/$2');
 $routes->get('eventContractor/addParticipant/(:num)/(:num)', 'EventContractor::addParticipant/$1/$2');
 
-
-//EVENTS SPACE
-$routes->get('eventSpace/delete/(:num)/(:num)', 'EventSpace::delete/$1/$2');
-$routes->get('eventSpace/add', 'EventSpace::addspace');
-$routes->post('eventSpace/add', 'EventSpace::addspace/');
 
 //EVENTS GROUPS
 $routes->get('eventGroups', 'EventGroup::index'); //show all lessonGroups
@@ -199,6 +176,9 @@ $routes->get('cookingSpace/delete/(:num)', 'CookingSpace::delete/$1');
 $routes->get('cookingSpace/edit/(:num)', 'CookingSpace::edit/$1');
 $routes->post('cookingSpace/edit/(:num)', 'CookingSpace::edit/$1');
 $routes->get('cookingSpace/(:num)', 'CookingSpace::show/$1'); //show one cookingSpace
+
+// MESSAGES
+$routes->get('message', 'Message::index');
 
 
 

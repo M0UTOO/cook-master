@@ -9,6 +9,7 @@ return [
         'events'            => 'Nos Evénements',
         'cookingSpaces'     => 'Nos Espaces de cuisine',
         'subscriptions'     => 'Nos Abonnements',
+        'messages'          => 'Contacter Nos Chefs',
         'signOut'           => 'Se déconnecter',
         'yourAccount'       => 'Votre compte',
         'dashboard'         => 'Tableau de bord (Manager)',
@@ -104,4 +105,6 @@ return [
     'takesPlaceAt' => 'A lieu dans : ',
     'searchEventsExemple'=> 'Ex: Patisserie',
     'my_events'=> 'Mes évènements',
+
+    'message_title' => 'Contacter un chef'
     ];

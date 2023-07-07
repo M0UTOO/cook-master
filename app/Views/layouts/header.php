@@ -18,6 +18,7 @@ helper('html') ?>
     <a class="m-2 p-3" href="/lessons" class="nav-link"><?=lang('Common.burger-menu.lessons')?></a>
     <a class="m-2 p-3" href="/events" class="nav-link"><?=lang('Common.burger-menu.events')?></a>
     <a class="m-2 p-3" href="/cookingSpace" class="nav-link"><?=lang('Common.burger-menu.cookingSpaces')?></a>
+    <a class="m-2 p-3" href="/message" class="nav-link"><?=lang('Common.burger-menu.messages')?></a>
     <a class="m-2 p-3" href="/subscriptions" class="nav-link"><?=lang('Common.burger-menu.subscriptions')?></a>
     <?php
     if (isContractor()) {
