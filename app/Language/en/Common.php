@@ -102,6 +102,9 @@ return [
     'searchEventsExemple'=> 'Ex: Pastry',
     'my_events'=> 'My events',
 
-    'catchphrase'  => 'The place to master your cooking skills',
+    'catchphrase'  => 'Discover the Chef Within You',
     'small-catchphrase' => 'Join the cookmaster experience',
+    'btn-learn' => 'Learn from the best',
+    'btn-events' => 'Join an event',
+    'btn-cookingSpaces' => 'Book a cooking space',
 ];

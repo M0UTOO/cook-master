@@ -10,12 +10,7 @@ class Home extends BaseController
     public function index()
     {
         $data['title'] = "Cookmaster - Home page";
-
-        return view('home', $data);
-    }
-
-
-    private function randomOrders(){
         $data['orders'] = callAPI('/order/random', 'get');
+        return view('home', $data);
     }
 }
