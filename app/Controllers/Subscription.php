@@ -78,12 +78,13 @@ class Subscription extends BaseController
             $values['maxlessonaccess'] = (int)$values['maxlessonaccess'];
 
             $picture = $this->request->getFile('picture');
-            $picture_name = "img-subscription-".$id.".". $picture->getExtension(); //check extension
-            $values["picture"] = $picture_name;
-
+            if (!empty($picture->getName()) && $picture->getSize() <= 2000000) {
+                $picture_name = "img-subscription-" . $id . "." . $picture->getExtension(); //check extension
+                $values["picture"] = $picture_name;
+            }
             $data['message'] = callAPI('/subscription/'.$id, 'patch', $values);
 
-            if (!$data['message']['error']){
+            if (!$data['message']['error'] && !isset($values['picture'])){
                 $directory = './assets/images/subscriptions';
                 if (!file_exists($directory)){
                     mkdir($directory, 755, true);

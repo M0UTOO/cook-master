@@ -8,7 +8,7 @@ echo '<body>';
     {
         echo '<div id="difficulty-stars">';
         for ($i = 0; $i<$difficulty;$i++) {
-            echo '<img src=' . base_url("assets/images/svg/moon-icon.svg") . ' alt="modify-icon" class="icons" />';
+            echo '<img src=' . base_url("assets/images/svg/star-icon-red.svg") . ' alt="modify-icon" class="ms-2 icons" />';
         }
         echo "</div>";
 
@@ -24,7 +24,7 @@ echo '<body>';
             if (isManager() || $currentId == $lesson['iduser']){
                 echo '<div class="">';
                 echo '<a class="me-3" href="/lesson/delete/' . $lesson["idlesson"] . '"><img src=' . base_url("assets/images/svg/trash-icon-red.svg") . ' alt="delete-icon" class="icons" /></a>';
-                echo '<a href="/lesson/edit/' . $lesson["idlesson"] . '"><img src=' . base_url("assets/images/svg/moon-icon.svg") . ' alt="modify-icon" class="icons" /></a>';
+                echo '<a href="/lesson/edit/' . $lesson["idlesson"] . '"><img src=' . base_url("assets/images/svg/edit-icon.svg") . ' alt="modify-icon" class="icons" /></a>';
                 echo '</div>';
             }
 

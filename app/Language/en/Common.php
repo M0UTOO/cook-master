@@ -73,7 +73,7 @@ return [
     'lessonPicture' => 'Lesson Picture',
     'lessonContent' => 'Lesson Content',
     'lessonGroup' => 'Lesson Group',
-    'allLessonsFromGroup' => 'All Lessons from Group',
+    'allLessonsFromGroup' => 'All lessons from the group',
     'randomLessons' => 'Random Lessons',
 
     'edit_subscription' => 'Edit Subscription',
@@ -102,4 +102,6 @@ return [
     'searchEventsExemple'=> 'Ex: Pastry',
     'my_events'=> 'My events',
 
+    'catchphrase'  => 'The place to master your cooking skills',
+    'small-catchphrase' => 'Join the cookmaster experience',
 ];

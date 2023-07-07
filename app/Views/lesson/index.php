@@ -3,7 +3,7 @@ function displayDifficultyLevel( $difficulty )
 {
     echo '<td>';
     for ($i = 0; $i<$difficulty;$i++) {
-        echo '<img src=' . base_url("assets/images/svg/moon-icon.svg") . ' alt="modify-icon" class="icons" />';
+        echo '<img src=' . base_url("assets/images/svg/star-icon-red.svg") . ' alt="modify-icon" class="icons" />';
     }
     echo "</td>";
 
