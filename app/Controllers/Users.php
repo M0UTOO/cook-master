@@ -256,7 +256,7 @@ class Users extends BaseController
                     $data['message'] = callAPI('/client/'.$iduser, 'patch', $client);
                 } else if (isContractor()) {
                     $data['message'] = callAPI('/contractor/'.$iduser, 'patch', $contractor);
-                }
+                }   
                 return redirect()->to('/user/profile')->with('message', $data['message']['message']);
             } else {
                 return redirect()->to('/user/profile')->with('message', $data['message']['message']);

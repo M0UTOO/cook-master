@@ -12,66 +12,66 @@ use App\Controllers\Users;
     echo form_open_multipart($action, 'id="event-create-form" class=""', $hidden_input);
 
                 echo '<div class="form-group mb-3">';
-                echo form_label('Email' , "label-event-name");
+                echo form_label(lang('Common.email') , "label-event-name");
                 $value = (isset($client) ? $client['email'] :'');
-                echo form_input(['type'  => 'text', 'name'  => 'email', 'class' => 'form-control', 'value' => $value, 'placeholder' => "Email of user"]);
+                echo form_input(['type'  => 'text', 'name'  => 'email', 'class' => 'form-control', 'value' => $value, 'placeholder' => lang('Common.email')]);
                 echo '</div>';
 
                 echo '<div class="form-group mb-3">';
-                echo form_label('New Password' , "label-event-name");
+                echo form_label(lang('Common.new-password') , "label-event-name");
                 echo form_password("password", "", 'class="form-control"');
                 echo '</div>';
 
                 echo '<div class="form-group mb-3">';
-                echo form_label('FirstName' , "label-event-name");
+                echo form_label(lang('Common.firstname') , "label-event-name");
                 $value = (isset($client) ? $client['firstname'] :'');
-                echo form_input(['type'  => 'text', 'name'  => 'firstname', 'class' => 'form-control', 'value' => $value, 'placeholder' => "FirstName"]);
+                echo form_input(['type'  => 'text', 'name'  => 'firstname', 'class' => 'form-control', 'value' => $value, 'placeholder' => lang('Common.firstname')]);
                 echo '</div>';
 
                 echo '<div class="form-group mb-3">';
-                echo form_label('LastName' , "label-event-name");
+                echo form_label(lang('Common.lastname') , "label-event-name");
                 $value = (isset($client) ? $client['lastname'] :'');
-                echo form_input(['type'  => 'text', 'name'  => 'lastname', 'class' => 'form-control', 'value' => $value, 'placeholder' => "LastName"]);
+                echo form_input(['type'  => 'text', 'name'  => 'lastname', 'class' => 'form-control', 'value' => $value, 'placeholder' => lang('Common.lastname')]);
                 echo '</div>';
 
                 echo '<div class="form-group mb-3">';
-                    echo form_label('Profile Picture' , "label-event-picture");
+                    echo form_label(lang('Common.profile-picture') , "label-event-picture");
                     $value = (isset($client) ? $client['profilepicture'] :'');
                     echo form_input(['type'  => 'file', 'name'  => 'profilepicture','value' => $value, 'class' => 'form-control']);
                 echo '</div>';
 
                 echo '<div class="form-group mb-3">';
-                echo form_label('StreetName' , "label-event-name");
+                echo form_label(lang('Common.streetName') , "label-event-name");
                 $value = (isset($client) ? $client['streetname'] :'');
-                echo form_input(['type'  => 'text', 'name'  => 'streetname', 'class' => 'form-control', 'value' => $value, 'placeholder' => "Street Name"]);
+                echo form_input(['type'  => 'text', 'name'  => 'streetname', 'class' => 'form-control', 'value' => $value, 'placeholder' => lang('Common.streetName')]);
                 echo '</div>';
 
                 echo '<div class="form-group mb-3">';
-                echo form_label('Country' , "label-event-name");
+                echo form_label(lang('Common.country') , "label-event-name");
                 $value = (isset($client) ? $client['country'] :'');
-                echo form_input(['type'  => 'text', 'name'  => 'country', 'class' => 'form-control', 'value' => $value, 'placeholder' => "Country"]);
+                echo form_input(['type'  => 'text', 'name'  => 'country', 'class' => 'form-control', 'value' => $value, 'placeholder' => lang('Common.country')]);
                 echo '</div>';
 
                 echo '<div class="form-group mb-3">';
-                echo form_label('City' , "label-event-name");
+                echo form_label(lang('Common.city') , "label-event-name");
                 $value = (isset($client) ? $client['city'] :'');
-                echo form_input(['type'  => 'text', 'name'  => 'city', 'class' => 'form-control', 'value' => $value, 'placeholder' => "City"]);
+                echo form_input(['type'  => 'text', 'name'  => 'city', 'class' => 'form-control', 'value' => $value, 'placeholder' => lang('Common.city')]);
                 echo '</div>';
 
                 echo '<div class="form-group mb-3">';
-                echo form_label('StreetNumber' , "label-event-name");
+                echo form_label(lang('Common.streetNumber') , "label-event-name");
                 $value = (isset($client) ? $client['streetnumber'] :'');
-                echo form_input(['type'  => 'numeric', 'name'  => 'streetnumber', 'class' => 'form-control', 'value' => $value, 'placeholder' => "Street Number"]);
+                echo form_input(['type'  => 'numeric', 'name'  => 'streetnumber', 'class' => 'form-control', 'value' => $value, 'placeholder' => lang('Common.streetNumber')]);
                 echo '</div>';
 
                 echo '<div class="form-group mb-3">';
-                echo form_label('PhoneNumber' , "label-event-name");
+                echo form_label(lang('Common.phoneNumber') , "label-event-name");
                 $value = (isset($client) ? $client['phonenumber'] :'');
-                echo form_input(['type'  => 'numeric', 'name'  => 'phonenumber', 'class' => 'form-control', 'value' => $value, 'placeholder' => "Phone Number"]);
+                echo form_input(['type'  => 'numeric', 'name'  => 'phonenumber', 'class' => 'form-control', 'value' => $value, 'placeholder' => lang('Common.phoneNumber')]);
                 echo '</div>';
 
                 $booleans = [
-                    'keepSubscription'  => 'Do you want to keep your subscription every month ?',
+                    'keepSubscription'  => lang('Common.keepSubscription'),
                 ];
                 $isChecked = true;
 
@@ -85,7 +85,7 @@ use App\Controllers\Users;
                 echo "</div>";
 
                 echo '<div class="form-group mb-3">';
-                    echo form_submit('', 'Save', 'class="btn mt-3 blue-btn form-control"');
+                    echo form_submit('', lang('Common.save'), 'class="btn mt-3 blue-btn form-control"');
                 echo '</div>';
     echo form_close();
 

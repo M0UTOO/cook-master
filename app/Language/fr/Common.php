@@ -37,6 +37,7 @@ return [
     'email' => 'Email',
     'password' => 'Mot de passe',
     'password-confirm' => 'Confirmez votre mot de passe',
+    'new-password' => 'Nouveau mot de passe',
     'firstname' => 'Prénom',
     'lastname' => 'Nom',
     'country' => 'Pays',
@@ -51,6 +52,8 @@ return [
     'fidelitypoints' => 'Points de fidélité',
     'address' => 'Adresse',
     'town' => 'Ville',
+    'city' => 'Ville',
+    'presentation' => 'Présentation',
     'phoneNumber' => 'Numéro de téléphone',
     'subscription' => 'Abonnement',
     'type' => 'Type',
@@ -62,6 +65,9 @@ return [
     'isSuperAdmin' => 'Est un super administrateur',
     'changeinfo' => 'Modifier mes informations',
     'options' => 'Options',
+    'keepSubscription' => 'Garder l\'abonnement ?',
+    'streetNumber' => 'Numéro de rue',
+    'streetName' => 'Nom de rue',
 
     "userTypeQuestion" => "Quel type d'utilisateur voulez-vous créer ?",
     "userType" => [
