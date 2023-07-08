@@ -710,18 +710,6 @@ tr.no-pointer {
     height: 100%; /* Occupy remaining height */
   }
   
-  #load-more-messages {
-    text-align: center;
-    padding: 10px 0;
-  }
-  
-  #load-more-btn {
-    background-color: #ffffff;
-    border: 1px solid #dddddd;
-    padding: 5px 10px;
-    cursor: pointer;
-  }
-  
   .message {
     margin-bottom: 10px;
     padding: 5px 10px;
@@ -743,8 +731,37 @@ tr.no-pointer {
     background-color: var(--brand-fourth-color); /* Green color for messages from user B */
     max-width: 45%;
     align-self: flex-end
-
   }
+
+  #message-input-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 70vw;
+    margin-top: 1em;
+  }
+
+#message-input {
+    width: 50vw;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    }
+
+    #send-button {
+    padding: 10px 20px;
+    background-color: var(--brand-primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    }
+
+    #send-button:hover {
+    background-color: var(--brand-second-color);
+    }
 
 /*HOME PAGE*/
 

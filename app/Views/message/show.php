@@ -5,24 +5,17 @@ echo $this->include('layouts/head') ;
     echo '<body>';
     echo $this->include('layouts/header') ;
     echo "<h1>" . $title . "<img alt='logo-lessons' class='ms-2 icons-medium' src=" . base_url("assets/images/users/" . $contractor['profilepicture'] . "") . " /></h1>";
-
-    if (isset($messages) && is_array($messages) && count($messages) > 0){
         
         echo '<div id="chat-container">';
         echo '<div id="message-list">';
         echo '</div>';
-        echo '<div id="load-more-messages">';
-        echo '<button id="load-more-btn" class="btn btn-primary">Load more</button>';
-        echo '<div id="input-container">';
+        echo '<div id="message-input-container">';
         echo '<input type="text" id="message-input" placeholder="' . lang('Common.placeholder_message') . '">';
-        echo '<button id="send-button">Send</button>';
+        echo '<button id="send-button">' . lang('Common.chat') . '</button>';
         echo '</div>';
         echo '</div>';
         echo '</div>';
-
-    } else {
-        echo "<p>".lang('Common.notFound.messages')."</p>";
-    }
+        echo '</div>';
 
     echo '</main>';
 
@@ -33,13 +26,50 @@ echo $this->include('layouts/head') ;
 <script>
 const socket = new WebSocket('ws://localhost:8081');
 
+const id = <?php 
+        if (isset($idcontractor)) {
+            echo $idcontractor;
+        } else {
+            echo $idclient;
+        } 
+        ?>;
+const userId = <?php echo json_encode(session()->get('id')); ?>;
+
+const url = `http://localhost:9000/message/${id}/${userId}`;
+
 socket.addEventListener('open', () => {
     console.log('Connected to WebSocket server');
 });
 
 socket.addEventListener('message', (event) => {
     const message = JSON.parse(event.data);
-    console.log('Received message:', message);
+    messages.push(message);
+    renderMessages();
+
+    if (message.idsender === id) {
+
+        const data = {
+            content: message.content,
+        };
+
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Token': '<?php echo env('API_TOKEN'); ?>'
+            },
+            body: JSON.stringify(data),
+        };
+
+        fetch(url, options)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    }
 });
 
 socket.addEventListener('close', () => {
@@ -55,7 +85,8 @@ sendButton.addEventListener('click', () => {
     if (messageContent !== "") {
         const message = {
             content: messageContent,
-            sender: 'client'
+            createdAt: formatDate(),
+            idsender: id
         };
         socket.send(JSON.stringify(message));
 
@@ -64,86 +95,53 @@ sendButton.addEventListener('click', () => {
     }
 });
 
+const messages = <?php echo json_encode($messages); ?>;
 
 
-// const messageList = document.getElementById("message-list");
-// const loadMoreBtn = document.getElementById("load-more-btn");
-// const messageInput = document.getElementById("message-input");
-// const sendButton = document.getElementById("send-btn");
+const messageList = document.getElementById("message-list");
+const messageInput = document.getElementById("message-input");
 
-// // Function to handle sending a message
-// function sendMessage() {
-//   const messageContent = messageInput.value.trim();
-//   if (messageContent !== "") {
-//     // Implement your logic to send the message
-//     const newMessage = {
-//       content: messageContent,
-//       sender: "currentUser" // Replace with your sender identification logic
-//     };
+// Function to render messages
+function renderMessages() {
+  messageList.innerHTML = "";
 
-//     // Add the new message to your messages array
-//     messages.push(newMessage);
+  // Display a limited number of messages initially
+  const numMessagesToShow = 99999999;
+  const startIndex = Math.max(0, messages.length - numMessagesToShow);
 
-//     // Render the messages again
-//     renderMessages();
+  for (let i = messages.length - 1; i >= startIndex; i--) {
+    const message = messages[i];
 
-//     // Clear the input field
-//     messageInput.value = "";
-//   }
-// }
+    const messageElement = document.createElement("div");
+    messageElement.classList.add("message");
 
-// // Event listener for the "Send" button click event
-// sendButton.addEventListener("click", sendMessage);
+    if (message.idsender !== id) {
+      messageElement.classList.add("sender-a");
+    } else {
+      messageElement.classList.add("sender-b");
+    }
 
-// messageInput.addEventListener("keydown", function(event) {
-//   if (event.key === "Enter") {
-//     sendMessage();
-//   }
-// });
+    messageElement.textContent = message.content;
+    messageList.appendChild(messageElement);
+  }
+}
 
-// // Function to render messages
-// function renderMessages() {
-//   messageList.innerHTML = "";
+function formatDate() {
+    const currentDate = new Date();
 
-//   // Display a limited number of messages initially
-//   const numMessagesToShow = 99999999;
-//   const startIndex = Math.max(0, messages.length - numMessagesToShow);
+    const year = currentDate.getFullYear();
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+    const day = String(currentDate.getDate()).padStart(2, '0');
+    const hours = String(currentDate.getHours()).padStart(2, '0');
+    const minutes = String(currentDate.getMinutes()).padStart(2, '0');
+    const seconds = String(currentDate.getSeconds()).padStart(2, '0');
 
-//   for (let i = messages.length - 1; i >= startIndex; i--) {
-//     const message = messages[i];
+    const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 
-//     console.log(message.idreceiver);
+    return formattedDate;
+}
 
-//     const messageElement = document.createElement("div");
-//     messageElement.classList.add("message");
-
-//     if (message.idreceiver === sender) {
-//       messageElement.classList.add("sender-a");
-//     } else {
-//       messageElement.classList.add("sender-b");
-//     }
-
-//     messageElement.textContent = message.content;
-//     messageList.appendChild(messageElement);
-//   }
-
-//   // Show or hide the load more button based on the number of messages
-//   if (startIndex > 0) {
-//     loadMoreBtn.style.display = "block";
-//   } else {
-//     loadMoreBtn.style.display = "none";
-//   }
-// }
-
-// // Function to load more messages
-// function loadMoreMessages() {
-//   // Implement your logic to load more messages
-// }
-
-// // Attach event listener to the load more button
-// loadMoreBtn.addEventListener("click", loadMoreMessages);
-
-// // Call the renderMessages function to initially display the messages
-// renderMessages();
+// Call the renderMessages function to initially display the messages
+renderMessages();
 </script>
 </html>

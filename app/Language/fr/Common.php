@@ -61,6 +61,7 @@ return [
         'events' => "Aucun événement trouvé",
         'cookingSpaces' => "Aucun espace de cuisine trouvé",
         'subscriptions' => "Aucun abonnement trouvé",
+        'chat' => "Aucun message trouvé",
     ],
 
     'userManagementTitle' => 'Gestion des utilisateurs',
@@ -107,6 +108,15 @@ return [
     'my_events'=> 'Mes évènements',
     'notFound.messages' => 'Commencez à discuter avec nos chefs !',
 
-    'message_title' => 'Contacter un chef',
+    'title_message_client' => 'Contacter un contratant',
+    'title_message_contractor' => 'Répondre à un client',
+    'title_message_manager' => 'Contacter un manager',
+    'title_message_chief' => 'Contacter un chef',
     'placeholder_message' => 'Votre message',
+    'mychat' => 'Mes discussions',
+    'mustBeChief' => 'Vous devez être un chef pour accéder à cette page',
+    'mustBeLoggedIn' => 'Vous devez être connecté pour accéder à cette page',
+    'mustHaveSubscription' => 'Vous devez avoir un abonnement avec accès au chat pour accéder à cette page',
+    'send' => 'Envoyer',
+    'chat' => 'Chat',
     ];

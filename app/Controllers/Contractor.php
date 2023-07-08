@@ -27,6 +27,10 @@ class Contractor extends Users
                 $values['password'] = $password->__toString();
             }
 
+            if (isset($values['language'])) {
+                $values['language'] = intval($values['language']);
+            }
+
             if ($type == "Manager") {
                 if (isset($values['isitemmanager'])) {
                     $values['isitemmanager'] = boolval($values['isitemmanager']);

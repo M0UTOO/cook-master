@@ -22,8 +22,12 @@ helper('html') ?>
     <?php
     if (isContractor()) {
         echo '<a class="m-2 p-3" href="' . base_url('eventContractor/index/' . session()->get('id') . '') . '" class="nav-link">'.lang('Common.my_events').'</a>';
+        echo '<a class="m-2 p-3" href="' . base_url('message') . '" class="nav-link">'.lang('Common.mychat').'</a>';
     }
     if (isClient()) {
+        echo '<a class="m-2 p-3" href="/message" class="nav-link">' . lang('Common.burger-menu.messages') . '</a>';
+    }
+    if (isManager()) {
         echo '<a class="m-2 p-3" href="/message" class="nav-link">' . lang('Common.burger-menu.messages') . '</a>';
     }
     ?>
