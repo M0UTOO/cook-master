@@ -88,7 +88,7 @@ class Users extends BaseController
 
         $userId = session()->get('id');
         $data['user'] = callAPI('/user/'.$userId, 'get');
-        $data['title'] = "My profile";
+        $data['title'] = lang('Common.profile');
 
         if (isClient()){
             $data['client'] = callAPI('/client/'.$userId, 'get');
@@ -99,6 +99,7 @@ class Users extends BaseController
             $data['pastEvents'] = callAPI('/event/past/'.$userId, 'get');
         } else if (isContractor()){
             $data['contractor'] = callAPI('/contractor/'.$userId, 'get');
+            $data['type'] = callAPI('/contractor/type/'.$data['contractor']['contractortype'], 'get');
         } else if (isManager()){
             $data['manager'] = callAPI('/manager/'.$userId, 'get');
         }
@@ -172,13 +173,19 @@ class Users extends BaseController
 
     public function account($id){
         if (!$this->request->is('post')){
-            $data['title'] = "My Account";
+            $data['title'] = lang('Common.changeinfo');
             $userId = session()->get('id');
             $data['iduser'] = $userId;
-            $data['client'] = callAPI('/client/'.$userId, 'get');
+            if (isClient()) {
+                $data['client'] = callAPI('/client/' . $userId, 'get');
+            } else if (isContractor()) {
+                $data['contractor'] = callAPI('/contractor/' . $userId, 'get');
+            } else if (isManager()) {
+                $data['manager'] = callAPI('/manager/' . $userId, 'get');
+            }
             return view('users/account', $data);
         } else {
-            $picture = $this->request->getFile('profilepicture');
+            $picture = $this->request->getFile('picture');
             $values = $this->request->getPost();
             $iduser = $values['user_id'];
             unset($values['user_id']);
@@ -219,11 +226,14 @@ class Users extends BaseController
             if (isset($values['keepSubscription'] )){
                 $client['keepsubscription'] = $values['keepSubscription'];
             }
-            if (isset($picture) && $picture->isValid()) {
+            if (isset($values['presentation'] )){
+                $contractor['presentation'] = $values['presentation'];
+            }
+            if (!empty($picture->getName()) && $picture->getSize() <= 2000000) {
 
                 $picture_name = "img-event-".$iduser.".". $picture->getExtension(); //check extension
                 $user['profilepicture'] = $picture_name;
-                var_dump($user);
+
             } else {
                 return redirect()->to('/user/profile/account/' . $iduser . '')->with('message', 'wrong picture');
             }
@@ -242,8 +252,11 @@ class Users extends BaseController
                     }
                     $picture->move($directory, $picture_name);
                 }
-
-                $data['message'] = callAPI('/client/'.$iduser, 'patch', $client);
+                if (isClient()) {
+                    $data['message'] = callAPI('/client/'.$iduser, 'patch', $client);
+                } else if (isContractor()) {
+                    $data['message'] = callAPI('/contractor/'.$iduser, 'patch', $contractor);
+                }
                 return redirect()->to('/user/profile')->with('message', $data['message']['message']);
             } else {
                 return redirect()->to('/user/profile')->with('message', $data['message']['message']);

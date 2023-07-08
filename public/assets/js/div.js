@@ -70,3 +70,12 @@ div8.addEventListener("click", function() {
         window.location.href = url;
     }
 });
+
+const div9 = document.querySelector("#clickable-div9");
+
+div9.addEventListener("click", function() {
+    let url = this.getAttribute("data-href");
+    if (url) {
+        window.location.href = url;
+    }
+});

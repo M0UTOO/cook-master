@@ -8,7 +8,7 @@ use App\Controllers\Users;
     }
 
     $hidden_input = ['user_id' => session()->get('id')];
-    $action = "user/profile/account/".$client['idclient'];
+    $action = "user/profile/account/".$iduser;
     echo form_open_multipart($action, 'id="event-create-form" class=""', $hidden_input);
 
                 echo '<div class="form-group mb-3">';

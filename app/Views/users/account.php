@@ -15,4 +15,10 @@ if (isset($message)) {
 }
 
 echo "<h2>" . $title ."</h2>";
-echo $this->include('users/form') ;
+if (isClient()) {
+    echo $this->include('users/form') ;
+} else if (isManager()) {
+    echo $this->include('users/managerform') ;
+} else if (isContractor()) {
+    echo $this->include('users/contractorform') ;
+}
