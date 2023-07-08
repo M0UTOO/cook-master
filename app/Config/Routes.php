@@ -41,6 +41,7 @@ $routes->get('users/edit/(:num)', 'Users::edit/$1');
 $routes->get('user/profile/comingEvents', 'Users::coming');
 $routes->get('user/profile/pastEvents', 'Users::past');
 $routes->get('user/profile/comments', 'Users::comment');
+$routes->get('user/profile/pastReservations', 'Users::reservation');
 $routes->get('user/profile/formations', 'Users::formation');
 $routes->get('user/profile/account/(:num)', 'Users::account/$1');
 $routes->post('user/profile/account/(:num)', 'Users::account/$1');

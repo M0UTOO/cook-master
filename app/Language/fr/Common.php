@@ -125,6 +125,8 @@ return [
     'btn-events' => 'Rejoindre un événement',
     'btn-cookingSpaces' => 'Réserver un espace de cuisine',
     'recommendedOrders' => 'Commandes recommandées',
+    'hasStarted' => 'A commencé le : ',
+    'hasEnded' => 'A fini le : ',
 
     'search' => 'Rechercher',
     'lessonName' => 'Nom de la leçon',

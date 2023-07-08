@@ -97,6 +97,7 @@ class Users extends BaseController
             $data['bills'] = callAPI('/bill/user/'.$userId, 'get');
             $data['formations'] = callAPI('/event/formation/'.$userId, 'get');
             $data['pastEvents'] = callAPI('/event/past/'.$userId, 'get');
+            $data['pastReservations'] = callAPI('/cookingspace/books/client/'.$userId, 'get');
         } else if (isContractor()){
             $data['contractor'] = callAPI('/contractor/'.$userId, 'get');
             $data['type'] = callAPI('/contractor/type/'.$data['contractor']['contractortype'], 'get');
@@ -262,5 +263,12 @@ class Users extends BaseController
                 return redirect()->to('/user/profile')->with('message', $data['message']['message']);
             }
         }
+    }
+
+    public function reservation() {
+        $data['title'] = lang('Common.myReservations');
+        $userId = session()->get('id');
+        $data['reservations'] = callAPI('/cookingspace/books/client/'.$userId, 'get');
+        return view('users/reservation', $data);
     }
 }
