@@ -25,24 +25,24 @@
             echo '<p>' . lang('Common.contractEnd') . ' : ' . $contractor['contractend'] . '</p>';
         } else if (isManager()) {
             if (isset($manager['isitemmanager']) && $manager['isitemmanager'] == 1) {
-                $isitemmanager = 'Yes'; 
+                $isitemmanager = lang('Common.yes'); 
             } else {
-                $isitemmanager = 'No';
+                $isitemmanager = lang('Common.no');
             }
             if (isset($manager['isclientmanager']) && $manager['isclientmanager'] == 1) {
-                $isclientmanager = 'Yes'; 
+                $isclientmanager = lang('Common.yes'); 
             } else {
-                $isclientmanager = 'No';
+                $isclientmanager = lang('Common.no');
             }
             if (isset($manager['iscontractormanager']) && $manager['iscontractormanager'] == 1) {
-                $iscontractormanager = 'Yes'; 
+                $iscontractormanager = lang('Common.yes'); 
             } else {
-                $iscontractormanager = 'No';
+                $iscontractormanager = lang('Common.no');
             }
             if (isset($manager['issuperadmin']) && $manager['issuperadmin'] == 1) {
-                $issuperadmin = 'Yes'; 
+                $issuperadmin = lang('Common.yes'); 
             } else {
-                $issuperadmin = 'No';
+                $issuperadmin = lang('Common.no');
             }
             echo '<p>' . lang('Common.isItemManager') . ' : ' . $isitemmanager . '</p>';
             echo '<p>' . lang('Common.isClientManager') . ' : ' . $isclientmanager . '</p>';
@@ -59,37 +59,37 @@
             $redirection = base_url("user/profile/comingEvents");
             echo '<div class="d-flex flex-column account-event-card" id="clickable-div1" data-href='.$redirection.'>';
             echo '<div class="card-title">';
-            echo '<h2 class="mb-3">Coming events</h2>';
+            echo '<h2 class="mb-3">' . lang('Common.myComingEvents') . '</h2>';
             echo '</div>';
             if (isset($comingEvents) && !empty($comingEvents)) {
                 echo '<div style="min-width: 100%;">';
                 if (sizeof($comingEvents) == 1) {
-                    echo '<p>You have ' . sizeof($comingEvents) . ' coming event</p>';
+                    echo '<p>' . lang('Common.youHave') . ' ' . sizeof($comingEvents) . ' ' . lang('Common.comingEvent') . '</p>';
                 } else {
-                    echo '<p>You have ' . sizeof($comingEvents) . ' coming events</p>';
+                    echo '<p>' . lang('Common.youHave') . ' ' . sizeof($comingEvents) . ' ' . lang('Common.comingEvents') . '</p>';
                 }
                 echo '</div>';
             } else {
                 echo '<div style="min-width: 100%;">';
-                echo '<p>No coming events</p>';
+                echo '<p>' . lang('Common.noComingEvents') . '</p>';
                 echo '</div>';
             }
             echo '</div>';
             $redirection = base_url("user/profile/pastEvents");
             echo '<div class="d-flex flex-column account-event-card" id="clickable-div2" data-href='.$redirection.'>';
             echo '<div class="card-title">';
-            echo '<h2 class="mb-3">Past events</h2>';
+            echo '<h2 class="mb-3">' . lang('Common.myPastEvents') . '</h2>';
             echo '</div>';
             if (isset($pastEvents) && !empty($pastEvents)) {
                 echo '<div style="min-width: 100%;">';
                 if (sizeof($pastEvents) == 1) {
-                    echo '<p>You have ' . sizeof($pastEvents) . ' past event</p>';
+                    echo '<p>' . lang('Common.youHave') . ' ' . sizeof($pastEvents) . ' ' . lang('Common.pastEvent') . '</p>';
                 } else {
-                    echo '<p>You have ' . sizeof($pastEvents) . ' past events</p>';
+                    echo '<p>' . lang('Common.youHave') . ' ' . sizeof($pastEvents) . ' ' . lang('Common.pastEvents') . '</p>';
                 }
                 echo '</div>';
             } else {
-                echo '<p>No past events</p>';
+                echo '<p>' . lang('Common.noPastEvents') . '</p>';
             }
             echo '</div>';
             echo '</div>';
@@ -100,37 +100,37 @@
             $redirection = base_url("user/profile/pastOrders");
             echo '<div class="d-flex flex-column account-event-card" id="clickable-div7" data-href='.$redirection.'>';
             echo '<div class="card-title">';
-            echo '<h2 class="mb-3">Past orders</h2>';
+            echo '<h2 class="mb-3">' . lang('Common.myOrders') . '</h2>';
             echo '</div>';
             if (isset($pastOrders) && !empty($pastOrders)) {
                 echo '<div style="min-width: 100%;">';
                 if (sizeof($pastOrders) == 1) {
-                    echo '<p>You have ' . sizeof($pastOrders) . ' past order</p>';
+                    echo '<p>' . lang('Common.youHave') . ' ' . sizeof($pastOrders) . ' ' . lang('Common.order') . '</p>';
                 } else {
-                    echo '<p>You have ' . sizeof($pastOrders) . ' past orders</p>';
+                    echo '<p>' . lang('Common.youHave') . ' ' . sizeof($pastOrders) . ' ' . lang('Common.orders') . '</p>';
                 }
                 echo '</div>';
             } else {
                 echo '<div style="min-width: 100%;">';
-                echo '<p>No past orders</p>';
+                echo '<p>' . lang('Common.noOrders') . '</p>';
                 echo '</div>';
             }
             echo '</div>';
             $redirection = base_url("user/profile/pastReservations");
             echo '<div class="d-flex flex-column account-event-card" id="clickable-div8" data-href='.$redirection.'>';
             echo '<div class="card-title">';
-            echo '<h2 class="mb-3">Past reservations</h2>';
+            echo '<h2 class="mb-3">' . lang('Common.myReservations') . '</h2>';
             echo '</div>';
             if (isset($pastReservations) && !empty($pastReservations)) {
                 echo '<div style="min-width: 100%;">';
                 if (sizeof($pastReservations) == 1) {
-                    echo '<p>You have ' . sizeof($pastReservations) . ' past reservation</p>';
+                    echo '<p>' . lang('Common.youHave') . ' ' . sizeof($pastReservations) . ' ' . lang('Common.reservation') . '</p>';
                 } else {
-                    echo '<p>You have ' . sizeof($pastReservations) . ' past reservations</p>';
+                    echo '<p>' . lang('Common.youHave') . ' ' . sizeof($pastReservations) . ' ' . lang('Common.reservations') . '</p>';
                 }
                 echo '</div>';
             } else {
-                echo '<p>No past reservations</p>';
+                echo '<p>' . lang('Common.noReservations') . '</p>';
             }
             echo '</div>';
             echo '</div>';
@@ -141,19 +141,19 @@
             $redirection = base_url("user/profile/comments");
             echo '<div class="d-flex flex-column account-event-card" id="clickable-div3" data-href='.$redirection.'>';
             echo '<div class="card-title">';
-            echo '<h2 class="mb-3">My Comments</h2>';
+            echo '<h2 class="mb-3">' . lang('Common.myComments') . '</h2>';
             echo '</div>';
             if (isset($comments) && !empty($comments)) {
                 echo '<div style="min-width: 100%;">';
                 if (sizeof($comments) == 1) {
-                    echo '<p>You have ' . sizeof($comments) . ' comment</p>';
+                    echo '<p>' . lang('Common.youHave') . ' ' . sizeof($comments) . ' ' . lang('Common.comment') . '</p>';
                 } else {
-                    echo '<p>You have ' . sizeof($comments) . ' comments</p>';
+                    echo '<p>' . lang('Common.youHave') . ' ' . sizeof($comments) . ' '. lang('Common.comments') . '</p>';
                 }
                 echo '</div>';
             } else {
                 echo '<div style="min-width: 100%;">';
-                echo '<p>No comments</p>';
+                echo '<p>' . lang('Common.noComments') . '</p>';
                 echo '</div>';
             }
             echo '</div>';
@@ -174,38 +174,38 @@
             $redirection = base_url("user/profile/comingEvents");
             echo '<div class="d-flex flex-column account-event-card" id="clickable-div5" data-href='.$redirection.'>';
             echo '<div class="card-title">';
-            echo '<h2 class="mb-3">My Bills</h2>';
+            echo '<h2 class="mb-3">' . lang('Common.myBills') . '</h2>';
             echo '</div>';
             if (isset($bills) && !empty($bills)) {
                 echo '<div style="min-width: 100%;">';
                 if (sizeof($bills) == 1) {
-                    echo '<p>You have ' . sizeof($bills) . ' bill</p>';
+                    echo '<p>' . lang('Common.youHave') . ' ' . sizeof($bills) . ' ' . lang('Common.bill') . '</p>';
                 } else {
-                    echo '<p>You have ' . sizeof($bills) . ' bills</p>';
+                    echo '<p>' . lang('Common.youHave') . ' ' . sizeof($bills) . ' ' . lang('Common.bills') . '</p>';
                 }
                 echo '</div>';
             } else {
                 echo '<div style="min-width: 100%;">';
-                echo '<p>No Bills</p>';
+                echo '<p>' . lang('Common.noBills') . '</p>';
                 echo '</div>';
             }
             echo '</div>';
             $redirection = base_url("user/profile/formations");
             echo '<div class="d-flex flex-column account-event-card" id="clickable-div6" data-href='.$redirection.'>';
             echo '<div class="card-title">';
-            echo '<h2 class="mb-3">My Formations</h2>';
+            echo '<h2 class="mb-3">' . lang('Common.myFormations') . '</h2>';
             echo '</div>';
             if (isset($formations) && !empty($formations)) {
                 echo '<div style="min-width: 100%;">';
                 if (sizeof($formations) == 1) {
-                    echo '<p>You have ' . sizeof($formations) . ' formation</p>';
+                    echo '<p>' . lang('Common.youHave') . ' ' . sizeof($formations) . ' ' . lang('Common.formation') . '</p>';
                 } else {
-                    echo '<p>You have ' . sizeof($formations) . ' formations</p>';
+                    echo '<p>' . lang('Common.youHave') . ' ' . sizeof($formations) . ' ' . lang('Common.formations') . '</p>';
                 }
                 echo '</div>';
             } else {
                 echo '<div style="min-width: 100%;">';
-                echo '<p>No formations</p>';
+                echo '<p>' . lang('Common.noFormations') . '</p>';
                 echo '</div>';
             }
             echo '</div>';

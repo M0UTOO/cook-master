@@ -59,26 +59,26 @@ class Users extends BaseController
                 $tmp = new Password($values['password']);
                 $values['password'] = $tmp->__toString();
 
-                var_dump($values);
-                //$data['message'] = callAPI('/user/', 'post', $values, ['Type' => $type]);
-                // $user_id = $data['message']['iduser'];
+                $data['message'] = callAPI('/user/', 'post', $values, ['Type' => $type]);
+                $user_id = $data['message']['iduser'];
 
-                // //SAVE PROFILEPICTURE ON SERVER: PICTURE NAME IS TIMESTAMP TO NOT MAKE IT OBVIOUS TO FIND
-                // $picture_name = "img-".$user_id . "_" . date('Y_mdHis', (new Time())->now()->getTimestamp()) . "." . $picture->getExtension(); //check extension
+                //SAVE PROFILEPICTURE ON SERVER: PICTURE NAME IS TIMESTAMP TO NOT MAKE IT OBVIOUS TO FIND
+                $picture_name = "img-".$user_id . "_" . date('Y_mdHis', (new Time())->now()->getTimestamp()) . "." . $picture->getExtension(); //check extension
 
-                // $data['state'] = callAPI('/user/'.$user_id, 'patch', ['profilepicture' => $picture_name]);
+                $data['state'] = callAPI('/user/'.$user_id, 'patch', ['profilepicture' => $picture_name]);
 
-                // if (!$data['state']['error']){
-                //     $directory = './assets/images/users';
-                //     if (!file_exists($directory)){
-                //         mkdir($directory, 755, true);
-                //         chmod($directory, 755);
-                //     }
-                //     $picture->move($directory, $picture_name);
+                if (!$data['state']['error']){
+                    $directory = './assets/images/users';
+                    if (!file_exists($directory)){
+                        mkdir($directory, 755, true);
+                        chmod($directory, 755);
+                    }
+                    $picture->move($directory, $picture_name);
                 }
-                //return redirect()->to('/signIn')->with('message', $data['message']['message'] . ". Log in to start your cookmaster experience !");
+                return redirect()->to('/signIn')->with('message', $data['message']['message'] . ". Log in to start your cookmaster experience !");
             }
         }
+    }
 
     public function profile(){
 
@@ -137,21 +137,21 @@ class Users extends BaseController
     }
 
     public function coming(){
-        $data['title'] = "Coming events";
+        $data['title'] = lang('Common.comingEvents');
         $userId = session()->get('id');
         $data['events'] = callAPI('/event/coming/'.$userId, 'get');
         return view('users/coming', $data);
     }
 
     public function past(){
-        $data['title'] = "Past events";
+        $data['title'] = lang('Common.pastEvents');
         $userId = session()->get('id');
         $data['events'] = callAPI('/event/past/'.$userId, 'get');
         return view('users/coming', $data);
     }
 
     public function comment(){
-        $data['title'] = "My Comments";
+        $data['title'] = lang('Common.myComments');
         $userId = session()->get('id');
         $data['comments'] = callAPI('/comment/client/'.$userId, 'get');
         return view('users/comment', $data);

@@ -23,6 +23,7 @@ echo '<body>';
 
         echo "<section class='account-cards' style='min-width: 100%;'>";
 
+            if (isset($comments) && (!empty($comments))) {
                 foreach ($comments as $comment) {
                     $event = callAPI('/event/' . $comment->idevent, 'get');
                     echo '<h1 class="mb-3">Event : ' . $event['name'] . '</h1>';
@@ -54,6 +55,9 @@ echo '<body>';
                         }
                     echo '</div>';
                 }
+            } else {
+                echo '<h2 class="mb-3">' . lang('Common.noComments') . '</h2>';
+            }
 
         echo "</div>";
         

@@ -63,7 +63,11 @@ echo $this->include('layouts/head') ;
                 echo "</a>";
             }
         } else {
-            echo "<p>You have no coming events.</p>";
+            if ($title == lang('Common.comingEvents')) {
+                echo "<p>" . lang('Common.noComingEvents') . "</p>";
+            } else {
+                echo "<p>" . lang('Common.noPastEvents') . "</p>";
+            }
         }
         echo "</div>";
 
