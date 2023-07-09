@@ -9,12 +9,23 @@ function displayDifficultyLevel( $difficulty )
 
 }
 
-echo $this->include('layouts/head') ;
+echo $this->include('layouts/head');
+helper('form');
 
     echo '<body>';
-    echo $this->include('layouts/header') ;
+    echo $this->include('layouts/header');
 
-    echo "<h2>" . $title . "<img alt='logo-lessons' class='ms-2 icons-medium' src=" . base_url("assets/images/svg/lessn-icon.svg") . " /></h2>";
+    echo "<h1>" . $title . "<img alt='logo-lessons' class='ms-2 icons-medium' src=" . base_url("assets/images/svg/lessn-icon.svg") . " /></h1>";
+
+    echo "<nav class='navbar navbar-light'>";
+    echo "<div class='container-fluid mb-4'>";
+    $action = base_url('lessons');
+    echo "<form class='d-flex' action=" . $action . " method='post'>";
+    echo "<input class='form-control me-2 form-cookmaster' type='search' placeholder=" . lang('Common.search') . " aria-label='Search' name='search'>";
+    echo form_submit('', lang('Common.search'), 'class="btn blue-btn form-control"');
+    echo "</form>";
+    echo "</div>";
+    echo "</nav>";
 
         if (isContractor()){
             echo '<div>';

@@ -679,6 +679,11 @@ tr.no-pointer {
     color : var(--bg-color);
 }
 
+.event-card > a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
 .account-formation-card {
     display: flex;
     flex-direction: column;

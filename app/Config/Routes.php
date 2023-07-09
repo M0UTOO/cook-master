@@ -96,6 +96,7 @@ $routes->get('contractorType/delete/(:num)', 'ContractorType::delete/$1');
 
 //LESSON
 $routes->get('lessons', 'Lesson::index'); //show all lessons
+$routes->post('lessons', 'Lesson::index'); //search lessons
 $routes->get('lesson/create', 'Lesson::create');
 $routes->post('lesson/create', 'Lesson::create');
 $routes->get('lesson/delete/(:num)', 'Lesson::delete/$1');
@@ -171,6 +172,7 @@ $routes->get('premise/(:num)', 'Premise::show/$1'); //show one premise
 
 //COOKING SPACES
 $routes->get('cookingSpace', 'CookingSpace::index'); //show all cookingspaces
+$routes->post('cookingSpace', 'CookingSpace::index'); //search cookingspaces
 $routes->get('cookingSpace/create', 'CookingSpace::create');
 $routes->post('cookingSpace/create', 'CookingSpace::create');
 $routes->get('cookingSpace/delete/(:num)', 'CookingSpace::delete/$1');

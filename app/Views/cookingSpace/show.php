@@ -13,12 +13,22 @@ if (isset($cookingSpace)){
         <img src="<?= base_url('assets/images/cookingSpaces/' . $cookingSpace['picture']) ?>" alt='use profile picture'>
     </div>
 
+    <?php
+    if (isset($cookingSpace['isAvailable'])) {
+        if ($cookingSpace['isAvailable'] == 1) {
+            $available = lang('Common.available');
+        } else {
+            $available = lang('Common.notAvailable');
+        }
+    }
+    ?>
+
     <div class="room-infos">
         <h3 class="mb-5"><?= $cookingSpace['name'] ?></h3>
-        <p>Room capacity: <?= $cookingSpace['size'] ?></p>
-        <p>Current state: <?= $cookingSpace['isAvailable'] ?></p>
-        <p>Price per hour: <?= $cookingSpace['pricePerHour'] ?></p>
-        <p>Premise: Paris 4 - Premise Address</p>
+        <p><?=lang('Common.roomCapacity')?><?= $cookingSpace['size'] ?></p>
+        <p><?=lang('Common.currentState')?><?= $available ?></p>
+        <p><?=lang('Common.pricePerHour')?><?= $cookingSpace['pricePerHour'] ?></p>
+        <p><?=lang('Common.premise')?><?= $premise[0]->name ?></p>
     </div>
 
 </section>

@@ -14,8 +14,12 @@ if (isset($subscriptions) && is_array($subscriptions) && count($subscriptions) >
         }
         echo "</h3>";
         echo "<p>" . $subscription->description ."</p>";
-        echo "<p>" . lang('Common.accessToLessons', [$subscription->maxlessonaccess] ) . "</p>";
-        echo "<p id='subscription-price'>".$subscription->price."€/month</p>";
+        if ($subscription->maxlessonaccess == 9999){
+            echo "<p>" . lang('Common.unlimitedAccessToLessons') . "</p>";
+        } else {
+            echo "<p>" . lang('Common.accessToLessons', [$subscription->maxlessonaccess] ) . "</p>";
+        }
+        echo "<p id='subscription-price'>".$subscription->price."" . lang('Common.money') . "/" . lang('Common.month') . "</p>";
         echo "<a href='".base_url('/checkout?subscription='.$subscription->idsubscription)."' class='btn'>". lang('Common.subscribe') ."</a>";
         echo "</div>";
     }

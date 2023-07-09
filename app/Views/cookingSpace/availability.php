@@ -1,6 +1,6 @@
 <?php
 echo $this->include('cookingSpace/confirmEventsModal') ;
-echo "<h2 class='align-self-start mt-4'>Availabilty</h2>";
+echo "<h2 class='align-self-start mt-4'>" . lang('Common.availability') . " : </h2>";
 
 echo "<div id='calendar' class='mt-4 mb-4 room-calendar'></div>";
 
@@ -24,8 +24,7 @@ echo "<div id='calendar' class='mt-4 mb-4 room-calendar'></div>";
     }
     ?>
     //TESTING
-    reservations.push({title: 'Client reservation', start: '2023-07-08T12:00:00', end: '2023-07-08T16:00:00', color: '#4D47A7'});
-    console.log(reservations);
+    reservations.push({title: 'Client reservation', start: '2023-07-08T12:00:01', end: '2023-07-08T16:00:00', color: '#4D47A7'});
 
     document.addEventListener('DOMContentLoaded', function() {
         var htmlmodal = document.getElementById("confirmEventModal");

@@ -13,7 +13,17 @@ class Lesson extends BaseController
     public function index()
     {
         //SHOW ALL INFO ABOUT ALL LESSONS
-        $data['title'] = "Cookmaster - Lessons";
+        $data['title'] = lang('Common.titleLessons');
+        if($this->request->is('post')) {
+            $values = $this->request->getPost();
+            $values['search'] = str_replace(' ', '%20', $values['search']);
+            if (empty($values['search'])){
+                return redirect()->to('/lessons')->with('message', 'Please enter a valid search');
+            }
+            $data['lessons'] = callAPI('/lesson/search/' . $values['search'], 'get', $this->request->getPost());
+            $data['search'] = $values['search'];
+            return view('lesson/index', $data);
+        }
         $data['lessons'] = callAPI('/lesson/all', 'get');
         return view('lesson/index', $data);
     }

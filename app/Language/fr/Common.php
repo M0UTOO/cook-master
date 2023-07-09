@@ -32,6 +32,8 @@ return [
     'country-placeholder' => 'Votre pays',
     'profile-picture' => 'Photo de profil',
     'already-account' => 'Vous avez déjà un compte ? Connectez-vous.',
+    'yes' => 'Oui',
+    'no' => 'Non',
 
     'name' => 'Nom',
     'email' => 'Email',
@@ -68,6 +70,13 @@ return [
     'keepSubscription' => 'Garder l\'abonnement ?',
     'streetNumber' => 'Numéro de rue',
     'streetName' => 'Nom de rue',
+    'rate' => 'Note',
+    'noRate' => 'Pas encore de note...',
+    'available' => 'Disponible',
+    'notAvailable' => 'Indisponible',
+    'availability' => 'Disponibilité',
+    'clientReservation' => 'Réservation client',
+    'month' => 'Mois',
 
     "userTypeQuestion" => "Quel type d'utilisateur voulez-vous créer ?",
     "userType" => [
@@ -117,6 +126,7 @@ return [
     'orders' => 'commandes',
     'myOrders' => 'Mes commandes',
     'noOrders' => 'Aucune commande',
+    'closedEvent' => 'Cet événement est fermé !',
 
     'catchphrase' => 'Découvrez le cuisinier qui est en vous',
     'small-catchphrase' => 'Rejoignez l\'expérience cookmaster',
@@ -128,6 +138,8 @@ return [
     'hasStarted' => 'A commencé le : ',
     'hasEnded' => 'A fini le : ',
 
+    'title-cookingSpace' => 'Cookmaster - Espace de cuisine',
+    'titleLessons' => 'Cookmaster - Leçons',
     'search' => 'Rechercher',
     'lessonName' => 'Nom de la leçon',
     'lessonDescription' => 'Description de la leçon',
@@ -148,6 +160,7 @@ return [
     'allowShopReduction' => 'Appliquer la réduction en boutique',
     'allowChat' => 'Autoriser la discussion en ligne',
     'accessToLessons' => 'Accédez jusqu\'à {0, number} leçons par jour',
+    'unlimitedAccessToLessons' => 'Accédez à un nombre illimité de leçons par jour',
     'subscribe' => 'S\'abonner',
 
 //    'eventsTitle' => 'Join the cooking course of your dreams',
@@ -167,6 +180,19 @@ return [
     'searchEventsExemple'=> 'Ex: Patisserie',
     'my_events'=> 'Mes évènements',
     'notFound.messages' => 'Commencez à discuter avec nos chefs !',
+    'toBeDefined' => 'A définir',
+    'hostedBy' => 'Hébergé par : ',
+    'participations' => 'Participations :',
+    'noParticipations' => 'Aucune participation',
+    'otherEvent' => 'Autres évènements de la formation',
+    'comments' => 'Commentaires',
+    'noCommentsYet' => 'Aucun commentaire pour le moment',
+    'price' => 'Prix',
+    'money' => '€',
+    'roomCapacity' => 'Capacité de la salle : ',
+    'currentState' => 'Etat actuel : ',
+    'pricePerHour' => 'Prix par heure : ',
+    'premise' => 'Local : ',
 
     'title_message_client' => 'Contacter un prestataire',
     'title_message_contractor' => 'Répondre à un client',

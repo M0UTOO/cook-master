@@ -10,6 +10,17 @@ class CookingSpace extends BaseController
         helper('pagination');
         $data['title'] = "Cookmaster - Cooking spaces";
 
+        if($this->request->is('post')) {
+            $values = $this->request->getPost();
+            $values['search'] = str_replace(' ', '%20', $values['search']);
+            if (empty($values['search'])){
+                return redirect()->to('/cookingSpace')->with('message', 'Please enter a valid search');
+            }
+            $data['cookingSpaces'] = callAPI('/cookingspace/search/' . $values['search'], 'get', $this->request->getPost());
+            $data['search'] = $values['search'];
+            return view('cookingSpace/index', $data);
+        }
+
         $cookingSpaces['cookingSpaces'] = callAPI('/cookingspace/all', 'get');
 
         $cookingSpaces['pagination'] = pagination($cookingSpaces['cookingSpaces']);
@@ -135,6 +146,7 @@ class CookingSpace extends BaseController
 
         $data['reservations'] = callAPI('/cookingspace/books/'.$id, 'get');
         $data['reservations'] = json_decode(json_encode($data['reservations']), true);
+        $data['premise'] = callAPI('/premise/cookingspace/'.$id, 'get');
 
         return view('cookingSpace/show', $data);
     }

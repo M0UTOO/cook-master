@@ -10,6 +10,9 @@ class Event extends BaseController
         if($this->request->is('post')) {
             $values = $this->request->getPost();
             $values['search'] = str_replace(' ', '%20', $values['search']);
+            if (empty($values['search'])){
+                return redirect()->to('/events')->with('message', 'Please enter a valid search');
+            }
             $data['title'] = lang('Common.eventsTitle');
             $data['events'] = callAPI('/event/search/' . $values['search'] . '', 'post', $this->request->getPost());
             $data['search'] = $values['search'];

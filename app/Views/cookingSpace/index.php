@@ -7,7 +7,7 @@ echo '<body>';
 echo $this->include('layouts/header') ;
 helper('form');
 
-echo "<h1 class='mb-3'> Find the perfect room to create the perfect meal !<img alt='logo' class='ms-3' src=" . base_url("assets/images/svg/moon-icon.svg") . " /></h1>";
+echo "<h1 class='mb-3'>" . lang('Common.title-cookingSpace') . "<img alt='logo' class='ms-3' src=" . base_url("assets/images/svg/moon-icon.svg") . " /></h1>";
 
 
 if (isManager()){
@@ -18,8 +18,8 @@ echo "<nav class='navbar navbar-light'>";
 echo "<div class='container-fluid mb-4'>";
 $action = base_url('cookingSpace');
 echo "<form class='d-flex' action=" . $action . " method='post'>";
-echo "<input class='form-control me-2 form-cookmaster' type='search' placeholder='Search' aria-label='Search' name='search'>";
-echo form_submit('', 'Search', 'class="btn blue-btn form-control"');
+echo "<input class='form-control me-2 form-cookmaster' type='search' placeholder=" . lang('Common.search') . " aria-label='Search' name='search'>";
+echo form_submit('', lang('Common.search'), 'class="btn blue-btn form-control"');
 echo "</form>";
 echo "</div>";
 echo "</nav>";
@@ -63,7 +63,7 @@ if (isset($cookingSpaces) && is_array($cookingSpaces) && count($cookingSpaces) >
         echo "<img alt='cooking space picture' class='card-img-top' height='250vh' src=" . base_url("assets/images/cookingSpaces/" . $cookingSpace->picture) . " />";
         echo "<div class='card-body'>";
             echo "<h2>" . $cookingSpace->name . "</h2>";
-            echo "<p class='card-text'>Price: $cookingSpace->pricePerHour €</p>";
+            echo "<p class='card-text'>" . lang('Common.price') . " : $cookingSpace->pricePerHour " . lang('Common.money') ."</p>";
             echo "<p class='card-text'>$cookingSpace->size<img class='ms-2 icons' src='assets/images/svg/user-checked-green.svg'></p>";
 
         // TO DO : ADD REAL ADS

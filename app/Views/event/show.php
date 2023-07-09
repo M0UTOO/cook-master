@@ -32,19 +32,19 @@ echo '<body>';
     helper('form');
 
     if ($event['isclosed'] == true){
-        echo "<h1 class='mb-3'>This event is closed !</h1>";
+        echo "<h1 class='mb-3'>" . lang('Common.closedEvent') . "</h1>";
         if (isset($rate)) {
             echo '<div class="d-flex flex-row">';
             if (isset($comments) && is_array($comments) && count($comments) > 0) {
-                echo '<h3 class="me-2">Rating : </h3>';
+                echo '<h3 class="me-2">' . lang('Common.rate') . ' : </h3>';
                 displayDifficultyLevel($rate['grade']);
                 echo '<h3 class="me-2">/5</h3>';
             } else {
-                echo '<h3 class="me-2">No rating yet.</h3>';
+                echo '<h3 class="me-2">' . lang('Common.noRate') . '</h3>';
             }
             echo "</div>";
         } else {
-            echo "<h2 class='mb-3'>No rating yet.</h2>";
+            echo "<h2 class='mb-3'>" . lang('Common.noRate') . "</h2>";
         }
     }
 
@@ -86,24 +86,24 @@ echo '<body>';
                         echo "<h3>";
                             $date['start'] = $event['starttime'];
                             $date['start'] = date("d/m/Y H:i:s", strtotime($date['start']));
-                            echo "<h3>Starts at: " . $date['start'] . "</h3>";
+                            echo "<h3>" . lang('Common.startsOn') . "" . $date['start'] . "</h3>";
                         echo "</h3>";
                     echo '</div>';
                     echo '<div>';
                     echo '<div class="event-host">';
-                        echo "<h4 style='margin-right: 5px;'>Will take place in :</h4>";
+                        echo "<h4 style='margin-right: 5px;'>" . lang('Common.takesPlaceAt') . "</h4>";
                         if (isset($space) && !empty($space[0]->name)){
                                 echo "<h4>" . $space[0]->name . "</h4>";
                                 if (isManager() || $verifContractor == true){
                                     echo '<a class="mr-3" href="/eventSpace/delete/' . $event["idevent"] . '/' . $space[0]->idcookingspace .'"><img src="http://localhost:8080/assets/images/svg/trash-icon-red.svg" alt="delete-icon" class="icons" style="margin-left: 5px;margin-bottom: 4px;"></a>';
                                 }
                         } else {
-                            echo "<h4>To be defined</h4>";
+                            echo "<h4>" . lang('Common.toBeDefined') . "</h4>";
                         }   
                         echo '</div>';
                     echo '</div>';
                     echo '<div>';
-                        echo "<h3>Hosted by :</h3>";
+                        echo "<h3>" . lang('Common.hostedBy') . "</h3>";
                         if (isset($animate) && !empty($animate)) {
                             foreach($animate as $contractor){
                                 $info = callAPI('/contractor/'.$contractor->idcontractor, 'get');
@@ -115,7 +115,7 @@ echo '<body>';
                                     echo '</div>';
                             }
                         } else {
-                            echo "<h5>To be defined</h5>";
+                            echo "<h5>" . lang('Common.toBeDefined') . "</h5>";
                         }
                     echo '</div>';
                 echo '</div>';
@@ -151,7 +151,7 @@ echo '<body>';
         
                     echo '<thead>';
                         echo '<tr>';
-                            echo '<th scope="col">Participation :</th>';
+                            echo '<th scope="col">' . lang('Common.participations') . '</th>';
                         echo '</tr>';
                     echo '</thead>';
         
@@ -168,13 +168,13 @@ echo '<body>';
             echo "</table>";
             echo "</section>";
                         } else {
-                            echo "<p>There are no participation yet.</p>";
+                            echo "<p>" . lang('Common.noParticipations') . "</p>";
                         }
             echo "</div>";
             
             echo "<section id='other-lessons'>";
             if (isset($eventGroup)){
-            echo "<h2 class='title-suggestion-event'>Other events from the formation " . $group[0]->name . " :</h2>";
+            echo "<h2 class='title-suggestion-event'>" . lang('Common.otherEvent') . " " . $group[0]->name . " :</h2>";
             echo "<div class='lesson-suggestion flex-rows'>";
                 foreach ($eventGroup as $suggestedEvent){
                     if ($suggestedEvent->idevent != $event['idevent']){
@@ -198,12 +198,12 @@ echo '<body>';
                             echo "<div class='card-body'>";
                                 $date['start'] = $suggestedEvent->starttime;
                                 $date['start'] = date("d/m/Y H:i:s", strtotime($date['start']));
-                                echo "<p class='card-text'>Starts at: " . $date['start'] . "</p>";
+                                echo "<p class='card-text'>" . lang('Common.startsOn') . " " . $date['start'] . "</p>";
                                 $cookingspace['space'] = callAPI('/event/host/' . $suggestedEvent->idevent, 'get');
                                 if (isset($cookingspace['space']) && !empty($cookingspace['space'][0]->name)){
-                                    echo "<p class='card-text'>Hosted in: " . $cookingspace['space'][0]->name . "</p>";
+                                    echo "<p class='card-text'>" . lang('Common.hostedBy') . " " . $cookingspace['space'][0]->name . "</p>";
                                 } else {
-                                    echo "<p class='card-text'>Hosted in: To be defind</p>";
+                                    echo "<p class='card-text'>" . lang('Common.hostedBy') . ": " . lang('Common.toBeDefined') . "</p>";
                                 }
                             echo "</div>";
                             echo "<div class='event-card-body-right'>";
@@ -219,9 +219,9 @@ echo '<body>';
 
             if ($event['isclosed'] == true) {
                 if (isset($comments) && is_array($comments) && count($comments) > 0) {
-                    echo '<h1 class="mt-4" style="justify-content: center;display: flex;">Comments :</h1>';
+                    echo '<h1 class="mt-4" style="justify-content: center;display: flex;">' . lang('Common.comments') . ' :</h1>';
                 } else {
-                    echo '<h1 class="mt-4" style="justify-content: center;display: flex;">No comments yet.</h1>';
+                    echo '<h1 class="mt-4" style="justify-content: center;display: flex;">' . lang('Common.noCommentsYet') . '</h1>';
                 }
             }
 
