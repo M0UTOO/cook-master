@@ -26,7 +26,12 @@ class Client extends Users
 
         if (isLoggedIn() && isClient() && getSubscription()["allowroombooking"]){
             {
+
                 $values['starttime']= $values['date'].' '.$values['starttime'];
+                $tmp_time = strtotime($values['starttime']);
+                $values['starttime'] = $tmp_time + 1;
+                $values['starttime'] = date('Y-m-d H:i:s', $values['starttime']);
+                var_dump($values['starttime']);
                 $values['endtime']= $values['date'].' '.$values['endtime'];
                 unset($values['date']);
                 //GET HOURS OF RSERVATIONS

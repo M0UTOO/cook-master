@@ -9,6 +9,7 @@ echo "<div id='calendar' class='mt-4 mb-4 room-calendar'></div>";
 </main>
 <?php echo $this->include('layouts/footer') ; ?>
 </html>
+<script src='fullcalendar/core/locales-all.global.js'></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
 <script>
@@ -24,13 +25,13 @@ echo "<div id='calendar' class='mt-4 mb-4 room-calendar'></div>";
     }
     ?>
     //TESTING
-    reservations.push({title: 'Client reservation', start: '2023-07-08T12:00:01', end: '2023-07-08T16:00:00', color: '#4D47A7'});
+    reservations.push({title: 'Client reservation', start: '2023-07-12T12:00:01', end: '2023-07-12T16:00:00', color: '#4D47A7'});
 
     document.addEventListener('DOMContentLoaded', function() {
-        var htmlmodal = document.getElementById("confirmEventModal");
-        var modal = new bootstrap.Modal(htmlmodal);
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
+        let htmlmodal = document.getElementById("confirmEventModal");
+        let modal = new bootstrap.Modal(htmlmodal);
+        let calendarEl = document.getElementById('calendar');
+        let calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'timeGridWeek',
             allDaySlot: false,
             slotMinTime: "07:00:00",
@@ -38,6 +39,7 @@ echo "<div id='calendar' class='mt-4 mb-4 room-calendar'></div>";
             slotDuration: "01:00:00",
             themeSystem: 'bootstrap5',
             expandRows: true,
+            locales: 'en',
             businessHours: {
                 // days of week. an array of zero-based day of week integers (0=Sunday)
                 daysOfWeek: [ 0, 1, 2, 3, 4, 5, 6 ],
@@ -57,8 +59,8 @@ echo "<div id='calendar' class='mt-4 mb-4 room-calendar'></div>";
             },
 
             selectAllow: function(selectInfo) {
-                var currentDate = new Date();
-                var selectedDate = selectInfo.start;
+                let currentDate = new Date();
+                let selectedDate = selectInfo.start;
 
                 // Allow selection if the selected date is greater than or equal to the current date
                 return selectedDate >= currentDate;
@@ -92,6 +94,7 @@ echo "<div id='calendar' class='mt-4 mb-4 room-calendar'></div>";
                 modal.show();
             }
         });
+        // calendar.setOption('locale', 'fr'); TO CHANGE LANGUAGE
         calendar.render();
     });
 
