@@ -35,16 +35,11 @@ if (isset($cookingSpaces) && is_array($cookingSpaces) && count($cookingSpaces) >
         #DISPLAY ADS
         if (!isContractor() && !isManager()){
             if ((isset($subscription) && $subscription['price'] == 0) || !isLoggedIn()) {
-                if (($ads % 5) == 0) {
-                    echo "<div class='event-card col mb-3'>";
-                    echo "<div class='card-suggestion-event-blue'>";
-                    echo "<div class='card mb-5'>";
-                    echo "<div class='ad-container'>";
-                    echo "<img src='https://via.placeholder.com/300x440' alt='Sample Ad' />";
-                    echo "</div>";
-                    echo "<div class='event-card-body-right'>";
-                    echo "</div>";
-                    echo "</div>";
+                if (($ads % 10) == 0) {
+                    $ad = rand(3, 4);
+                    echo "<div class='ads-card col mb-3'>";
+                    echo "<div class='ads-container'>";
+                    echo "<a href=" . base_url("checkout?subscription=3") ."><img src=" . base_url("assets/images/ads/" . $ad . ".png") . " alt='Sample Ad' /></a>";
                     echo "</div>";
                     echo "</div>";
                 }

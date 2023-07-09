@@ -4,6 +4,16 @@ echo $this->include('layouts/head') ;
 echo '<body>';
 echo $this->include('layouts/header') ;
 
+$subscription = getSubscription();
+    if (!isContractor() && !isManager()){
+        if ((isset($subscription) && $subscription['price'] == 0) || !isLoggedIn()) {
+        echo '<div class="ad-spot mb-5" style="min-height: 5rem; min-width: 50vw;">';
+        echo "<a href=" . base_url("checkout?subscription=3") ."><img src=" . base_url("assets/images/ads/banner.png") . " alt='Sample Ad' /></a>";
+        echo '</div>';
+        }
+    }
+
+    
 if (isset($cookingSpace)){
 ?>
 

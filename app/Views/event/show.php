@@ -31,6 +31,15 @@ echo '<body>';
 
     helper('form');
 
+    $subscription = getSubscription();
+    if (!isContractor() && !isManager()){
+        if ((isset($subscription) && $subscription['price'] == 0) || !isLoggedIn()) {
+        echo '<div class="ad-spot mb-5 mt-2" style="min-height: 5rem; min-width: 50vw;">';
+        echo "<a href=" . base_url("checkout?subscription=3") ."><img src=" . base_url("assets/images/ads/banner.png") . " alt='Sample Ad' /></a>";
+        echo '</div>';
+        }
+    }
+
     if ($event['isclosed'] == true){
         echo "<h1 class='mb-3'>" . lang('Common.closedEvent') . "</h1>";
         if (isset($rate)) {
@@ -47,9 +56,6 @@ echo '<body>';
             echo "<h2 class='mb-3'>" . lang('Common.noRate') . "</h2>";
         }
     }
-
-
-    echo '<div class="ad-spot" style="min-height: 5rem; min-width: 50vw;background-color: var(--placeholder-color);">ADD SPOT</div>';
 
     echo "<section id='lesson-info d-flex' style='min-width: 100%'>";
         if (isset($event)){

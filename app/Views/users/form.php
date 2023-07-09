@@ -37,7 +37,7 @@ use App\Controllers\Users;
                 echo '<div class="form-group mb-3">';
                     echo form_label(lang('Common.profile-picture') , "label-event-picture");
                     $value = (isset($client) ? $client['profilepicture'] :'');
-                    echo form_input(['type'  => 'file', 'name'  => 'profilepicture','value' => $value, 'class' => 'form-control']);
+                    echo form_input(['type'  => 'file', 'name'  => 'picture','value' => $value, 'class' => 'form-control']);
                 echo '</div>';
 
                 echo '<div class="form-group mb-3">';

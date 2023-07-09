@@ -13,7 +13,14 @@ echo '<body>';
         echo "</div>";
 
     }
-    echo '<div class="ad-spot" style="min-height: 5rem; min-width: 50vw;background-color: var(--placeholder-color);">ADD SPOT</div>';
+    $subscription = getSubscription();
+    if (!isContractor() && !isManager()){
+        if ((isset($subscription) && $subscription['price'] == 0) || !isLoggedIn()) {
+        echo '<div class="ad-spot mb-5" style="min-height: 5rem; min-width: 50vw;">';
+        echo "<a href=" . base_url("checkout?subscription=3") ."><img src=" . base_url("assets/images/ads/banner.png") . " alt='Sample Ad' /></a>";
+        echo '</div>';
+        }
+    }
 
     echo "<section id='lesson-info d-flex' style='min-width: 100%'>";
         if (isset($lesson)){

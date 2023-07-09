@@ -47,15 +47,12 @@ echo $this->include('layouts/head') ;
                 if (!isContractor() && !isManager()){
                      if ((isset($subscription) && $subscription['price'] == 0) || !isLoggedIn()) {
                          if (($ads % 5) == 0) {
-                             echo "<div class='event-card col mb-3'>";
-                             echo "<div class='card-suggestion-event-blue'>";
-                             echo "<div class='card mb-5'>";
+                            $ad = rand(1, 2);
+                             echo "<div class='col mb-3'>";
                              echo "<div class='ad-container'>";
-                             echo "<img src='https://via.placeholder.com/300x440' alt='Sample Ad' />";
+                             echo "<a href=" . base_url("checkout?subscription=3") ." class='mb-5'><img src=" . base_url("assets/images/ads/" . $ad . ".png") . " alt='Sample Ad' /></a>";
                              echo "</div>";
                              echo "<div class='event-card-body-right'>";
-                             echo "</div>";
-                             echo "</div>";
                              echo "</div>";
                              echo "</div>";
                          }

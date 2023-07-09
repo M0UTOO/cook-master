@@ -684,6 +684,15 @@ tr.no-pointer {
     text-decoration: none;
 }
 
+.ads-card {
+    display: flex;
+    justify-content: center;
+}
+
+.ad-container {
+    padding-left: 25px;
+}
+
 .account-formation-card {
     display: flex;
     flex-direction: column;

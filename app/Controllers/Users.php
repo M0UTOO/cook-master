@@ -230,13 +230,15 @@ class Users extends BaseController
             if (isset($values['presentation'] )){
                 $contractor['presentation'] = $values['presentation'];
             }
-            if (!empty($picture->getName()) && $picture->getSize() <= 2000000) {
+            if (isset($picture)){
+                if (!empty($picture->getName()) && $picture->getSize() <= 2000000) {
 
-                $picture_name = "img-event-".$iduser.".". $picture->getExtension(); //check extension
-                $user['profilepicture'] = $picture_name;
+                    $picture_name = "img-event-".$iduser.".". $picture->getExtension(); //check extension
+                    $user['profilepicture'] = $picture_name;
 
-            } else {
-                return redirect()->to('/user/profile/account/' . $iduser . '')->with('message', 'wrong picture');
+                } else {
+                    return redirect()->to('/user/profile/account/' . $iduser . '')->with('message', 'wrong picture');
+                }
             }
 
             $data['message'] = callAPI('/user/'.$iduser, 'patch', $user);
