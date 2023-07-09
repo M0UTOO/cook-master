@@ -118,7 +118,12 @@ class Event extends BaseController
 
     public function join() {
         $values = $this->request->getPost();
+        $data['event'] = callAPI('/event/'.$values['idevent'], 'get');
+        $data['contractor'] = callAPI('/event/animate/'.$values['idevent'], 'get');
         $data['message'] = callAPI('/event/participate/' . $values['idevent'] . '/' . $values['iduser'] . '', 'post');
+        if ($data['event']['isprivate'] == true) {
+            return redirect()->to('/message/' . $data['contractor'][0]->idcontractor . '')->with('message', lang('Common.eventJoinMessage'));
+        }
         return redirect()->to('/event/' . $values['idevent'] . '')->with('message', $data['message']['message']);
     }
 
@@ -150,15 +155,13 @@ class Event extends BaseController
         }
         else
         {
+            $picture = $this->request->getFile('defaultpicture');
             $values = $this->request->getPost();
             if (isset($values['isinternal'])) {
                 $values['isinternal'] = (int)($values['isinternal']);
             }
             if (isset($values['isprivate'])) {
                 $values['isprivate'] = (int)($values['isprivate']);
-            }
-            if (isset($values['defaultpicture'])) {
-                $values['defaultpicture'] = $values['defaultpicture'] = $this->request->getFile('defaultpicture');
             }
             if (isset($values['endtime'])) {
                 $values['endtime'] = date("Y-m-d H:i:s", strtotime($values['endtime']));
@@ -170,31 +173,31 @@ class Event extends BaseController
             $userId = $values['user_id'];
             unset($values['user_id']);
 
-            if (isset($values['defaultpicture'])) {
-                $picture = $this->request->getFile('defaultpicture');
-            }
+            if (isset($picture)){
+                if (!empty($picture->getName()) && $picture->getSize() <= 2000000) {
 
-            $data['message'] = callAPI('/event/'.$id, 'patch', $values);
-            if (isset($values['defaultpicture'])) {
-                if (isset($data['message']['message']) && $data['message']['message'] == "event updated") {
-                    $eventID = $id;
+                    $picture_name = "img-event-".$id.".". $picture->getExtension(); //check extension
+                    $values['defaultpicture'] = $picture_name;
 
-                    $picture_name = "img-event-".$eventID.".". $picture->getExtension(); //check extension
-
-                    $data['state'] = callAPI('/event/'.$eventID, 'patch', ['defaultpicture' => $picture_name]);
-                    if (!$data['state']['error']){
-                        $directory = './assets/images/events';
-                        if (!file_exists($directory)){
-                            mkdir($directory, 755, true);
-                            chmod($directory, 755);
-                        }
-                        if (file_exists($directory . '/' . $picture_name)){
-                            unlink($directory . '/' . $picture_name);
-                        }
-                        $picture->move($directory, $picture_name);
-                    }
+                } else {
+                    return redirect()->to('/event/edit/' . $id . '')->with('message', 'wrong picture');
                 }
             }
+
+            if (isset($values['defaultpicture'])) {
+                if (isset($picture) && $picture->isValid()) {
+                    $directory = './assets/images/events';
+                    if (!file_exists($directory)){
+                        mkdir($directory, 755, true);
+                        chmod($directory, 755);
+                    }
+                    if (file_exists($directory . '/' . $picture_name)){
+                        unlink($directory . '/' . $picture_name);
+                    }
+                    $picture->move($directory, $picture_name);
+                }
+            }
+            $data['message'] = callAPI('/event/'.$id, 'patch', $values);
             return redirect()->to('/event/'.$id)->with('message', $data['message']['message']);
         }
     }

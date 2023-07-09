@@ -89,6 +89,7 @@ echo $this->include('layouts/head') ;
                                 echo "</div>";
                             echo "</a>";
                         echo "</div>";
+                        continue;   
                         }
                     }
                 }

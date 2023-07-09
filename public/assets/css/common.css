@@ -205,6 +205,10 @@ form a {
     background-color: var(--brand-second-color);
 }
 
+.blue-btn:hover {
+    background-color: var(--brand-seventh-color);
+}
+
 .red-btn {
     background-color: var(--brand-fifth-color);
 }
@@ -337,8 +341,6 @@ footer{
     }
 }
 
-
-
 /*EVENTS */
 
 .grid-events {
@@ -372,7 +374,7 @@ footer{
     margin: 0 1em;
     padding: 1em;
     border-radius: 10px;
-    background-color: rgb(168, 191, 255);
+    background-color: var(--brand-seventh-color);
     color: var(--text-color);
     text-align: center;
     text-decoration: none;

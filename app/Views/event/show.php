@@ -151,6 +151,18 @@ echo '<body>';
             echo "</div>";
         }
 
+        if (isClient() && $event['isclosed'] == 0) {
+            if ($verif == true) {
+                foreach ($animate as $contractor) {
+                    $action = base_url('message/' . $contractor->idcontractor);
+                }
+
+            echo "<div class='container-fluid mb-4'>";
+                echo '<a href=' . $action . ' class="btn blue-btn form-control">' . lang('Common.contactContractor') . '</a>';
+            echo "</div>";
+            }
+        }
+
         if (isset($participation) && is_array($participation) && count($participation) > 0){
             echo '<section class="table-responsive">';
                 echo '<table class="table">';

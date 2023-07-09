@@ -233,7 +233,7 @@ class Users extends BaseController
             if (isset($picture)){
                 if (!empty($picture->getName()) && $picture->getSize() <= 2000000) {
 
-                    $picture_name = "img-event-".$iduser.".". $picture->getExtension(); //check extension
+                    $picture_name = "img-user-".$iduser.".". $picture->getExtension(); //check extension
                     $user['profilepicture'] = $picture_name;
 
                 } else {

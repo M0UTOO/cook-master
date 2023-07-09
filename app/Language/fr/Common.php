@@ -162,6 +162,8 @@ return [
     'accessToLessons' => 'Accédez jusqu\'à {0, number} leçons par jour',
     'unlimitedAccessToLessons' => 'Accédez à un nombre illimité de leçons par jour',
     'subscribe' => 'S\'abonner',
+    'eventJoinMessage' => 'Event rejoint avec succès ! Envoyer un message au chef pour préciser le lieu de rendez-vous.',
+    'contactContractor' => 'Contacter le chef',
 
 //    'eventsTitle' => 'Join the cooking course of your dreams',
     'eventsTitle' => 'Rejoignez le cours de cuisine de vos rêves',
@@ -172,7 +174,7 @@ return [
     'assignCookingSpacesEvents' => 'Assigner un espace de cuisine à un évènement',
     'edit_events' => 'Modifier l\'évènement',
     'eventsActions' => 'Actions sur les évènements',
-    'subscribeToJoin' => 'S\'inscrire pour rejoindre',
+    'subscribeToJoin' => 'S\'abonner pour rejoindre',
     "privateEvent" => 'Evènement privé',
     'startsOn' => 'Commence le : ',
     'endsOn' => 'Se termine le : ',
