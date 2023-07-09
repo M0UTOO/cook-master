@@ -68,6 +68,8 @@ $routes->get('dashboard/userManagement', 'Dashboard::userManagement');
 $routes->get('dashboard/eventManagement', 'Dashboard::eventManagement');
 $routes->get('dashboard/subscriptionManagement', 'Dashboard::subscriptionManagement');
 $routes->get('dashboard/premiseManagement', 'Dashboard::premiseManagement');
+$routes->get('dashboard/itemManagement', 'Dashboard::itemManagement');
+$routes->get('dashboard/ingredientManagement', 'Dashboard::ingredientManagement');
 
 $routes->get('unauthorized', 'Authorization::unauthorized');
 
@@ -183,6 +185,25 @@ $routes->get('cookingSpace/(:num)', 'CookingSpace::show/$1'); //show one cooking
 // MESSAGES
 $routes->get('message', 'Message::index');
 $routes->get('message/(:num)', 'Message::show/$1');
+
+// ITEMS
+$routes->get('items', 'Item::index');
+$routes->get('item/create', 'Item::create');
+$routes->post('item/create', 'Item::create');
+$routes->get('item/delete/(:num)', 'Item::delete/$1');
+$routes->get('item/add/cookingspace/(:num)', 'Item::addCookingSpace/$1');
+$routes->post('item/add/cookingspace/(:num)', 'Item::addCookingSpace/$1');
+$routes->get('item/delete/cookingspace/(:num)', 'Item::deleteCookingSpace/$1');
+$routes->get('item/update/(:num)', 'Item::update/$1');
+
+// INGREDIENTS
+$routes->get('ingredients', 'Ingredient::index');
+$routes->get('ingredient/create', 'Ingredient::create');
+$routes->post('ingredient/create', 'Ingredient::create');
+$routes->get('ingredient/delete/(:num)', 'Ingredient::delete/$1');
+$routes->get('ingredient/add/cookingspace/(:num)', 'Ingredient::addCookingSpace/$1');
+$routes->post('ingredient/add/cookingspace/(:num)', 'Ingredient::addCookingSpace/$1');
+$routes->get('ingredient/delete/cookingspace/(:num)', 'Ingredient::deleteCookingSpace/$1');
 
 
 

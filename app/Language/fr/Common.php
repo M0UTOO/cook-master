@@ -208,4 +208,11 @@ return [
     'mustHaveSubscription' => 'Vous devez avoir un abonnement avec accès au chat pour accéder à cette page',
     'send' => 'Envoyer',
     'chat' => 'Chat',
+
+    'itemCookMaster' => 'Cookmaster - Items',
+    'ingredientCookMaster' => 'Cookmaster - Ingrédients',
+    'itemAddCookingSpace' => 'Ajouter un item à un espace de cuisine',
+    'ingredientAddCookingSpace' => 'Ajouter un ingrédient à un espace de cuisine',
+    'itemCreate' => 'Créer un item',
+    'ingredientCreate' => 'Créer un ingrédient',
     ];

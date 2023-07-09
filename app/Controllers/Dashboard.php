@@ -52,8 +52,17 @@ class Dashboard extends BaseController
     }
 
     public function itemManagement(){
-
+        if ($this->checkAccess() == "true"){
+            return redirect()->to('/items')->with('message', 'As a manager, you can view, add, delete and assing items to cooking spaces');
+        }
     }
+
+    public function ingredientManagement(){
+        if ($this->checkAccess() == "true"){
+            return redirect()->to('/ingredients')->with('message', 'As a manager, you can view, add, delete and assing ingredients to cooking spaces');
+        }
+    }
+
     public function premiseManagement(){
         if ($this->checkAccess() == "true"){
             return redirect()->to('/premises')->with('message', 'As a manager, you can view, add, delete and modify premises. You can also add cooking spaces.');

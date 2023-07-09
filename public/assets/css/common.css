@@ -562,6 +562,10 @@ footer{
     margin-bottom: 5em;
 }
 
+#no-cursor{
+    cursor: default;
+}
+
 .event-image {
     display: flex;
     justify-content: center;

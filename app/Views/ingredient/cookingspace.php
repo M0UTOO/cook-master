@@ -1,6 +1,6 @@
 <?php
 
-use App\Controllers\Event;
+use App\Controllers\Ingredient;
 use App\Controllers\EventSpace;
 
 helper('form');
@@ -20,35 +20,16 @@ echo "<h2>" . $title . "</h2>";
         }
     }
 
-    $hidden_input = [];
-    $action = "eventSpace/add/";
+    $hidden_input = [
+        'idingredient' => $idingredient
+    ];
+    $action = "ingredient/add/cookingspace/" . $idingredient;
 
 
     echo form_open($action, 'id="eventSpace-add-form" class=""', $hidden_input);
 
         echo '<div class="form-group">';
-        echo form_label('Choose an event', "label-lessons");
-
-        $events = new Event();
-        $events = $events->getAllEvents();
-
-        if (!empty($events)) {
-            foreach ($events as $key) {
-                $key = (array)$key;
-                $tmp[$key['idevent']] = $key['name'];
-            }
-            echo form_dropdown('idevent', $tmp, '', 'class="form-control" required="required"');
-        }
-        else {
-             echo '<p>No events found, please <a href="'.base_url('event/create').'">create</a>some first.</p>';
-        }
-        echo '</div>';
-
-        echo '<div class="form-group">';
         echo form_label('Choose a cooking space', "label-lessons");
-
-        unset($tmp);
-        unset($key);
 
         $spaces = new EventSpace();
         $spaces = $spaces->getAllSpace();

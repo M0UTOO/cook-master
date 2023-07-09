@@ -112,12 +112,14 @@ return [
     'premisesManagement' => 'Premises Management',
     'subscriptionManagement' => 'Subscription Management',
     'eventManagement' => 'Event Management',
-    'shopManagement' => 'Shop Management',
+    'itemManagement' => 'Item Management',
+    'ingredientManagement' => 'Ingredient Management',
 
     'managerRole' => 'As a manager, you may be able to do these things:',
     'management-explanations-user' => 'Manage users,see their roles, names, block and delete them.',
     'management-explanations-premises' => 'Manage premises, see their names, addresses and manage cooking spaces associated.',
     'management-explanations-subscription' => 'Manage subscriptions, create, delete and change their settings.',
     'management-explanations-event' => 'Manage events, create, delete and change their settings.',
-    'management-explanations-shop' => 'Manage shop, create, delete items.',
+    'management-explanations-item' => 'Manage item, create, delete them.',
+    'management-explanations-ingredient' => 'Manage ingredients, create, delete them.',
 ];

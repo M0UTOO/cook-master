@@ -20,9 +20,14 @@
             <p><?=lang('Common.management-explanations-event')?></p>
         </a>
 
-        <a href="<?=base_url('dashboard/shopManagement')?>" class="account-event-card">
-                <h5 class="card-title"><?=lang('Common.shopManagement')?></h5>
-            <p><?=lang('Common.management-explanations-shop')?></p>
+        <a href="<?=base_url('dashboard/itemManagement')?>" class="account-event-card">
+                <h5 class="card-title"><?=lang('Common.itemManagement')?></h5>
+            <p><?=lang('Common.management-explanations-item')?></p>
+        </a>
+
+        <a href="<?=base_url('dashboard/ingredientManagement')?>" class="account-event-card">
+                <h5 class="card-title"><?=lang('Common.ingredientManagement')?></h5>
+            <p><?=lang('Common.management-explanations-ingredient')?></p>
         </a>
 
         <a href="<?=base_url('dashboard/premiseManagement')?>" class="account-event-card">
