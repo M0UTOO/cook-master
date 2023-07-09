@@ -9,7 +9,7 @@ echo "<div id='calendar' class='mt-4 mb-4 room-calendar'></div>";
 </main>
 <?php echo $this->include('layouts/footer') ; ?>
 </html>
-<script src='fullcalendar/core/locales-all.global.js'></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
 <script>
@@ -22,6 +22,13 @@ echo "<div id='calendar' class='mt-4 mb-4 room-calendar'></div>";
         $startTime= (new DateTime($reservation['starttime']))->format('Y-m-d\TH:i:s');
         $endTime= (new DateTime($reservation['endtime']))->format('Y-m-d\TH:i:s');
         echo "reservations.push({title: 'Client reservation',color: '#4D47A7','allDay': false, start: '".$startTime."', end: '".$endTime."'});";
+    }
+
+    foreach ($events as $event){
+        $startTime= (new DateTime($event['starttime']))->format('Y-m-d\TH:i:s');
+        $endTime= (new DateTime($event['endtime']))->format('Y-m-d\TH:i:s');
+        $url = base_url('event/' . $event['idevent']);
+        echo "reservations.push({title: '".$event['name']."',textColor: '#252120',color: '#D2E6FB',url: '".$url."', allDay: false, start: '".$startTime."', end: '".$endTime."'});";
     }
     ?>
     //TESTING
@@ -39,7 +46,7 @@ echo "<div id='calendar' class='mt-4 mb-4 room-calendar'></div>";
             slotDuration: "01:00:00",
             themeSystem: 'bootstrap5',
             expandRows: true,
-            locales: 'en',
+
             businessHours: {
                 // days of week. an array of zero-based day of week integers (0=Sunday)
                 daysOfWeek: [ 0, 1, 2, 3, 4, 5, 6 ],

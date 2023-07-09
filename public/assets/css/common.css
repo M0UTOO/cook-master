@@ -509,7 +509,8 @@ footer{
 /*COOKIGN SPACES */
 
 .room-calendar {
-    min-width: 85%;
+    min-width: 65%;
+    max-width: 85%;
 }
 #focus-cooking-space{
     min-width: 100vw ;

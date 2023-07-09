@@ -1,8 +1,8 @@
 <!-- Modal -->
+<div class="modal fade" id="confirmEventModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 <?php
 if(isLoggedIn() && isClient()){
 ?>
-<div class="modal fade" id="confirmEventModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -37,8 +37,6 @@ if(isLoggedIn() && isClient()){
                     <button type="submit" class="mt-4 btn blue-btn">Book the room</button>
                 </form>
                 <?php
-                }else{
-                echo "<a href='".base_url('subscriptions')."'>Get a Master Subscription to book a room</a>";
                 }
                 ?>
             </div>
