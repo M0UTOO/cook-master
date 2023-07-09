@@ -97,15 +97,34 @@ echo '<body>';
                     echo '</div>';
                     echo '<div>';
                     echo '<div class="event-host">';
-                        echo "<h4 style='margin-right: 5px;'>" . lang('Common.takesPlaceAt') . "</h4>";
-                        if (isset($space) && !empty($space[0]->name)){
-                                echo "<h4>" . $space[0]->name . "</h4>";
-                                if (isManager() || $verifContractor == true){
-                                    echo '<a class="mr-3" href="/eventSpace/delete/' . $event["idevent"] . '/' . $space[0]->idcookingspace .'"><img src="http://localhost:8080/assets/images/svg/trash-icon-red.svg" alt="delete-icon" class="icons" style="margin-left: 5px;margin-bottom: 4px;"></a>';
+                        if ($event['isonline'] == 1) {
+                            if (isClient()) {
+                                echo '<div class="d-flex flex-row align-items-center">';
+                                    echo "<h4>" . lang('Common.willBeStreamed') . " : </h4>";
+                                    echo '<a href="https://www.twitch.tv/becomeacookmaster"><img src="http://localhost:8080/assets/images/svg/twitch-icon.svg" alt="twitch-icon" class="icons-medium" style="margin-left: 10px;margin-bottom: 4px;"></a>';
+                                echo '</div>';
+                            } else {
+                                echo "<h4 style='margin-right: 5px;'>" . lang('Common.takesPlaceAt') . "</h4>";
+                                if (isset($space) && !empty($space[0]->name)){
+                                    echo "<h4>" . $space[0]->name . "</h4>";
+                                    if (isManager() || $verifContractor == true){
+                                        echo '<a class="mr-3" href="/eventSpace/delete/' . $event["idevent"] . '/' . $space[0]->idcookingspace .'"><img src="http://localhost:8080/assets/images/svg/trash-icon-red.svg" alt="delete-icon" class="icons" style="margin-left: 5px;margin-bottom: 4px;"></a>';
+                                    }
+                                } else {
+                                    echo "<h4>" . lang('Common.toBeDefined') . "</h4>";
                                 }
+                            }
                         } else {
-                            echo "<h4>" . lang('Common.toBeDefined') . "</h4>";
-                        }   
+                            echo "<h4 style='margin-right: 5px;'>" . lang('Common.takesPlaceAt') . "</h4>";
+                            if (isset($space) && !empty($space[0]->name)){
+                                    echo "<h4>" . $space[0]->name . "</h4>";
+                                    if (isManager() || $verifContractor == true){
+                                        echo '<a class="mr-3" href="/eventSpace/delete/' . $event["idevent"] . '/' . $space[0]->idcookingspace .'"><img src="http://localhost:8080/assets/images/svg/trash-icon-red.svg" alt="delete-icon" class="icons" style="margin-left: 5px;margin-bottom: 4px;"></a>';
+                                    }
+                            } else {
+                                echo "<h4>" . lang('Common.toBeDefined') . "</h4>";
+                            }
+                        }
                         echo '</div>';
                     echo '</div>';
                     echo '<div>';
@@ -219,9 +238,9 @@ echo '<body>';
                                 echo "<p class='card-text'>" . lang('Common.startsOn') . " " . $date['start'] . "</p>";
                                 $cookingspace['space'] = callAPI('/event/host/' . $suggestedEvent->idevent, 'get');
                                 if (isset($cookingspace['space']) && !empty($cookingspace['space'][0]->name)){
-                                    echo "<p class='card-text'>" . lang('Common.hostedBy') . " " . $cookingspace['space'][0]->name . "</p>";
+                                    echo "<p class='card-text'>" . lang('Common.takesPlaceAt') . " " . $cookingspace['space'][0]->name . "</p>";
                                 } else {
-                                    echo "<p class='card-text'>" . lang('Common.hostedBy') . ": " . lang('Common.toBeDefined') . "</p>";
+                                    echo "<p class='card-text'>" . lang('Common.takesPlaceAt') . ": " . lang('Common.toBeDefined') . "</p>";
                                 }
                             echo "</div>";
                             echo "<div class='event-card-body-right'>";

@@ -42,6 +42,7 @@ use App\Controllers\LessonGroup;
 
                 $booleans = [
                     'isprivate'  => 'Is a private event (customers house)',
+                    'isonline'   => 'Is an online event (cookmaster twitch channel)',
                     'isinternal'    => 'Is an internal event (cooking space)',
                 ];
                 $isChecked = true;

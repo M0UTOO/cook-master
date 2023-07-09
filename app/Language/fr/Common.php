@@ -164,6 +164,7 @@ return [
     'subscribe' => 'S\'abonner',
     'eventJoinMessage' => 'Event rejoint avec succès ! Envoyer un message au chef pour préciser le lieu de rendez-vous.',
     'contactContractor' => 'Contacter le chef',
+    'willBeStreamed' => 'Chaîne Twitch de Cookmaster',
 
 //    'eventsTitle' => 'Join the cooking course of your dreams',
     'eventsTitle' => 'Rejoignez le cours de cuisine de vos rêves',

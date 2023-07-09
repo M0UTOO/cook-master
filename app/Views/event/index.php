@@ -115,9 +115,10 @@ echo $this->include('layouts/head') ;
                             $date['start'] = $event->starttime;
                             $date['start'] = date("d/m/Y H:i:s", strtotime($date['start']));
                             echo "<p class='card-text'>". lang('Common.startsOn'). $date['start'] . "</p>";
+                            echo "<p class='card-text'>". lang('Common.type'). ' : ' . $event->type . "</p>";
                             $cookingspace['space'] = callAPI('/event/host/' . $event->idevent, 'get');
-                            if (isset($cookingspace['space'])){
-                                echo "<p class='card-text'>" . lang('Common.takesPlaceAt') . $cookingspace['space'][0]->name . "</p>";
+                            if (isset($cookingspace['space']) && $cookingspace['space']['error'] != true){
+                                echo "<p class='card-text'>" . lang('Common.takesPlaceAt') . $cookingspace['space']['cookingspaces'][0]->name . "</p>";
                             } else {
                                 echo "<p class='card-text'>Hosted in: To be defind</p>";
                             }

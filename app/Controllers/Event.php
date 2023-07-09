@@ -45,6 +45,9 @@ class Event extends BaseController
             if (isset($values['isinternal'])) {
                 $values['isinternal'] = boolval($values['isinternal']);
             }
+            if (isset($values['isonline'])) {
+                $values['isonline'] = boolval($values['isonline']);
+            }
             if (isset($values['isprivate'])) {
                 $values['isprivate'] = boolval($values['isprivate']);
             }
@@ -93,7 +96,8 @@ class Event extends BaseController
         $data['animate'] = callAPI('/event/animate/'.$id, 'get');
         $data['participation'] = callAPI('/event/participate/' . $data['event']['idevent'], 'get');
         $data['comments'] = callAPI('/event/comment/' . $data['event']['idevent'], 'get');
-        $data['space'] = callAPI('/event/host/' . $data['event']['idevent'], 'get');
+        $values['space'] = callAPI('/event/host/' . $data['event']['idevent'], 'get');
+        $data['space'] = $values['space']['cookingspaces'];
         if ($data['event']['ideventgroups'] != 1) {
             $data['eventGroup'] = callAPI('/event/group/' . $data['event']['ideventgroups'], 'get');
             $data['group'] = callAPI('/event/groups/' . $data['event']['idevent'], 'get');
@@ -145,7 +149,7 @@ class Event extends BaseController
         $data['animate'] = callAPI('/event/animate/'.$id, 'get');
 
         if ($currentUser['role'] != 'manager') {
-            if ($currentUser['id'] != $data['event']['iduser']) {
+            if ($currentUser['id'] != $data['animate'][0]->iduser) {
                 return redirect()->to('/event/' . $id . '')->with('message', 'You are not allowed to edit this event');
             }
         }
@@ -159,6 +163,9 @@ class Event extends BaseController
             $values = $this->request->getPost();
             if (isset($values['isinternal'])) {
                 $values['isinternal'] = (int)($values['isinternal']);
+            }
+            if (isset($values['isonline'])) {
+                $values['isonline'] = (int)($values['isonline']);
             }
             if (isset($values['isprivate'])) {
                 $values['isprivate'] = (int)($values['isprivate']);
