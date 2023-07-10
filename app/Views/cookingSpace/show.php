@@ -43,6 +43,6 @@ if (isset($cookingSpace)){
 
 </section>
 <?php
-   // echo $this->include('cookingSpace/cookingspace-items') ;
+    echo $this->include('cookingSpace/cookingspace-items') ;
     echo $this->include('cookingSpace/availability') ;} ?>
 

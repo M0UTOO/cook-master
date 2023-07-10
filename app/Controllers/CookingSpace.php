@@ -152,6 +152,9 @@ class CookingSpace extends BaseController
 
         $data['premise'] = callAPI('/premise/cookingspace/'.$id, 'get');
 
+        $data['items'] = callAPI('/cookingitem/cookingspace/'.$id, 'get');
+        $data['items'] = json_decode(json_encode($data['items']), true);
+
         return view('cookingSpace/show', $data);
     }
 

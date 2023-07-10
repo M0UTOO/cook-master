@@ -92,6 +92,7 @@ return [
         'cookingSpaces' => "Aucun espace de cuisine trouvé",
         'subscriptions' => "Aucun abonnement trouvé",
         'chat' => "Aucun message trouvé",
+        'items' => "Aucun matériel trouvé",
     ],
 
     'userManagementTitle' => 'Gestion des utilisateurs',
@@ -215,4 +216,6 @@ return [
     'ingredientAddCookingSpace' => 'Ajouter un ingrédient à un espace de cuisine',
     'itemCreate' => 'Créer un item',
     'ingredientCreate' => 'Créer un ingrédient',
+    'includedItems' => 'Matériel inclus',
+    'item' => 'item',
     ];

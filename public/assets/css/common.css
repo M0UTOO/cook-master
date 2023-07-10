@@ -506,7 +506,7 @@ footer{
     width: 100%;
 }
 
-/*COOKIGN SPACES */
+/*COOKING SPACES */
 
 .room-calendar {
     min-width: 65%;
@@ -525,6 +525,10 @@ footer{
 .room-infos{
     width: 50%;
     height: 100%;
+}
+.includes-items{
+    max-width: 50%;
+    min-width: 40%;
 }
 
 
