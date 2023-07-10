@@ -10,7 +10,7 @@ if(isLoggedIn() && isClient()){
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body d-flex justify-content-around">
-                <form action="<?=base_url('client/book')?>" method="post" class="d-flex flex-column">
+                <form action="<?=base_url('client/pay')?>" method="post" class="d-flex flex-column">
                     <input hidden="hidden" name="idCookingSpace" value="<?=$cookingSpace['idCookingSpace']?>" />
                     <input hidden="hidden" name="pricePerHour" value="<?=$cookingSpace['pricePerHour']?>">
 
@@ -34,7 +34,7 @@ if(isLoggedIn() && isClient()){
                         }
                         ?>
                     </select>
-                    <button type="submit" class="mt-4 btn blue-btn">Book the room</button>
+                    <button type="submit" class="mt-4 btn blue-btn"><?=lang('Common.btn-cookingSpaces')?></button>
                 </form>
                 <?php
                 }

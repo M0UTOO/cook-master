@@ -130,7 +130,7 @@ return [
     'closedEvent' => 'Cet événement est fermé !',
 
     'catchphrase' => 'Découvrez le cuisinier qui est en vous',
-    'small-catchphrase' => 'Rejoignez l\'expérience cookmaster',
+    'small-catchphrase' => 'Rejoignez l\'experience cookmaster',
     'ccRights' => 'Tous droits réservés',
     'btn-learn' => 'Apprendre des meilleurs',
     'btn-events' => 'Rejoindre un événement',
@@ -167,7 +167,6 @@ return [
     'contactContractor' => 'Contacter le chef',
     'willBeStreamed' => 'Chaîne Twitch de Cookmaster',
 
-//    'eventsTitle' => 'Join the cooking course of your dreams',
     'eventsTitle' => 'Rejoignez le cours de cuisine de vos rêves',
 
     'create_events' => 'Créer un évènement',

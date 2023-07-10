@@ -31,7 +31,7 @@ class Client extends Users
                 $tmp_time = strtotime($values['starttime']);
                 $values['starttime'] = $tmp_time + 1;
                 $values['starttime'] = date('Y-m-d H:i:s', $values['starttime']);
-                var_dump($values['starttime']);
+
                 $values['endtime']= $values['date'].' '.$values['endtime'];
                 unset($values['date']);
                 //GET HOURS OF RSERVATIONS
@@ -47,13 +47,9 @@ class Client extends Users
                 $values['iduser'] = (int) getCurrentUserId();
                 $values['idCookingSpace'] = (int) $idCookingSpace;
 
-//                //try to pay. If it works, book the room.
-//                $this->makePayement($reservationPrice);
-
                $data['message'] = callAPI('/cookingspace/books/'.$values['iduser'].'/'.$idCookingSpace, 'patch', $values);
                return redirect()->to('cookingSpace/'. $idCookingSpace)->with('message', $data['message']['message']);
-//               return redirect()->to('cookingSpace/'. $idCookingSpace)->with('message',"TEST OKAY - BOOKED");
-            }
+              }
 
         } else{
             return redirect()->to('cookingSpace/'. $idCookingSpace)->with('message', "You can't book a cooking space");
@@ -64,7 +60,7 @@ class Client extends Users
         redirect()->to('checkout?subscription='.$id);
     }
 
-    private function makePayement(float $reservationPrice)
+    private function pay(float $reservationPrice)
     {
         $stripe = new \Stripe\StripeClient('sk_test_51NDazQA36Phbw0Qb2RScUzvSM4zL7Jl3M55NELKH8U415lAtDZDIwh6qssyxdoMDSbE42CTIW1I1P9pTxkYfyVnu00CqRNNXup');
 
@@ -73,7 +69,11 @@ class Client extends Users
             $paymentIntent = $stripe->paymentIntents->create([
                 'amount' => (int)$reservationPrice*100, //amount must be an integer in the smallest unit of the currency
                 'currency' => 'eur',
-                'payment_method_types' => ['card']
+                'payment_method_types' => ['card'],
+                'metadata' => [
+                    'userid' => getCurrentUserId(),
+                    'cookingspace' => $id
+                ],
             ]);
 
             $output = [
@@ -85,6 +85,6 @@ class Client extends Users
             http_response_code(500);
             echo json_encode(['error' => $e->getMessage()]);
         }
-        return view('payment/checkout_form', $data);
+        return view('payment/reservations_payment', $data);
     }
 }

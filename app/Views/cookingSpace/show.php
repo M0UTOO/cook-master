@@ -37,7 +37,7 @@ if (isset($cookingSpace)){
         <h3 class="mb-5"><?= $cookingSpace['name'] ?></h3>
         <p><?=lang('Common.roomCapacity')?><?= $cookingSpace['size'] ?></p>
         <p><?=lang('Common.currentState')?><?= $available ?></p>
-        <p><?=lang('Common.pricePerHour')?><?= $cookingSpace['pricePerHour'] ?></p>
+        <p><?=lang('Common.pricePerHour')?><?= $cookingSpace['pricePerHour'] ?> €</p>
         <p><?=lang('Common.premise')?><?= $premise[0]->name ?></p>
     </div>
 

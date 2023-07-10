@@ -31,8 +31,6 @@ echo "<div id='calendar' class='mt-4 mb-4 room-calendar'></div>";
         echo "reservations.push({title: '".$event['name']."',textColor: '#252120',color: '#D2E6FB',url: '".$url."', allDay: false, start: '".$startTime."', end: '".$endTime."'});";
     }
     ?>
-    //TESTING
-    reservations.push({title: 'Client reservation', start: '2023-07-12T12:00:01', end: '2023-07-12T16:00:00', color: '#4D47A7'});
 
     document.addEventListener('DOMContentLoaded', function() {
         let htmlmodal = document.getElementById("confirmEventModal");
@@ -101,7 +99,6 @@ echo "<div id='calendar' class='mt-4 mb-4 room-calendar'></div>";
                 modal.show();
             }
         });
-        // calendar.setOption('locale', 'fr'); TO CHANGE LANGUAGE
         calendar.render();
     });
 
