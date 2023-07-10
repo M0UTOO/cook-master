@@ -278,4 +278,11 @@ class Users extends BaseController
         $data['reservations'] = callAPI('/cookingspace/books/client/'.$userId, 'get');
         return view('users/reservation', $data);
     }
+
+    public function bills() {
+        $data['title'] = lang('Common.myBills');
+        $userId = session()->get('id');
+        $data['bills'] = callAPI('/bill/user/'.$userId, 'get');
+        return view('users/bills', $data);
+    }
 }

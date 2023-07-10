@@ -45,6 +45,7 @@ $routes->get('user/profile/pastReservations', 'Users::reservation');
 $routes->get('user/profile/formations', 'Users::formation');
 $routes->get('user/profile/account/(:num)', 'Users::account/$1');
 $routes->post('user/profile/account/(:num)', 'Users::account/$1');
+$routes->get('user/profile/bills', 'Users::bills');
 $routes->get('user/formation/certificate/(:num)/(:num)', 'Users::certificate/$1/$2'); 
 
 $routes->post('contractors/create', 'Contractor::create');

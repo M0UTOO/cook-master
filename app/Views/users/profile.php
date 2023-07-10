@@ -169,7 +169,7 @@
 
             echo '<section class="account-cards" style="min-width: 100%;">';
             echo '<div class="account-row">';
-            $redirection = base_url("user/profile/comingEvents");
+            $redirection = base_url("user/profile/bills");
             echo '<div class="d-flex flex-column account-event-card" id="clickable-div5" data-href='.$redirection.'>';
             echo '<div class="card-title">';
             echo '<h2 class="mb-3">' . lang('Common.myBills') . '</h2>';
