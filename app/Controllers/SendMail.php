@@ -20,7 +20,6 @@ class SendMail extends BaseController
     }
 
     public function sendWelcomeMail($to, $userType, $name) :bool{
-        echo "ok";
         $data['name'] = isset($name) ? $name : "future cook master";
         $mail = $userType == "Client" ? view('users/mails/templateWelcomeMailClient', $data) : view('users/mails/templateWelcomeMailOthers', $data);
         return $this->sendMail($to, "Welcome to Cookmaster", $mail, "Cookmaster");
@@ -31,6 +30,13 @@ class SendMail extends BaseController
         $config['SMTPPass'] = env('SMTP_PASSWORD');
         $config['SMTPUser'] = env('SMTP_USER');
         return $email->initialize($config);
+    }
+
+    public function sendJoinedEventMail($to, $name, $event){
+        $data['name'] = isset($name) ? $name : "young cookmaster";
+        $data['event'] = $event;
+        $mail = view('users/mails/templateJoinedEvent', $data);
+        return $this->sendMail($to, "Cookmaster - Your participation to an event", $mail, "Cookmaster");
     }
 
     private function sendMail(string $to, string $subject, string $message, string $object): bool

@@ -63,9 +63,8 @@ class Contractor extends Users
             $data['message'] = callAPI('/user/', 'post', $values, ['Type' => $type]);
 
             if (!$data['message']['error']){
-                //TODO:PUT THIS BACK ON BEFORE PRODUCTION
-//                $mail = new SendMail();
-//                $state = $mail->sendWelcomeMail($values['email'], $type, $values['firstname']);
+                $mail = new SendMail();
+                $state = $mail->sendWelcomeMail($values['email'], $type, $values['firstname']);
             }
 
             return redirect()->to('/dashboard/userManagement')->with('message', $data['message']['message']);

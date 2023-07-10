@@ -128,6 +128,10 @@ class Event extends BaseController
         if ($data['event']['isprivate'] == true) {
             return redirect()->to('/message/' . $data['contractor'][0]->idcontractor . '')->with('message', lang('Common.eventJoinMessage'));
         }
+        if (!$data['message']['error']){
+            $mail = new SendMail();
+            $mail->sendJoinedEventMail(session()->get('email'),session()->get('id'), $data['event']);
+        }
         return redirect()->to('/event/' . $values['idevent'] . '')->with('message', $data['message']['message']);
     }
 

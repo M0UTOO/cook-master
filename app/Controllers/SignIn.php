@@ -62,6 +62,8 @@ class SignIn extends BaseController
                             $userInfo = [
                                 'id' => $data['message']['id'],
                                 'role' => $data['message']['role'],
+                                'email' => $data['message']['email'],
+                                'firstname' => $data['message']['firstname'],
                                 'isLoggedIn' => true,
                                 'isblocked' => false
                             ];
