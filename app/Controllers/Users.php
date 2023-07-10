@@ -62,7 +62,13 @@ class Users extends BaseController
                 $data['message'] = callAPI('/user/', 'post', $values, ['Type' => $type]);
                 $user_id = $data['message']['iduser'];
 
-                //SAVE PROFILEPICTURE ON SERVER: PICTURE NAME IS TIMESTAMP TO NOT MAKE IT OBVIOUS TO FIND
+                if (!$data['message']['error']){
+                    $mail = new SendMail();
+                    $state = $mail->sendWelcomeMail($values['email'], $type, $values['firstname']);
+                }
+            }
+
+                //PICTURE NAME IS TIMESTAMP TO NOT MAKE IT OBVIOUS TO FIND
                 $picture_name = "img-".$user_id . "_" . date('Y_mdHis', (new Time())->now()->getTimestamp()) . "." . $picture->getExtension(); //check extension
 
                 $data['state'] = callAPI('/user/'.$user_id, 'patch', ['profilepicture' => $picture_name]);
@@ -78,7 +84,6 @@ class Users extends BaseController
                 return redirect()->to('/signIn')->with('message', $data['message']['message'] . ". Log in to start your cookmaster experience !");
             }
         }
-    }
 
     public function profile(){
 

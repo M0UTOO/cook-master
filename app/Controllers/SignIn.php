@@ -59,11 +59,12 @@ class SignIn extends BaseController
                         }
                         else
                         {
+                            $user = callAPI('/user/'.$data['message']['id'], 'get');
                             $userInfo = [
                                 'id' => $data['message']['id'],
                                 'role' => $data['message']['role'],
-                                'email' => $data['message']['email'],
-                                'firstname' => $data['message']['firstname'],
+                                'email' => $user['email'],
+                                'firstname' => $user['firstname'],
                                 'isLoggedIn' => true,
                                 'isblocked' => false
                             ];

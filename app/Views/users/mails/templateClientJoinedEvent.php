@@ -8,10 +8,9 @@
 
 <?php
 if (isset($event)) {
-    echo "<p>Event name: " . $event->name . "</p>";
-    echo "<p>Event date: " . $event->starttime . "</p>";
-    echo "<p>Event location: " . $event->location . "</p>";
-    echo "<p>Link : <a href='" . base_url() . "/event/" . $event->idevents . "'>Event page</a></p>";
+    echo "<p>Event name: " . $event['name'] . "</p>";
+    echo "<p>Event date: " . $event['starttime'] . "</p>";
+    echo "<p><a href='" . base_url() . "/event/" . $event['idevent'] . "'>Check the event page here</a></p>";
 }
 ?>
 

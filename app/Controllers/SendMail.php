@@ -35,7 +35,7 @@ class SendMail extends BaseController
     public function sendJoinedEventMail($to, $name, $event){
         $data['name'] = isset($name) ? $name : "young cookmaster";
         $data['event'] = $event;
-        $mail = view('users/mails/templateJoinedEvent', $data);
+        $mail = view('users/mails/templateClientJoinedEvent', $data);
         return $this->sendMail($to, "Cookmaster - Your participation to an event", $mail, "Cookmaster");
     }
 

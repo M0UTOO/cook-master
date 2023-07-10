@@ -130,7 +130,7 @@ class Event extends BaseController
         }
         if (!$data['message']['error']){
             $mail = new SendMail();
-            $mail->sendJoinedEventMail(session()->get('email'),session()->get('id'), $data['event']);
+            $mail->sendJoinedEventMail(session()->get('email'),session()->get('firstname'), $data['event']);
         }
         return redirect()->to('/event/' . $values['idevent'] . '')->with('message', $data['message']['message']);
     }
