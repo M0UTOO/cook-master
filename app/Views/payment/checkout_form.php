@@ -1,4 +1,4 @@
-<main>
+<div>
     <form id="payment-form">
         <label for="payment-element">Payment details</label>
         <div id="payment-element">
@@ -12,8 +12,10 @@
     </form>
 
     <div id="messages" role="alert" style="display: none;"></div>
-</main>
-
+</div>
+<?php
+$redirection = isset($reservation) ? 'client/hasPayed': 'client/subscribe?subscription='. $subscription["idsubscription"];
+?>
 
 <!--SCRIPTS STRIPE-->
     <script src="https://js.stripe.com/v3/"></script>
@@ -22,8 +24,6 @@
         const addMessage = (message) => {
             const messagesDiv = document.querySelector('#messages');
             messagesDiv.style.display = 'block';
-            const messageWithLinks = addDashboardLinks(message);
-            messagesDiv.innerHTML += `> ${messageWithLinks}<br>`;
         };
 
         document.addEventListener('DOMContentLoaded', async () => {
@@ -48,14 +48,13 @@
                 const {error} = await stripe.confirmPayment({
                     elements,
                     confirmParams: {
-                        return_url: `${window.location.origin}/client/subscribe?subscription=` + <?= $subscription['idsubscription']?>,
+                        return_url: `${window.location.origin}/<?= $redirection ?>`,
                     },
-                    // redirect: 'if_required'
                 });
                 if(error) {
                     addMessage(error.message);
                     // Re-enable the form so the customer can resubmit.
-                   // paymentForm.querySelector('button').disabled = false;
+                   paymentForm.querySelector('button').disabled = false;
                 }
             });
         });

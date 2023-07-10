@@ -57,7 +57,7 @@ return [
     'city' => 'Ville',
     'presentation' => 'Présentation',
     'phoneNumber' => 'Numéro de téléphone',
-    'subscription' => 'Abonnement',
+    'subscription' => 'Abonnement ',
     'type' => 'Type',
     'contractStart' => 'Début du contrat',
     'contractEnd' => 'Fin du contrat',
@@ -217,4 +217,6 @@ return [
     'ingredientCreate' => 'Créer un ingrédient',
     'includedItems' => 'Matériel inclus',
     'item' => 'item',
+
+    'bookResume' => 'Réserver cet espaces de cuisine pendant {0, number} heure(s) coûtera {1, number} €',
     ];

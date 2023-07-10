@@ -89,6 +89,8 @@ $routes->post('client/book', 'Client::books'); //update subscription
 
 //PAYMENT METHODS
 $routes->get('checkout', 'Payment::checkout'); //display checkout form page
+$routes->get('checkoutv2/(:any)', 'Payment::checkoutv2/$1'); //display checkout form page for cookingspace
+$routes->get('client/hasPayed', 'Client::hasPayedReservation');
 
 //CONTRACTOR TYPES
 $routes->get('contractorTypes', 'ContractorType::index'); //show all contractorTypes
