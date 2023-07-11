@@ -1,6 +1,4 @@
 <?php
-
-
 return [
     'recommendedOrders' => 'Recommended Orders :',
     'homePage'          => 'Home Page',
@@ -104,8 +102,6 @@ return [
     'pastEvent' => 'Evénement passé',
     'noPastEvents' => 'Aucun événement passé',
     'myPastEvents' => 'Mes événements passés',
-    'myComments' => 'Mes commentaires',
-    'noComments' => 'Aucun commentaire',
     'formations' => 'formations',
     'formation' => 'formation',
     'noFormations' => 'Aucune formation',
@@ -217,6 +213,21 @@ return [
     'ingredientCreate' => 'Créer un ingrédient',
     'includedItems' => 'Matériel inclus',
     'item' => 'item',
+
+    'userManagement' => 'Gestion des utilisateurs',
+    'premisesManagement' => 'Gestion des locaux',
+    'subscriptionManagement' => 'Gestion des abonnements',
+    'eventManagement' => 'Gestion des événements',
+    'itemManagement' => 'Gestion des articles',
+    'ingredientManagement' => 'Gestion des ingrédients',
+
+    'managerRole' => 'En tant que manager, vous pouvez effectuer les actions suivantes :',
+    'management-explanations-user' => 'Gérer les utilisateurs, voir leurs rôles, noms, les bloquer et les supprimer.',
+    'management-explanations-premises' => 'Gérer les locaux, voir leurs noms, adresses et gérer les espaces de cuisine associés.',
+    'management-explanations-subscription' => 'Gérer les abonnements, créer, supprimer et modifier leurs paramètres.',
+    'management-explanations-event' => 'Gérer les événements, créer, supprimer et modifier leurs paramètres.',
+    'management-explanations-item' => 'Gérer les articles, créer, supprimer.',
+    'management-explanations-ingredient' => 'Gérer les ingrédients, créer, supprimer.',
 
     'bookResume' => 'Réserver cet espaces de cuisine pendant {0, number} heure(s) coûtera {1, number} €',
     ];
