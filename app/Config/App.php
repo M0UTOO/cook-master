@@ -17,7 +17,7 @@ class App extends BaseConfig
      *
      *    http://example.com/
      */
-    public string $baseURL = 'http://localhost:8080/';
+    public string $baseURL = 'https://becomeacookmaster.live/';
 
     /**
      * Allowed Hostnames in the Site URL other than the hostname in the baseURL.
@@ -42,7 +42,7 @@ class App extends BaseConfig
      * something else. If you are using mod_rewrite to remove the page set this
      * variable so that it is blank.
      */
-    public string $indexPage = 'index.php';
+    public string $indexPage = '';
 
     /**
      * --------------------------------------------------------------------------
@@ -83,7 +83,7 @@ class App extends BaseConfig
      *
      * If false, no automatic detection will be performed.
      */
-    public bool $negotiateLocale = true;
+    public bool $negotiateLocale = false;
 
     /**
      * --------------------------------------------------------------------------
@@ -96,7 +96,7 @@ class App extends BaseConfig
      *
      * @var string[]
      */
-    public array $supportedLocales = ['en', 'fr'];
+    public array $supportedLocales = ['en'];
 
     /**
      * --------------------------------------------------------------------------
@@ -168,7 +168,7 @@ class App extends BaseConfig
      *
      * @deprecated use Config\Session::$expiration instead.
      */
-    public int $sessionExpiration = 7200;
+    public int $sessionExpiration = 7;  
 
     /**
      * --------------------------------------------------------------------------
