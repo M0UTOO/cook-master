@@ -26,7 +26,7 @@ echo '<body>';
             if (isset($comments) && (!empty($comments))) {
                 foreach ($comments as $comment) {
                     $event = callAPI('/event/' . $comment->idevent, 'get');
-                    echo '<h1 class="mb-3">Event : ' . $event['name'] . '</h1>';
+                    echo '<h2 class="mb-3 h2-center">Event : ' . $event['name'] . '</h2>';
                     echo '<div class="comment-container mb-4">';
                         echo '<div class="comment-header">';
                             echo '<div class="comment-user d-flex flex-row">';
@@ -35,8 +35,8 @@ echo '<body>';
                                 echo '</div>';
                                 echo '<div class="comment-user-name d-flex flex-row">';
                                     echo "<h3 class='me-2'>" . $comment->firstname . " " . $comment->lastname . " :</h3>";
-                                    displayDifficultyLevel($comment->grade);
                                 echo '</div>';
+                                displayDifficultyLevel($comment->grade);
                                 if ($comment->iduser == $currentId) {
                                     echo '<div class="d-flex flex-row">';
                                         echo '<a class="me-3" href="/comment/delete/' . $comment->idcomment . '/1"><img src=' . base_url("assets/images/svg/trash-icon-red.svg") . ' alt="delete-icon" class="icons" /></a>';

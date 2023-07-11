@@ -211,11 +211,11 @@ echo '<body>';
             
             echo "<section id='other-lessons'>";
             if (isset($eventGroup)){
-            echo "<h2 class='title-suggestion-event'>" . lang('Common.otherEvent') . " " . $group[0]->name . " :</h2>";
-            echo "<div class='lesson-suggestion flex-rows'>";
+            echo "<h2 class='title-suggestion-event h2-center'>" . lang('Common.otherEvent') . " " . $group[0]->name . " :</h2>";
+            echo "<div class='event-suggestion flex-rows'>";
                 foreach ($eventGroup as $suggestedEvent){
                     if ($suggestedEvent->idevent != $event['idevent']){
-                        echo "<div class='event-card col mb-5'>";
+                        echo "<div class='event-card mb-5'>";
                         if (!isLoggedIn()){
                             $redirection = base_url("signIn");
                         } else {

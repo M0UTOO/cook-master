@@ -7,7 +7,7 @@ echo '<body>';
 echo $this->include('layouts/header') ;
 helper('form');
 
-echo "<h1 class='mb-3'>" . lang('Common.title-cookingSpace') . "<img alt='logo' class='ms-3' src=" . base_url("assets/images/svg/moon-icon.svg") . " /></h1>";
+echo "<h1 class='mb-3 h1-center'>" . lang('Common.title-cookingSpace') . "<img alt='logo' class='ms-3' src=" . base_url("assets/images/svg/moon-icon.svg") . " /></h1>";
 
 
 if (isManager()){
@@ -46,7 +46,7 @@ if (isset($cookingSpaces) && is_array($cookingSpaces) && count($cookingSpaces) >
             }
         }
 
-        echo "<div class='event-card col-3 mb-5'>";
+        echo "<div class='event-card col-3-cookingspace mb-5'>";
         if (!isLoggedIn()){
             $redirection = base_url("signIn");
         } else {

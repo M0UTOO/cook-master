@@ -22,7 +22,7 @@
                 echo '<div style="min-width: 100%;">';
                 echo '<p>Events completed : ' . $formation->count . '/' . $formation->eventcount . '</p>';
                 echo '</div>';
-                if ($formation->count == $formation->eventcount) {
+                if ($formation->count > $formation->eventcount) {
                     echo '<div class="d-flex flex-row">';
                     echo '<a class="me-3" href="/user/formation/certificate/' . $formation->ideventgroup .'/' . getCurrentUserId() . '"><img src=' . base_url("assets/images/svg/certificate-icon.svg") . ' alt="certificate-icon" class="icons-medium" /></a>';
                     echo '</div>';
