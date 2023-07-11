@@ -10,15 +10,7 @@ echo $this->include('layouts/head') ;
     echo '<body>';
 echo $this->include('layouts/header') ;
 
-echo "<h2>" . $title . "</h2>";
-
-    if (isset($message)) {
-        try {
-            echo $message ;
-        } catch (\Exception $e) {
-            echo "Something went wrong. Please try again later.";
-        }
-    }
+echo "<h1>" . $title . "</h1>";
 
     $hidden_input = [];
     $action = "eventGroup/add/";
@@ -49,9 +41,6 @@ echo "<h2>" . $title . "</h2>";
 
         $eventGroups = new EventGroup();
         $eventGroups = $eventGroups->getEventGroups();
-
-        //TODO: check what happens when empty array !
-
 
         echo '<input list="lesson-groups" id="lesson-group-choice" name="lesson-group-choice" class="form-control" required="required">';
         echo '<datalist id="lesson-groups">';

@@ -17,7 +17,7 @@
             echo '<p>' . lang('Common.address') . ' : ' . $client['streetnumber'] . ' ' . $client['streetname'] . '</p>';
             echo '<p>' . lang('Common.town') . ' : ' . $client['city'] . ' - ' . $client['country'] . '</p>';
             echo '<p>' . lang('Common.phoneNumber') . ' : ' . $client['phonenumber'] . '</p>';
-            // echo '<p>' . getSubscription() . '</p>';
+            echo '<p>' . lang('Common.subscription') . ' : ' . getSubscription()['name'] . '</p>';
         } else if (isContractor()) {
             echo '<p>' . lang('Common.description') . ' : ' . $contractor['presentation'] . '</p>';
             echo '<p>' . lang('Common.type') . ' : ' . $type[0]->name . '</p>';
@@ -95,14 +95,15 @@
             echo '</div>';
             echo '</section>';
 
-            echo '<section class="account-cards" style="min-width: 100%;">';
-            echo '<div class="account-row">';
-            $redirection = base_url("user/profile/pastOrders");
-            echo '<div class="d-flex flex-column account-event-card" id="clickable-div7" data-href='.$redirection.'>';
-            echo '<div class="card-title">';
-            echo '<h2 class="mb-3">' . lang('Common.myOrders') . '</h2>';
-            echo '</div>';
             if (isset($pastOrders) && !empty($pastOrders)) {
+                echo '<section class="account-cards" style="min-width: 100%;">';
+                echo '<div class="account-row">';
+                $redirection = base_url("user/profile/pastOrders");
+                echo '<div class="d-flex flex-column account-event-card" id="clickable-div7" data-href='.$redirection.'>';
+                echo '<div class="card-title">';
+                echo '<h2 class="mb-3">' . lang('Common.myOrders') . '</h2>';
+                echo '</div>';
+
                 echo '<div style="min-width: 100%;">';
                 if (sizeof($pastOrders) == 1) {
                     echo '<p>' . lang('Common.youHave') . ' ' . sizeof($pastOrders) . ' ' . lang('Common.order') . '</p>';
@@ -110,12 +111,9 @@
                     echo '<p>' . lang('Common.youHave') . ' ' . sizeof($pastOrders) . ' ' . lang('Common.orders') . '</p>';
                 }
                 echo '</div>';
-            } else {
-                echo '<div style="min-width: 100%;">';
-                echo '<p>' . lang('Common.noOrders') . '</p>';
                 echo '</div>';
             }
-            echo '</div>';
+
             $redirection = base_url("user/profile/pastReservations");
             echo '<div class="d-flex flex-column account-event-card" id="clickable-div8" data-href='.$redirection.'>';
             echo '<div class="card-title">';

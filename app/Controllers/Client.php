@@ -7,17 +7,21 @@ class Client extends Users
     public function subscribe(){
         $data['title'] = "Subscribe to a subscription";
         $subscription = $this->request->getGet('subscription');
+        $payement = $this->request->getGet('payment_intent_client_secret');
 
-        if (isLoggedIn() && isClient()){
-            $data['message'] = callAPI('/client/subscription/'.getCurrentUserId().'/'.$subscription, 'patch');
-            if (isset($data['message']['error']) && $data['message']['error']){
-                return redirect()->to('/')->with('message', $data['message']['message']);
-            } else {
-            $newSubscription = callAPI('/subscription/'.$subscription, 'get');
-            session()->set("subscription", $newSubscription);
+        if ($payement == session()->get('client_secret')){
+            if (isLoggedIn() && isClient()){
+                $data['message'] = callAPI('/client/subscription/'.getCurrentUserId().'/'.$subscription, 'patch');
+                if (isset($data['message']['error']) && $data['message']['error']){
+                    return redirect()->to('/')->with('message', $data['message']['message']);
+                } else {
+                    $newSubscription = callAPI('/subscription/'.$subscription, 'get');
+                    session()->set("subscription", $newSubscription);
+                }
             }
+        } else {
+            return redirect()->to('/subscriptions')->with('message', 'Pay or we will call the cops.');
         }
-        return redirect()->to('user/profile')->with('message', $data['message']['message']);
     }
 
     public function books(){
@@ -25,8 +29,6 @@ class Client extends Users
         $idCookingSpace = $values['idCookingSpace'];
 
         if (isLoggedIn() && isClient() && getSubscription()["allowroombooking"]){
-            {
-
                 $values['starttime']= $values['date'].' '.$values['starttime'];
                 $tmp_time = strtotime($values['starttime']);
                 $values['starttime'] = $tmp_time + 1;
@@ -48,43 +50,40 @@ class Client extends Users
                 $values['idCookingSpace'] = (int) $idCookingSpace;
 
                $data['message'] = callAPI('/cookingspace/books/'.$values['iduser'].'/'.$idCookingSpace, 'patch', $values);
-               return redirect()->to('cookingSpace/'. $idCookingSpace)->with('message', $data['message']['message']);
-              }
+
+               if ($data['message']['error']){
+                   return redirect()->to('cookingSpace/'. $idCookingSpace)->with('message', $data['message']['message']);
+               } else {
+                   session()->set('idcookingspace', $values['idCookingSpace']);
+               return redirect()->to('checkoutv2/'.round($reservationPrice, 2))->with( 'message',lang('Common.bookResume', [$reservationDuration, $reservationPrice]));
+               }
 
         } else{
             return redirect()->to('cookingSpace/'. $idCookingSpace)->with('message', "You can't book a cooking space");
         }
     }
 
-    public function paySubscription($id){
-        redirect()->to('checkout?subscription='.$id);
-    }
+    public function hasPayedReservation(){
+        $payement = $this->request->getGet('payment_intent_client_secret');
+        $status = $this->request->getGet('redirect_status');
+        $idCookingSpace = session()->get('idcookingspace');
 
-    private function pay(float $reservationPrice)
-    {
-        $stripe = new \Stripe\StripeClient('sk_test_51NDazQA36Phbw0Qb2RScUzvSM4zL7Jl3M55NELKH8U415lAtDZDIwh6qssyxdoMDSbE42CTIW1I1P9pTxkYfyVnu00CqRNNXup');
+        var_dump($payement);
+        var_dump($status);
+        var_dump($idCookingSpace);
+        var_dump(session()->get('client_secret'));
 
-        try {
-            // Create a PaymentIntent with amount and currency
-            $paymentIntent = $stripe->paymentIntents->create([
-                'amount' => (int)$reservationPrice*100, //amount must be an integer in the smallest unit of the currency
-                'currency' => 'eur',
-                'payment_method_types' => ['card'],
-                'metadata' => [
-                    'userid' => getCurrentUserId(),
-                    'cookingspace' => $id
-                ],
-            ]);
-
-            $output = [
-                'clientSecret' => $paymentIntent->client_secret,
-            ];
-            $data['clientSecret'] = $output['clientSecret'];
-
-        } catch (\Exception $e) {
-            http_response_code(500);
-            echo json_encode(['error' => $e->getMessage()]);
+        if ($payement == session()->get('client_secret')) {
+            if($status == "succeeded"){
+                return redirect()->to('/user/profile/pastReservations/')->with('message', 'Your reservation has been successfully payed');
+            } else {
+                $data['message'] = callAPI('/books/'.getCurrentUserId().'/'.$idCookingSpace, 'delete');
+                if (!$data['message']['error']){
+                    return redirect()->to('/user/profile/pastReservations/')->with('message', 'An error has occured with your payment, please retry.');
+                }
+            }
+        }else{
+            return redirect()->to('/user/profile/pastReservations/')->with('message', 'An error has occured with your payment, please retry.');
         }
-        return view('payment/reservations_payment', $data);
     }
 }
