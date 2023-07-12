@@ -21,7 +21,7 @@ echo form_open("", 'id="signIn-form" class="w-75 v-50 d-flex flex-column justify
     echo '</div>';
     echo form_submit('',$signIn, "class='btn blue-btn mt-3'");
 
-    echo '<a class="align-self-end" href='. base_url('password/forgottenPassword'). '>'.lang(("Common.password-forgot")).'</a>';
+    //echo '<a class="align-self-end" href='. base_url('password/forgottenPassword'). '>'.lang(("Common.password-forgot")).'</a>';
 
 echo form_close();
 

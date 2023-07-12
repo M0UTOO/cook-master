@@ -34,7 +34,7 @@ class Users extends BaseController
         else
         {
             $values = $this->request->getPost();
-            $picture = $this->request->getFile('profilepicture');
+            //$picture = $this->request->getFile('profilepicture');
 
             if ($values['password'] != $values['password-confirm']){
                 $data['message'] = "Passwords don't match";
@@ -69,18 +69,18 @@ class Users extends BaseController
             }
 
                 //PICTURE NAME IS TIMESTAMP TO NOT MAKE IT OBVIOUS TO FIND
-                $picture_name = "img-".$user_id . "_" . date('Y_mdHis', (new Time())->now()->getTimestamp()) . "." . $picture->getExtension(); //check extension
+                //$picture_name = "img-".$user_id . "_" . date('Y_mdHis', (new Time())->now()->getTimestamp()) . "." . $picture->getExtension(); //check extension
 
-                $data['state'] = callAPI('/user/'.$user_id, 'patch', ['profilepicture' => $picture_name]);
+                //$data['state'] = callAPI('/user/'.$user_id, 'patch', ['profilepicture' => $picture_name]);
 
-                if (!$data['state']['error']){
-                    $directory = './assets/images/users';
-                    if (!file_exists($directory)){
-                        mkdir($directory, 755, true);
-                        chmod($directory, 755);
-                    }
-                    $picture->move($directory, $picture_name);
-                }
+                //if (!$data['state']['error']){
+                    //$directory = './assets/images/users';
+                    //if (!file_exists($directory)){
+                     //   mkdir($directory, 755, true);
+                      //  chmod($directory, 755);
+                    //}
+                    //$picture->move($directory, $picture_name);
+                //}
                 return redirect()->to('/signIn')->with('message', $data['message']['message'] . ". Log in to start your cookmaster experience !");
             }
         }

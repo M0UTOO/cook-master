@@ -71,10 +71,10 @@ if ((isset($mini) && $mini == false) || !isset($mini)){
     echo form_input(['type'  => 'text', 'name'  => 'country', 'id'=> 'sign-up-country','value' => $value, 'class' => 'form-control mb-1', 'placeholder' => lang('Common.country'), 'required' => 'required']);
     echo '</div>';
 
-    echo '<div class="form-group">';
-    echo form_label(lang('Common.profile-picture') , "label-profile-pic");
-    echo form_input(['type'  => 'file', 'name'  => 'profilepicture', 'class' => 'form-control mb-1']);
-    echo '</div>';
+    //echo '<div class="form-group">';
+    //echo form_label(lang('Common.profile-picture') , "label-profile-pic");
+    //echo form_input(['type'  => 'file', 'name'  => 'profilepicture', 'class' => 'form-control mb-1', 'required' => 'required']);
+    //echo '</div>';
 
     if (isset($type) && $type == "Contractor")
     {
