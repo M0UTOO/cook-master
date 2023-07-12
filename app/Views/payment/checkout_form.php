@@ -27,7 +27,7 @@ $redirection = isset($reservation) ? 'client/hasPayed': 'client/subscribe?subscr
         };
 
         document.addEventListener('DOMContentLoaded', async () => {
-            const stripe = Stripe('<?= env('STRIPE_TEST_PUBLIC_KEY') ?>', {
+            const stripe = Stripe('<?= env('STRIPE_LIVE_KEY') ?>', {
             });
 
             const elements = stripe.elements({

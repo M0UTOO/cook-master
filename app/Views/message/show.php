@@ -33,7 +33,7 @@ const id = <?php
         ?>;
 const userId = <?php echo json_encode(session()->get('id')); ?>;
 
-const url = `http://localhost:9000/message/${id}/${userId}`;
+const url = `https://api.becomeacookmaster.live:9000/message/${id}/${userId}`;
 
 // socket.addEventListener('open', () => {
 //     console.log('Connected to WebSocket server');
@@ -80,7 +80,6 @@ sendButton.addEventListener('click', () => {
         fetch(url, options)
             .then(response => response.json())
             .then(data => {
-                console.log(data);
             })
             .catch(error => {
                 console.log(error);

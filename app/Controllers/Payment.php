@@ -10,7 +10,7 @@ class Payment extends BaseController
     public function checkout()
     {
         $data['title'] = "Cookmaster - Payment";
-        $stripe = new \Stripe\StripeClient('pk_test_51NDazQA36Phbw0QboHCh3Cf69d6gS63cziNQj84etYj17xZc86F0suqhMB7a8WPeHNLlohapR3SgJHl6dYAT01qR00aOWQG4Ok');
+        $stripe = new \Stripe\StripeClient('pk_live_51NDazQA36Phbw0QbjUyboeaI3coCCHtWOiq1Z2elLv6vHjV59lUV5pVvqgcgQSIEnArbgROFpmOdKrpJ3BnFjX0u00m1jrxFST');
 
         $subscription = $this->request->getGet('subscription');
         if (!$subscription == null) {
@@ -51,7 +51,7 @@ class Payment extends BaseController
     {
         $price = (float) $price;
         $data['title'] = "Cookmaster - Reservation payment";
-        $stripe = new \Stripe\StripeClient('pk_test_51NDazQA36Phbw0QboHCh3Cf69d6gS63cziNQj84etYj17xZc86F0suqhMB7a8WPeHNLlohapR3SgJHl6dYAT01qR00aOWQG4Ok');
+        $stripe = new \Stripe\StripeClient('pk_live_51NDazQA36Phbw0QbjUyboeaI3coCCHtWOiq1Z2elLv6vHjV59lUV5pVvqgcgQSIEnArbgROFpmOdKrpJ3BnFjX0u00m1jrxFST');
 
         try {
             // Create a PaymentIntent with amount and currency
