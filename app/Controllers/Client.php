@@ -9,7 +9,7 @@ class Client extends Users
         $subscription = $this->request->getGet('subscription');
         $payement = $this->request->getGet('payment_intent_client_secret');
 
-        if ($payement == session()->get('client_secret')){
+        if ($payement == session()->get('client_secret') || (int) $subscription == 1){
             if (isLoggedIn() && isClient()){
                 $data['message'] = callAPI('/client/subscription/'.getCurrentUserId().'/'.$subscription, 'patch');
                 if (isset($data['message']['error']) && $data['message']['error']){
@@ -17,6 +17,8 @@ class Client extends Users
                 } else {
                     $newSubscription = callAPI('/subscription/'.$subscription, 'get');
                     session()->set("subscription", $newSubscription);
+                    return redirect()->to('user/profile')->with('message', $data['message']['message']);
+
                 }
             }
         } else {

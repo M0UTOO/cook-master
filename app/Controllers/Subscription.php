@@ -77,6 +77,16 @@ class Subscription extends BaseController
             $values['price'] = (float)$values['price'];
             $values['maxlessonaccess'] = (int)$values['maxlessonaccess'];
 
+            if (isset($values['allowroombooking'])) {
+                $values['allowroombooking'] = (bool)$values['allowroombooking'];
+            }
+            if (isset($values['allowchat'])) {
+                $values['allowchat'] = (bool)$values['allowchat'];
+            }
+            if (isset($values['allowshopreduction'])) {
+                $values['allowshopreduction'] = (bool)$values['allowshopreduction'];
+            }
+
             $picture = $this->request->getFile('picture');
             if (!empty($picture->getName()) && $picture->getSize() <= 2000000) {
                 $picture_name = "img-subscription-" . $id . "." . $picture->getExtension(); //check extension
@@ -84,14 +94,13 @@ class Subscription extends BaseController
             }
             $data['message'] = callAPI('/subscription/'.$id, 'patch', $values);
 
-            if (!$data['message']['error'] && !isset($values['picture'])){
+            if (!$data['message']['error'] && isset($values['picture'])){
                 $directory = './assets/images/subscriptions';
                 if (!file_exists($directory)){
                     mkdir($directory, 755, true);
-                    chmod($directory, 770);
+                    chmod($directory, 755);
                 }
                 $picture->move('./assets/images/subscriptions/', $picture_name, true);
-                chmod($directory, 770);
             }
 
             return redirect()->to('/subscription/'.$id)->with('message', $data['message']['message']);

@@ -21,7 +21,7 @@ echo "<h2>" . $title . "</h2>";
     }
 
     $hidden_input = [];
-    $action = "eventSpace/add/";
+    $action = "eventSpace/add";
 
 
     echo form_open($action, 'id="eventSpace-add-form" class=""', $hidden_input);

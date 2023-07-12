@@ -359,11 +359,11 @@ footer{
 .grid-events {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around !important;
 }
 
 .col-3-cookingspace{
-    width: 25em;
+    width: 20em;
 }
 
 .card-suggestion-event-blue {

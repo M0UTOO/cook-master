@@ -35,7 +35,7 @@ helper('form');
             echo '</div>';
         }
 if (isset($lessons) && is_array($lessons) && count($lessons) > 0){
-    echo '<section class="table-responsive">';
+    echo '<section id="users-table" class="table-responsive">';
         echo '<table class="table">';
 
             echo '<thead>';

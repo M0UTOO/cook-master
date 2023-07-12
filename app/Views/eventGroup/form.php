@@ -13,7 +13,7 @@ echo $this->include('layouts/header') ;
 echo "<h1>" . $title . "</h1>";
 
     $hidden_input = [];
-    $action = "eventGroup/add/";
+    $action = "eventGroup/add";
 
 
     echo form_open($action, 'id="eventGroup-add-form" class=""', $hidden_input);

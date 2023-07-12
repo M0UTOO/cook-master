@@ -1,3 +1,4 @@
+
 <?php
 helper('form');
 helper('url');
@@ -26,7 +27,7 @@ helper('url');
                 echo '</div>';
 
                 echo '<div class="form-group mb-3">';
-                echo form_label( lang('Common.name') , "label-subscription-description");
+                echo form_label( lang('Common.description') , "label-subscription-description");
                 $value = (isset($subscription) ? $subscription['description'] :'');
                 echo form_input(['type'  => 'textarea', 'name'  => 'description', 'class' => 'form-control', 'value' => $value, 'placeholder' => "Description of subscription", 'required' => 'required']);
                 echo '</div>';

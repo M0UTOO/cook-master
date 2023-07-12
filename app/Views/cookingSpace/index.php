@@ -24,7 +24,7 @@ echo "</form>";
 echo "</div>";
 echo "</nav>";
 
-echo "<div class='row grid-events' id='event-container'>";
+echo "<div class='grid-events' id='event-container'>";
 
 if (isset($cookingSpaces) && is_array($cookingSpaces) && count($cookingSpaces) > 0){
     $ads = 0;
